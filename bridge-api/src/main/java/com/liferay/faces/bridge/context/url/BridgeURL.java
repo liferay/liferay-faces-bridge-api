@@ -13,8 +13,10 @@
  */
 package com.liferay.faces.bridge.context.url;
 
+import java.net.MalformedURLException;
 import java.util.Map;
 
+import javax.portlet.BaseURL;
 import javax.portlet.PortletURL;
 
 
@@ -25,6 +27,13 @@ import javax.portlet.PortletURL;
  * @author  Neil Griffin
  */
 public interface BridgeURL {
+
+	/**
+	 * Converts the bridge URL to an instance of the {@link BaseURL} type.
+	 *
+	 * @return  The converted bridge URL.
+	 */
+	public BaseURL toBaseURL() throws MalformedURLException;
 
 	/**
 	 * Returns a string-based representation of the URL.
