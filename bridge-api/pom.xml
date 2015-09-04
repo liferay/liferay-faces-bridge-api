@@ -3,9 +3,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.liferay.faces</groupId>
-		<artifactId>liferay-faces</artifactId>
-		<version>4.2.6-ga7-SNAPSHOT</version>
+		<groupId>com.liferay.faces.bridge</groupId>
+		<artifactId>liferay-faces-bridge-api-parent</artifactId>
+		<version>4.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>liferay-faces-bridge-api</artifactId>
@@ -28,10 +28,6 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
 		</dependency>
 	</dependencies>
 
