@@ -1,15 +1,17 @@
 /**
  * Copyright (c) 2000-2015 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.liferay.faces.bridge.scope;
 
@@ -34,7 +36,7 @@ public interface RequestAttributeInspector {
 	 * specified value is an instance of a particular class such as those listed in Section 5.1.2 of the Bridge
 	 * Specification.
 	 *
-	 * @param   name  The request attribute name.
+	 * @param   name   The request attribute name.
 	 * @param   value  The request attribute value.
 	 *
 	 * @return  If the request attribute is to be excluded then the return value is <code>true</code>. Otherwise, the
@@ -47,7 +49,7 @@ public interface RequestAttributeInspector {
 	 * specified name appears in the <code>bridge:excluded-attributes</code> element within the faces-config.xml
 	 * descriptor.
 	 *
-	 * @param   name  The request attribute name.
+	 * @param   name   The request attribute name.
 	 * @param   value  The request attribute value.
 	 *
 	 * @return  If the request attribute is to be excluded then the return value is <code>true</code>. Otherwise, the
@@ -60,7 +62,7 @@ public interface RequestAttributeInspector {
 	 * specified name matches the name of a request attribute that existed before the bridge acquired the {@link
 	 * javax.faces.context.FacesContext}.
 	 *
-	 * @param   name  The request attribute name.
+	 * @param   name   The request attribute name.
 	 * @param   value  The request attribute value.
 	 *
 	 * @return  If the request attribute is to be excluded then the return value is <code>true</code>. Otherwise, the
@@ -73,7 +75,7 @@ public interface RequestAttributeInspector {
 	 * specified value is an instance of a class annotated with {@link
 	 * javax.portlet.faces.annotation.ExcludeFromManagedRequestScope}.
 	 *
-	 * @param   name  The request attribute name.
+	 * @param   name   The request attribute name.
 	 * @param   value  The request attribute value.
 	 *
 	 * @return  If the request attribute is to be excluded then the return value is <code>true</code>. Otherwise, the
