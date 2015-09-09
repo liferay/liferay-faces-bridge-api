@@ -1,11 +1,10 @@
 # Liferay Faces Bridge API
 
-This is the Application Programming Interface (API) for
-[Liferay Faces Bridge](http://www.liferay.com/community/liferay-projects/liferay-faces/overview) which is a Portlet 2.0
-Bridge for JavaServer&trade; Faces 2.1.
+This is the Application Programming Interface (API) for [JSR 329](https://www.jcp.org/en/jsr/detail?id=329), Portlet 2.0
+Bridge for JavaServer&trade; Faces 1.2 Specification.
 
 The corresponding implementation is the
-[3.0.x branch of liferay-faces-bridge-impl](https://github.com/liferay/liferay-faces-bridge-impl/tree/3.0.x).
+[2.1.x branch of liferay-faces-bridge-impl](https://github.com/liferay/liferay-faces-bridge-impl/tree/2.1.x).
 
 ## License
 
@@ -13,10 +12,15 @@ The corresponding implementation is the
 
 ## News
 
-For the latest news and updates, follow [@liferayfaces](https://twitter.com/liferayfaces).
+For the latest news and updates, follow [@FacesBridgeSpec](https://twitter.com/FacesBridgeSpec).
 
 ## Building From Source
 
 Using [Maven](https://maven.apache.org/) 3.x:
 
 	mvn clean install
+
+## Community Participation
+
+Visit the [faces-bridge-spec](https://java.net/projects/faces-bridge-spec) project at java.net to learn how to
+participate.
