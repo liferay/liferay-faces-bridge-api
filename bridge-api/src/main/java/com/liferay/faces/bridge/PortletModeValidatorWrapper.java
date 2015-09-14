@@ -23,7 +23,7 @@ import com.liferay.faces.util.helper.Wrapper;
  */
 public abstract class PortletModeValidatorWrapper implements PortletModeValidator, Wrapper<PortletModeValidator> {
 
-	@Override
+	// Java 1.6+: @Override
 	public boolean isValid(String portletMode) {
 		return getWrapped().isValid(portletMode);
 	}

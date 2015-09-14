@@ -24,31 +24,31 @@ import com.liferay.faces.util.helper.Wrapper;
 public abstract class RequestAttributeInspectorWrapper implements RequestAttributeInspector,
 	Wrapper<RequestAttributeInspector> {
 
-	@Override
+	// Java 1.6+: @Override
 	public boolean containsExcludedNamespace(String name) {
 		return getWrapped().containsExcludedNamespace(name);
 	}
 
-	@Override
+	// Java 1.6+: @Override
 	public boolean isExcludedByType(String name, Object value) {
 		return getWrapped().isExcludedByType(name, value);
 	}
 
-	@Override
+	// Java 1.6+: @Override
 	public boolean isExcludedByConfig(String name, Object value) {
 		return getWrapped().isExcludedByConfig(name, value);
 	}
 
-	@Override
+	// Java 1.6+: @Override
 	public boolean isExcludedByPreExisting(String name, Object value) {
 		return getWrapped().isExcludedByPreExisting(name, value);
 	}
 
-	@Override
+	// Java 1.6+: @Override
 	public boolean isExcludedByAnnotation(String name, Object value) {
 		return getWrapped().isExcludedByAnnotation(name, value);
 	}
 
-	@Override
+	// Java 1.6+: @Override
 	public abstract RequestAttributeInspector getWrapped();
 }

@@ -23,7 +23,7 @@ import com.liferay.faces.util.helper.Wrapper;
  */
 public abstract class WindowStateValidatorWrapper implements WindowStateValidator, Wrapper<WindowStateValidator> {
 
-	@Override
+	// Java 1.6+: @Override
 	public boolean isValid(String windowState) {
 		return getWrapped().isValid(windowState);
 	}
