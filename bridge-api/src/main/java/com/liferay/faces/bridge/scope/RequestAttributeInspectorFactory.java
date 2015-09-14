@@ -15,17 +15,17 @@
  */
 package com.liferay.faces.bridge.scope;
 
-import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletRequest;
 
 import com.liferay.faces.bridge.config.BridgeConfig;
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * @author  Neil Griffin
  */
-public abstract class RequestAttributeInspectorFactory implements FacesWrapper<RequestAttributeInspectorFactory> {
+public abstract class RequestAttributeInspectorFactory implements Wrapper<RequestAttributeInspectorFactory> {
 
 	public abstract RequestAttributeInspector getRequestAttributeInspector(PortletRequest portletRequest,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);

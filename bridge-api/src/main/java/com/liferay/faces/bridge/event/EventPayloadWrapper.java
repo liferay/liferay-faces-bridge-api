@@ -17,8 +17,9 @@ package com.liferay.faces.bridge.event;
 
 import java.io.Serializable;
 
-import javax.faces.FacesWrapper;
 import javax.portlet.StateAwareResponse;
+
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
@@ -33,7 +34,7 @@ import javax.portlet.StateAwareResponse;
  *
  * @author  Neil Griffin
  */
-public class EventPayloadWrapper implements FacesWrapper<Serializable>, Serializable {
+public class EventPayloadWrapper implements Wrapper<Serializable>, Serializable {
 
 	// serialVersionUID
 	private static final long serialVersionUID = 9167031956551424140L;

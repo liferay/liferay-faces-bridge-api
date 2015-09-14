@@ -20,7 +20,6 @@ import java.io.Writer;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
 import javax.portlet.PortletRequest;
@@ -33,13 +32,13 @@ import com.liferay.faces.bridge.config.BridgeConfig;
 import com.liferay.faces.bridge.context.url.BridgeResourceURL;
 import com.liferay.faces.bridge.context.url.BridgeURL;
 import com.liferay.faces.bridge.scope.BridgeRequestScope;
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * @author  Neil Griffin
  */
-public abstract class BridgeContextWrapper extends BridgeContext implements FacesWrapper<BridgeContext> {
-
+public abstract class BridgeContextWrapper extends BridgeContext implements Wrapper<BridgeContext> {
 	@Override
 	public BridgeURL encodeActionURL(String url) {
 		return getWrapped().encodeActionURL(url);

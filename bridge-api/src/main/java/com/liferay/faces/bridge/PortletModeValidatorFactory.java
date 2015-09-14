@@ -15,13 +15,13 @@
  */
 package com.liferay.faces.bridge;
 
-import javax.faces.FacesWrapper;
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * @author  Neil Griffin
  */
-public abstract class PortletModeValidatorFactory implements FacesWrapper<PortletModeValidatorFactory> {
+public abstract class PortletModeValidatorFactory implements Wrapper<PortletModeValidatorFactory> {
 
 	public abstract PortletModeValidator getPortletModeValidator();
 }

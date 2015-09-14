@@ -17,13 +17,13 @@ package com.liferay.faces.bridge.context.url;
 
 import java.net.URISyntaxException;
 
-import javax.faces.FacesWrapper;
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * @author  Neil Griffin
  */
-public abstract class BridgeURIFactory implements FacesWrapper<BridgeURIFactory> {
+public abstract class BridgeURIFactory implements Wrapper<BridgeURIFactory> {
 
 	public abstract BridgeURI getBridgeURI(String uri) throws URISyntaxException;
 }

@@ -15,13 +15,13 @@
  */
 package com.liferay.faces.bridge;
 
-import javax.faces.FacesWrapper;
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * @author  Neil Griffin
  */
-public abstract class WindowStateValidatorFactory implements FacesWrapper<WindowStateValidatorFactory> {
+public abstract class WindowStateValidatorFactory implements Wrapper<WindowStateValidatorFactory> {
 
 	public abstract WindowStateValidator getWindowStateValidator();
 }

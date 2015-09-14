@@ -15,14 +15,14 @@
  */
 package com.liferay.faces.bridge.scope;
 
-import javax.faces.FacesWrapper;
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * @author  Neil Griffin
  */
 public abstract class RequestAttributeInspectorWrapper implements RequestAttributeInspector,
-	FacesWrapper<RequestAttributeInspector> {
+	Wrapper<RequestAttributeInspector> {
 
 	@Override
 	public boolean containsExcludedNamespace(String name) {

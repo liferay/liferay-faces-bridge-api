@@ -15,8 +15,9 @@
  */
 package com.liferay.faces.bridge.config;
 
-import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
+
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
@@ -25,7 +26,7 @@ import javax.portlet.PortletConfig;
  *
  * @author  Neil Griffin
  */
-public abstract class BridgeConfigFactory implements FacesWrapper<BridgeConfigFactory> {
+public abstract class BridgeConfigFactory implements Wrapper<BridgeConfigFactory> {
 
 	public abstract BridgeConfig getBridgeConfig(PortletConfig portletConfig);
 
