@@ -15,16 +15,16 @@
  */
 package com.liferay.faces.portlet.component.defineobjects;
 
-import javax.faces.component.FacesComponent;
-
+// JSF 2: import javax.faces.component.FacesComponent;
 
 /**
  * This has been implemented for the sake of completeness of the portlet: tags from the JSR 286 specification. Please
- * refer to {@link ELResolverImpl} and section 6.5.1 of the JSR 329 specification for more information.
+ * refer to com.liferay.faces.bridge.el.internal.ELResolverImpl and section 6.5.1 of the JSR 329 specification for more
+ * information.
  *
  * @author  Neil Griffin
  */
-@FacesComponent(value = DefineObjects.COMPONENT_TYPE)
+// JSF 2: @FacesComponent(value = DefineObjects.COMPONENT_TYPE)
 public class DefineObjects extends DefineObjectsBase {
 
 	// Public Constants

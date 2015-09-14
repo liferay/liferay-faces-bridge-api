@@ -47,5 +47,7 @@ public abstract class NamespaceBase extends UIComponentBase {
 	public void setVar(String var) {
 		getStateHelper().put(NamespacePropertyKeys.var, var);
 	}
+
+	public abstract com.liferay.faces.util.component.StateHelper getStateHelper();
 }
 //J+

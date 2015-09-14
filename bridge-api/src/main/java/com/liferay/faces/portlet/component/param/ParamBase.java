@@ -55,5 +55,7 @@ public abstract class ParamBase extends UIComponentBase {
 	public void setValue(String value) {
 		getStateHelper().put(ParamPropertyKeys.value, value);
 	}
+
+	protected abstract com.liferay.faces.util.component.StateHelper getStateHelper();
 }
 //J+

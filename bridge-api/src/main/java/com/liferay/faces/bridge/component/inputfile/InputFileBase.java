@@ -17,14 +17,13 @@ package com.liferay.faces.bridge.component.inputfile;
 //J-
 
 import javax.annotation.Generated;
-import javax.faces.component.html.HtmlInputFile;
-
+import javax.faces.component.html.HtmlInputText;
 
 /**
  * @author	Neil Griffin
  */
 @Generated(value = "com.liferay.alloy.tools.builder.FacesBuilder")
-public abstract class InputFileBase extends HtmlInputFile {
+public abstract class InputFileBase extends HtmlInputText {
 
 	// Public Constants
 	public static final String COMPONENT_TYPE = "com.liferay.faces.bridge.component.inputfile.InputFile";
@@ -36,6 +35,13 @@ public abstract class InputFileBase extends HtmlInputFile {
 		fileUploadListener,
 		multiple
 	}
+
+	protected enum PropertyKeys {
+		styleClass
+	}
+
+	// Public Constants
+	public static final String FILE_UPLOAD_LISTENER = "fileUploadListener";
 
 	public InputFileBase() {
 		super();
@@ -65,5 +71,7 @@ public abstract class InputFileBase extends HtmlInputFile {
 	public void setMultiple(String multiple) {
 		getStateHelper().put(InputFilePropertyKeys.multiple, multiple);
 	}
+
+	public abstract com.liferay.faces.util.component.StateHelper getStateHelper();
 }
 //J+

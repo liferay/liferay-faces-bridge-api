@@ -15,20 +15,56 @@
  */
 package com.liferay.faces.portlet.component.property;
 
-import javax.faces.component.FacesComponent;
+// JSF 2: import javax.faces.component.FacesComponent;
+
+import javax.faces.context.FacesContext;
+
+import com.liferay.faces.util.component.ComponentStateHelper;
+import com.liferay.faces.util.component.StateHelper;
 
 
 /**
  * @author  Neil Griffin
  */
-@FacesComponent(value = Property.COMPONENT_TYPE)
+// JSF 2: @FacesComponent(value = Property.COMPONENT_TYPE)
 public class Property extends PropertyBase {
 
 	// Public Constants
 	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.property";
 
+	// Private Data Members
+	private StateHelper stateHelper;
+
+	@Override
+	public void restoreState(FacesContext facesContext, Object state) {
+
+		Object[] values = (Object[]) state;
+		super.restoreState(facesContext, values[0]);
+		getStateHelper().restoreState(facesContext, values[1]);
+	}
+
+	@Override
+	public Object saveState(FacesContext facesContext) {
+
+		Object[] values = new Object[2];
+		values[0] = super.saveState(facesContext);
+		values[1] = getStateHelper().saveState(facesContext);
+
+		return values;
+	}
+
 	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+	@Override
+	public StateHelper getStateHelper() {
+
+		if (stateHelper == null) {
+			stateHelper = new ComponentStateHelper(this);
+		}
+
+		return stateHelper;
 	}
 }

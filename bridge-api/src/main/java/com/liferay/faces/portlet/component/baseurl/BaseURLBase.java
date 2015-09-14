@@ -65,5 +65,7 @@ public abstract class BaseURLBase extends UIComponentBase {
 	public void setVar(String var) {
 		getStateHelper().put(BaseURLPropertyKeys.var, var);
 	}
+
+	public abstract com.liferay.faces.util.component.StateHelper getStateHelper();
 }
 //J+

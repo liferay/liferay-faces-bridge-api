@@ -15,6 +15,12 @@
  */
 package com.liferay.faces.portlet.component.baseurl;
 
+import javax.faces.context.FacesContext;
+
+import com.liferay.faces.util.component.ComponentStateHelper;
+import com.liferay.faces.util.component.StateHelper;
+
+
 /**
  * @author  Neil Griffin
  */
@@ -23,8 +29,39 @@ public class BaseURL extends BaseURLBase {
 	// Public Constants
 	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.baseurl";
 
+	// Private Data Members
+	private StateHelper stateHelper;
+
+	@Override
+	public void restoreState(FacesContext facesContext, Object state) {
+
+		Object[] values = (Object[]) state;
+		super.restoreState(facesContext, values[0]);
+		getStateHelper().restoreState(facesContext, values[1]);
+	}
+
+	@Override
+	public Object saveState(FacesContext facesContext) {
+
+		Object[] values = new Object[2];
+		values[0] = super.saveState(facesContext);
+		values[1] = getStateHelper().saveState(facesContext);
+
+		return values;
+	}
+
 	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+	@Override
+	public StateHelper getStateHelper() {
+
+		if (stateHelper == null) {
+			stateHelper = new ComponentStateHelper(this);
+		}
+
+		return stateHelper;
 	}
 }

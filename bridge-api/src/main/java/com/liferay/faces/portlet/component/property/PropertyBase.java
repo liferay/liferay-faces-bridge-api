@@ -55,5 +55,8 @@ public abstract class PropertyBase extends UIComponentBase {
 	public void setValue(String value) {
 		getStateHelper().put(PropertyPropertyKeys.value, value);
 	}
+
+
+	protected abstract com.liferay.faces.util.component.StateHelper getStateHelper();
 }
 //J+

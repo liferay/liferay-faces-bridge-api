@@ -16,19 +16,25 @@
 package com.liferay.faces.bridge.component.inputfile;
 
 import javax.el.MethodExpression;
-import javax.faces.component.FacesComponent;
+
+//JSF 2.0+: import javax.faces.component.FacesComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.FacesEvent;
 
 import com.liferay.faces.bridge.event.FileUploadEvent;
+import com.liferay.faces.util.component.ComponentStateHelper;
+import com.liferay.faces.util.component.StateHelper;
 
 
 /**
  * @author  Neil Griffin
  */
-@FacesComponent(value = InputFile.COMPONENT_TYPE)
+// JSF 2.0+: @FacesComponent(value = InputFile.COMPONENT_TYPE)
 public class InputFile extends InputFileBase {
+
+	// Private Data Members
+	private StateHelper stateHelper;
 
 	@Override
 	public void broadcast(FacesEvent facesEvent) throws AbortProcessingException {
@@ -46,6 +52,24 @@ public class InputFile extends InputFileBase {
 		catch (Exception e) {
 			throw new AbortProcessingException(e);
 		}
+	}
+
+	@Override
+	public void restoreState(FacesContext facesContext, Object state) {
+
+		Object[] values = (Object[]) state;
+		super.restoreState(facesContext, values[0]);
+		getStateHelper().restoreState(facesContext, values[1]);
+	}
+
+	@Override
+	public Object saveState(FacesContext facesContext) {
+
+		Object[] values = new Object[2];
+		values[0] = super.saveState(facesContext);
+		values[1] = getStateHelper().saveState(facesContext);
+
+		return values;
 	}
 
 	private String concatCssClasses(String... classNames) {
@@ -76,6 +100,16 @@ public class InputFile extends InputFileBase {
 	}
 
 	@Override
+	public StateHelper getStateHelper() {
+
+		if (stateHelper == null) {
+			stateHelper = new ComponentStateHelper(this);
+		}
+
+		return stateHelper;
+	}
+
+	@Override
 	public String getStyleClass() {
 
 		// getStateHelper().eval(PropertyKeys.styleClass, null) is called because super.getStyleClass() may return the
@@ -84,4 +118,5 @@ public class InputFile extends InputFileBase {
 
 		return concatCssClasses(styleClass, "bridge-input-file");
 	}
+
 }
