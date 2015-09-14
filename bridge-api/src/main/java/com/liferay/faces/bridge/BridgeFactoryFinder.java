@@ -19,8 +19,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Iterator;
-import java.util.ServiceLoader;
 
 import javax.faces.FacesException;
 
@@ -77,22 +75,22 @@ public abstract class BridgeFactoryFinder {
 
 		if (instance == null) {
 
-			ServiceLoader<BridgeFactoryFinder> serviceLoader = ServiceLoader.load(BridgeFactoryFinder.class);
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-			if (serviceLoader != null) {
+			try {
+				String factoryFinderService = "META-INF/services/com.liferay.faces.bridge.BridgeFactoryFinder";
+				String facesFactoryFinderClassName = getClassPathResourceAsString(factoryFinderService);
 
-				Iterator<BridgeFactoryFinder> iterator = serviceLoader.iterator();
-
-				while ((instance == null) && iterator.hasNext()) {
-					instance = iterator.next();
+				if (facesFactoryFinderClassName != null) {
+					Class<?> facesFactoryFinderClass = classLoader.loadClass(facesFactoryFinderClassName);
+					instance = (BridgeFactoryFinder) facesFactoryFinderClass.newInstance();
 				}
-
-				if (instance == null) {
-					throw new FacesException("Unable locate service for " + BridgeFactoryFinder.class.getName());
+				else {
+					throw new FacesException("Unable to load resource=[" + factoryFinderService + "]");
 				}
 			}
-			else {
-				throw new FacesException("Unable to acquire ServiceLoader for " + BridgeFactoryFinder.class.getName());
+			catch (Exception e) {
+				throw new FacesException(e);
 			}
 		}
 

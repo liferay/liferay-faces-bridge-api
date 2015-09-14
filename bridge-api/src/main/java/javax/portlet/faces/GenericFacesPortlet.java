@@ -22,12 +22,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.ServiceLoader;
 
-import javax.faces.FacesException;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
@@ -266,11 +263,9 @@ public class GenericFacesPortlet extends GenericPortlet {
 	protected Bridge getBridge() throws PortletException {
 
 		if (bridge == null) {
-
 			String bridgeClassName = getBridgeClassName();
 
 			if (bridgeClassName != null) {
-
 				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
 				try {
@@ -279,26 +274,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 				}
 				catch (Exception e) {
 					throw new PortletException(e);
-				}
-			}
-			else {
-
-				ServiceLoader<Bridge> serviceLoader = ServiceLoader.load(Bridge.class);
-
-				if (serviceLoader != null) {
-
-					Iterator<Bridge> iterator = serviceLoader.iterator();
-
-					while ((bridge == null) && iterator.hasNext()) {
-						bridge = iterator.next();
-					}
-
-					if (bridge == null) {
-						throw new FacesException("Unable locate service for " + Bridge.class.getName());
-					}
-				}
-				else {
-					throw new FacesException("Unable to acquire ServiceLoader for " + Bridge.class.getName());
 				}
 			}
 		}
@@ -314,22 +289,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 			bridgeClassName = getPortletConfig().getInitParameter(BRIDGE_CLASS);
 
 			if (bridgeClassName == null) {
-
-				ServiceLoader<Bridge> serviceLoader = ServiceLoader.load(Bridge.class);
-
-				if (serviceLoader != null) {
-
-					Iterator<Bridge> iterator = serviceLoader.iterator();
-
-					while ((bridge == null) && iterator.hasNext()) {
-
-						Object bridgeService = iterator.next();
-
-						if (bridgeService != null) {
-							bridgeClassName = bridgeService.getClass().getName();
-						}
-					}
-				}
+				bridgeClassName = getClassPathResourceAsString(BRIDGE_SERVICE_CLASSPATH);
 			}
 		}
 
