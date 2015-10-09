@@ -19,12 +19,5 @@ package com.liferay.faces.portlet.component.baseurl;
  * @author  Neil Griffin
  */
 public class BaseURL extends BaseURLBase {
-
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.baseurl";
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
+	// Initial Generation
 }
