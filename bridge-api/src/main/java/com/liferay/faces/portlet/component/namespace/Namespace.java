@@ -29,9 +29,6 @@ import com.liferay.faces.util.component.StateHelper;
 // JSF 2: @FacesComponent(value = Namespace.COMPONENT_TYPE)
 public class Namespace extends NamespaceBase {
 
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.namespace";
-
 	// Private Data Members
 	private StateHelper stateHelper;
 

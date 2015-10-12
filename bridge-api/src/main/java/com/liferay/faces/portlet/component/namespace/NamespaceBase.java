@@ -27,6 +27,7 @@ import javax.faces.component.UIComponentBase;
 public abstract class NamespaceBase extends UIComponentBase {
 
 	// Public Constants
+	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.namespace";
 	public static final String COMPONENT_TYPE = "com.liferay.faces.portlet.component.namespace.Namespace";
 	public static final String RENDERER_TYPE = "com.liferay.faces.portlet.component.namespace.NamespaceRenderer";
 
@@ -38,6 +39,11 @@ public abstract class NamespaceBase extends UIComponentBase {
 	public NamespaceBase() {
 		super();
 		setRendererType(RENDERER_TYPE);
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
 	}
 
 	public String getVar() {

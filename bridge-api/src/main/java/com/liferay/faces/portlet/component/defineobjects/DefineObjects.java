@@ -26,12 +26,5 @@ package com.liferay.faces.portlet.component.defineobjects;
  */
 // JSF 2: @FacesComponent(value = DefineObjects.COMPONENT_TYPE)
 public class DefineObjects extends DefineObjectsBase {
-
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.defineobjects";
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
+	// Initial Generation
 }

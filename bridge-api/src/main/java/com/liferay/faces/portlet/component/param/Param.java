@@ -29,9 +29,6 @@ import com.liferay.faces.util.component.StateHelper;
 // JSF 2: @FacesComponent(value = Param.COMPONENT_TYPE)
 public class Param extends ParamBase {
 
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.param";
-
 	// Private Data Members
 	private StateHelper stateHelper;
 

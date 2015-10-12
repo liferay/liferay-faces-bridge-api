@@ -26,9 +26,6 @@ import com.liferay.faces.util.component.StateHelper;
  */
 public class BaseURL extends BaseURLBase {
 
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.baseurl";
-
 	// Private Data Members
 	private StateHelper stateHelper;
 

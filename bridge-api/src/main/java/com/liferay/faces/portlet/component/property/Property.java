@@ -29,9 +29,6 @@ import com.liferay.faces.util.component.StateHelper;
 // JSF 2: @FacesComponent(value = Property.COMPONENT_TYPE)
 public class Property extends PropertyBase {
 
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.property";
-
 	// Private Data Members
 	private StateHelper stateHelper;
 
