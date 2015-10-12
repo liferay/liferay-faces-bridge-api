@@ -23,12 +23,5 @@ import javax.faces.component.FacesComponent;
  */
 @FacesComponent(value = Property.COMPONENT_TYPE)
 public class Property extends PropertyBase {
-
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.property";
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
+	// Initial Generation
 }

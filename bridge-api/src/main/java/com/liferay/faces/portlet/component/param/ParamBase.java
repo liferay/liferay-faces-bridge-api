@@ -27,6 +27,7 @@ import javax.faces.component.UIComponentBase;
 public abstract class ParamBase extends UIComponentBase {
 
 	// Public Constants
+	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.param";
 	public static final String COMPONENT_TYPE = "com.liferay.faces.portlet.component.param.Param";
 
 	// Protected Enumerations
@@ -38,6 +39,11 @@ public abstract class ParamBase extends UIComponentBase {
 	public ParamBase() {
 		super();
 		setRendererType("");
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
 	}
 
 	public String getName() {
