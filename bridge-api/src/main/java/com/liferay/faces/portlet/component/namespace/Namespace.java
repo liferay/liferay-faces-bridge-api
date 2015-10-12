@@ -23,12 +23,5 @@ import javax.faces.component.FacesComponent;
  */
 @FacesComponent(value = Namespace.COMPONENT_TYPE)
 public class Namespace extends NamespaceBase {
-
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.namespace";
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
+	// Initial Generation
 }

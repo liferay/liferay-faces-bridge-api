@@ -23,12 +23,5 @@ import javax.faces.component.FacesComponent;
  */
 @FacesComponent(value = Param.COMPONENT_TYPE)
 public class Param extends ParamBase {
-
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.param";
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
+	// Initial Generation
 }

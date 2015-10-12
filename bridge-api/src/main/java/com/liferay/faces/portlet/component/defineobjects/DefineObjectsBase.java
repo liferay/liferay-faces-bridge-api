@@ -27,11 +27,17 @@ import javax.faces.component.UIComponentBase;
 public abstract class DefineObjectsBase extends UIComponentBase {
 
 	// Public Constants
+	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.defineobjects";
 	public static final String COMPONENT_TYPE = "com.liferay.faces.portlet.component.defineobjects.DefineObjects";
 
 	public DefineObjectsBase() {
 		super();
 		setRendererType("");
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
 	}
 }
 //J+
