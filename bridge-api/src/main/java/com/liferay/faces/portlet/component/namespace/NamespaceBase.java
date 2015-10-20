@@ -46,10 +46,20 @@ public abstract class NamespaceBase extends UIComponentBase {
 		return COMPONENT_FAMILY;
 	}
 
+	/**
+	 * <code>var</code> attribute description:
+	 * <br /><br />
+	 * Introduces an EL variable that contains the portlet namespace.
+	 */
 	public String getVar() {
 		return (String) getStateHelper().eval(NamespacePropertyKeys.var, null);
 	}
 
+	/**
+	 * <code>var</code> attribute description:
+	 * <br /><br />
+	 * Introduces an EL variable that contains the portlet namespace.
+	 */
 	public void setVar(String var) {
 		getStateHelper().put(NamespacePropertyKeys.var, var);
 	}
