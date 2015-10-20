@@ -40,10 +40,20 @@ public abstract class ActionURLBase extends RenderURLBase {
 		setRendererType(RENDERER_TYPE);
 	}
 
+	/**
+	 * <code>name</code> attribute description:
+	 * <br /><br />
+	 * The name of the action method to be executed.
+	 */
 	public String getName() {
 		return (String) getStateHelper().eval(ActionURLPropertyKeys.name, null);
 	}
 
+	/**
+	 * <code>name</code> attribute description:
+	 * <br /><br />
+	 * The name of the action method to be executed.
+	 */
 	public void setName(String name) {
 		getStateHelper().put(ActionURLPropertyKeys.name, name);
 	}

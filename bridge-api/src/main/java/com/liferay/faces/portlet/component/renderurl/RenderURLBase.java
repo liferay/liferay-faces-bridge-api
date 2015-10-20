@@ -42,26 +42,56 @@ public abstract class RenderURLBase extends BaseURL {
 		setRendererType(RENDERER_TYPE);
 	}
 
+	/**
+	 * <code>copyCurrentRenderParameters</code> attribute description:
+	 * <br /><br />
+	 * When true, copy the current request's render parameters to the URL. Defaults to false.
+	 */
 	public boolean isCopyCurrentRenderParameters() {
 		return (Boolean) getStateHelper().eval(RenderURLPropertyKeys.copyCurrentRenderParameters, false);
 	}
 
+	/**
+	 * <code>copyCurrentRenderParameters</code> attribute description:
+	 * <br /><br />
+	 * When true, copy the current request's render parameters to the URL. Defaults to false.
+	 */
 	public void setCopyCurrentRenderParameters(boolean copyCurrentRenderParameters) {
 		getStateHelper().put(RenderURLPropertyKeys.copyCurrentRenderParameters, copyCurrentRenderParameters);
 	}
 
+	/**
+	 * <code>portletMode</code> attribute description:
+	 * <br /><br />
+	 * The name of the mode of the portlet which will be accessed via the URL.
+	 */
 	public String getPortletMode() {
 		return (String) getStateHelper().eval(RenderURLPropertyKeys.portletMode, null);
 	}
 
+	/**
+	 * <code>portletMode</code> attribute description:
+	 * <br /><br />
+	 * The name of the mode of the portlet which will be accessed via the URL.
+	 */
 	public void setPortletMode(String portletMode) {
 		getStateHelper().put(RenderURLPropertyKeys.portletMode, portletMode);
 	}
 
+	/**
+	 * <code>windowState</code> attribute description:
+	 * <br /><br />
+	 * The name of the window state of the portlet which will be accessed via the URL.
+	 */
 	public String getWindowState() {
 		return (String) getStateHelper().eval(RenderURLPropertyKeys.windowState, null);
 	}
 
+	/**
+	 * <code>windowState</code> attribute description:
+	 * <br /><br />
+	 * The name of the window state of the portlet which will be accessed via the URL.
+	 */
 	public void setWindowState(String windowState) {
 		getStateHelper().put(RenderURLPropertyKeys.windowState, windowState);
 	}
