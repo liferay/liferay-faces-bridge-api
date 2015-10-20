@@ -48,18 +48,38 @@ public abstract class InputFileBase extends HtmlInputText {
 		setRendererType(RENDERER_TYPE);
 	}
 
+	/**
+	 * <code>auto</code> attribute description:
+	 * <br /><br />
+	 * When this flag is true, files are uploaded automatically as soon as they are selected. The default value is false.
+	 */
 	public boolean isAuto() {
 		return (Boolean) getStateHelper().eval(InputFilePropertyKeys.auto, false);
 	}
 
+	/**
+	 * <code>auto</code> attribute description:
+	 * <br /><br />
+	 * When this flag is true, files are uploaded automatically as soon as they are selected. The default value is false.
+	 */
 	public void setAuto(boolean auto) {
 		getStateHelper().put(InputFilePropertyKeys.auto, auto);
 	}
 
+	/**
+	 * <code>fileUploadListener</code> attribute description:
+	 * <br /><br />
+	 * A method that is executed when a file is uploaded. The method must be <code>public</code>, return <code>void</code>, and take a <code>FileUploadEvent</code> argument.
+	 */
 	public javax.el.MethodExpression getFileUploadListener() {
 		return (javax.el.MethodExpression) getStateHelper().eval(InputFilePropertyKeys.fileUploadListener, null);
 	}
 
+	/**
+	 * <code>fileUploadListener</code> attribute description:
+	 * <br /><br />
+	 * A method that is executed when a file is uploaded. The method must be <code>public</code>, return <code>void</code>, and take a <code>FileUploadEvent</code> argument.
+	 */
 	public void setFileUploadListener(javax.el.MethodExpression fileUploadListener) {
 		getStateHelper().put(InputFilePropertyKeys.fileUploadListener, fileUploadListener);
 	}
@@ -68,6 +88,11 @@ public abstract class InputFileBase extends HtmlInputText {
 		return (String) getStateHelper().eval(InputFilePropertyKeys.multiple, null);
 	}
 
+	/**
+	 * <code>multiple</code> attribute description:
+	 * <br /><br />
+	 * HTML passthrough attribute specifying whether or not multiple files can be uploaded. Valid values are blank (to upload a single file) or "multiple" (to upload multiple files).
+	 */
 	public void setMultiple(String multiple) {
 		getStateHelper().put(InputFilePropertyKeys.multiple, multiple);
 	}

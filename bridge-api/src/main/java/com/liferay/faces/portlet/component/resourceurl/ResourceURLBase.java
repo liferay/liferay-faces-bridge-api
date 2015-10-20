@@ -41,19 +41,39 @@ public abstract class ResourceURLBase extends BaseURL {
 		setRendererType(RENDERER_TYPE);
 	}
 
+	/**
+	 * <code>cacheability</code> attribute description:
+	 * <br /><br />
+	 * The cacheability of the resource returned by the resourceURL. Valid values include <code>ResourceURL.FULL</code>, <code>ResourceURL.PAGE</code>, and <code>ResourceURL.PORTLET</code>. Defaults to <code>ResourceURL.PAGE</code>.
+	 */
 	public String getCacheability() {
 		return (String) getStateHelper().eval(ResourceURLPropertyKeys.cacheability, javax.portlet.ResourceURL.PAGE);
 	}
 
+	/**
+	 * <code>cacheability</code> attribute description:
+	 * <br /><br />
+	 * The cacheability of the resource returned by the resourceURL. Valid values include <code>ResourceURL.FULL</code>, <code>ResourceURL.PAGE</code>, and <code>ResourceURL.PORTLET</code>. Defaults to <code>ResourceURL.PAGE</code>.
+	 */
 	public void setCacheability(String cacheability) {
 		getStateHelper().put(ResourceURLPropertyKeys.cacheability, cacheability);
 	}
 
+	/**
+	 * <code>id</code> attribute description:
+	 * <br /><br />
+	 * The id for the resource.
+	 */
 	@Override
 	public String getId() {
 		return (String) getStateHelper().eval(ResourceURLPropertyKeys.id, null);
 	}
 
+	/**
+	 * <code>id</code> attribute description:
+	 * <br /><br />
+	 * The id for the resource.
+	 */
 	@Override
 	public void setId(String id) {
 		getStateHelper().put(ResourceURLPropertyKeys.id, id);

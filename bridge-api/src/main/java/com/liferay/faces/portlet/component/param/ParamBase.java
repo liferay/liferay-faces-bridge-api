@@ -46,18 +46,38 @@ public abstract class ParamBase extends UIComponentBase {
 		return COMPONENT_FAMILY;
 	}
 
+	/**
+	 * <code>name</code> attribute description:
+	 * <br /><br />
+	 * The name of the render parameter.
+	 */
 	public String getName() {
 		return (String) getStateHelper().eval(ParamPropertyKeys.name, null);
 	}
 
+	/**
+	 * <code>name</code> attribute description:
+	 * <br /><br />
+	 * The name of the render parameter.
+	 */
 	public void setName(String name) {
 		getStateHelper().put(ParamPropertyKeys.name, name);
 	}
 
+	/**
+	 * <code>value</code> attribute description:
+	 * <br /><br />
+	 * The value of the render parameter.
+	 */
 	public String getValue() {
 		return (String) getStateHelper().eval(ParamPropertyKeys.value, null);
 	}
 
+	/**
+	 * <code>value</code> attribute description:
+	 * <br /><br />
+	 * The value of the render parameter.
+	 */
 	public void setValue(String value) {
 		getStateHelper().put(ParamPropertyKeys.value, value);
 	}

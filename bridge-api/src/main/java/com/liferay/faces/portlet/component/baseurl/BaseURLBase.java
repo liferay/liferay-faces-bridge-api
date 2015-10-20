@@ -48,26 +48,56 @@ public abstract class BaseURLBase extends UIComponentBase {
 		return COMPONENT_FAMILY;
 	}
 
+	/**
+	 * <code>escapeXml</code> attribute description:
+	 * <br /><br />
+	 * When true, xml special characters will be escaped. Defaults to true.
+	 */
 	public boolean isEscapeXml() {
 		return (Boolean) getStateHelper().eval(BaseURLPropertyKeys.escapeXml, true);
 	}
 
+	/**
+	 * <code>escapeXml</code> attribute description:
+	 * <br /><br />
+	 * When true, xml special characters will be escaped. Defaults to true.
+	 */
 	public void setEscapeXml(boolean escapeXml) {
 		getStateHelper().put(BaseURLPropertyKeys.escapeXml, escapeXml);
 	}
 
+	/**
+	 * <code>secure</code> attribute description:
+	 * <br /><br />
+	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 */
 	public Boolean getSecure() {
 		return (Boolean) getStateHelper().eval(BaseURLPropertyKeys.secure, null);
 	}
 
+	/**
+	 * <code>secure</code> attribute description:
+	 * <br /><br />
+	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 */
 	public void setSecure(Boolean secure) {
 		getStateHelper().put(BaseURLPropertyKeys.secure, secure);
 	}
 
+	/**
+	 * <code>var</code> attribute description:
+	 * <br /><br />
+	 * Introduces an EL variable that contains the URL.
+	 */
 	public String getVar() {
 		return (String) getStateHelper().eval(BaseURLPropertyKeys.var, null);
 	}
 
+	/**
+	 * <code>var</code> attribute description:
+	 * <br /><br />
+	 * Introduces an EL variable that contains the URL.
+	 */
 	public void setVar(String var) {
 		getStateHelper().put(BaseURLPropertyKeys.var, var);
 	}
