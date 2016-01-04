@@ -38,8 +38,8 @@ import javax.portlet.ResourceURL;
 import javax.portlet.WindowState;
 import javax.portlet.WindowStateException;
 import javax.portlet.faces.Bridge;
+import javax.portlet.faces.BridgeFactoryFinder;
 
-import com.liferay.faces.bridge.BridgeFactoryFinder;
 import com.liferay.faces.bridge.PortletModeValidator;
 import com.liferay.faces.bridge.PortletModeValidatorFactory;
 import com.liferay.faces.bridge.WindowStateValidator;
