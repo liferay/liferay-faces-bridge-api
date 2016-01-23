@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.bridge.scope;
+package com.liferay.faces.bridge.filter;
 
-import java.util.Map;
+import javax.faces.FacesWrapper;
+import javax.portlet.PortletContext;
 
 
 /**
- * This interface defines a {@link java.util.Map} style interface for managing cache of {@link BridgeRequestScope}.
- *
  * @author  Neil Griffin
  */
-public interface BridgeRequestScopeCache extends Map<String, BridgeRequestScope> {
+public abstract class BridgePortletContextFactory implements FacesWrapper<BridgePortletContextFactory> {
 
+	public abstract PortletContext getPortletContext(PortletContext portletContext);
 }
