@@ -24,7 +24,12 @@ import javax.faces.context.FacesContext;
 /**
  * @author  Neil Griffin
  */
-public class BridgeUtil {
+public final class BridgeUtil {
+
+	// Prevent instantiation since this is a static utility class.
+	private BridgeUtil() {
+		throw new AssertionError();
+	}
 
 	public static Bridge.PortletPhase getPortletRequestPhase() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
