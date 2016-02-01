@@ -708,7 +708,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 
 	}
 
-	private static class RequestParameter {
+	protected static class RequestParameter {
 
 		private String name;
 		private String value;
