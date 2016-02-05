@@ -84,11 +84,14 @@ public interface BridgeURI {
 	public boolean isRelative();
 
 	/**
-	 * Determines whether or not the URL is external.
+	 * Determines whether or not the URI is external with respect to a context path, meaning it is not absolute and does
+	 * not start with the context path.
+	 *
+	 * @param contextPath The context path for determining whether or not the URI is external.
 	 *
 	 * @return  <code>true</code> if external, otherwise <code>false</code>.
 	 */
-	public boolean isExternal();
+	public boolean isExternal(String contextPath);
 
 	/**
 	 * Determines whether or not the URL is hierarchical, meaning it is either 1) absolute and the scheme-specific part
