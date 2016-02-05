@@ -97,9 +97,9 @@ public interface BridgeURL {
 	public void setSelfReferencing(boolean selfReferencing);
 
 	/**
-	 * Determines whether or not the URL targets a Faces View.
+	 * If the URL targets a Faces view, then returns the viewId. Otherwise, returns null.
 	 *
-	 * @return  <code>true</code> if the URL targets a Faces View, otherwise <code>false</code>
+	 * @return  if the URL targets a Faces View, returns the viewId. Otherwise <code>null</code>.
 	 */
-	public boolean isFacesViewTarget();
+	public String getViewId();
 }
