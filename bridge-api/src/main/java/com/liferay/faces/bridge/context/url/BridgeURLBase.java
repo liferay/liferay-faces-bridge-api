@@ -56,7 +56,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 	// Private Data Members
 	private BridgeContext bridgeContext;
 	private BridgeURI bridgeURI;
-	private Boolean facesViewTarget;
+	private String facesViewTarget;
 	private boolean selfReferencing;
 	private Map<String, String[]> parameterMap;
 	private boolean secure;
@@ -218,7 +218,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 
 		// If the "_jsfBridgeViewId" and "_jsfBridgeViewPath" parameters are not present in the URL, then add a
 		// parameter that indicates the target Faces viewId.
-		if (!foundFacesViewIdParam && !foundFacesViewPathParam && isFacesViewTarget()) {
+		if (!foundFacesViewIdParam && !foundFacesViewPathParam && (getViewId() != null)) {
 
 			if (!bridgeURI.isPortletScheme()) {
 
@@ -623,7 +623,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 		this.selfReferencing = selfReferencing;
 	}
 
-	public boolean isFacesViewTarget() {
+	public String getViewId() {
 
 		if (facesViewTarget == null) {
 
@@ -633,7 +633,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 			String potentialFacesViewId = contextRelativePath;
 
 			if ((viewId != null) && (viewId.equals(potentialFacesViewId))) {
-				facesViewTarget = Boolean.TRUE;
+				facesViewTarget = viewId;
 			}
 			else {
 
@@ -642,7 +642,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 				potentialFacesViewId = bridgeContext.getFacesViewIdFromPath(potentialFacesViewId, false);
 
 				if (potentialFacesViewId != null) {
-					facesViewTarget = Boolean.TRUE;
+					facesViewTarget = potentialFacesViewId;
 				}
 
 				// Otherwise,
@@ -662,14 +662,10 @@ public abstract class BridgeURLBase implements BridgeURL {
 						log(Level.FINE,
 							"Regarding path=[{0}] as a Faces view since it has the same path and extension as the current viewId=[{1}]",
 							potentialFacesViewId, viewId);
-						facesViewTarget = Boolean.TRUE;
-					}
-					else {
-						facesViewTarget = Boolean.FALSE;
+						facesViewTarget = potentialFacesViewId;
 					}
 				}
 			}
-
 		}
 
 		return facesViewTarget;

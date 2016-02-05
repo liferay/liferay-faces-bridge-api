@@ -48,8 +48,8 @@ public abstract class BridgeURLWrapper implements BridgeURL {
 		getWrapped().setSelfReferencing(selfReferencing);
 	}
 
-	public boolean isFacesViewTarget() {
-		return getWrapped().isFacesViewTarget();
+	public String getViewId() {
+		return getWrapped().getViewId();
 	}
 
 	public abstract BridgeURL getWrapped();

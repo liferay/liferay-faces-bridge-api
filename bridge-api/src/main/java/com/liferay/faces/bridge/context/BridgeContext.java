@@ -285,12 +285,12 @@ public abstract class BridgeContext {
 	/**
 	 * Gets the render-redirect URL that was set during a render-redirect.
 	 */
-	public abstract BridgeURL getRenderRedirectURL();
+	public abstract String getRenderRedirectViewId();
 
 	/**
-	 * Sets the render-redirect URL that is associated with a render-redirect.
+	 * Sets the view ID that is associated with a render-redirect.
 	 */
-	public abstract void setRenderRedirectURL(BridgeURL renderRedirectURL);
+	public abstract void setRenderRedirectViewId(String viewId);
 
 	public abstract Map<String, String> getRequestHeaderMap();
 
