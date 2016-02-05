@@ -191,13 +191,13 @@ public abstract class BridgeContextWrapper extends BridgeContext implements Face
 	}
 
 	@Override
-	public BridgeURL getRenderRedirectURL() {
-		return getWrapped().getRenderRedirectURL();
+	public String getRenderRedirectViewId() {
+		return getWrapped().getRenderRedirectViewId();
 	}
 
 	@Override
-	public void setRenderRedirectURL(BridgeURL renderRedirectURL) {
-		getWrapped().setRenderRedirectURL(renderRedirectURL);
+	public void setRenderRedirectViewId(String renderRedirectViewId) {
+		getWrapped().setRenderRedirectViewId(renderRedirectViewId);
 	}
 
 	@Override
