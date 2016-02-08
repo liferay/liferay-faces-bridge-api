@@ -17,7 +17,6 @@ package com.liferay.faces.bridge.config;
 
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
-import javax.portlet.faces.Bridge;
 import javax.portlet.faces.BridgeFactoryFinder;
 
 
@@ -44,6 +43,4 @@ public abstract class BridgeConfigFactory implements FacesWrapper<BridgeConfigFa
 	}
 
 	public abstract BridgeConfig getBridgeConfig(PortletConfig portletConfig);
-
-	public abstract PortletConfig getPortletConfig(PortletConfig portletConfig);
 }
