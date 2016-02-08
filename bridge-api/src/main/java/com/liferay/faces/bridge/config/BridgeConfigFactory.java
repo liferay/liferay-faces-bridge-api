@@ -44,6 +44,4 @@ public abstract class BridgeConfigFactory implements FacesWrapper<BridgeConfigFa
 	}
 
 	public abstract BridgeConfig getBridgeConfig(PortletConfig portletConfig);
-
-	public abstract PortletConfig getPortletConfig(PortletConfig portletConfig);
 }
