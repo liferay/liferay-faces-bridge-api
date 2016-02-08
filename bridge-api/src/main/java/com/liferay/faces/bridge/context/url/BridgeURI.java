@@ -87,7 +87,7 @@ public interface BridgeURI {
 	 * Determines whether or not the URI is external with respect to a context path, meaning it is not absolute and does
 	 * not start with the context path.
 	 *
-	 * @param contextPath The context path for determining whether or not the URI is external.
+	 * @param   contextPath  The context path for determining whether or not the URI is external.
 	 *
 	 * @return  <code>true</code> if external, otherwise <code>false</code>.
 	 */
