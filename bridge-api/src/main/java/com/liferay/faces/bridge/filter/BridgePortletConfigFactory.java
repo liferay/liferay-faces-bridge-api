@@ -15,16 +15,16 @@
  */
 package com.liferay.faces.bridge.filter;
 
-import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
 
 import com.liferay.faces.bridge.BridgeFactoryFinder;
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * @author  Neil Griffin
  */
-public abstract class BridgePortletConfigFactory implements FacesWrapper<BridgePortletConfigFactory> {
+public abstract class BridgePortletConfigFactory implements Wrapper<BridgePortletConfigFactory> {
 
 	/**
 	 * Returns an instance of {@link PortletConfig} from the {@link BridgePortletConfigFactory} found by the {@link
