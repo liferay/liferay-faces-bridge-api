@@ -45,6 +45,4 @@ public abstract class BridgeConfigFactory implements Wrapper<BridgeConfigFactory
 	}
 
 	public abstract BridgeConfig getBridgeConfig(PortletConfig portletConfig);
-
-	public abstract PortletConfig getPortletConfig(PortletConfig portletConfig);
 }
