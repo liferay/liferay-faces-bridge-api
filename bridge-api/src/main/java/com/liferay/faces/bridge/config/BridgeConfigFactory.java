@@ -16,6 +16,8 @@
 package com.liferay.faces.bridge.config;
 
 import javax.portlet.PortletConfig;
+import javax.portlet.faces.Bridge;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 import com.liferay.faces.util.helper.Wrapper;
 
@@ -27,6 +29,20 @@ import com.liferay.faces.util.helper.Wrapper;
  * @author  Neil Griffin
  */
 public abstract class BridgeConfigFactory implements Wrapper<BridgeConfigFactory> {
+
+	/**
+	 * Returns an instance of {@link BridgeConfig} from the {@link BridgeConfigFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 *
+	 * @param  portletConfig  The configuration associated with the current portlet.
+	 */
+	public static BridgeConfig getBridgeConfigInstance(PortletConfig portletConfig) {
+
+		BridgeConfigFactory bridgeConfigFactory = (BridgeConfigFactory) BridgeFactoryFinder.getFactory(
+				BridgeConfigFactory.class);
+
+		return bridgeConfigFactory.getBridgeConfig(portletConfig);
+	}
 
 	public abstract BridgeConfig getBridgeConfig(PortletConfig portletConfig);
 
