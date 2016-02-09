@@ -15,9 +15,14 @@
  */
 package com.liferay.faces.bridge.filter;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
+import javax.portlet.PortletConfig;
+import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
 import com.liferay.faces.util.helper.Wrapper;
@@ -28,11 +33,15 @@ import com.liferay.faces.util.helper.Wrapper;
  */
 public abstract class BridgePortletResponseFactory implements Wrapper<BridgePortletResponseFactory> {
 
-	public abstract ActionResponse getActionResponse(ActionResponse actionResponse);
+	public abstract ActionResponse getActionResponse(ActionRequest actionRequest, ActionResponse actionResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
-	public abstract EventResponse getEventResponse(EventResponse eventResponse);
+	public abstract EventResponse getEventResponse(EventRequest eventRequest, EventResponse eventResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
-	public abstract RenderResponse getRenderResponse(RenderResponse renderResponse);
+	public abstract RenderResponse getRenderResponse(RenderRequest renderRequest, RenderResponse renderResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
-	public abstract ResourceResponse getResourceResponse(ResourceResponse resourceResponse);
+	public abstract ResourceResponse getResourceResponse(ResourceRequest resourceRequest,
+		ResourceResponse resourceResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig);
 }
