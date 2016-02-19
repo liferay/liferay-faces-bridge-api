@@ -150,11 +150,6 @@ public abstract class BridgeContextWrapper extends BridgeContext implements Wrap
 	}
 
 	@Override
-	public void setPortletRequest(PortletRequest portletRequest) {
-		getWrapped().setPortletRequest(portletRequest);
-	}
-
-	@Override
 	public PortletPhase getPortletRequestPhase() {
 		return getWrapped().getPortletRequestPhase();
 	}
@@ -165,11 +160,6 @@ public abstract class BridgeContextWrapper extends BridgeContext implements Wrap
 	}
 
 	@Override
-	public void setPortletResponse(PortletResponse portletResponse) {
-		getWrapped().setPortletResponse(portletResponse);
-	}
-
-	@Override
 	public List<String> getPreFacesRequestAttrNames() {
 		return getWrapped().getPreFacesRequestAttrNames();
 	}
@@ -177,11 +167,6 @@ public abstract class BridgeContextWrapper extends BridgeContext implements Wrap
 	@Override
 	public Map<String, String[]> getPreservedActionParams() {
 		return getWrapped().getPreservedActionParams();
-	}
-
-	@Override
-	public void setProcessingAfterViewContent(boolean processingAfterViewContent) {
-		getWrapped().setProcessingAfterViewContent(processingAfterViewContent);
 	}
 
 	@Override
@@ -247,11 +232,6 @@ public abstract class BridgeContextWrapper extends BridgeContext implements Wrap
 	@Override
 	public void setSavedViewState(String savedViewState) {
 		getWrapped().setSavedViewState(savedViewState);
-	}
-
-	@Override
-	public boolean isProcessingAfterViewContent() {
-		return getWrapped().isProcessingAfterViewContent();
 	}
 
 	@Override
