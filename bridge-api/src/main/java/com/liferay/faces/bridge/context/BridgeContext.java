@@ -241,11 +241,6 @@ public abstract class BridgeContext {
 	public abstract PortletRequest getPortletRequest();
 
 	/**
-	 * Preserves the {@link PortletRequest} associated with the current request.
-	 */
-	public abstract void setPortletRequest(PortletRequest portletRequest);
-
-	/**
 	 * Returns the {@link Bridge.PortletPhase} associated with the current portlet lifecycle phase.
 	 */
 	public abstract Bridge.PortletPhase getPortletRequestPhase();
@@ -256,11 +251,6 @@ public abstract class BridgeContext {
 	public abstract PortletResponse getPortletResponse();
 
 	/**
-	 * Preserves the {@link PortletResponse} associated with the current response.
-	 */
-	public abstract void setPortletResponse(PortletResponse portletResponse);
-
-	/**
 	 * Returns a list of attribute names that existed prior to the FacesContext being created.
 	 */
 	public abstract List<String> getPreFacesRequestAttrNames();
@@ -269,13 +259,6 @@ public abstract class BridgeContext {
 	 * Returns the {@link Map} of preserved action parameters.
 	 */
 	public abstract Map<String, String[]> getPreservedActionParams();
-
-	/**
-	 * Sets the flag indicating whether or not the bridge is processing {@link Bridge#AFTER_VIEW_CONTENT}.
-	 *
-	 * @param  processingAfterViewContent  <code>true</code> if processing, otherwise <code>false</code>.
-	 */
-	public abstract void setProcessingAfterViewContent(boolean processingAfterViewContent);
 
 	/**
 	 * Sets a flag indicating whether or not a render-redirect has occurred after dispatching to a JSP.
@@ -338,13 +321,6 @@ public abstract class BridgeContext {
 	 * @param  savedViewState  The saved view state.
 	 */
 	public abstract void setSavedViewState(String savedViewState);
-
-	/**
-	 * Flag indicating whether or not the bridge is processing {@link Bridge#AFTER_VIEW_CONTENT}.
-	 *
-	 * @return  <code>true</code> if processing, otherwise <code>false</code>
-	 */
-	public abstract boolean isProcessingAfterViewContent();
 
 	/**
 	 * Returns the flag indicating whether or not a render redirect occurred.
