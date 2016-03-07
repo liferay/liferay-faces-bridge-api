@@ -36,7 +36,8 @@ public interface BridgePortalContext extends PortalContext {
 	 * &lt;head&gt;...&lt;/head&gt; section of the rendered portal page. A non-null value indicates that the portal
 	 * application provides support.
 	 */
-	public static final String ADD_SCRIPT_TEXT_TO_HEAD_SUPPORT = "com.liferay.faces.bridge.add.text.to.head.support";
+	public static final String ADD_SCRIPT_TEXT_TO_HEAD_SUPPORT =
+		"com.liferay.faces.bridge.add.script.text.to.head.support";
 
 	/**
 	 * Property indicating if the portal application supports adding stylesheet &lt;link&gt; tags to the
@@ -45,6 +46,14 @@ public interface BridgePortalContext extends PortalContext {
 	 */
 	public static final String ADD_STYLE_SHEET_RESOURCE_TO_HEAD_SUPPORT =
 		"com.liferay.faces.bridge.add.style.sheet.resource.to.head.support";
+
+	/**
+	 * Property indicating if the portal application supports adding &lt;style&gt; text to the
+	 * &lt;head&gt;...&lt;/head&gt; section of the rendered portal page. A non-null value indicates that the portal
+	 * application provides support.
+	 */
+	public static final String ADD_STYLE_SHEET_TEXT_TO_HEAD_SUPPORT =
+		"com.liferay.faces.bridge.add.style.sheet.text.to.head.support";
 
 	/**
 	 * Property indicating if the portal application supports/implements the POST-REDIRECT-GET design pattern, meaning
