@@ -52,6 +52,13 @@ public interface BridgeURL {
 	public boolean isSecure();
 
 	/**
+	 * If the URL targets a Faces view, then returns the viewId. Otherwise, returns null.
+	 *
+	 * @return  if the URL targets a Faces View, returns the viewId. Otherwise <code>null</code>.
+	 */
+	public String getFacesViewTarget();
+
+	/**
 	 * Determines whether or not the URL is self-referencing, meaning, it targets the current Faces view.
 	 *
 	 * @return  <code>true</code> if self-referencing, otherwise <code>false</code>.
@@ -95,11 +102,4 @@ public interface BridgeURL {
 	 * @param  selfReferencing  <code>true</code> if self-referencing, otherwise <code>false</code>.
 	 */
 	public void setSelfReferencing(boolean selfReferencing);
-
-	/**
-	 * If the URL targets a Faces view, then returns the viewId. Otherwise, returns null.
-	 *
-	 * @return  if the URL targets a Faces View, returns the viewId. Otherwise <code>null</code>.
-	 */
-	public String getViewId();
 }

@@ -20,36 +20,44 @@ package com.liferay.faces.bridge.context.url;
  */
 public abstract class BridgeURLWrapper implements BridgeURL {
 
+	@Override
 	public boolean isSecure() {
 		return getWrapped().isSecure();
 	}
 
+	@Override
+	public String getFacesViewTarget() {
+		return getWrapped().getFacesViewTarget();
+	}
+
+	@Override
 	public boolean isSelfReferencing() {
 		return getWrapped().isSelfReferencing();
 	}
 
+	@Override
 	public String getParameter(String name) {
 		return getWrapped().getParameter(name);
 	}
 
+	@Override
 	public void setParameter(String name, String value) {
 		getWrapped().setParameter(name, value);
 	}
 
+	@Override
 	public void setParameter(String name, String[] value) {
 		getWrapped().setParameter(name, value);
 	}
 
+	@Override
 	public void setSecure(boolean secure) {
 		getWrapped().setSecure(secure);
 	}
 
+	@Override
 	public void setSelfReferencing(boolean selfReferencing) {
 		getWrapped().setSelfReferencing(selfReferencing);
-	}
-
-	public String getViewId() {
-		return getWrapped().getViewId();
 	}
 
 	public abstract BridgeURL getWrapped();
