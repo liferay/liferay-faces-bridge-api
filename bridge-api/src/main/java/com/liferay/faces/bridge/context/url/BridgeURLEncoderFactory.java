@@ -16,8 +16,8 @@
 package com.liferay.faces.bridge.context.url;
 
 import javax.faces.FacesWrapper;
-import javax.portlet.faces.BridgeFactoryFinder;
 
+import com.liferay.faces.bridge.BridgeFactoryFinder;
 import com.liferay.faces.bridge.config.BridgeConfig;
 
 
