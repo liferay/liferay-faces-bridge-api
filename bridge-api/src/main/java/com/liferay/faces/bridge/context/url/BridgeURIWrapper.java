@@ -17,8 +17,9 @@ package com.liferay.faces.bridge.context.url;
 
 import java.util.Map;
 
-import javax.faces.FacesWrapper;
 import javax.portlet.faces.Bridge;
+
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
