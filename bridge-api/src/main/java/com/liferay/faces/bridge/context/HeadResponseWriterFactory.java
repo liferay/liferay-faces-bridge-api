@@ -17,6 +17,7 @@ package com.liferay.faces.bridge.context;
 
 import javax.faces.FacesWrapper;
 import javax.faces.context.ResponseWriter;
+import javax.portlet.PortletResponse;
 
 
 /**
@@ -24,6 +25,6 @@ import javax.faces.context.ResponseWriter;
  */
 public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResponseWriterFactory> {
 
-	public abstract HeadResponseWriter getHeadResponseWriter(BridgeContext bridgeContext,
-		ResponseWriter responseWriter);
+	public abstract HeadResponseWriter getHeadResponseWriter(ResponseWriter responseWriter,
+		PortletResponse portletResponse);
 }
