@@ -25,13 +25,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.render.ResponseStateManager;
 import javax.portlet.BaseURL;
 import javax.portlet.MimeResponse;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletModeException;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletResponse;
 import javax.portlet.PortletSecurityException;
 import javax.portlet.PortletURL;
 import javax.portlet.ResourceURL;
@@ -39,13 +40,12 @@ import javax.portlet.WindowState;
 import javax.portlet.WindowStateException;
 import javax.portlet.faces.Bridge;
 import javax.portlet.faces.BridgeFactoryFinder;
+import javax.portlet.faces.BridgeUtil;
 
 import com.liferay.faces.bridge.PortletModeValidator;
 import com.liferay.faces.bridge.PortletModeValidatorFactory;
 import com.liferay.faces.bridge.WindowStateValidator;
 import com.liferay.faces.bridge.WindowStateValidatorFactory;
-import com.liferay.faces.bridge.config.BridgeConfig;
-import com.liferay.faces.bridge.context.BridgeContext;
 
 
 /**
@@ -54,25 +54,25 @@ import com.liferay.faces.bridge.context.BridgeContext;
 public abstract class BridgeURLBase implements BridgeURL {
 
 	// Private Data Members
-	private BridgeContext bridgeContext;
 	private BridgeURI bridgeURI;
+	private String contextPath;
 	private String facesViewTarget;
-	private boolean selfReferencing;
+	private String namespace;
 	private Map<String, String[]> parameterMap;
 	private boolean secure;
+	private boolean selfReferencing;
 	private String viewId;
 	private String viewIdRenderParameterName;
 	private String viewIdResourceParameterName;
 
-	public BridgeURLBase(BridgeContext bridgeContext, BridgeURI bridgeURI, String viewId) {
-
-		this.bridgeContext = bridgeContext;
+	public BridgeURLBase(BridgeURI bridgeURI, String contextPath, String namespace, String viewId,
+		String viewIdRenderParameterName, String viewIdResourceParameterName) {
 		this.bridgeURI = bridgeURI;
+		this.contextPath = contextPath;
+		this.namespace = namespace;
 		this.viewId = viewId;
-
-		BridgeConfig bridgeConfig = bridgeContext.getBridgeConfig();
-		this.viewIdRenderParameterName = bridgeConfig.getViewIdRenderParameterName();
-		this.viewIdResourceParameterName = bridgeConfig.getViewIdResourceParameterName();
+		this.viewIdRenderParameterName = viewIdRenderParameterName;
+		this.viewIdResourceParameterName = viewIdResourceParameterName;
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 
 			// If the URL string has escaped characters (like %20 for space, etc) then ask the
 			// portlet container to create an escaped representation of the URL string.
-			if (bridgeURI.isEscaped()) {
+			if (getBridgeURI().isEscaped()) {
 
 				StringWriter urlWriter = new StringWriter();
 
@@ -127,6 +127,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 
 		StringBuilder buf = new StringBuilder();
 
+		BridgeURI bridgeURI = getBridgeURI();
 		String uri = bridgeURI.toString();
 
 		int endPos = uri.indexOf("?");
@@ -218,7 +219,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 
 		// If the "_jsfBridgeViewId" and "_jsfBridgeViewPath" parameters are not present in the URL, then add a
 		// parameter that indicates the target Faces viewId.
-		if (!foundFacesViewIdParam && !foundFacesViewPathParam && (getViewId() != null)) {
+		if (!foundFacesViewIdParam && !foundFacesViewPathParam && (getFacesViewTarget() != null)) {
 
 			if (!bridgeURI.isPortletScheme()) {
 
@@ -233,9 +234,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 					buf.append(getViewIdParameterName());
 					buf.append("=");
 
-					PortletRequest portletRequest = bridgeContext.getPortletRequest();
-					String contextPath = portletRequest.getContextPath();
-					String contextRelativePath = bridgeURI.getContextRelativePath(contextPath);
+					String contextRelativePath = bridgeURI.getContextRelativePath(getContextPath());
 					buf.append(contextRelativePath);
 				}
 			}
@@ -262,13 +261,13 @@ public abstract class BridgeURLBase implements BridgeURL {
 		}
 	}
 
-	protected PortletURL createActionURL(String fromURL) throws MalformedURLException {
+	protected PortletURL createActionURL(FacesContext facesContext, String fromURL) throws MalformedURLException {
 
 		try {
 			log(Level.FINE, "createActionURL fromURL=[{0}]", fromURL);
 
-			BridgeContext bridgeContext = BridgeContext.getCurrentInstance();
-			MimeResponse mimeResponse = (MimeResponse) bridgeContext.getPortletResponse();
+			ExternalContext externalContext = facesContext.getExternalContext();
+			MimeResponse mimeResponse = (MimeResponse) externalContext.getResponse();
 			PortletURL actionURL = mimeResponse.createActionURL();
 			copyParameters(fromURL, actionURL);
 
@@ -279,16 +278,18 @@ public abstract class BridgeURLBase implements BridgeURL {
 		}
 	}
 
-	protected ResourceURL createPartialActionURL(String fromURL) throws MalformedURLException {
+	protected ResourceURL createPartialActionURL(FacesContext facesContext, String fromURL)
+		throws MalformedURLException {
+
 		log(Level.FINE, "createPartialActionURL fromURL=[{0}]", fromURL);
 
-		return createResourceURL(fromURL);
+		return createResourceURL(facesContext, fromURL);
 	}
 
-	protected PortletURL createRenderURL(String fromURL) throws MalformedURLException {
+	protected PortletURL createRenderURL(FacesContext facesContext, String fromURL) throws MalformedURLException {
 
-		BridgeContext bridgeContext = BridgeContext.getCurrentInstance();
-		Bridge.PortletPhase portletRequestPhase = bridgeContext.getPortletRequestPhase();
+		// TODO: FACES-2648 Bridge.PortletPhase portletRequestPhase = BridgeUtil.getPortletRequestPhase(facesContext);
+		Bridge.PortletPhase portletRequestPhase = BridgeUtil.getPortletRequestPhase();
 
 		if ((portletRequestPhase == Bridge.PortletPhase.RENDER_PHASE) ||
 				(portletRequestPhase == Bridge.PortletPhase.RESOURCE_PHASE)) {
@@ -296,7 +297,8 @@ public abstract class BridgeURLBase implements BridgeURL {
 			try {
 				log(Level.FINE, "createRenderURL fromURL=[{0}]", fromURL);
 
-				MimeResponse mimeResponse = (MimeResponse) bridgeContext.getPortletResponse();
+				ExternalContext externalContext = facesContext.getExternalContext();
+				MimeResponse mimeResponse = (MimeResponse) externalContext.getResponse();
 				PortletURL renderURL = mimeResponse.createRenderURL();
 				copyParameters(fromURL, renderURL);
 
@@ -312,14 +314,14 @@ public abstract class BridgeURLBase implements BridgeURL {
 
 	}
 
-	protected ResourceURL createResourceURL(String fromURL) throws MalformedURLException {
+	protected ResourceURL createResourceURL(FacesContext facesContext, String fromURL) throws MalformedURLException {
 
 		try {
 			log(Level.FINE, "createResourceURL fromURL=[{0}]", fromURL);
 
 			// Ask the portlet container to create a portlet resource URL.
-			BridgeContext bridgeContext = BridgeContext.getCurrentInstance();
-			MimeResponse mimeResponse = (MimeResponse) bridgeContext.getPortletResponse();
+			ExternalContext externalContext = facesContext.getExternalContext();
+			MimeResponse mimeResponse = (MimeResponse) externalContext.getResponse();
 			ResourceURL resourceURL = mimeResponse.createResourceURL();
 
 			// If the "javax.faces.resource" token is found in the URL, then
@@ -492,14 +494,134 @@ public abstract class BridgeURLBase implements BridgeURL {
 		return value;
 	}
 
+	protected BridgeURI getBridgeURI() {
+		return bridgeURI;
+	}
+
+	protected String getContextPath() {
+		return contextPath;
+	}
+
+	@Override
 	public boolean isSecure() {
 		return secure;
 	}
 
+	@Override
+	public String getFacesViewTarget() {
+
+		if (facesViewTarget == null) {
+
+			String contextRelativePath = getBridgeURI().getContextRelativePath(getContextPath());
+			String viewId = getViewId();
+
+			if ((viewId != null) && (viewId.equals(contextRelativePath))) {
+				facesViewTarget = viewId;
+			}
+			else {
+
+				// If the context relative path maps to an actual Faces View due to an implicit servlet mapping or an
+				// explicit servlet-mapping entry in the WEB-INF/web.xml descriptor, then the context relative path
+				// is a faces view target.
+				if (isMappedToFacesServlet(contextRelativePath)) {
+					facesViewTarget = contextRelativePath;
+				}
+
+				// Otherwise,
+				else {
+					String potentialFacesViewId;
+
+					// If the context relative path is not available, then
+					if (contextRelativePath == null) {
+
+						// TCK TestPage005 (modeViewIDTest)
+						// * viewId="/tests/modeViewIdTest.xhtml"
+						//
+						// TCK TestPage042 (requestRenderIgnoresScopeViaCreateViewTest)
+						// TCK TestPage043 (requestRenderRedisplayTest)
+						// TCK TestPage044 (requestRedisplayOutOfScopeTest)
+						// TCK TestPage049 (renderRedirectTest)
+						// TCK TestPage050 (ignoreCurrentViewIdModeChangeTest)
+						// TCK TestPage051 (exceptionThrownWhenNoDefaultViewIdTest)
+						// * viewId="/tests/redisplayRenderNewModeRequestTest.xhtml"
+						//
+						// TCK TestPage073 (scopeAfterRedisplayResourcePPRTest)
+						// * viewId="/tests/redisplayResourceAjaxResult.xhtml"
+						//
+						// TCK TestPage088 (encodeActionURLPortletRenderTest)
+						// TCK TestPage089 (encodeActionURLPortletActionTest)
+						// * viewId="/tests/singleRequestTest.xhtml"
+						//
+						// TCK TestPage179 (redirectRenderPRP1Test)
+						// * viewId=null
+						potentialFacesViewId = viewId;
+					}
+
+					// Otherwise, if the context relative path is indeed available, then
+					else {
+
+						// TCK TestPage059 (renderPhaseListenerTest)
+						// TCK TestPage095 (encodeActionURLWithWindowStateActionTest)
+						// TCK TestPage097 (encodeActionURLNonJSFViewRenderTest)
+						// TCK TestPage098 (encodeActionURLNonJSFViewWithParamRenderTest)
+						// TCK TestPage099 (encodeActionURLNonJSFViewWithModeRenderTest)
+						// TCK TestPage100 (encodeActionURLNonJSFViewWithInvalidModeRenderTest)
+						// TCK TestPage101 (encodeActionURLNonJSFViewWithWindowStateRenderTest)
+						// TCK TestPage102 (encodeActionURLNonJSFViewWithInvalidWindowStateRenderTest)
+						// TCK TestPage103 (encodeActionURLNonJSFViewResourceTest)
+						// TCK TestPage104 (encodeActionURLNonJSFViewWithParamResourceTest)
+						// TCK TestPage105 (encodeActionURLNonJSFViewWithModeResourceTest)
+						// TCK TestPage106 (encodeActionURLNonJSFViewWithInvalidModeResourceTest)
+						// TCK TestPage107 (encodeActionURLNonJSFViewWithWindowStateResourceTest)
+						// TCK TestPage108 (encodeActionURLNonJSFViewWithInvalidWindowStateResourceTest)
+						// * contextRelativeViewPath="/nonFacesViewTestPortlet.ptlt"
+						// * viewId="/tests/nonJSFViewTest.xhtml"
+						//
+						// TCK TestPage071 (nonFacesResourceTest)
+						// * contextRelativeViewPath="/tck/nonFacesResource"
+						// * viewId="/tests/nonFacesResourceTest.xhtml"
+						//
+						// TCK TestPage134 (encodeResourceURLBackLinkTest)
+						// * contextRelativePath="/resources/myImage.jpg"
+						// * viewId="/tests/singleRequestTest.xhtml"
+						//
+						// TCK TestPage181 (illegalRedirectRenderTest)
+						// * contextRelativeViewPath="/tests/NonJSFView.portlet"
+						// * viewId=null
+						potentialFacesViewId = contextRelativePath;
+					}
+
+					// If the extension/suffix of the context relative path matches that of the viewId at the time of
+					// construction, then it is a it is a faces view target.
+					if ((viewId != null) && (matchPathAndExtension(viewId, potentialFacesViewId))) {
+
+						// TCK TestPage005 (modeViewIDTest)
+						// * contextRelativeViewPath=null
+						// * potentialFacesViewId="/tests/modeViewIdTest.xhtml"
+						// * viewId="/tests/modeViewIdTest.xhtml"
+						facesViewTarget = potentialFacesViewId;
+
+						log(Level.FINE,
+							"Regarding path=[{0}] as a Faces view since it has the same path and extension as the current viewId=[{1}]",
+							potentialFacesViewId, viewId);
+					}
+				}
+			}
+		}
+
+		return facesViewTarget;
+	}
+
+	@Override
 	public boolean isSelfReferencing() {
 		return selfReferencing;
 	}
 
+	protected String getNamespace() {
+		return namespace;
+	}
+
+	@Override
 	public String getParameter(String name) {
 
 		String value = null;
@@ -507,9 +629,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 		String[] values = parameterMap.get(name);
 
 		if (values == null) {
-			PortletResponse portletResponse = bridgeContext.getPortletResponse();
-			String responseNamespace = portletResponse.getNamespace();
-			values = parameterMap.get(responseNamespace + name);
+			values = parameterMap.get(getNamespace() + name);
 		}
 
 		if ((values != null) && (values.length > 0)) {
@@ -519,31 +639,36 @@ public abstract class BridgeURLBase implements BridgeURL {
 		return value;
 	}
 
+	@Override
 	public void setParameter(String name, String[] value) {
 		getParameterMap().put(name, value);
 	}
 
+	@Override
 	public void setParameter(String name, String value) {
 		getParameterMap().put(name, new String[] { value });
 	}
 
+	@Override
 	public Map<String, String[]> getParameterMap() {
 
 		if (parameterMap == null) {
-			parameterMap = new LinkedHashMap<String, String[]>(bridgeURI.getParameterMap());
+			parameterMap = new LinkedHashMap<String, String[]>(getBridgeURI().getParameterMap());
 		}
 
 		return parameterMap;
 	}
 
-	protected void setPortletModeParameter(String portletMode, PortletURL portletURL) {
+	protected void setPortletModeParameter(FacesContext facesContext, PortletURL portletURL, String portletMode) {
 
 		if (portletMode != null) {
 
 			try {
 				PortletMode candidatePortletMode = new PortletMode(portletMode);
+				ExternalContext externalContext = facesContext.getExternalContext();
+				PortletRequest portletRequest = (PortletRequest) externalContext.getRequest();
 
-				if (bridgeContext.getPortletRequest().isPortletModeAllowed(candidatePortletMode)) {
+				if (portletRequest.isPortletModeAllowed(candidatePortletMode)) {
 					portletURL.setPortletMode(candidatePortletMode);
 				}
 				else {
@@ -556,14 +681,14 @@ public abstract class BridgeURLBase implements BridgeURL {
 		}
 	}
 
-	protected void setRenderParameters(BaseURL baseURL) {
+	protected void setRenderParameters(FacesContext facesContext, BaseURL baseURL) {
 
 		// Get the modified parameter map.
 		Map<String, String[]> urlParameterMap = getParameterMap();
 
 		// Copy the public render parameters of the current view to the BaseURL.
-		Map<String, String[]> preservedActionParams = bridgeContext.getPreservedActionParams();
-		PortletRequest portletRequest = bridgeContext.getPortletRequest();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		PortletRequest portletRequest = (PortletRequest) externalContext.getRequest();
 		Map<String, String[]> publicParameterMap = portletRequest.getPublicParameterMap();
 
 		if (publicParameterMap != null) {
@@ -575,7 +700,6 @@ public abstract class BridgeURLBase implements BridgeURL {
 				// Note that preserved action parameters, parameters that already exist in the URL string,
 				// and "javax.faces.ViewState" must not be copied.
 				if (!ResponseStateManager.VIEW_STATE_PARAM.equals(publicParameterName) &&
-						!preservedActionParams.containsKey(publicParameterName) &&
 						!urlParameterMap.containsKey(publicParameterName)) {
 					baseURL.setParameter(publicParameterName, mapEntry.getValue());
 				}
@@ -594,7 +718,6 @@ public abstract class BridgeURLBase implements BridgeURL {
 				// Note that preserved action parameters, parameters that already exist in the URL string,
 				// and "javax.faces.ViewState" must not be copied.
 				if (!ResponseStateManager.VIEW_STATE_PARAM.equals(privateParameterName) &&
-						!preservedActionParams.containsKey(privateParameterName) &&
 						!urlParameterMap.containsKey(privateParameterName)) {
 					baseURL.setParameter(privateParameterName, mapEntry.getValue());
 				}
@@ -602,6 +725,7 @@ public abstract class BridgeURLBase implements BridgeURL {
 		}
 	}
 
+	@Override
 	public void setSecure(boolean secure) {
 		this.secure = secure;
 	}
@@ -619,76 +743,45 @@ public abstract class BridgeURLBase implements BridgeURL {
 		}
 	}
 
+	@Override
 	public void setSelfReferencing(boolean selfReferencing) {
 		this.selfReferencing = selfReferencing;
 	}
 
-	public String getViewId() {
+	protected abstract boolean isMappedToFacesServlet(String viewPath);
 
-		if (facesViewTarget == null) {
-
-			PortletRequest portletRequest = bridgeContext.getPortletRequest();
-			String contextPath = portletRequest.getContextPath();
-			String contextRelativePath = bridgeURI.getContextRelativePath(contextPath);
-			String potentialFacesViewId = contextRelativePath;
-
-			if ((viewId != null) && (viewId.equals(potentialFacesViewId))) {
-				facesViewTarget = viewId;
-			}
-			else {
-
-				// If the context relative view path maps to an actual Faces View due to a serlvet-mapping entry, then
-				// return true.
-				potentialFacesViewId = bridgeContext.getFacesViewIdFromPath(potentialFacesViewId, false);
-
-				if (potentialFacesViewId != null) {
-					facesViewTarget = potentialFacesViewId;
-				}
-
-				// Otherwise,
-				else {
-
-					// NOTE: It might be (as in the case of the TCK) that a navigation-rule has fired, and the developer
-					// specified something like <to-view-id>/somepath/foo.jsp</to-view-id> instead of using the
-					// appropriate extension mapped suffix like <to-view-id>/somepath/foo.jsf</to-view-id>.
-					if (contextRelativePath == null) {
-						potentialFacesViewId = viewId;
-					}
-					else {
-						potentialFacesViewId = contextRelativePath;
-					}
-
-					if ((viewId != null) && (matchPathAndExtension(viewId, potentialFacesViewId))) {
-						log(Level.FINE,
-							"Regarding path=[{0}] as a Faces view since it has the same path and extension as the current viewId=[{1}]",
-							potentialFacesViewId, viewId);
-						facesViewTarget = potentialFacesViewId;
-					}
-				}
-			}
-		}
-
-		return facesViewTarget;
+	protected String getViewId() {
+		return viewId;
 	}
 
 	protected String getViewIdParameterName() {
 
+		BridgeURI bridgeURI = getBridgeURI();
+
 		if (bridgeURI.isPortletScheme() && (bridgeURI.getPortletPhase() == Bridge.PortletPhase.RESOURCE_PHASE)) {
-			return viewIdResourceParameterName;
+			return getViewIdResourceParameterName();
 		}
 		else {
-			return viewIdRenderParameterName;
+			return getViewIdRenderParameterName();
 		}
 	}
 
-	protected void setWindowStateParameter(String windowState, PortletURL portletURL) {
+	public String getViewIdRenderParameterName() {
+		return viewIdRenderParameterName;
+	}
+
+	public String getViewIdResourceParameterName() {
+		return viewIdResourceParameterName;
+	}
+
+	protected void setWindowStateParameter(FacesContext facesContext, PortletURL portletURL, String windowState) {
 
 		if (windowState != null) {
 
 			try {
 				WindowState candidateWindowState = new WindowState(windowState);
-
-				PortletRequest portletRequest = bridgeContext.getPortletRequest();
+				ExternalContext externalContext = facesContext.getExternalContext();
+				PortletRequest portletRequest = (PortletRequest) externalContext.getRequest();
 
 				if (portletRequest.isWindowStateAllowed(candidateWindowState)) {
 					portletURL.setWindowState(candidateWindowState);
