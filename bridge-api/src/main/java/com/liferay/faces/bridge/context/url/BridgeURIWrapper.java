@@ -25,7 +25,7 @@ import com.liferay.faces.util.helper.Wrapper;
 /**
  * @author  Neil Griffin
  */
-public abstract class BridgeURIWrapper implements BridgeURI, FacesWrapper<BridgeURI> {
+public abstract class BridgeURIWrapper implements BridgeURI, Wrapper<BridgeURI> {
 	@Override
 	public String getContextRelativePath(String contextPath) {
 		return getWrapped().getContextRelativePath(contextPath);
