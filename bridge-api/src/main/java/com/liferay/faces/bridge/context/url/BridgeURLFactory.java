@@ -19,8 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.FacesWrapper;
-
-import com.liferay.faces.bridge.context.BridgeContext;
+import javax.faces.context.FacesContext;
 
 
 /**
@@ -28,17 +27,16 @@ import com.liferay.faces.bridge.context.BridgeContext;
  */
 public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory> {
 
-	public abstract BridgeURL getBridgeActionURL(BridgeContext bridgeContext, BridgeURI bridgeURI, String viewId);
+	public abstract BridgeURL getBridgeActionURL(FacesContext facesContext, BridgeURI bridgeURI, String viewId);
 
-	public abstract BridgeURL getBridgeBookmarkableURL(BridgeContext bridgeContext, BridgeURI bridgeURI,
+	public abstract BridgeURL getBridgeBookmarkableURL(FacesContext facesContext, BridgeURI bridgeURI,
 		Map<String, List<String>> parameters, String viewId);
 
-	public abstract BridgeURL getBridgePartialActionURL(BridgeContext bridgeContext, BridgeURI bridgeURI,
-		String viewId);
+	public abstract BridgeURL getBridgePartialActionURL(FacesContext facesContext, BridgeURI bridgeURI, String viewId);
 
-	public abstract BridgeURL getBridgeRedirectURL(BridgeContext bridgeContext, BridgeURI bridgeURI,
+	public abstract BridgeURL getBridgeRedirectURL(FacesContext facesContext, BridgeURI bridgeURI,
 		Map<String, List<String>> parameters, String redirectViewId);
 
-	public abstract BridgeResourceURL getBridgeResourceURL(BridgeContext bridgeContext, BridgeURI bridgeURI,
+	public abstract BridgeResourceURL getBridgeResourceURL(FacesContext facesContext, BridgeURI bridgeURI,
 		String viewId);
 }
