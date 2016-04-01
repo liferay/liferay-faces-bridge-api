@@ -19,42 +19,43 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.FacesWrapper;
 import javax.faces.context.FacesContext;
+
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * @author  Neil Griffin
  */
-public abstract class BridgeURLEncoderWrapper implements BridgeURLEncoder, FacesWrapper<BridgeURLEncoder> {
+public abstract class BridgeURLEncoderWrapper implements BridgeURLEncoder, Wrapper<BridgeURLEncoder> {
 
-	@Override
+	// Java 1.6+ @Override
 	public BridgeURL encodeActionURL(FacesContext facesContext, String url) throws URISyntaxException {
 		return getWrapped().encodeActionURL(facesContext, url);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public BridgeURL encodeBookmarkableURL(FacesContext facesContext, String url, Map<String, List<String>> parameters)
 		throws URISyntaxException {
 		return getWrapped().encodeBookmarkableURL(facesContext, url, parameters);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public BridgeURL encodePartialActionURL(FacesContext facesContext, String url) throws URISyntaxException {
 		return getWrapped().encodePartialActionURL(facesContext, url);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public BridgeURL encodeRedirectURL(FacesContext facesContext, String url, Map<String, List<String>> parameters)
 		throws URISyntaxException {
 		return getWrapped().encodeRedirectURL(facesContext, url, parameters);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public BridgeURL encodeResourceURL(FacesContext facesContext, String url) throws URISyntaxException {
 		return getWrapped().encodeResourceURL(facesContext, url);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public abstract BridgeURLEncoder getWrapped();
 }

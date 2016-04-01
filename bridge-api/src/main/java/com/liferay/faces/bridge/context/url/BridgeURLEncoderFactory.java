@@ -15,16 +15,15 @@
  */
 package com.liferay.faces.bridge.context.url;
 
-import javax.faces.FacesWrapper;
-
 import com.liferay.faces.bridge.BridgeFactoryFinder;
 import com.liferay.faces.bridge.config.BridgeConfig;
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * @author  Neil Griffin
  */
-public abstract class BridgeURLEncoderFactory implements FacesWrapper<BridgeURLEncoderFactory> {
+public abstract class BridgeURLEncoderFactory implements Wrapper<BridgeURLEncoderFactory> {
 
 	public static BridgeURLEncoder getBridgeURLEncoderInstance(BridgeConfig bridgeConfig) {
 
@@ -37,8 +36,8 @@ public abstract class BridgeURLEncoderFactory implements FacesWrapper<BridgeURLE
 	public abstract BridgeURLEncoder getBridgeURLEncoder(BridgeConfig bridgeConfig);
 
 	/**
-	 * @see  javax.faces.FacesWrapper#getWrapped()
+	 * @see  com.liferay.faces.util.helper.Wrapper#getWrapped()
 	 */
-	@Override
+	// Java 1.6+ @Override
 	public abstract BridgeURLEncoderFactory getWrapped();
 }
