@@ -15,24 +15,22 @@
  */
 package com.liferay.faces.bridge.context.url;
 
+import java.util.Map;
+
+
 /**
  * @author  Neil Griffin
  */
 public abstract class BridgeURLWrapper implements BridgeURL {
 
 	@Override
-	public boolean isSecure() {
-		return getWrapped().isSecure();
+	public String removeParameter(String name) {
+		return getWrapped().removeParameter(name);
 	}
 
 	@Override
-	public String getFacesViewTarget() {
-		return getWrapped().getFacesViewTarget();
-	}
-
-	@Override
-	public boolean isSelfReferencing() {
-		return getWrapped().isSelfReferencing();
+	public String toString() {
+		return getWrapped().toString();
 	}
 
 	@Override
@@ -51,13 +49,8 @@ public abstract class BridgeURLWrapper implements BridgeURL {
 	}
 
 	@Override
-	public void setSecure(boolean secure) {
-		getWrapped().setSecure(secure);
-	}
-
-	@Override
-	public void setSelfReferencing(boolean selfReferencing) {
-		getWrapped().setSelfReferencing(selfReferencing);
+	public Map<String, String[]> getParameterMap() {
+		return getWrapped().getParameterMap();
 	}
 
 	public abstract BridgeURL getWrapped();

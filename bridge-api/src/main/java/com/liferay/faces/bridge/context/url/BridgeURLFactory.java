@@ -37,6 +37,5 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	public abstract BridgeURL getBridgeRedirectURL(FacesContext facesContext, BridgeURI bridgeURI,
 		Map<String, List<String>> parameters, String redirectViewId);
 
-	public abstract BridgeResourceURL getBridgeResourceURL(FacesContext facesContext, BridgeURI bridgeURI,
-		String viewId);
+	public abstract BridgeURL getBridgeResourceURL(FacesContext facesContext, BridgeURI bridgeURI, String viewId);
 }
