@@ -25,6 +25,7 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 import com.liferay.faces.bridge.config.BridgeConfig;
 
@@ -33,6 +34,59 @@ import com.liferay.faces.bridge.config.BridgeConfig;
  * @author  Neil Griffin
  */
 public abstract class BridgePortletRequestFactory implements FacesWrapper<BridgePortletRequestFactory> {
+
+	/**
+	 * Returns an instance of {@link ActionRequest} from the {@link ActionRequestFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static ActionRequest getActionRequestInstance(ActionRequest actionRequest, ActionResponse actionResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		BridgePortletRequestFactory bridgePortletRequestFactory = (BridgePortletRequestFactory) BridgeFactoryFinder
+			.getFactory(BridgePortletRequestFactory.class);
+
+		return bridgePortletRequestFactory.getActionRequest(actionRequest, actionResponse, portletConfig, bridgeConfig);
+	}
+
+	/**
+	 * Returns an instance of {@link EventRequest} from the {@link EventRequestFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static EventRequest getEventRequestInstance(EventRequest eventRequest, EventResponse eventResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		BridgePortletRequestFactory bridgePortletRequestFactory = (BridgePortletRequestFactory) BridgeFactoryFinder
+			.getFactory(BridgePortletRequestFactory.class);
+
+		return bridgePortletRequestFactory.getEventRequest(eventRequest, eventResponse, portletConfig, bridgeConfig);
+	}
+
+	/**
+	 * Returns an instance of {@link RenderRequest} from the {@link RenderRequestFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static RenderRequest getRenderRequestInstance(RenderRequest renderRequest, RenderResponse renderResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		BridgePortletRequestFactory bridgePortletRequestFactory = (BridgePortletRequestFactory) BridgeFactoryFinder
+			.getFactory(BridgePortletRequestFactory.class);
+
+		return bridgePortletRequestFactory.getRenderRequest(renderRequest, renderResponse, portletConfig, bridgeConfig);
+	}
+
+	/**
+	 * Returns an instance of {@link ResourceRequest} from the {@link ResourceRequestFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static ResourceRequest getResourceRequestInstance(ResourceRequest resourceRequest,
+		ResourceResponse resourceResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		BridgePortletRequestFactory bridgePortletRequestFactory = (BridgePortletRequestFactory) BridgeFactoryFinder
+			.getFactory(BridgePortletRequestFactory.class);
+
+		return bridgePortletRequestFactory.getResourceRequest(resourceRequest, resourceResponse, portletConfig,
+				bridgeConfig);
+	}
 
 	public abstract ActionRequest getActionRequest(ActionRequest actionRequest, ActionResponse actionResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);

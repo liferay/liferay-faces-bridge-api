@@ -18,12 +18,26 @@ package com.liferay.faces.bridge.context;
 import javax.faces.FacesWrapper;
 import javax.faces.context.ResponseWriter;
 import javax.portlet.PortletResponse;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
  * @author  Neil Griffin
  */
 public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResponseWriterFactory> {
+
+	/**
+	 * Returns an instance of {@link HeadResponseWriter} from the {@link HeadResponseWriterFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static HeadResponseWriter getHeadResponseWriterInstance(ResponseWriter responseWriter,
+		PortletResponse portletResponse) {
+
+		HeadResponseWriterFactory headResponseWriterFactory = (HeadResponseWriterFactory) BridgeFactoryFinder
+			.getFactory(HeadResponseWriterFactory.class);
+
+		return headResponseWriterFactory.getHeadResponseWriter(responseWriter, portletResponse);
+	}
 
 	public abstract HeadResponseWriter getHeadResponseWriter(ResponseWriter responseWriter,
 		PortletResponse portletResponse);
