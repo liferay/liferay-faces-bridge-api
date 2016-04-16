@@ -15,10 +15,11 @@
  */
 package com.liferay.faces.bridge;
 
+import com.liferay.faces.util.helper.Wrapper;
+
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.FacesWrapper;
 import javax.faces.context.FacesContext;
 import javax.portlet.faces.BridgeException;
 
@@ -28,7 +29,7 @@ import javax.portlet.faces.BridgeException;
  *
  * @author  Neil Griffin
  */
-public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory> {
+public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 	/**
 	 * Returns a bridge "action" URL. The return value of {@link BridgeURL#toString()} conforms to the deviation
