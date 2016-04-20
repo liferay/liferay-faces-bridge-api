@@ -15,9 +15,10 @@
  */
 package com.liferay.faces.bridge.filter;
 
+import com.liferay.faces.bridge.BridgeFactoryFinder;
+
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletContext;
-import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**

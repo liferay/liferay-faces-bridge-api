@@ -21,7 +21,6 @@ import java.util.Map;
 import javax.faces.FacesWrapper;
 import javax.faces.context.FacesContext;
 import javax.portlet.faces.BridgeException;
-import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
