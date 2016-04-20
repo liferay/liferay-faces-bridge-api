@@ -36,7 +36,7 @@ import com.liferay.faces.util.helper.Wrapper;
 public abstract class BridgePortletRequestFactory implements Wrapper<BridgePortletRequestFactory> {
 
 	/**
-	 * Returns an instance of {@link ActionRequest} from the {@link ActionRequestFactory} found by the {@link
+	 * Returns an instance of {@link ActionRequest} from the {@link BridgePortletRequestFactory} found by the {@link
 	 * BridgeFactoryFinder}.
 	 */
 	public static ActionRequest getActionRequestInstance(ActionRequest actionRequest, ActionResponse actionResponse,
@@ -49,7 +49,7 @@ public abstract class BridgePortletRequestFactory implements Wrapper<BridgePortl
 	}
 
 	/**
-	 * Returns an instance of {@link EventRequest} from the {@link EventRequestFactory} found by the {@link
+	 * Returns an instance of {@link EventRequest} from the {@link BridgePortletRequestFactory} found by the {@link
 	 * BridgeFactoryFinder}.
 	 */
 	public static EventRequest getEventRequestInstance(EventRequest eventRequest, EventResponse eventResponse,
@@ -62,7 +62,7 @@ public abstract class BridgePortletRequestFactory implements Wrapper<BridgePortl
 	}
 
 	/**
-	 * Returns an instance of {@link RenderRequest} from the {@link RenderRequestFactory} found by the {@link
+	 * Returns an instance of {@link RenderRequest} from the {@link BridgePortletRequestFactory} found by the {@link
 	 * BridgeFactoryFinder}.
 	 */
 	public static RenderRequest getRenderRequestInstance(RenderRequest renderRequest, RenderResponse renderResponse,
@@ -75,7 +75,7 @@ public abstract class BridgePortletRequestFactory implements Wrapper<BridgePortl
 	}
 
 	/**
-	 * Returns an instance of {@link ResourceRequest} from the {@link ResourceRequestFactory} found by the {@link
+	 * Returns an instance of {@link ResourceRequest} from the {@link BridgePortletRequestFactory} found by the {@link
 	 * BridgeFactoryFinder}.
 	 */
 	public static ResourceRequest getResourceRequestInstance(ResourceRequest resourceRequest,

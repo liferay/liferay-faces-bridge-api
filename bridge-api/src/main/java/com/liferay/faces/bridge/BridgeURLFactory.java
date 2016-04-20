@@ -67,7 +67,7 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 	}
 
 	/**
-	 * Returns an instance of {@link BridgeResourceURL} from the {@link BridgeResourceURLFactory} found by the {@link
+	 * Returns an instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
 	 * BridgeFactoryFinder}.
 	 */
 	public static BridgeURL getBridgeRedirectURLInstance(FacesContext facesContext, String uri,
@@ -79,7 +79,7 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 	}
 
 	/**
-	 * Returns an instance of {@link BridgeResourceURL} from the {@link BridgeResourceURLFactory} found by the {@link
+	 * Returns an instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
 	 * BridgeFactoryFinder}.
 	 */
 	public static BridgeURL getBridgeResourceURLInstance(FacesContext facesContext, String uri) {

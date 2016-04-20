@@ -27,7 +27,7 @@ import com.liferay.faces.util.helper.Wrapper;
 public abstract class BridgePortletContextFactory implements Wrapper<BridgePortletContextFactory> {
 
 	/**
-	 * Returns an instance of {@link PortletContext} from the {@link PortletContextFactory} found by the {@link
+	 * Returns an instance of {@link PortletContext} from the {@link BridgePortletContextFactory} found by the {@link
 	 * BridgeFactoryFinder}.
 	 */
 	public static PortletContext getPortletContextInstance(PortletContext portletContext) {
