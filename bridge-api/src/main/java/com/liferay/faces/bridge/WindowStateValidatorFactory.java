@@ -23,5 +23,17 @@ import com.liferay.faces.util.helper.Wrapper;
  */
 public abstract class WindowStateValidatorFactory implements Wrapper<WindowStateValidatorFactory> {
 
+	/**
+	 * Returns an instance of {@link WindowStateValidator} from the {@link WindowStateValidatorFactory} found by the
+	 * {@link BridgeFactoryFinder}.
+	 */
+	public static WindowStateValidator getWindowStateValidatorInstance() {
+
+		WindowStateValidatorFactory windowStateValidatorFactory = (WindowStateValidatorFactory) BridgeFactoryFinder
+			.getFactory(WindowStateValidatorFactory.class);
+
+		return windowStateValidatorFactory.getWindowStateValidator();
+	}
+
 	public abstract WindowStateValidator getWindowStateValidator();
 }

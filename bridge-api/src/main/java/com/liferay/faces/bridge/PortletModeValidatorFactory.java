@@ -23,5 +23,17 @@ import com.liferay.faces.util.helper.Wrapper;
  */
 public abstract class PortletModeValidatorFactory implements Wrapper<PortletModeValidatorFactory> {
 
+	/**
+	 * Returns an instance of {@link PortletModeValidator} from the {@link PortletModeValidatorFactory} found by the
+	 * {@link BridgeFactoryFinder}.
+	 */
+	public static PortletModeValidator getPortletModeValidatorInstance() {
+
+		PortletModeValidatorFactory portletModeValidatorFactory = (PortletModeValidatorFactory) BridgeFactoryFinder
+			.getFactory(PortletModeValidatorFactory.class);
+
+		return portletModeValidatorFactory.getPortletModeValidator();
+	}
+
 	public abstract PortletModeValidator getPortletModeValidator();
 }

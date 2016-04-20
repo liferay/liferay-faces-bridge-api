@@ -30,5 +30,17 @@ import com.liferay.faces.util.helper.Wrapper;
  */
 public abstract class IncongruityContextFactory implements Wrapper<IncongruityContextFactory> {
 
+	/**
+	 * Returns an instance of {@link IncongruityContext} from the {@link IncongruityContextFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static IncongruityContext getIncongruityContextInstance() {
+
+		IncongruityContextFactory incongruityContextFactory = (IncongruityContextFactory) BridgeFactoryFinder
+			.getFactory(IncongruityContextFactory.class);
+
+		return incongruityContextFactory.getIncongruityContext();
+	}
+
 	public abstract IncongruityContext getIncongruityContext();
 }

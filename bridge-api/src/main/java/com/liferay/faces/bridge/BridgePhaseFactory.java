@@ -24,6 +24,7 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 import com.liferay.faces.bridge.config.BridgeConfig;
 import com.liferay.faces.util.helper.Wrapper;
@@ -40,6 +41,59 @@ import com.liferay.faces.util.helper.Wrapper;
  * @author  Neil Griffin
  */
 public abstract class BridgePhaseFactory implements Wrapper<BridgePhaseFactory> {
+
+	/**
+	 * Returns an instance of {@link BridgePhase} from the {@link BridgePhaseFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static BridgePhase getBridgeActionPhaseInstance(ActionRequest actionRequest, ActionResponse actionResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		BridgePhaseFactory bridgePhaseFactory = (BridgePhaseFactory) BridgeFactoryFinder.getFactory(
+				BridgePhaseFactory.class);
+
+		return bridgePhaseFactory.getBridgeActionPhase(actionRequest, actionResponse, portletConfig, bridgeConfig);
+	}
+
+	/**
+	 * Returns an instance of {@link BridgePhase} from the {@link BridgePhaseFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static BridgePhase getBridgeEventPhaseInstance(EventRequest eventRequest, EventResponse eventResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		BridgePhaseFactory bridgePhaseFactory = (BridgePhaseFactory) BridgeFactoryFinder.getFactory(
+				BridgePhaseFactory.class);
+
+		return bridgePhaseFactory.getBridgeEventPhase(eventRequest, eventResponse, portletConfig, bridgeConfig);
+	}
+
+	/**
+	 * Returns an instance of {@link BridgePhase} from the {@link BridgePhaseFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static BridgePhase getBridgeRenderPhaseInstance(RenderRequest renderRequest, RenderResponse renderResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		BridgePhaseFactory bridgePhaseFactory = (BridgePhaseFactory) BridgeFactoryFinder.getFactory(
+				BridgePhaseFactory.class);
+
+		return bridgePhaseFactory.getBridgeRenderPhase(renderRequest, renderResponse, portletConfig, bridgeConfig);
+	}
+
+	/**
+	 * Returns an instance of {@link BridgePhase} from the {@link BridgePhaseFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static BridgePhase getBridgeResourcePhaseInstance(ResourceRequest resourceRequest,
+		ResourceResponse resourceResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		BridgePhaseFactory bridgePhaseFactory = (BridgePhaseFactory) BridgeFactoryFinder.getFactory(
+				BridgePhaseFactory.class);
+
+		return bridgePhaseFactory.getBridgeResourcePhase(resourceRequest, resourceResponse, portletConfig,
+				bridgeConfig);
+	}
 
 	public abstract BridgePhase getBridgeActionPhase(ActionRequest actionRequest, ActionResponse actionResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);

@@ -30,5 +30,17 @@ import com.liferay.faces.util.helper.Wrapper;
  */
 public abstract class BridgeRequestScopeManagerFactory implements Wrapper<BridgeRequestScopeManagerFactory> {
 
+	/**
+	 * Returns an instance of {@link BridgeRequestScopeManager} from the {@link BridgeRequestScopeManagerFactory} found
+	 * by the {@link BridgeFactoryFinder}.
+	 */
+	public static BridgeRequestScopeManager getBridgeRequestScopeManagerInstance() {
+
+		BridgeRequestScopeManagerFactory bridgeRequestScopeManagerFactory = (BridgeRequestScopeManagerFactory)
+			BridgeFactoryFinder.getFactory(BridgeRequestScopeManagerFactory.class);
+
+		return bridgeRequestScopeManagerFactory.getBridgeRequestScopeManager();
+	}
+
 	public abstract BridgeRequestScopeManager getBridgeRequestScopeManager();
 }
