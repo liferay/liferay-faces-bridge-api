@@ -17,6 +17,7 @@ package com.liferay.faces.bridge.scope;
 
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletContext;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
@@ -30,6 +31,18 @@ import javax.portlet.PortletContext;
  * @author  Neil Griffin
  */
 public abstract class BridgeRequestScopeCacheFactory implements FacesWrapper<BridgeRequestScopeCacheFactory> {
+
+	/**
+	 * Returns an instance of {@link BridgeRequestScopeCache} from the {@link BridgeRequestScopeCacheFactory} found by
+	 * the {@link BridgeFactoryFinder}.
+	 */
+	public static BridgeRequestScopeCache getBridgeRequestScopeCacheInstance(PortletContext portletContext) {
+
+		BridgeRequestScopeCacheFactory bridgeRequestScopeCacheFactory = (BridgeRequestScopeCacheFactory)
+			BridgeFactoryFinder.getFactory(BridgeRequestScopeCacheFactory.class);
+
+		return bridgeRequestScopeCacheFactory.getBridgeRequestScopeCache(portletContext);
+	}
 
 	public abstract BridgeRequestScopeCache getBridgeRequestScopeCache(PortletContext portletContext);
 }

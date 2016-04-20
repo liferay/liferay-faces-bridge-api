@@ -17,12 +17,25 @@ package com.liferay.faces.bridge.filter;
 
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletContext;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
  * @author  Neil Griffin
  */
 public abstract class BridgePortletContextFactory implements FacesWrapper<BridgePortletContextFactory> {
+
+	/**
+	 * Returns an instance of {@link PortletContext} from the {@link PortletContextFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static PortletContext getPortletContextInstance(PortletContext portletContext) {
+
+		BridgePortletContextFactory bridgePortletContextFactory = (BridgePortletContextFactory) BridgeFactoryFinder
+			.getFactory(BridgePortletContextFactory.class);
+
+		return bridgePortletContextFactory.getPortletContext(portletContext);
+	}
 
 	public abstract PortletContext getPortletContext(PortletContext portletContext);
 }

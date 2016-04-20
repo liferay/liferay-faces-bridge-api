@@ -18,6 +18,7 @@ package com.liferay.faces.bridge.scope;
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletRequest;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 import com.liferay.faces.bridge.config.BridgeConfig;
 
@@ -26,6 +27,20 @@ import com.liferay.faces.bridge.config.BridgeConfig;
  * @author  Neil Griffin
  */
 public abstract class RequestAttributeInspectorFactory implements FacesWrapper<RequestAttributeInspectorFactory> {
+
+	/**
+	 * Returns an instance of {@link RequestAttributeInspector} from the {@link RequestAttributeInspectorFactory} found
+	 * by the {@link BridgeFactoryFinder}.
+	 */
+	public static RequestAttributeInspector getRequestAttributeInspectorInstance(PortletRequest portletRequest,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		RequestAttributeInspectorFactory requestAttributeInspectorFactory = (RequestAttributeInspectorFactory)
+			BridgeFactoryFinder.getFactory(RequestAttributeInspectorFactory.class);
+
+		return requestAttributeInspectorFactory.getRequestAttributeInspector(portletRequest, portletConfig,
+				bridgeConfig);
+	}
 
 	public abstract RequestAttributeInspector getRequestAttributeInspector(PortletRequest portletRequest,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
