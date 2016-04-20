@@ -16,7 +16,6 @@
 package com.liferay.faces.bridge;
 
 import javax.faces.FacesWrapper;
-import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
