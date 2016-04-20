@@ -16,12 +16,25 @@
 package com.liferay.faces.bridge;
 
 import javax.faces.FacesWrapper;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
  * @author  Neil Griffin
  */
 public abstract class WindowStateValidatorFactory implements FacesWrapper<WindowStateValidatorFactory> {
+
+	/**
+	 * Returns an instance of {@link WindowStateValidator} from the {@link WindowStateValidatorFactory} found by the
+	 * {@link BridgeFactoryFinder}.
+	 */
+	public static WindowStateValidator getWindowStateValidatorInstance() {
+
+		WindowStateValidatorFactory windowStateValidatorFactory = (WindowStateValidatorFactory) BridgeFactoryFinder
+			.getFactory(WindowStateValidatorFactory.class);
+
+		return windowStateValidatorFactory.getWindowStateValidator();
+	}
 
 	public abstract WindowStateValidator getWindowStateValidator();
 }

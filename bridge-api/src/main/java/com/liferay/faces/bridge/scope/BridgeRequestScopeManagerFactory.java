@@ -16,6 +16,7 @@
 package com.liferay.faces.bridge.scope;
 
 import javax.faces.FacesWrapper;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
@@ -29,6 +30,18 @@ import javax.faces.FacesWrapper;
  * @author  Neil Griffin
  */
 public abstract class BridgeRequestScopeManagerFactory implements FacesWrapper<BridgeRequestScopeManagerFactory> {
+
+	/**
+	 * Returns an instance of {@link BridgeRequestScopeManager} from the {@link BridgeRequestScopeManagerFactory} found
+	 * by the {@link BridgeFactoryFinder}.
+	 */
+	public static BridgeRequestScopeManager getBridgeRequestScopeManagerInstance() {
+
+		BridgeRequestScopeManagerFactory bridgeRequestScopeManagerFactory = (BridgeRequestScopeManagerFactory)
+			BridgeFactoryFinder.getFactory(BridgeRequestScopeManagerFactory.class);
+
+		return bridgeRequestScopeManagerFactory.getBridgeRequestScopeManager();
+	}
 
 	public abstract BridgeRequestScopeManager getBridgeRequestScopeManager();
 }

@@ -16,12 +16,25 @@
 package com.liferay.faces.bridge;
 
 import javax.faces.FacesWrapper;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
  * @author  Neil Griffin
  */
 public abstract class PortletModeValidatorFactory implements FacesWrapper<PortletModeValidatorFactory> {
+
+	/**
+	 * Returns an instance of {@link PortletModeValidator} from the {@link PortletModeValidatorFactory} found by the
+	 * {@link BridgeFactoryFinder}.
+	 */
+	public static PortletModeValidator getPortletModeValidatorInstance() {
+
+		PortletModeValidatorFactory portletModeValidatorFactory = (PortletModeValidatorFactory) BridgeFactoryFinder
+			.getFactory(PortletModeValidatorFactory.class);
+
+		return portletModeValidatorFactory.getPortletModeValidator();
+	}
 
 	public abstract PortletModeValidator getPortletModeValidator();
 }

@@ -21,6 +21,7 @@ import java.util.Map;
 import javax.faces.FacesWrapper;
 import javax.faces.context.FacesContext;
 import javax.portlet.faces.BridgeException;
+import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
@@ -29,6 +30,63 @@ import javax.portlet.faces.BridgeException;
  * @author  Neil Griffin
  */
 public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory> {
+
+	/**
+	 * Returns an instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static BridgeURL getBridgeActionURLInstance(FacesContext facesContext, String uri) {
+
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(BridgeURLFactory.class);
+
+		return bridgeURLFactory.getBridgeActionURL(facesContext, uri);
+	}
+
+	/**
+	 * Returns an instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static BridgeURL getBridgeBookmarkableURLInstance(FacesContext facesContext, String uri,
+		Map<String, List<String>> parameters) {
+
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(BridgeURLFactory.class);
+
+		return bridgeURLFactory.getBridgeBookmarkableURL(facesContext, uri, parameters);
+	}
+
+	/**
+	 * Returns an instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static BridgeURL getBridgePartialActionURLInstance(FacesContext facesContext, String uri) {
+
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(BridgeURLFactory.class);
+
+		return bridgeURLFactory.getBridgePartialActionURL(facesContext, uri);
+	}
+
+	/**
+	 * Returns an instance of {@link BridgeResourceURL} from the {@link BridgeResourceURLFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static BridgeURL getBridgeRedirectURLInstance(FacesContext facesContext, String uri,
+		Map<String, List<String>> parameters) {
+
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(BridgeURLFactory.class);
+
+		return bridgeURLFactory.getBridgeRedirectURL(facesContext, uri, parameters);
+	}
+
+	/**
+	 * Returns an instance of {@link BridgeResourceURL} from the {@link BridgeResourceURLFactory} found by the {@link
+	 * BridgeFactoryFinder}.
+	 */
+	public static BridgeURL getBridgeResourceURLInstance(FacesContext facesContext, String uri) {
+
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(BridgeURLFactory.class);
+
+		return bridgeURLFactory.getBridgeResourceURL(facesContext, uri);
+	}
 
 	/**
 	 * Returns a bridge "action" URL. The return value of {@link BridgeURL#toString()} conforms to the deviation
