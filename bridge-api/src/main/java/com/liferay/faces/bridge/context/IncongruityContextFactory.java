@@ -15,6 +15,7 @@
  */
 package com.liferay.faces.bridge.context;
 
+import com.liferay.faces.bridge.BridgeFactoryFinder;
 import com.liferay.faces.util.helper.Wrapper;
 
 

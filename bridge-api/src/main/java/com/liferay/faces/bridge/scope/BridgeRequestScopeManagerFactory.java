@@ -15,6 +15,7 @@
  */
 package com.liferay.faces.bridge.scope;
 
+import com.liferay.faces.bridge.BridgeFactoryFinder;
 import com.liferay.faces.util.helper.Wrapper;
 
 

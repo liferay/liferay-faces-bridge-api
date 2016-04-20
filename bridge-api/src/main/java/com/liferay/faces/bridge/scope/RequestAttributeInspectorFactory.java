@@ -17,8 +17,8 @@ package com.liferay.faces.bridge.scope;
 
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletRequest;
-import javax.portlet.faces.BridgeFactoryFinder;
 
+import com.liferay.faces.bridge.BridgeFactoryFinder;
 import com.liferay.faces.bridge.config.BridgeConfig;
 import com.liferay.faces.util.helper.Wrapper;
 
