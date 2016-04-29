@@ -15,13 +15,10 @@
  */
 package com.liferay.faces.bridge.context;
 
-import javax.portlet.PortalContext;
-
-
 /**
  * @author  Neil Griffin
  */
-public interface BridgePortalContext extends PortalContext {
+public final class BridgePortalContext {
 
 	/**
 	 * Property indicating if the portal application supports adding a &lt;script src=".." /&gt; resource to the
@@ -92,4 +89,8 @@ public interface BridgePortalContext extends PortalContext {
 	 */
 	public static final String STRICT_NAMESPACED_PARAMETERS_SUPPORT =
 		"com.liferay.faces.bridge.strict.namespaced.paramters.support";
+
+	private BridgePortalContext() {
+		throw new AssertionError();
+	}
 }
