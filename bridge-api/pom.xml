@@ -35,44 +35,14 @@
 
 	<developers>
 		<developer>
-			<name>Cagatay Civici</name>
-			<organization>PrimeFaces</organization>
-			<organizationUrl>http://www.primefaces.org</organizationUrl>
-		</developer>
-		<developer>
-			<name>Ken Fyten</name>
-			<organization>ICEsoft Technologies Inc.</organization>
-			<organizationUrl>http://www.icesoft.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Mansi Gaba</name>
-			<organization>IBM</organization>
-			<organizationUrl>http://www.ibm.com</organizationUrl>
-		</developer>
-		<developer>
 			<name>Juan Gonzalez</name>
 			<organization>Liferay, Inc.</organization>
 			<organizationUrl>http://www.liferay.com</organizationUrl>
 		</developer>
 		<developer>
-			<name>Neil Griffin (Specification Lead)</name>
+			<name>Neil Griffin</name>
 			<organization>Liferay, Inc.</organization>
 			<organizationUrl>http://www.liferay.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Josh Juneau</name>
-			<organization></organization>
-			<organizationUrl></organizationUrl>
-		</developer>
-		<developer>
-			<name>Kito Mann</name>
-			<organization>Virtua</organization>
-			<organizationUrl>http://virtua.tech/</organizationUrl>
-		</developer>
-		<developer>
-			<name>Leonardo Alfredo Uribe Panesso</name>
-			<organization>Irian Solutions GmbH</organization>
-			<organizationUrl>http://www.irian.at/</organizationUrl>
 		</developer>
 		<developer>
 			<name>Vernon Singleton</name>
@@ -83,11 +53,6 @@
 			<name>Kyle Stiemann</name>
 			<organization>Liferay, Inc.</organization>
 			<organizationUrl>http://www.liferay.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Ren Zhijun</name>
-			<organization>Oracle Corporation</organization>
-			<organizationUrl>http://www.oracle.com</organizationUrl>
 		</developer>
 	</developers>
 
