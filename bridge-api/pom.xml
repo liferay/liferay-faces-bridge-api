@@ -1,46 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.liferay.faces.bridge</groupId>
-		<artifactId>liferay-faces-bridge-api-parent</artifactId>
-		<version>2.0.0-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>9</version>
 	</parent>
-	<artifactId>liferay-faces-bridge-api</artifactId>
-	<name>Liferay Faces Bridge API</name>
-	<description>API for Liferay Faces Bridge</description>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.liferay.faces.util</groupId>
-			<artifactId>liferay-faces-util</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>el-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.portlet</groupId>
-			<artifactId>portlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-		</dependency>
-	</dependencies>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.liferay.faces.bridge</groupId>
+	<artifactId>liferay-faces-bridge-api</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
+	<name>Liferay Faces Bridge API</name>
+	<description>Liferay Faces Bridge API</description>
+
+	<organization>
+		<name>Liferay, Inc</name>
+		<url>http://www.liferay.com</url>
+	</organization>
+
+	<issueManagement>
+		<system>Atlassian JIRA</system>
+		<url>http://issues.liferay.com/browse/FACES</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<url>http://www.liferay.com/community/liferay-projects/liferay-faces</url>
+
+	<developers>
+		<developer>
+			<name>Cagatay Civici</name>
+			<organization>PrimeFaces</organization>
+			<organizationUrl>http://www.primefaces.org</organizationUrl>
+		</developer>
+		<developer>
+			<name>Ken Fyten</name>
+			<organization>ICEsoft Technologies Inc.</organization>
+			<organizationUrl>http://www.icesoft.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Mansi Gaba</name>
+			<organization>IBM</organization>
+			<organizationUrl>http://www.ibm.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Juan Gonzalez</name>
+			<organization>Liferay, Inc.</organization>
+			<organizationUrl>http://www.liferay.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Neil Griffin (Specification Lead)</name>
+			<organization>Liferay, Inc.</organization>
+			<organizationUrl>http://www.liferay.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Josh Juneau</name>
+			<organization></organization>
+			<organizationUrl></organizationUrl>
+		</developer>
+		<developer>
+			<name>Kito Mann</name>
+			<organization>Virtua</organization>
+			<organizationUrl>http://virtua.tech/</organizationUrl>
+		</developer>
+		<developer>
+			<name>Leonardo Alfredo Uribe Panesso</name>
+			<organization>Irian Solutions GmbH</organization>
+			<organizationUrl>http://www.irian.at/</organizationUrl>
+		</developer>
+		<developer>
+			<name>Vernon Singleton</name>
+			<organization>Liferay, Inc.</organization>
+			<organizationUrl>http://www.liferay.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Kyle Stiemann</name>
+			<organization>Liferay, Inc.</organization>
+			<organizationUrl>http://www.liferay.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Ren Zhijun</name>
+			<organization>Oracle Corporation</organization>
+			<organizationUrl>http://www.oracle.com</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/liferay/liferay-faces-bridge-api</connection>
+		<developerConnection>scm:git:https://github.com/liferay/liferay-faces-bridge-api</developerConnection>
+		<url>scm:git:https://github.com/liferay/liferay-faces-bridge-api</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<properties>
+		<faces.api.version>${faces.spec.version}</faces.api.version>
+		<faces.spec.version>1.2</faces.spec.version>
+		<full.version>${project.version} (${timestamp} AD)</full.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<surefire.version>2.12</surefire.version>
+	</properties>
 
 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>1.5</source>
+						<target>1.5</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.7</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
 					<configuration>
 						<archive>
 							<manifestEntries>
@@ -48,12 +135,168 @@
 								<Specification-Title>Portlet 2.0 Bridge for JavaServer Faces 1.2</Specification-Title>
 								<Specification-Vendor>Java Community Process (JSR 329)</Specification-Vendor>
 								<Specification-Version>1.0</Specification-Version>
+								<Implementation-Title>${project.name}</Implementation-Title>
+								<Implementation-Version>${full.version}</Implementation-Version>
+								<Implementation-Vendor-Id>com.liferay</Implementation-Vendor-Id>
+								<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
 							</manifestEntries>
 						</archive>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.5.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5.1</version>
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<pushChanges>false</pushChanges>
+						<localCheckout>true</localCheckout>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${surefire.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-report-plugin</artifactId>
+					<version>${surefire.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.scm</groupId>
+					<artifactId>maven-scm-providers-git</artifactId>
+					<!-- http://jira.codehaus.org/browse/SCM-444 -->
+					<version>(,1.4]</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.8</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.1</version>
+					<executions>
+						<execution>
+							<phase>initialize</phase>
+							<goals>
+								<goal>create-timestamp</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<doCheck>false</doCheck>
+						<doUpdate>false</doUpdate>
+						<timestampFormat>MMM d, yyyy</timestampFormat>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<!-- MJAVADOC-275: Need version 2.8 or higher for release:prepare to generate JavaDoc -->
+						<version>2.10.3</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<excludes>
+							<exclude>rebel.xml</exclude>
+						</excludes>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.liferay.faces.util</groupId>
+			<artifactId>liferay-faces-util</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>${faces.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.4.0</version>
+			</plugin>
+		</plugins>
+	</reporting>
 
 </project>
