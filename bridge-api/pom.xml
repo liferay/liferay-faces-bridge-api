@@ -21,7 +21,7 @@
 
 	<issueManagement>
 		<system>Atlassian JIRA</system>
-		<url>https://issues.liferay.com/browse/FACES-2552?jql=project%20%3D%20FACES%20AND%20component%20in%20(%22FacesBridge%20API%22%2C%20%22FacesBridge%20Spec%22%2C%20%22FacesBridge%20TCK%22)</url>
+		<url>http://issues.liferay.com/browse/FACES</url>
 	</issueManagement>
 
 	<licenses>
