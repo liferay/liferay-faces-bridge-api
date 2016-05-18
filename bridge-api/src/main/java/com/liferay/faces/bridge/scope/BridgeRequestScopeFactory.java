@@ -19,8 +19,8 @@ import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletRequest;
 
+import com.liferay.faces.bridge.BridgeConfig;
 import com.liferay.faces.bridge.BridgeFactoryFinder;
-import com.liferay.faces.bridge.config.BridgeConfig;
 
 
 /**
