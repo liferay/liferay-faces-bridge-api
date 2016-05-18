@@ -27,8 +27,6 @@ import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 import javax.portlet.faces.BridgeFactoryFinder;
 
-import com.liferay.faces.bridge.config.BridgeConfig;
-
 
 /**
  * This abstract class provides a contract for defining a factory that knows how to create instances of type {@link
