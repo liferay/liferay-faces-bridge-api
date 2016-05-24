@@ -24,19 +24,19 @@ import javax.portlet.ReadOnlyException;
  * @author  Neil Griffin
  */
 public interface Preference {
-	public void reset() throws ReadOnlyException;
-
 	public String getName();
-
-	public void setName(String name);
 
 	public String getValue();
 
-	public void setValue(String value) throws ReadOnlyException;
-
 	public List<String> getValues();
 
-	public void setValues(String[] values) throws ReadOnlyException;
-
 	public boolean isReadOnly();
+
+	public void reset() throws ReadOnlyException;
+
+	public void setName(String name);
+
+	public void setValue(String value) throws ReadOnlyException;
+
+	public void setValues(String[] values) throws ReadOnlyException;
 }

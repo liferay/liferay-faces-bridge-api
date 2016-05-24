@@ -33,8 +33,8 @@ public interface RequestAttributeInspector {
 
 	/**
 	 * Determines whether or not a request attribute is to be excluded from the bridge request scope because the
-	 * specified value is an instance of a particular class such as those listed in Section 5.1.2 of the Bridge
-	 * Specification.
+	 * specified value is an instance of a class annotated with {@link
+	 * javax.portlet.faces.annotation.ExcludeFromManagedRequestScope}.
 	 *
 	 * @param   name   The request attribute name.
 	 * @param   value  The request attribute value.
@@ -42,7 +42,7 @@ public interface RequestAttributeInspector {
 	 * @return  If the request attribute is to be excluded then the return value is <code>true</code>. Otherwise, the
 	 *          return value is <code>false</code>.
 	 */
-	public boolean isExcludedByType(String name, Object value);
+	public boolean isExcludedByAnnotation(String name, Object value);
 
 	/**
 	 * Determines whether or not a request attribute is to be excluded from the bridge request scope because the
@@ -72,8 +72,8 @@ public interface RequestAttributeInspector {
 
 	/**
 	 * Determines whether or not a request attribute is to be excluded from the bridge request scope because the
-	 * specified value is an instance of a class annotated with {@link
-	 * javax.portlet.faces.annotation.ExcludeFromManagedRequestScope}.
+	 * specified value is an instance of a particular class such as those listed in Section 5.1.2 of the Bridge
+	 * Specification.
 	 *
 	 * @param   name   The request attribute name.
 	 * @param   value  The request attribute value.
@@ -81,5 +81,5 @@ public interface RequestAttributeInspector {
 	 * @return  If the request attribute is to be excluded then the return value is <code>true</code>. Otherwise, the
 	 *          return value is <code>false</code>.
 	 */
-	public boolean isExcludedByAnnotation(String name, Object value);
+	public boolean isExcludedByType(String name, Object value);
 }
