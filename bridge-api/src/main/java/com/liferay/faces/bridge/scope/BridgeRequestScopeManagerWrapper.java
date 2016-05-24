@@ -27,6 +27,8 @@ import com.liferay.faces.util.helper.Wrapper;
 public abstract class BridgeRequestScopeManagerWrapper implements BridgeRequestScopeManager,
 	Wrapper<BridgeRequestScopeManager> {
 
+	public abstract BridgeRequestScopeManager getWrapped();
+
 	public void removeBridgeRequestScopesByPortlet(PortletConfig portletConfig) {
 		getWrapped().removeBridgeRequestScopesByPortlet(portletConfig);
 	}
@@ -34,6 +36,4 @@ public abstract class BridgeRequestScopeManagerWrapper implements BridgeRequestS
 	public void removeBridgeRequestScopesBySession(HttpSession httpSession) {
 		getWrapped().removeBridgeRequestScopesBySession(httpSession);
 	}
-
-	public abstract BridgeRequestScopeManager getWrapped();
 }

@@ -54,11 +54,11 @@ public class EventPayloadWrapper implements Wrapper<Serializable>, Serializable 
 		this.redirect = redirect;
 	}
 
-	public boolean isRedirect() {
-		return redirect;
-	}
-
 	public Serializable getWrapped() {
 		return wrappedPayload;
+	}
+
+	public boolean isRedirect() {
+		return redirect;
 	}
 }

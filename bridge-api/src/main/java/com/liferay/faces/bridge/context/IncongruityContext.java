@@ -39,6 +39,18 @@ import javax.faces.context.FacesContext;
 public abstract class IncongruityContext extends ExternalContext {
 
 	/**
+	 * Returns a mutable map of attributes.
+	 *
+	 * @return  The attribute map.
+	 */
+	public abstract Map<String, Object> getAttributes();
+
+	/**
+	 * @since  JSF 2.0
+	 */
+	public abstract int getResponseContentLength();
+
+	/**
 	 * This method is designed to be called during the RENDER_PHASE of the portlet lifecycle, and will execute {@link
 	 * ExternalContext} methods that were inappropriately called during the ACTION_PHASE or EVENT_PHASE.
 	 *
@@ -47,13 +59,6 @@ public abstract class IncongruityContext extends ExternalContext {
 	 * @throws  IOException  If an error occurs.
 	 */
 	public abstract void makeCongruous(FacesContext facesContext) throws IOException;
-
-	/**
-	 * Returns a mutable map of attributes.
-	 *
-	 * @return  The attribute map.
-	 */
-	public abstract Map<String, Object> getAttributes();
 
 	/**
 	 * @since  JSF 2.0
@@ -69,9 +74,4 @@ public abstract class IncongruityContext extends ExternalContext {
 	 * @since  JSF 2.0
 	 */
 	public abstract void setResponseCommitted(boolean committed);
-
-	/**
-	 * @since  JSF 2.0
-	 */
-	public abstract int getResponseContentLength();
 }

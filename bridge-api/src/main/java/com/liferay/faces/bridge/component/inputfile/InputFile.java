@@ -55,6 +55,26 @@ public class InputFile extends InputFileBase {
 	}
 
 	@Override
+	public StateHelper getStateHelper() {
+
+		if (stateHelper == null) {
+			stateHelper = new ComponentStateHelper(this);
+		}
+
+		return stateHelper;
+	}
+
+	@Override
+	public String getStyleClass() {
+
+		// getStateHelper().eval(PropertyKeys.styleClass, null) is called because super.getStyleClass() may return the
+		// STYLE_CLASS_NAME of the super class.
+		String styleClass = (String) getStateHelper().eval(PropertyKeys.styleClass, null);
+
+		return concatCssClasses(styleClass, "bridge-input-file");
+	}
+
+	@Override
 	public void restoreState(FacesContext facesContext, Object state) {
 
 		Object[] values = (Object[]) state;
@@ -97,26 +117,6 @@ public class InputFile extends InputFileBase {
 		}
 
 		return allClasses;
-	}
-
-	@Override
-	public StateHelper getStateHelper() {
-
-		if (stateHelper == null) {
-			stateHelper = new ComponentStateHelper(this);
-		}
-
-		return stateHelper;
-	}
-
-	@Override
-	public String getStyleClass() {
-
-		// getStateHelper().eval(PropertyKeys.styleClass, null) is called because super.getStyleClass() may return the
-		// STYLE_CLASS_NAME of the super class.
-		String styleClass = (String) getStateHelper().eval(PropertyKeys.styleClass, null);
-
-		return concatCssClasses(styleClass, "bridge-input-file");
 	}
 
 }

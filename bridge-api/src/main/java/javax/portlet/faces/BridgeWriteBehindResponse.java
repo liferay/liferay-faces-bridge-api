@@ -25,11 +25,11 @@ public interface BridgeWriteBehindResponse {
 
 	void flushMarkupToWrappedResponse() throws IOException;
 
-	boolean hasFacesWriteBehindMarkup();
-
 	byte[] getBytes();
 
 	char[] getChars();
+
+	boolean hasFacesWriteBehindMarkup();
 
 	boolean isBytes();
 

@@ -59,33 +59,6 @@ public interface BridgeRequestScope {
 	}
 
 	/**
-	 * This method removes the excluded request attributes. It is designed to be called at the beginning of the
-	 * RENDER_PHASE of the portlet lifecycle. However, it is only necessary to call this method if {@link
-	 * com.liferay.faces.bridge.context.BridgePortalContext#POST_REDIRECT_GET_SUPPORT} evaluates to <code>false</code>.
-	 * This is because portlet containers that do indeed implement the POST-REDIRECT-GET design pattern would not have
-	 * any excluded request attributes carry-over from the ActionRequest to the RenderRequest.
-	 */
-	void removeExcludedAttributes(RenderRequest renderRequest);
-
-	/**
-	 * This method restores the scoped data that was preserved by the call to {@link #saveState(FacesContext)} method as
-	 * required by section 5.1.2 of the Bridge Spec. This method is designed to be called during the EVENT_PHASE and
-	 * RENDER_PHASE of the portlet lifecycle.
-	 *
-	 * @param  facesContext  The current {@link FacesContext}.
-	 */
-	void restoreState(FacesContext facesContext);
-
-	/**
-	 * This method preserves the scoped data (as defined in Section 5.1.2 of the Bridge Spec). It should only be called
-	 * during the {@link javax.portlet.PortletRequest#ACTION_PHASE} and {@link javax.portlet.PortletRequest#EVENT_PHASE}
-	 * of the portlet lifecycle.
-	 *
-	 * @param  facesContext  The current {@link FacesContext}.
-	 */
-	void saveState(FacesContext facesContext);
-
-	/**
 	 * Determines the {@link javax.portlet.faces.Bridge.PortletPhase} in which the bridge request scope instance was
 	 * created.
 	 *
@@ -93,6 +66,37 @@ public interface BridgeRequestScope {
 	 *          created.
 	 */
 	public Bridge.PortletPhase getBeganInPhase();
+
+	/**
+	 * Returns the date in which the scope was created, measured in UTC milliseconds from the epoch.
+	 */
+	public long getDateCreated();
+
+	/**
+	 * Sets the prefix of the unique identifier returned by {@link #getId()}.
+	 */
+	public void setIdPrefix(String idPrefix);
+
+	/**
+	 * Returns the unique identifier, which is prefixed with the value passed to {@link #setIdPrefix(String)}.
+	 */
+	String getId();
+
+	// PROPOSED-FOR-STANDARD: https://issues.apache.org/jira/browse/PORTLETBRIDGE-202
+	PortletMode getPortletMode();
+
+	Map<String, String> getPreservedActionParameterMap();
+
+	String getPreservedViewStateParam();
+
+	/**
+	 * This method returns a mutable set of attribute names that correspond to those that were removed by the {@link
+	 * #removeExcludedAttributes(RenderRequest)} method. Since the return value is mutable, callers of this method have
+	 * an opportunity to add names to the set when necessary.
+	 *
+	 * @return  The set of removed attribute names.
+	 */
+	Set<String> getRemovedAttributeNames();
 
 	/**
 	 * Returns the flag indicating whether or not the Faces Lifecycle was executed.
@@ -124,9 +128,31 @@ public interface BridgeRequestScope {
 	boolean isRedirectOccurred();
 
 	/**
-	 * Returns the date in which the scope was created, measured in UTC milliseconds from the epoch.
+	 * This method removes the excluded request attributes. It is designed to be called at the beginning of the
+	 * RENDER_PHASE of the portlet lifecycle. However, it is only necessary to call this method if {@link
+	 * com.liferay.faces.bridge.context.BridgePortalContext#POST_REDIRECT_GET_SUPPORT} evaluates to <code>false</code>.
+	 * This is because portlet containers that do indeed implement the POST-REDIRECT-GET design pattern would not have
+	 * any excluded request attributes carry-over from the ActionRequest to the RenderRequest.
 	 */
-	public long getDateCreated();
+	void removeExcludedAttributes(RenderRequest renderRequest);
+
+	/**
+	 * This method restores the scoped data that was preserved by the call to {@link #saveState(FacesContext)} method as
+	 * required by section 5.1.2 of the Bridge Spec. This method is designed to be called during the EVENT_PHASE and
+	 * RENDER_PHASE of the portlet lifecycle.
+	 *
+	 * @param  facesContext  The current {@link FacesContext}.
+	 */
+	void restoreState(FacesContext facesContext);
+
+	/**
+	 * This method preserves the scoped data (as defined in Section 5.1.2 of the Bridge Spec). It should only be called
+	 * during the {@link javax.portlet.PortletRequest#ACTION_PHASE} and {@link javax.portlet.PortletRequest#EVENT_PHASE}
+	 * of the portlet lifecycle.
+	 *
+	 * @param  facesContext  The current {@link FacesContext}.
+	 */
+	void saveState(FacesContext facesContext);
 
 	/**
 	 * Sets the flag indicating whether or not the Faces lifecycle was executed.
@@ -137,25 +163,12 @@ public interface BridgeRequestScope {
 	void setFacesLifecycleExecuted(boolean facesLifecycleExecuted);
 
 	/**
-	 * Returns the unique identifier, which is prefixed with the value passed to {@link #setIdPrefix(String)}.
-	 */
-	String getId();
-
-	/**
-	 * Sets the prefix of the unique identifier returned by {@link #getId()}.
-	 */
-	public void setIdPrefix(String idPrefix);
-
-	/**
 	 * Sets the flag indicating whether or not a navigation-rule fired.
 	 *
 	 * @param  navigationOccurred  <code>true</code> indicates that a navigation-rule fired, otherwise <code>
 	 *                             false</code>.
 	 */
 	void setNavigationOccurred(boolean navigationOccurred);
-
-	// PROPOSED-FOR-STANDARD: https://issues.apache.org/jira/browse/PORTLETBRIDGE-202
-	PortletMode getPortletMode();
 
 	// PROPOSED-FOR-STANDARD: https://issues.apache.org/jira/browse/PORTLETBRIDGE-202
 	void setPortletMode(PortletMode portletMode);
@@ -166,10 +179,6 @@ public interface BridgeRequestScope {
 	 */
 	void setPortletModeChanged(boolean portletModeChanged);
 
-	Map<String, String> getPreservedActionParameterMap();
-
-	String getPreservedViewStateParam();
-
 	/**
 	 * Sets a flag indicating whether or not a <redirect/> was encountered in a navigation-rule.
 	 *
@@ -177,13 +186,4 @@ public interface BridgeRequestScope {
 	 *                           otherwise <code>false</code>.
 	 */
 	void setRedirectOccurred(boolean redirectOccurred);
-
-	/**
-	 * This method returns a mutable set of attribute names that correspond to those that were removed by the {@link
-	 * #removeExcludedAttributes(RenderRequest)} method. Since the return value is mutable, callers of this method have
-	 * an opportunity to add names to the set when necessary.
-	 *
-	 * @return  The set of removed attribute names.
-	 */
-	Set<String> getRemovedAttributeNames();
 }

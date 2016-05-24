@@ -26,9 +26,9 @@ import com.liferay.faces.util.helper.Wrapper;
  */
 public abstract class BridgePhaseWrapper implements BridgePhase, Wrapper<BridgePhase> {
 
+	public abstract BridgePhase getWrapped();
+
 	public void execute() throws BridgeDefaultViewNotSpecifiedException, BridgeException {
 		getWrapped().execute();
 	}
-
-	public abstract BridgePhase getWrapped();
 }

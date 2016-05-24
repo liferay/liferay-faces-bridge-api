@@ -28,6 +28,8 @@ import com.liferay.faces.util.helper.Wrapper;
 public abstract class BridgeRequestScopeCacheWrapper implements BridgeRequestScopeCache,
 	Wrapper<BridgeRequestScopeCache> {
 
+	public abstract BridgeRequestScopeCache getWrapped();
+
 	public void clear() {
 		getWrapped().clear();
 	}
@@ -46,6 +48,10 @@ public abstract class BridgeRequestScopeCacheWrapper implements BridgeRequestSco
 
 	public BridgeRequestScope get(Object key) {
 		return getWrapped().get(key);
+	}
+
+	public boolean isEmpty() {
+		return getWrapped().isEmpty();
 	}
 
 	public Set<String> keySet() {
@@ -70,11 +76,5 @@ public abstract class BridgeRequestScopeCacheWrapper implements BridgeRequestSco
 
 	public Collection<BridgeRequestScope> values() {
 		return getWrapped().values();
-	}
-
-	public abstract BridgeRequestScopeCache getWrapped();
-
-	public boolean isEmpty() {
-		return getWrapped().isEmpty();
 	}
 }

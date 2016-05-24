@@ -33,6 +33,21 @@ public class Namespace extends NamespaceBase {
 	private StateHelper stateHelper;
 
 	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
+	@Override
+	public StateHelper getStateHelper() {
+
+		if (stateHelper == null) {
+			stateHelper = new ComponentStateHelper(this);
+		}
+
+		return stateHelper;
+	}
+
+	@Override
 	public void restoreState(FacesContext facesContext, Object state) {
 
 		Object[] values = (Object[]) state;
@@ -48,20 +63,5 @@ public class Namespace extends NamespaceBase {
 		values[1] = getStateHelper().saveState(facesContext);
 
 		return values;
-	}
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
-
-	@Override
-	public StateHelper getStateHelper() {
-
-		if (stateHelper == null) {
-			stateHelper = new ComponentStateHelper(this);
-		}
-
-		return stateHelper;
 	}
 }

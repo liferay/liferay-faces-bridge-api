@@ -33,6 +33,21 @@ public class ActionURL extends ActionURLBase {
 	private StateHelper stateHelper;
 
 	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
+	// Java 1.6+: @Override
+	public StateHelper getStateHelper() {
+
+		if (stateHelper == null) {
+			stateHelper = new ComponentStateHelper(this);
+		}
+
+		return stateHelper;
+	}
+
+	@Override
 	public void restoreState(FacesContext facesContext, Object state) {
 
 		Object[] values = (Object[]) state;
@@ -48,20 +63,5 @@ public class ActionURL extends ActionURLBase {
 		values[1] = getStateHelper().saveState(facesContext);
 
 		return values;
-	}
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
-
-	// Java 1.6+: @Override
-	public StateHelper getStateHelper() {
-
-		if (stateHelper == null) {
-			stateHelper = new ComponentStateHelper(this);
-		}
-
-		return stateHelper;
 	}
 }

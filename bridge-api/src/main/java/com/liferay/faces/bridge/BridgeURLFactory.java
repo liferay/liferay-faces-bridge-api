@@ -15,13 +15,13 @@
  */
 package com.liferay.faces.bridge;
 
-import com.liferay.faces.util.helper.Wrapper;
-
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.portlet.faces.BridgeException;
+
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**

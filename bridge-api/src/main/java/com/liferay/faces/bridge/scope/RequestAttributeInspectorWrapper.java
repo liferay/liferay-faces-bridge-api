@@ -25,13 +25,16 @@ public abstract class RequestAttributeInspectorWrapper implements RequestAttribu
 	Wrapper<RequestAttributeInspector> {
 
 	// Java 1.6+: @Override
+	public abstract RequestAttributeInspector getWrapped();
+
+	// Java 1.6+: @Override
 	public boolean containsExcludedNamespace(String name) {
 		return getWrapped().containsExcludedNamespace(name);
 	}
 
 	// Java 1.6+: @Override
-	public boolean isExcludedByType(String name, Object value) {
-		return getWrapped().isExcludedByType(name, value);
+	public boolean isExcludedByAnnotation(String name, Object value) {
+		return getWrapped().isExcludedByAnnotation(name, value);
 	}
 
 	// Java 1.6+: @Override
@@ -45,10 +48,7 @@ public abstract class RequestAttributeInspectorWrapper implements RequestAttribu
 	}
 
 	// Java 1.6+: @Override
-	public boolean isExcludedByAnnotation(String name, Object value) {
-		return getWrapped().isExcludedByAnnotation(name, value);
+	public boolean isExcludedByType(String name, Object value) {
+		return getWrapped().isExcludedByType(name, value);
 	}
-
-	// Java 1.6+: @Override
-	public abstract RequestAttributeInspector getWrapped();
 }
