@@ -40,6 +40,11 @@ public abstract class BridgeURLWrapper implements BridgeURL {
 	}
 
 	@Override
+	public String removeParameter(String name) {
+		return getWrapped().removeParameter(name);
+	}
+
+	@Override
 	public void setParameter(String name, String value) {
 		getWrapped().setParameter(name, value);
 	}
@@ -47,11 +52,6 @@ public abstract class BridgeURLWrapper implements BridgeURL {
 	@Override
 	public void setParameter(String name, String[] value) {
 		getWrapped().setParameter(name, value);
-	}
-
-	@Override
-	public String removeParameter(String name) {
-		return getWrapped().removeParameter(name);
 	}
 
 	@Override

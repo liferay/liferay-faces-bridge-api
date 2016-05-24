@@ -53,11 +53,11 @@ public class EventPayloadWrapper implements FacesWrapper<Serializable>, Serializ
 		this.redirect = redirect;
 	}
 
-	public boolean isRedirect() {
-		return redirect;
-	}
-
 	public Serializable getWrapped() {
 		return wrappedPayload;
+	}
+
+	public boolean isRedirect() {
+		return redirect;
 	}
 }

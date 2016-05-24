@@ -35,12 +35,12 @@ public class EventNavigationResult {
 		return fromAction;
 	}
 
-	public void setFromAction(String fromAction) {
-		this.fromAction = fromAction;
-	}
-
 	public String getOutcome() {
 		return outcome;
+	}
+
+	public void setFromAction(String fromAction) {
+		this.fromAction = fromAction;
 	}
 
 	public void setOutcome(String outcome) {

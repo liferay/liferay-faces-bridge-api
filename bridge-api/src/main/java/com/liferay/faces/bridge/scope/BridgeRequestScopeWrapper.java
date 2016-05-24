@@ -30,20 +30,34 @@ import javax.portlet.faces.Bridge.PortletPhase;
  */
 public abstract class BridgeRequestScopeWrapper implements BridgeRequestScope, FacesWrapper<BridgeRequestScope> {
 
-	public void removeExcludedAttributes(RenderRequest renderRequest) {
-		getWrapped().removeExcludedAttributes(renderRequest);
-	}
-
-	public void restoreState(FacesContext facesContext) {
-		getWrapped().restoreState(facesContext);
-	}
-
-	public void saveState(FacesContext facesContext) {
-		getWrapped().saveState(facesContext);
-	}
+	public abstract BridgeRequestScope getWrapped();
 
 	public PortletPhase getBeganInPhase() {
 		return getWrapped().getBeganInPhase();
+	}
+
+	public long getDateCreated() {
+		return getWrapped().getDateCreated();
+	}
+
+	public String getId() {
+		return getWrapped().getId();
+	}
+
+	public PortletMode getPortletMode() {
+		return getWrapped().getPortletMode();
+	}
+
+	public Map<String, String> getPreservedActionParameterMap() {
+		return getWrapped().getPreservedActionParameterMap();
+	}
+
+	public String getPreservedViewStateParam() {
+		return getWrapped().getPreservedViewStateParam();
+	}
+
+	public Set<String> getRemovedAttributeNames() {
+		return getWrapped().getRemovedAttributeNames();
 	}
 
 	public boolean isFacesLifecycleExecuted() {
@@ -62,16 +76,20 @@ public abstract class BridgeRequestScopeWrapper implements BridgeRequestScope, F
 		return getWrapped().isRedirectOccurred();
 	}
 
-	public long getDateCreated() {
-		return getWrapped().getDateCreated();
+	public void removeExcludedAttributes(RenderRequest renderRequest) {
+		getWrapped().removeExcludedAttributes(renderRequest);
+	}
+
+	public void restoreState(FacesContext facesContext) {
+		getWrapped().restoreState(facesContext);
+	}
+
+	public void saveState(FacesContext facesContext) {
+		getWrapped().saveState(facesContext);
 	}
 
 	public void setFacesLifecycleExecuted(boolean facesLifecycleExecuted) {
 		getWrapped().setFacesLifecycleExecuted(facesLifecycleExecuted);
-	}
-
-	public String getId() {
-		return getWrapped().getId();
 	}
 
 	public void setIdPrefix(String idPrefix) {
@@ -82,10 +100,6 @@ public abstract class BridgeRequestScopeWrapper implements BridgeRequestScope, F
 		getWrapped().setNavigationOccurred(navigationOccurred);
 	}
 
-	public PortletMode getPortletMode() {
-		return getWrapped().getPortletMode();
-	}
-
 	public void setPortletMode(PortletMode portletMode) {
 		getWrapped().setPortletMode(portletMode);
 	}
@@ -94,21 +108,7 @@ public abstract class BridgeRequestScopeWrapper implements BridgeRequestScope, F
 		getWrapped().setPortletModeChanged(portletModeChanged);
 	}
 
-	public Map<String, String> getPreservedActionParameterMap() {
-		return getWrapped().getPreservedActionParameterMap();
-	}
-
-	public String getPreservedViewStateParam() {
-		return getWrapped().getPreservedViewStateParam();
-	}
-
 	public void setRedirectOccurred(boolean redirectOccurred) {
 		getWrapped().setRedirectOccurred(redirectOccurred);
 	}
-
-	public Set<String> getRemovedAttributeNames() {
-		return getWrapped().getRemovedAttributeNames();
-	}
-
-	public abstract BridgeRequestScope getWrapped();
 }

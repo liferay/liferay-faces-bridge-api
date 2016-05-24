@@ -45,6 +45,15 @@ public interface BridgeURL {
 	public String getViewId();
 
 	/**
+	 * Removes the entry of the underlying {@link BridgeURL#getParameterMap()} according to the specified <code>
+	 * name</code>.
+	 *
+	 * @return  the first value of the underlying {@link BridgeURL#getParameterMap()} with the specified <code>
+	 *          name</code>.
+	 */
+	public String removeParameter(String name);
+
+	/**
 	 * Sets the <code>value</code> of the underlying {@link BridgeURL#getParameterMap()} according to the specified
 	 * <code>name</code>.
 	 */
@@ -55,15 +64,6 @@ public interface BridgeURL {
 	 * <code>name</code>.
 	 */
 	public void setParameter(String name, String[] value);
-
-	/**
-	 * Removes the entry of the underlying {@link BridgeURL#getParameterMap()} according to the specified <code>
-	 * name</code>.
-	 *
-	 * @return  the first value of the underlying {@link BridgeURL#getParameterMap()} with the specified <code>
-	 *          name</code>.
-	 */
-	public String removeParameter(String name);
 
 	/**
 	 * Returns a string-based representation of the URL.

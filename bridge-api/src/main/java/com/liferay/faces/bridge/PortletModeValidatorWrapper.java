@@ -23,10 +23,10 @@ import javax.faces.FacesWrapper;
  */
 public abstract class PortletModeValidatorWrapper implements PortletModeValidator, FacesWrapper<PortletModeValidator> {
 
+	public abstract PortletModeValidator getWrapped();
+
 	@Override
 	public boolean isValid(String portletMode) {
 		return getWrapped().isValid(portletMode);
 	}
-
-	public abstract PortletModeValidator getWrapped();
 }

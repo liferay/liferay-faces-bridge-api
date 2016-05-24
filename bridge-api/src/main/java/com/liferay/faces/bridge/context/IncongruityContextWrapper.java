@@ -34,6 +34,8 @@ import javax.faces.context.FacesContext;
  */
 public abstract class IncongruityContextWrapper extends IncongruityContext implements FacesWrapper<IncongruityContext> {
 
+	public abstract IncongruityContext getWrapped();
+
 	@Override
 	public void dispatch(String path) throws IOException {
 		getWrapped().dispatch(path);
@@ -52,26 +54,6 @@ public abstract class IncongruityContextWrapper extends IncongruityContext imple
 	@Override
 	public String encodeResourceURL(String url) {
 		return getWrapped().encodeResourceURL(url);
-	}
-
-	@Override
-	public void log(String message) {
-		getWrapped().log(message);
-	}
-
-	@Override
-	public void log(String message, Throwable exception) {
-		getWrapped().log(message, exception);
-	}
-
-	@Override
-	public void makeCongruous(FacesContext facesContext) throws IOException {
-		getWrapped().makeCongruous(facesContext);
-	}
-
-	@Override
-	public void redirect(String url) throws IOException {
-		getWrapped().redirect(url);
 	}
 
 	@Override
@@ -95,11 +77,6 @@ public abstract class IncongruityContextWrapper extends IncongruityContext imple
 	}
 
 	@Override
-	public boolean isUserInRole(String role) {
-		return getWrapped().isUserInRole(role);
-	}
-
-	@Override
 	public String getInitParameter(String name) {
 		return getWrapped().getInitParameter(name);
 	}
@@ -118,16 +95,6 @@ public abstract class IncongruityContextWrapper extends IncongruityContext imple
 	@Override
 	public Object getRequest() {
 		return getWrapped().getRequest();
-	}
-
-	@Override
-	public void setRequestContentLength(int length) {
-		getWrapped().setRequestContentLength(length);
-	}
-
-	@Override
-	public void setRequestContentType(String contentType) {
-		getWrapped().setRequestContentType(contentType);
 	}
 
 	@Override
@@ -211,11 +178,6 @@ public abstract class IncongruityContextWrapper extends IncongruityContext imple
 	}
 
 	@Override
-	public void setResponseCommitted(boolean committed) {
-		getWrapped().setResponseCommitted(committed);
-	}
-
-	@Override
 	public int getResponseContentLength() {
 		return getWrapped().getResponseContentLength();
 	}
@@ -235,5 +197,43 @@ public abstract class IncongruityContextWrapper extends IncongruityContext imple
 		return getWrapped().getUserPrincipal();
 	}
 
-	public abstract IncongruityContext getWrapped();
+	@Override
+	public boolean isUserInRole(String role) {
+		return getWrapped().isUserInRole(role);
+	}
+
+	@Override
+	public void log(String message) {
+		getWrapped().log(message);
+	}
+
+	@Override
+	public void log(String message, Throwable exception) {
+		getWrapped().log(message, exception);
+	}
+
+	@Override
+	public void makeCongruous(FacesContext facesContext) throws IOException {
+		getWrapped().makeCongruous(facesContext);
+	}
+
+	@Override
+	public void redirect(String url) throws IOException {
+		getWrapped().redirect(url);
+	}
+
+	@Override
+	public void setRequestContentLength(int length) {
+		getWrapped().setRequestContentLength(length);
+	}
+
+	@Override
+	public void setRequestContentType(String contentType) {
+		getWrapped().setRequestContentType(contentType);
+	}
+
+	@Override
+	public void setResponseCommitted(boolean committed) {
+		getWrapped().setResponseCommitted(committed);
+	}
 }

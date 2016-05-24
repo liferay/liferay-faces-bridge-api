@@ -26,6 +26,8 @@ import javax.faces.FacesWrapper;
  */
 public abstract class BridgeConfigWrapper implements BridgeConfig, FacesWrapper<BridgeConfig> {
 
+	public abstract BridgeConfig getWrapped();
+
 	public Map<String, Object> getAttributes() {
 		return getWrapped().getAttributes();
 	}
@@ -45,8 +47,6 @@ public abstract class BridgeConfigWrapper implements BridgeConfig, FacesWrapper<
 	public String getViewIdResourceParameterName() {
 		return getWrapped().getViewIdResourceParameterName();
 	}
-
-	public abstract BridgeConfig getWrapped();
 
 	public String getWriteBehindRenderResponseWrapper() {
 		return getWrapped().getWriteBehindRenderResponseWrapper();

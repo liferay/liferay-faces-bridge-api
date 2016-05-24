@@ -84,6 +84,142 @@ public class GenericFacesPortlet extends GenericPortlet {
 		super.destroy();
 	}
 
+	public String getBridgeClassName() {
+
+		if (bridgeClassName == null) {
+
+			// TCK TestPage016: initMethodTest
+			bridgeClassName = getPortletConfig().getInitParameter(BRIDGE_CLASS);
+
+			if (bridgeClassName == null) {
+
+				ServiceLoader<Bridge> serviceLoader = ServiceLoader.load(Bridge.class);
+
+				if (serviceLoader != null) {
+
+					Iterator<Bridge> iterator = serviceLoader.iterator();
+
+					while ((bridge == null) && iterator.hasNext()) {
+
+						Object bridgeService = iterator.next();
+
+						if (bridgeService != null) {
+							bridgeClassName = bridgeService.getClass().getName();
+						}
+					}
+				}
+			}
+		}
+
+		return bridgeClassName;
+	}
+
+	public String getDefaultRenderKitId() {
+
+		// TCK TestPage016: initMethodTest
+		return getPortletConfig().getInitParameter(Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.DEFAULT_RENDERKIT_ID);
+	}
+
+	public Map<String, String> getDefaultViewIdMap() {
+
+		if (defaultViewIdMap == null) {
+
+			// TCK TestPage015: portletInitializationParametersTest
+			defaultViewIdMap = new HashMap<String, String>();
+
+			Enumeration<String> initParameterNames = getPortletConfig().getInitParameterNames();
+
+			if (initParameterNames != null) {
+				int defaultViewIdLength = DEFAULT_VIEWID.length();
+				int portletModeIndex = defaultViewIdLength + 1;
+
+				while (initParameterNames.hasMoreElements()) {
+					String initParameterName = initParameterNames.nextElement();
+
+					if ((initParameterName != null) && initParameterName.startsWith(DEFAULT_VIEWID) &&
+							(initParameterName.length() > defaultViewIdLength)) {
+						String initParameterValue = getPortletConfig().getInitParameter(initParameterName);
+						String portletMode = initParameterName.substring(portletModeIndex);
+						defaultViewIdMap.put(portletMode, initParameterValue);
+					}
+				}
+			}
+		}
+
+		return defaultViewIdMap;
+	}
+
+	public List<String> getExcludedRequestAttributes() {
+
+		if (excludedRequestAttributes == null) {
+
+			// Note: Not able to perform lazy-init operation with an empty ArrayList due to
+			// TCK TestPage022: getExcludedRequestAttributesMethodNotSetTest
+			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.EXCLUDED_REQUEST_ATTRIBUTES;
+			String initParamValue = getPortletConfig().getInitParameter(initParamName);
+
+			// TCK TestPage016: initMethodTest
+			if (initParamValue != null) {
+
+				excludedRequestAttributes = new ArrayList<String>();
+
+				String[] values = initParamValue.split(CHAR_COMMA);
+
+				for (String value : values) {
+					excludedRequestAttributes.add(value.trim());
+				}
+			}
+		}
+
+		return excludedRequestAttributes;
+	}
+
+	public Bridge getFacesBridge(PortletRequest portletRequest, PortletResponse portletResponse)
+		throws PortletException {
+
+		String viewId = portletRequest.getParameter(Bridge.FACES_VIEW_ID_PARAMETER);
+
+		if (viewId != null) {
+			portletRequest.setAttribute(Bridge.VIEW_ID, viewId);
+		}
+		else {
+			String viewPath = portletRequest.getParameter(Bridge.FACES_VIEW_PATH_PARAMETER);
+
+			if (viewPath != null) {
+				portletRequest.setAttribute(Bridge.VIEW_PATH, viewPath);
+			}
+		}
+
+		return getBridge();
+	}
+
+	@Override
+	public String getPortletName() {
+		return portletName;
+	}
+
+	/**
+	 * @deprecated  as of JSR 329 Spec version 1.0
+	 */
+	@Deprecated
+	public String getResponseCharacterSetEncoding(PortletRequest portletRequest) {
+
+		// PROPOSED-FOR-STANDARD: https://issues.apache.org/jira/browse/PORTLETBRIDGE-210
+		// Since this is deprecated, proposal is to remove it entirely for the Bridge 3.0.0 Spec.
+		return null;
+	}
+
+	/**
+	 * @deprecated  as of JSR 329 Spec version 1.0
+	 */
+	@Deprecated
+	public String getResponseContentType(PortletRequest portletRequest) {
+
+		// PROPOSED-FOR-STANDARD: https://issues.apache.org/jira/browse/PORTLETBRIDGE-210
+		// Since this is deprecated, proposal is to remove it entirely for the Bridge 3.0.0 Spec.
+		return portletRequest.getResponseContentType();
+	}
+
 	@Override
 	public void init(PortletConfig portletConfig) throws PortletException {
 
@@ -147,6 +283,43 @@ public class GenericFacesPortlet extends GenericPortlet {
 			portletContext.setAttribute(Bridge.BRIDGE_PACKAGE_PREFIX + portletConfig.getPortletName() + CHAR_DOT +
 				Bridge.DEFAULT_RENDERKIT_ID, defaultRenderKitId);
 		}
+	}
+
+	public boolean isAutoDispatchEvents() {
+
+		if (autoDispatchEvents == null) {
+
+			// TCK TestPage034: isAutoDispatchEventsSetTest
+			String initParamValue = getPortletConfig().getInitParameter(BRIDGE_AUTO_DISPATCH_EVENTS);
+
+			if (initParamValue != null) {
+				autoDispatchEvents = Boolean.parseBoolean(initParamValue);
+			}
+			else {
+				autoDispatchEvents = Boolean.TRUE;
+			}
+		}
+
+		return autoDispatchEvents;
+	}
+
+	public boolean isPreserveActionParameters() {
+
+		if (preserveActionParameters == null) {
+
+			// TCK TestPage016: initMethodTest
+			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.PRESERVE_ACTION_PARAMS;
+			String initParamValue = getPortletConfig().getInitParameter(initParamName);
+
+			if (initParamValue != null) {
+				preserveActionParameters = Boolean.parseBoolean(initParamValue);
+			}
+			else {
+				preserveActionParameters = Boolean.FALSE;
+			}
+		}
+
+		return preserveActionParameters;
 	}
 
 	@Override
@@ -306,36 +479,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 		return bridge;
 	}
 
-	public String getBridgeClassName() {
-
-		if (bridgeClassName == null) {
-
-			// TCK TestPage016: initMethodTest
-			bridgeClassName = getPortletConfig().getInitParameter(BRIDGE_CLASS);
-
-			if (bridgeClassName == null) {
-
-				ServiceLoader<Bridge> serviceLoader = ServiceLoader.load(Bridge.class);
-
-				if (serviceLoader != null) {
-
-					Iterator<Bridge> iterator = serviceLoader.iterator();
-
-					while ((bridge == null) && iterator.hasNext()) {
-
-						Object bridgeService = iterator.next();
-
-						if (bridgeService != null) {
-							bridgeClassName = bridgeService.getClass().getName();
-						}
-					}
-				}
-			}
-		}
-
-		return bridgeClassName;
-	}
-
 	protected BridgeEventHandler getBridgeEventHandler() throws PortletException {
 
 		if (bridgeEventHandler == null) {
@@ -418,148 +561,5 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 
 		return classPathResourceAsString;
-	}
-
-	public String getDefaultRenderKitId() {
-
-		// TCK TestPage016: initMethodTest
-		return getPortletConfig().getInitParameter(Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.DEFAULT_RENDERKIT_ID);
-	}
-
-	public Map<String, String> getDefaultViewIdMap() {
-
-		if (defaultViewIdMap == null) {
-
-			// TCK TestPage015: portletInitializationParametersTest
-			defaultViewIdMap = new HashMap<String, String>();
-
-			Enumeration<String> initParameterNames = getPortletConfig().getInitParameterNames();
-
-			if (initParameterNames != null) {
-				int defaultViewIdLength = DEFAULT_VIEWID.length();
-				int portletModeIndex = defaultViewIdLength + 1;
-
-				while (initParameterNames.hasMoreElements()) {
-					String initParameterName = initParameterNames.nextElement();
-
-					if ((initParameterName != null) && initParameterName.startsWith(DEFAULT_VIEWID) &&
-							(initParameterName.length() > defaultViewIdLength)) {
-						String initParameterValue = getPortletConfig().getInitParameter(initParameterName);
-						String portletMode = initParameterName.substring(portletModeIndex);
-						defaultViewIdMap.put(portletMode, initParameterValue);
-					}
-				}
-			}
-		}
-
-		return defaultViewIdMap;
-	}
-
-	public List<String> getExcludedRequestAttributes() {
-
-		if (excludedRequestAttributes == null) {
-
-			// Note: Not able to perform lazy-init operation with an empty ArrayList due to
-			// TCK TestPage022: getExcludedRequestAttributesMethodNotSetTest
-			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.EXCLUDED_REQUEST_ATTRIBUTES;
-			String initParamValue = getPortletConfig().getInitParameter(initParamName);
-
-			// TCK TestPage016: initMethodTest
-			if (initParamValue != null) {
-
-				excludedRequestAttributes = new ArrayList<String>();
-
-				String[] values = initParamValue.split(CHAR_COMMA);
-
-				for (String value : values) {
-					excludedRequestAttributes.add(value.trim());
-				}
-			}
-		}
-
-		return excludedRequestAttributes;
-	}
-
-	public Bridge getFacesBridge(PortletRequest portletRequest, PortletResponse portletResponse)
-		throws PortletException {
-
-		String viewId = portletRequest.getParameter(Bridge.FACES_VIEW_ID_PARAMETER);
-
-		if (viewId != null) {
-			portletRequest.setAttribute(Bridge.VIEW_ID, viewId);
-		}
-		else {
-			String viewPath = portletRequest.getParameter(Bridge.FACES_VIEW_PATH_PARAMETER);
-
-			if (viewPath != null) {
-				portletRequest.setAttribute(Bridge.VIEW_PATH, viewPath);
-			}
-		}
-
-		return getBridge();
-	}
-
-	@Override
-	public String getPortletName() {
-		return portletName;
-	}
-
-	/**
-	 * @deprecated  as of JSR 329 Spec version 1.0
-	 */
-	@Deprecated
-	public String getResponseCharacterSetEncoding(PortletRequest portletRequest) {
-
-		// PROPOSED-FOR-STANDARD: https://issues.apache.org/jira/browse/PORTLETBRIDGE-210
-		// Since this is deprecated, proposal is to remove it entirely for the Bridge 3.0.0 Spec.
-		return null;
-	}
-
-	/**
-	 * @deprecated  as of JSR 329 Spec version 1.0
-	 */
-	@Deprecated
-	public String getResponseContentType(PortletRequest portletRequest) {
-
-		// PROPOSED-FOR-STANDARD: https://issues.apache.org/jira/browse/PORTLETBRIDGE-210
-		// Since this is deprecated, proposal is to remove it entirely for the Bridge 3.0.0 Spec.
-		return portletRequest.getResponseContentType();
-	}
-
-	public boolean isAutoDispatchEvents() {
-
-		if (autoDispatchEvents == null) {
-
-			// TCK TestPage034: isAutoDispatchEventsSetTest
-			String initParamValue = getPortletConfig().getInitParameter(BRIDGE_AUTO_DISPATCH_EVENTS);
-
-			if (initParamValue != null) {
-				autoDispatchEvents = Boolean.parseBoolean(initParamValue);
-			}
-			else {
-				autoDispatchEvents = Boolean.TRUE;
-			}
-		}
-
-		return autoDispatchEvents;
-	}
-
-	public boolean isPreserveActionParameters() {
-
-		if (preserveActionParameters == null) {
-
-			// TCK TestPage016: initMethodTest
-			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.PRESERVE_ACTION_PARAMS;
-			String initParamValue = getPortletConfig().getInitParameter(initParamName);
-
-			if (initParamValue != null) {
-				preserveActionParameters = Boolean.parseBoolean(initParamValue);
-			}
-			else {
-				preserveActionParameters = Boolean.FALSE;
-			}
-		}
-
-		return preserveActionParameters;
 	}
 }
