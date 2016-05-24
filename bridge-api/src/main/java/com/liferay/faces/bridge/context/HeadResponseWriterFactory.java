@@ -15,11 +15,11 @@
  */
 package com.liferay.faces.bridge.context;
 
-import com.liferay.faces.bridge.BridgeFactoryFinder;
-
 import javax.faces.FacesWrapper;
 import javax.faces.context.ResponseWriter;
 import javax.portlet.PortletResponse;
+
+import com.liferay.faces.bridge.BridgeFactoryFinder;
 
 
 /**

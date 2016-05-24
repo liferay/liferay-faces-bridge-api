@@ -23,10 +23,10 @@ import javax.faces.FacesWrapper;
  */
 public abstract class WindowStateValidatorWrapper implements WindowStateValidator, FacesWrapper<WindowStateValidator> {
 
+	public abstract WindowStateValidator getWrapped();
+
 	@Override
 	public boolean isValid(String windowState) {
 		return getWrapped().isValid(windowState);
 	}
-
-	public abstract WindowStateValidator getWrapped();
 }

@@ -25,9 +25,9 @@ import javax.portlet.faces.BridgeException;
  */
 public abstract class BridgePhaseWrapper implements BridgePhase, FacesWrapper<BridgePhase> {
 
+	public abstract BridgePhase getWrapped();
+
 	public void execute() throws BridgeDefaultViewNotSpecifiedException, BridgeException {
 		getWrapped().execute();
 	}
-
-	public abstract BridgePhase getWrapped();
 }
