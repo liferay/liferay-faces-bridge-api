@@ -33,6 +33,8 @@ import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
 import javax.portlet.GenericPortlet;
+import javax.portlet.HeaderRequest;
+import javax.portlet.HeaderResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
@@ -347,6 +349,14 @@ public class GenericFacesPortlet extends GenericPortlet {
 		else {
 			super.processEvent(eventRequest, eventResponse);
 		}
+	}
+
+	@Override
+	public void renderHeaders(HeaderRequest headerRequest, HeaderResponse headerResponse)
+		throws PortletException, IOException {
+
+		// TODO: FACES-2696
+		super.renderHeaders(headerRequest, headerResponse);
 	}
 
 	@Override
