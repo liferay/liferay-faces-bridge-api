@@ -30,9 +30,8 @@ public interface BridgeConfig {
 	public Map<String, Object> getAttributes();
 
 	/**
-	 * Returns a list of attribute names that are to be excluded from the {@link
-	 * com.liferay.faces.bridge.scope.BridgeRequestScope} as defined in the bridge:excluded-attributes element within
-	 * the faces-config.xml descriptor.
+	 * Returns a list of attribute names that are to be excluded from the bridge request scope as defined in the
+	 * bridge:excluded-attributes element within the faces-config.xml descriptor.
 	 */
 	public Set<String> getExcludedRequestAttributes();
 
