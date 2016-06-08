@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.bridge;
+package javax.portlet.faces;
 
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
-import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
