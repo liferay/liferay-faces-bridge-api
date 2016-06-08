@@ -13,29 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.bridge.filter;
+package javax.portlet.faces.filter;
 
 import javax.faces.FacesWrapper;
-import javax.portlet.PortletContext;
+import javax.portlet.PortletConfig;
 import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
  * @author  Neil Griffin
  */
-public abstract class BridgePortletContextFactory implements FacesWrapper<BridgePortletContextFactory> {
+public abstract class BridgePortletConfigFactory implements FacesWrapper<BridgePortletConfigFactory> {
 
 	/**
-	 * Returns an instance of {@link PortletContext} from the {@link BridgePortletContextFactory} found by the {@link
+	 * Returns an instance of {@link PortletConfig} from the {@link BridgePortletConfigFactory} found by the {@link
 	 * BridgeFactoryFinder}.
+	 *
+	 * @param  portletConfig  The configuration associated with the current portlet.
 	 */
-	public static PortletContext getPortletContextInstance(PortletContext portletContext) {
+	public static PortletConfig getPortletConfigInstance(PortletConfig portletConfig) {
 
-		BridgePortletContextFactory bridgePortletContextFactory = (BridgePortletContextFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletContextFactory.class);
+		BridgePortletConfigFactory bridgePortletConfigFactory = (BridgePortletConfigFactory) BridgeFactoryFinder
+			.getFactory(BridgePortletConfigFactory.class);
 
-		return bridgePortletContextFactory.getPortletContext(portletContext);
+		return bridgePortletConfigFactory.getPortletConfig(portletConfig);
 	}
 
-	public abstract PortletContext getPortletContext(PortletContext portletContext);
+	public abstract PortletConfig getPortletConfig(PortletConfig portletConfig);
 }
