@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.bridge.scope;
+package javax.portlet.faces;
+
+import com.liferay.faces.bridge.BridgeConfig;
 
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletRequest;
-import javax.portlet.faces.BridgeFactoryFinder;
-
-import com.liferay.faces.bridge.BridgeConfig;
 
 
 /**
