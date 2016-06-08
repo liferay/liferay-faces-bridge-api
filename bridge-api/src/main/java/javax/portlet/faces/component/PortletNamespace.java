@@ -13,32 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.portlet.component.namespace;
-//J-
+package javax.portlet.faces.component;
 
-import javax.annotation.Generated;
+import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
 
 /**
- * @author	Neil Griffin
+ * @author  Neil Griffin
  */
-@Generated(value = "com.liferay.alloy.tools.builder.FacesBuilder")
-public abstract class NamespaceBase extends UIComponentBase {
+@FacesComponent(value = PortletNamespace.COMPONENT_TYPE)
+public class PortletNamespace extends UIComponentBase {
 
 	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.namespace";
-	public static final String COMPONENT_TYPE = "com.liferay.faces.portlet.component.namespace.Namespace";
-	public static final String RENDERER_TYPE = "com.liferay.faces.portlet.component.namespace.NamespaceRenderer";
+	public static final String COMPONENT_FAMILY = "javax.portlet.faces.Namespace";
+	public static final String COMPONENT_TYPE = "javax.portlet.faces.Namespace";
 
 	// Protected Enumerations
 	protected enum NamespacePropertyKeys {
 		var
 	}
 
-	public NamespaceBase() {
+	public PortletNamespace() {
 		super();
-		setRendererType(RENDERER_TYPE);
+		setRendererType("javax.portlet.faces.Namespace");
 	}
 
 	@Override
@@ -47,8 +45,8 @@ public abstract class NamespaceBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>var</code> attribute description:
-	 * <br /><br />
+	 * <code>var</code> attribute description:<br />
+	 * <br />
 	 * Introduces an EL variable that contains the portlet namespace.
 	 */
 	public String getVar() {
@@ -56,12 +54,11 @@ public abstract class NamespaceBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>var</code> attribute description:
-	 * <br /><br />
+	 * <code>var</code> attribute description:<br />
+	 * <br />
 	 * Introduces an EL variable that contains the portlet namespace.
 	 */
 	public void setVar(String var) {
 		getStateHelper().put(NamespacePropertyKeys.var, var);
 	}
 }
-//J+

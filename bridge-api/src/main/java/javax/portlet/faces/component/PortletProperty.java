@@ -13,30 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.portlet.component.property;
-//J-
+package javax.portlet.faces.component;
 
-import javax.annotation.Generated;
+import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
 
 /**
- * @author	Neil Griffin
+ * @author  Neil Griffin
  */
-@Generated(value = "com.liferay.alloy.tools.builder.FacesBuilder")
-public abstract class PropertyBase extends UIComponentBase {
+@FacesComponent(value = PortletProperty.COMPONENT_TYPE)
+public class PortletProperty extends UIComponentBase {
 
 	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.property";
-	public static final String COMPONENT_TYPE = "com.liferay.faces.portlet.component.property.Property";
+	public static final String COMPONENT_FAMILY = "javax.portlet.faces.URL";
+	public static final String COMPONENT_TYPE = "javax.portlet.faces.Property";
 
 	// Protected Enumerations
 	protected enum PropertyPropertyKeys {
-		name,
-		value
+		name, value
 	}
 
-	public PropertyBase() {
+	public PortletProperty() {
 		super();
 		setRendererType("");
 	}
@@ -47,8 +45,8 @@ public abstract class PropertyBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>name</code> attribute description:
-	 * <br /><br />
+	 * <code>name</code> attribute description:<br />
+	 * <br />
 	 * The name of the portlet property.
 	 */
 	public String getName() {
@@ -56,17 +54,8 @@ public abstract class PropertyBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>name</code> attribute description:
-	 * <br /><br />
-	 * The name of the portlet property.
-	 */
-	public void setName(String name) {
-		getStateHelper().put(PropertyPropertyKeys.name, name);
-	}
-
-	/**
-	 * <code>value</code> attribute description:
-	 * <br /><br />
+	 * <code>value</code> attribute description:<br />
+	 * <br />
 	 * The value of the portlet property.
 	 */
 	public String getValue() {
@@ -74,12 +63,20 @@ public abstract class PropertyBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>value</code> attribute description:
-	 * <br /><br />
+	 * <code>name</code> attribute description:<br />
+	 * <br />
+	 * The name of the portlet property.
+	 */
+	public void setName(String name) {
+		getStateHelper().put(PropertyPropertyKeys.name, name);
+	}
+
+	/**
+	 * <code>value</code> attribute description:<br />
+	 * <br />
 	 * The value of the portlet property.
 	 */
 	public void setValue(String value) {
 		getStateHelper().put(PropertyPropertyKeys.value, value);
 	}
 }
-//J+

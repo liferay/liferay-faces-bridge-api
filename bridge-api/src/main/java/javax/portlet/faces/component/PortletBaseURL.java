@@ -13,34 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.portlet.component.baseurl;
-//J-
+package javax.portlet.faces.component;
 
-import javax.annotation.Generated;
 import javax.faces.component.UIComponentBase;
 
 
 /**
- * @author	Neil Griffin
+ * @author  Neil Griffin
  */
-@Generated(value = "com.liferay.alloy.tools.builder.FacesBuilder")
-public abstract class BaseURLBase extends UIComponentBase {
+public abstract class PortletBaseURL extends UIComponentBase {
 
 	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.baseurl";
-	public static final String COMPONENT_TYPE = "com.liferay.faces.portlet.component.baseurl.BaseURL";
-	public static final String RENDERER_TYPE = "com.liferay.faces.portlet.component.baseurl.BaseURLRenderer";
+	public static final String COMPONENT_FAMILY = "javax.portlet.faces.URL";
 
 	// Protected Enumerations
 	protected enum BaseURLPropertyKeys {
-		escapeXml,
-		secure,
-		var
+		escapeXml, secure, var
 	}
 
-	public BaseURLBase() {
+	public PortletBaseURL() {
 		super();
-		setRendererType(RENDERER_TYPE);
 	}
 
 	@Override
@@ -49,26 +41,8 @@ public abstract class BaseURLBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>escapeXml</code> attribute description:
-	 * <br /><br />
-	 * When true, xml special characters will be escaped. Defaults to true.
-	 */
-	public boolean isEscapeXml() {
-		return (Boolean) getStateHelper().eval(BaseURLPropertyKeys.escapeXml, true);
-	}
-
-	/**
-	 * <code>escapeXml</code> attribute description:
-	 * <br /><br />
-	 * When true, xml special characters will be escaped. Defaults to true.
-	 */
-	public void setEscapeXml(boolean escapeXml) {
-		getStateHelper().put(BaseURLPropertyKeys.escapeXml, escapeXml);
-	}
-
-	/**
-	 * <code>secure</code> attribute description:
-	 * <br /><br />
+	 * <code>secure</code> attribute description:<br />
+	 * <br />
 	 * When true, the URL will be secure. Defaults to the security setting of the current request.
 	 */
 	public Boolean getSecure() {
@@ -76,17 +50,8 @@ public abstract class BaseURLBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>secure</code> attribute description:
-	 * <br /><br />
-	 * When true, the URL will be secure. Defaults to the security setting of the current request.
-	 */
-	public void setSecure(Boolean secure) {
-		getStateHelper().put(BaseURLPropertyKeys.secure, secure);
-	}
-
-	/**
-	 * <code>var</code> attribute description:
-	 * <br /><br />
+	 * <code>var</code> attribute description:<br />
+	 * <br />
 	 * Introduces an EL variable that contains the URL.
 	 */
 	public String getVar() {
@@ -94,12 +59,38 @@ public abstract class BaseURLBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>var</code> attribute description:
-	 * <br /><br />
+	 * <code>escapeXml</code> attribute description:<br />
+	 * <br />
+	 * When true, xml special characters will be escaped. Defaults to true.
+	 */
+	public boolean isEscapeXml() {
+		return (Boolean) getStateHelper().eval(BaseURLPropertyKeys.escapeXml, true);
+	}
+
+	/**
+	 * <code>escapeXml</code> attribute description:<br />
+	 * <br />
+	 * When true, xml special characters will be escaped. Defaults to true.
+	 */
+	public void setEscapeXml(boolean escapeXml) {
+		getStateHelper().put(BaseURLPropertyKeys.escapeXml, escapeXml);
+	}
+
+	/**
+	 * <code>secure</code> attribute description:<br />
+	 * <br />
+	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 */
+	public void setSecure(Boolean secure) {
+		getStateHelper().put(BaseURLPropertyKeys.secure, secure);
+	}
+
+	/**
+	 * <code>var</code> attribute description:<br />
+	 * <br />
 	 * Introduces an EL variable that contains the URL.
 	 */
 	public void setVar(String var) {
 		getStateHelper().put(BaseURLPropertyKeys.var, var);
 	}
 }
-//J+
