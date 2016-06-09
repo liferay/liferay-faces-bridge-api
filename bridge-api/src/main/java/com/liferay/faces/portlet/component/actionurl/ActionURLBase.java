@@ -17,14 +17,14 @@ package com.liferay.faces.portlet.component.actionurl;
 //J-
 
 import javax.annotation.Generated;
-import com.liferay.faces.portlet.component.renderurl.RenderURLBase;
+import com.liferay.faces.portlet.component.portleturl.PortletURLBase;
 
 
 /**
  * @author	Neil Griffin
  */
 @Generated(value = "com.liferay.alloy.tools.builder.FacesBuilder")
-public abstract class ActionURLBase extends RenderURLBase {
+public abstract class ActionURLBase extends PortletURLBase {
 
 	// Public Constants
 	public static final String COMPONENT_TYPE = "com.liferay.faces.portlet.component.actionurl.ActionURL";
