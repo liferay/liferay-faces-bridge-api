@@ -13,31 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.portlet.component.defineobjects;
-//J-
-
-import javax.annotation.Generated;
-import javax.faces.component.UIComponentBase;
+package com.liferay.faces.portlet.component.portleturl;
 
 
 /**
  * @author	Neil Griffin
  */
-@Generated(value = "com.liferay.alloy.tools.builder.FacesBuilder")
-public abstract class DefineObjectsBase extends UIComponentBase {
-
-	// Public Constants
-	public static final String COMPONENT_FAMILY = "com.liferay.faces.portlet.component.defineobjects";
-	public static final String COMPONENT_TYPE = "com.liferay.faces.portlet.component.defineobjects.DefineObjects";
-
-	public DefineObjectsBase() {
-		super();
-		setRendererType("");
-	}
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
+public abstract class PortletURL extends PortletURLBase {
+	// Initial Generation
 }
-//J+

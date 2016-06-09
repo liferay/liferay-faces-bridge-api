@@ -24,7 +24,7 @@ import com.liferay.faces.util.component.StateHelper;
 /**
  * @author  Neil Griffin
  */
-public class BaseURL extends BaseURLBase {
+public abstract class BaseURL extends BaseURLBase {
 
 	// Private Data Members
 	private StateHelper stateHelper;
