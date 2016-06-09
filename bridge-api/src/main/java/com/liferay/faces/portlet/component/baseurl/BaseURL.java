@@ -18,6 +18,6 @@ package com.liferay.faces.portlet.component.baseurl;
 /**
  * @author  Neil Griffin
  */
-public class BaseURL extends BaseURLBase {
+public abstract class BaseURL extends BaseURLBase {
 	// Initial Generation
 }
