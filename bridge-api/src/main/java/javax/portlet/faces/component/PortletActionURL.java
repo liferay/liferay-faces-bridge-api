@@ -31,7 +31,7 @@ public class PortletActionURL extends UIComponentBase {
 
 	// Protected Enumerations
 	protected enum PropertyKeys {
-		copyCurrentRenderParameters, escapeXml, name, portletMode, secure, var, windowState
+		copyCurrentRenderParameters, escapeXml, name, portletMode, secure, type, var, windowState
 	}
 
 	public PortletActionURL() {
@@ -69,6 +69,15 @@ public class PortletActionURL extends UIComponentBase {
 	 */
 	public Boolean getSecure() {
 		return (Boolean) getStateHelper().eval(PropertyKeys.secure, null);
+	}
+
+	/**
+	 * <code>type</code> attribute description:<br />
+	 * <br />
+	 * The type of parameter to add. Valid values are "action" (the default) and "render".
+	 */
+	public String getType() {
+		return (String) getStateHelper().eval(PropertyKeys.type, "action");
 	}
 
 	/**
@@ -150,6 +159,15 @@ public class PortletActionURL extends UIComponentBase {
 	 */
 	public void setSecure(Boolean secure) {
 		getStateHelper().put(PropertyKeys.secure, secure);
+	}
+
+	/**
+	 * <code>type</code> attribute description:<br />
+	 * <br />
+	 * The type of parameter to add. Valid values are "action" (the default) and "render".
+	 */
+	public void setType(String type) {
+		getStateHelper().put(PropertyKeys.type, type);
 	}
 
 	/**
