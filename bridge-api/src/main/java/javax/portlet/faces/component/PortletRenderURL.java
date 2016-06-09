@@ -16,25 +16,32 @@
 package javax.portlet.faces.component;
 
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponentBase;
 
 
 /**
  * @author  Neil Griffin
  */
 @FacesComponent(value = PortletRenderURL.COMPONENT_TYPE)
-public class PortletRenderURL extends PortletBaseURL {
+public class PortletRenderURL extends UIComponentBase {
 
 	// Public Constants
+	public static final String COMPONENT_FAMILY = "javax.portlet.faces.URL";
 	public static final String COMPONENT_TYPE = "javax.portlet.faces.RenderURL";
 
 	// Protected Enumerations
-	protected enum RenderURLPropertyKeys {
-		copyCurrentRenderParameters, portletMode, windowState
+	protected enum PropertyKeys {
+		copyCurrentRenderParameters, escapeXml, portletMode, secure, var, windowState
 	}
 
 	public PortletRenderURL() {
 		super();
 		setRendererType("javax.portlet.faces.RenderURL");
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
 	}
 
 	/**
@@ -43,7 +50,25 @@ public class PortletRenderURL extends PortletBaseURL {
 	 * The name of the mode of the portlet which will be accessed via the URL.
 	 */
 	public String getPortletMode() {
-		return (String) getStateHelper().eval(RenderURLPropertyKeys.portletMode, null);
+		return (String) getStateHelper().eval(PropertyKeys.portletMode, null);
+	}
+
+	/**
+	 * <code>secure</code> attribute description:<br />
+	 * <br />
+	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 */
+	public Boolean getSecure() {
+		return (Boolean) getStateHelper().eval(PropertyKeys.secure, null);
+	}
+
+	/**
+	 * <code>var</code> attribute description:<br />
+	 * <br />
+	 * Introduces an EL variable that contains the URL.
+	 */
+	public String getVar() {
+		return (String) getStateHelper().eval(PropertyKeys.var, null);
 	}
 
 	/**
@@ -52,7 +77,7 @@ public class PortletRenderURL extends PortletBaseURL {
 	 * The name of the window state of the portlet which will be accessed via the URL.
 	 */
 	public String getWindowState() {
-		return (String) getStateHelper().eval(RenderURLPropertyKeys.windowState, null);
+		return (String) getStateHelper().eval(PropertyKeys.windowState, null);
 	}
 
 	/**
@@ -61,7 +86,16 @@ public class PortletRenderURL extends PortletBaseURL {
 	 * When true, copy the current request's render parameters to the URL. Defaults to false.
 	 */
 	public boolean isCopyCurrentRenderParameters() {
-		return (Boolean) getStateHelper().eval(RenderURLPropertyKeys.copyCurrentRenderParameters, false);
+		return (Boolean) getStateHelper().eval(PropertyKeys.copyCurrentRenderParameters, false);
+	}
+
+	/**
+	 * <code>escapeXml</code> attribute description:<br />
+	 * <br />
+	 * When true, xml special characters will be escaped. Defaults to true.
+	 */
+	public boolean isEscapeXml() {
+		return (Boolean) getStateHelper().eval(PropertyKeys.escapeXml, true);
 	}
 
 	/**
@@ -70,7 +104,16 @@ public class PortletRenderURL extends PortletBaseURL {
 	 * When true, copy the current request's render parameters to the URL. Defaults to false.
 	 */
 	public void setCopyCurrentRenderParameters(boolean copyCurrentRenderParameters) {
-		getStateHelper().put(RenderURLPropertyKeys.copyCurrentRenderParameters, copyCurrentRenderParameters);
+		getStateHelper().put(PropertyKeys.copyCurrentRenderParameters, copyCurrentRenderParameters);
+	}
+
+	/**
+	 * <code>escapeXml</code> attribute description:<br />
+	 * <br />
+	 * When true, xml special characters will be escaped. Defaults to true.
+	 */
+	public void setEscapeXml(boolean escapeXml) {
+		getStateHelper().put(PropertyKeys.escapeXml, escapeXml);
 	}
 
 	/**
@@ -79,7 +122,25 @@ public class PortletRenderURL extends PortletBaseURL {
 	 * The name of the mode of the portlet which will be accessed via the URL.
 	 */
 	public void setPortletMode(String portletMode) {
-		getStateHelper().put(RenderURLPropertyKeys.portletMode, portletMode);
+		getStateHelper().put(PropertyKeys.portletMode, portletMode);
+	}
+
+	/**
+	 * <code>secure</code> attribute description:<br />
+	 * <br />
+	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 */
+	public void setSecure(Boolean secure) {
+		getStateHelper().put(PropertyKeys.secure, secure);
+	}
+
+	/**
+	 * <code>var</code> attribute description:<br />
+	 * <br />
+	 * Introduces an EL variable that contains the URL.
+	 */
+	public void setVar(String var) {
+		getStateHelper().put(PropertyKeys.var, var);
 	}
 
 	/**
@@ -88,6 +149,6 @@ public class PortletRenderURL extends PortletBaseURL {
 	 * The name of the window state of the portlet which will be accessed via the URL.
 	 */
 	public void setWindowState(String windowState) {
-		getStateHelper().put(RenderURLPropertyKeys.windowState, windowState);
+		getStateHelper().put(PropertyKeys.windowState, windowState);
 	}
 }

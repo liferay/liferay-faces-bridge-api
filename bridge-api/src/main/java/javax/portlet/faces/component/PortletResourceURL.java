@@ -16,20 +16,22 @@
 package javax.portlet.faces.component;
 
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponentBase;
 
 
 /**
  * @author  Neil Griffin
  */
 @FacesComponent(value = PortletResourceURL.COMPONENT_TYPE)
-public class PortletResourceURL extends PortletBaseURL {
+public class PortletResourceURL extends UIComponentBase {
 
 	// Public Constants
+	public static final String COMPONENT_FAMILY = "javax.portlet.faces.URL";
 	public static final String COMPONENT_TYPE = "javax.portlet.faces.ResourceURL";
 
 	// Protected Enumerations
-	protected enum ResourceURLPropertyKeys {
-		cacheability, id
+	protected enum PropertyKeys {
+		cacheability, escapeXml, id, secure, var
 	}
 
 	public PortletResourceURL() {
@@ -44,7 +46,12 @@ public class PortletResourceURL extends PortletBaseURL {
 	 * <code>ResourceURL.PAGE</code>, and <code>ResourceURL.PORTLET</code>. Defaults to <code>ResourceURL.PAGE</code>.
 	 */
 	public String getCacheability() {
-		return (String) getStateHelper().eval(ResourceURLPropertyKeys.cacheability, javax.portlet.ResourceURL.PAGE);
+		return (String) getStateHelper().eval(PropertyKeys.cacheability, javax.portlet.ResourceURL.PAGE);
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
 	}
 
 	/**
@@ -54,7 +61,34 @@ public class PortletResourceURL extends PortletBaseURL {
 	 */
 	@Override
 	public String getId() {
-		return (String) getStateHelper().eval(ResourceURLPropertyKeys.id, null);
+		return (String) getStateHelper().eval(PropertyKeys.id, null);
+	}
+
+	/**
+	 * <code>secure</code> attribute description:<br />
+	 * <br />
+	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 */
+	public Boolean getSecure() {
+		return (Boolean) getStateHelper().eval(PropertyKeys.secure, null);
+	}
+
+	/**
+	 * <code>var</code> attribute description:<br />
+	 * <br />
+	 * Introduces an EL variable that contains the URL.
+	 */
+	public String getVar() {
+		return (String) getStateHelper().eval(PropertyKeys.var, null);
+	}
+
+	/**
+	 * <code>escapeXml</code> attribute description:<br />
+	 * <br />
+	 * When true, xml special characters will be escaped. Defaults to true.
+	 */
+	public boolean isEscapeXml() {
+		return (Boolean) getStateHelper().eval(PropertyKeys.escapeXml, true);
 	}
 
 	/**
@@ -64,7 +98,16 @@ public class PortletResourceURL extends PortletBaseURL {
 	 * <code>ResourceURL.PAGE</code>, and <code>ResourceURL.PORTLET</code>. Defaults to <code>ResourceURL.PAGE</code>.
 	 */
 	public void setCacheability(String cacheability) {
-		getStateHelper().put(ResourceURLPropertyKeys.cacheability, cacheability);
+		getStateHelper().put(PropertyKeys.cacheability, cacheability);
+	}
+
+	/**
+	 * <code>escapeXml</code> attribute description:<br />
+	 * <br />
+	 * When true, xml special characters will be escaped. Defaults to true.
+	 */
+	public void setEscapeXml(boolean escapeXml) {
+		getStateHelper().put(PropertyKeys.escapeXml, escapeXml);
 	}
 
 	/**
@@ -74,6 +117,24 @@ public class PortletResourceURL extends PortletBaseURL {
 	 */
 	@Override
 	public void setId(String id) {
-		getStateHelper().put(ResourceURLPropertyKeys.id, id);
+		getStateHelper().put(PropertyKeys.id, id);
+	}
+
+	/**
+	 * <code>secure</code> attribute description:<br />
+	 * <br />
+	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 */
+	public void setSecure(Boolean secure) {
+		getStateHelper().put(PropertyKeys.secure, secure);
+	}
+
+	/**
+	 * <code>var</code> attribute description:<br />
+	 * <br />
+	 * Introduces an EL variable that contains the URL.
+	 */
+	public void setVar(String var) {
+		getStateHelper().put(PropertyKeys.var, var);
 	}
 }
