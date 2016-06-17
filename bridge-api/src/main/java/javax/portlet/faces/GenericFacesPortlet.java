@@ -352,8 +352,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	@Override
-	public void renderHeaders(HeaderRequest headerRequest, HeaderResponse headerResponse)
-		throws PortletException, IOException {
+	public void renderHeaders(HeaderRequest headerRequest, HeaderResponse headerResponse) throws PortletException,
+		IOException {
 
 		// TODO: FACES-2696
 		super.renderHeaders(headerRequest, headerResponse);
