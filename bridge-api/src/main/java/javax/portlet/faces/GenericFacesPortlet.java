@@ -64,6 +64,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Deprecated
 	public static final String DEFAULT_CONTENT_TYPE = "javax.portlet.faces.defaultContentType";
 
+	public static final String DEFAULT_CHARACTERSET_ENCODING = "javax.portlet.faces.defaultCharacterSetEncoding";
+
 	public static final String DEFAULT_VIEWID = "javax.portlet.faces.defaultViewId";
 
 	// Private Data Members
