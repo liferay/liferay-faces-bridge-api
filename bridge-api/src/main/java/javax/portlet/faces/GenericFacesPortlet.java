@@ -49,6 +49,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	// Public Constants
 	public static final String BRIDGE_CLASS = "javax.portlet.faces.BridgeImplClass";
 	public static final String BRIDGE_SERVICE_CLASSPATH = "META-INF/services/javax.portlet.faces.Bridge";
+	public static final String DEFAULT_CONTENT_TYPE = "javax.portlet.faces.defaultContentType";
 	public static final String DEFAULT_VIEWID = "javax.portlet.faces.defaultViewId";
 
 	// Private Data Members
