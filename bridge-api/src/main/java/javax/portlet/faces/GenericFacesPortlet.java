@@ -58,13 +58,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	public static final String DEFAULT_VIEWID = "javax.portlet.faces.defaultViewId";
 
-	// Private Constants
-	private static final String BRIDGE_AUTO_DISPATCH_EVENTS = "javax.portlet.faces.autoDispatchEvents";
-	private static final String CHAR_COMMA = ",";
-	private static final String CHAR_DOT = ".";
-
 	// Private Data Members
-	private Boolean autoDispatchEvents;
+	private boolean autoDispatchEvents;
 	private Bridge bridge;
 	private String bridgeClassName;
 	private BridgeEventHandler bridgeEventHandler;
@@ -132,7 +127,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 				excludedRequestAttributes = new ArrayList<String>();
 
-				String[] values = initParamValue.split(CHAR_COMMA);
+				String[] values = initParamValue.split(",");
 
 				for (String value : values) {
 					excludedRequestAttributes.add(value.trim());
@@ -220,17 +215,17 @@ public class GenericFacesPortlet extends GenericPortlet {
 		// Save the default JSF views specified as WEB-INF/portlet.xml init-param value(s) as a portlet context
 		// attribute with name "javax.portlet.faces.<portlet-name>.defaultViewIdMap"
 		PortletContext portletContext = portletConfig.getPortletContext();
-		String attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + CHAR_DOT + Bridge.DEFAULT_VIEWID_MAP;
+		String attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + "." + Bridge.DEFAULT_VIEWID_MAP;
 		portletContext.setAttribute(attributeName, getDefaultViewIdMap());
 
 		// Save the "javax.portlet.faces.excludedRequestAttributes" init-param value(s) as a portlet context attribute
 		// with name "javax.portlet.faces.<portlet-name>.excludedRequestAttributes"
-		attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + CHAR_DOT + Bridge.EXCLUDED_REQUEST_ATTRIBUTES;
+		attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + "." + Bridge.EXCLUDED_REQUEST_ATTRIBUTES;
 		portletContext.setAttribute(attributeName, getExcludedRequestAttributes());
 
 		// Save the "javax.portlet.faces.preserveActionParams" init-param value as a portlet context attribute with name
 		// "javax.portlet.faces.<portlet-name>.preserveActionParams"
-		attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + CHAR_DOT + Bridge.PRESERVE_ACTION_PARAMS;
+		attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + "." + Bridge.PRESERVE_ACTION_PARAMS;
 		portletContext.setAttribute(attributeName, isPreserveActionParameters());
 
 		// If a javax.portlet.faces.bridgeEventHandler is registered as an init-param in portlet.xml, then obtain an
@@ -241,7 +236,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 		if (bridgeEventHandlerInstance != null) {
 
 			// Attribute name format: javax.portlet.faces.{portlet-name}.bridgeEventHandler
-			attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletConfig.getPortletName() + CHAR_DOT +
+			attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletConfig.getPortletName() + "." +
 				Bridge.BRIDGE_EVENT_HANDLER;
 			portletContext.setAttribute(attributeName, bridgeEventHandlerInstance);
 		}
@@ -256,7 +251,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 			// Attribute name format: javax.portlet.faces.{portlet-name}.bridgePublicRenderParameterHandler
 			String bridgeEventHandlerAttributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletConfig.getPortletName() +
-				CHAR_DOT + Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER;
+				"." + Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER;
 			portletContext.setAttribute(bridgeEventHandlerAttributeName, bridgePublicRenderParameterHandlerInstance);
 		}
 
@@ -265,26 +260,24 @@ public class GenericFacesPortlet extends GenericPortlet {
 		String defaultRenderKitId = getDefaultRenderKitId();
 
 		if (defaultRenderKitId != null) {
-			portletContext.setAttribute(Bridge.BRIDGE_PACKAGE_PREFIX + portletConfig.getPortletName() + CHAR_DOT +
+			portletContext.setAttribute(Bridge.BRIDGE_PACKAGE_PREFIX + portletConfig.getPortletName() + "." +
 				Bridge.DEFAULT_RENDERKIT_ID, defaultRenderKitId);
+		}
+
+		// Determine whether or not all events should be auto-dispatched.
+		String initParamValue = portletConfig.getInitParameter("javax.portlet.faces.autoDispatchEvents");
+
+		if (initParamValue != null) {
+
+			// TCK TestPage034: isAutoDispatchEventsSetTest
+			autoDispatchEvents = Boolean.parseBoolean(initParamValue);
+		}
+		else {
+			autoDispatchEvents = true;
 		}
 	}
 
 	public boolean isAutoDispatchEvents() {
-
-		if (autoDispatchEvents == null) {
-
-			// TCK TestPage034: isAutoDispatchEventsSetTest
-			String initParamValue = getPortletConfig().getInitParameter(BRIDGE_AUTO_DISPATCH_EVENTS);
-
-			if (initParamValue != null) {
-				autoDispatchEvents = Boolean.parseBoolean(initParamValue);
-			}
-			else {
-				autoDispatchEvents = Boolean.TRUE;
-			}
-		}
-
 		return autoDispatchEvents;
 	}
 
