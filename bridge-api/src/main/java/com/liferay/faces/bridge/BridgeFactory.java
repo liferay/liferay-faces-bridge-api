@@ -15,20 +15,21 @@
  */
 package com.liferay.faces.bridge;
 
-import javax.faces.FacesWrapper;
 import javax.portlet.PortletException;
 import javax.portlet.faces.Bridge;
+
+import com.liferay.faces.util.helper.Wrapper;
 
 
 /**
  * This class provides the contract for a factory that can create instances of {@link Bridge}. It implements {@link
- * FacesWrapper} in order to follow the standard factory delegation pattern found in the Faces API. If a concrete
+ * Wrapper} in order to follow the standard factory delegation pattern found in the Faces API. If a concrete
  * implementation of this class has a one-arg constructor and the type of the argument is {@link BridgeFactory} then the
  * constructor will be called with the next factory instance in the delegation chain.
  *
  * @author  Neil Griffin
  */
-public abstract class BridgeFactory implements FacesWrapper<BridgeFactory> {
+public abstract class BridgeFactory implements Wrapper<BridgeFactory> {
 
 	/**
 	 * Gets an instance of {@link Bridge} from the {@link BridgeFactory} found by the {@link BridgeFactoryFinder}.
@@ -67,6 +68,6 @@ public abstract class BridgeFactory implements FacesWrapper<BridgeFactory> {
 	/**
 	 * If this factory has been decorated then this method provides access to the wrapped factory instance.
 	 */
-	@Override
+	// Java 1.6+ @Override
 	public abstract BridgeFactory getWrapped();
 }

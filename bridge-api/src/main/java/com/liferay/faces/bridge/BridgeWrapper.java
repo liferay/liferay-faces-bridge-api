@@ -15,7 +15,6 @@
  */
 package com.liferay.faces.bridge;
 
-import javax.faces.FacesWrapper;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
@@ -29,39 +28,41 @@ import javax.portlet.faces.BridgeDefaultViewNotSpecifiedException;
 import javax.portlet.faces.BridgeException;
 import javax.portlet.faces.BridgeUninitializedException;
 
+import com.liferay.faces.util.helper.Wrapper;
+
 
 /**
  * @author  Neil Griffin
  */
-public abstract class BridgeWrapper implements Bridge, FacesWrapper<Bridge> {
+public abstract class BridgeWrapper implements Bridge, Wrapper<Bridge> {
 
-	@Override
+	// Java 1.6+ @Override
 	public abstract Bridge getWrapped();
 
-	@Override
+	// Java 1.6+ @Override
 	public void destroy() {
 		getWrapped().destroy();
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public void doFacesRequest(ActionRequest actionRequest, ActionResponse actionResponse)
 		throws BridgeDefaultViewNotSpecifiedException, BridgeUninitializedException, BridgeException {
 		getWrapped().doFacesRequest(actionRequest, actionResponse);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public void doFacesRequest(EventRequest eventRequest, EventResponse eventResponse)
 		throws BridgeUninitializedException, BridgeException {
 		getWrapped().doFacesRequest(eventRequest, eventResponse);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public void doFacesRequest(RenderRequest renderRequest, RenderResponse renderResponse)
 		throws BridgeDefaultViewNotSpecifiedException, BridgeUninitializedException, BridgeException {
 		getWrapped().doFacesRequest(renderRequest, renderResponse);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public void doFacesRequest(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws BridgeUninitializedException, BridgeException {
 		getWrapped().doFacesRequest(resourceRequest, resourceResponse);
