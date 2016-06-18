@@ -15,10 +15,9 @@
  */
 package javax.portlet.faces;
 
-import java.io.BufferedReader;
+import com.liferay.faces.bridge.BridgeFactory;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -70,29 +69,10 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	@Override
 	public void destroy() {
-
-		try {
-			getBridge().destroy();
-		}
-		catch (PortletException e) {
-			e.printStackTrace();
-		}
-
-		super.destroy();
+		bridge.destroy();
 	}
 
 	public String getBridgeClassName() {
-
-		if (bridgeClassName == null) {
-
-			// TCK TestPage016: initMethodTest
-			bridgeClassName = getPortletConfig().getInitParameter(BRIDGE_CLASS);
-
-			if (bridgeClassName == null) {
-				bridgeClassName = getClassPathResourceAsString(BRIDGE_SERVICE_CLASSPATH);
-			}
-		}
-
 		return bridgeClassName;
 	}
 
@@ -172,7 +152,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 			}
 		}
 
-		return getBridge();
+		return bridge;
 	}
 
 	@Override
@@ -205,14 +185,30 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Override
 	public void init(PortletConfig portletConfig) throws PortletException {
 
-		this.portletName = portletConfig.getPortletName();
+		portletName = portletConfig.getPortletName();
 
 		// Initialize the bridge according to the requirements set forth in Section 3.2 of the JSR 329 Spec. Begin
 		// this process by delegating preliminary initialization to the parent class.
 		super.init(portletConfig);
 
+		bridge = BridgeFactory.getBridgeInstance();
+		bridgeClassName = bridge.getClass().getName();
+
 		// Initialize the bridge implementation instance.
-		getBridge().init(portletConfig);
+		String customBridgeClassName = getBridgeClassName();
+
+		if (customBridgeClassName == null) {
+
+			// TCK TestPage016: initMethodTest
+			customBridgeClassName = portletConfig.getInitParameter(GenericFacesPortlet.BRIDGE_CLASS);
+		}
+
+		if (customBridgeClassName != null) {
+			bridge = BridgeFactory.getBridgeInstance(customBridgeClassName);
+			bridgeClassName = customBridgeClassName;
+		}
+
+		bridge.init(portletConfig);
 
 		// Save the default JSF views specified as WEB-INF/portlet.xml init-param value(s) as a portlet context
 		// attribute with name "javax.portlet.faces.<portlet-name>.defaultViewIdMap"
@@ -228,7 +224,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 		// Save the "javax.portlet.faces.preserveActionParams" init-param value as a portlet context attribute with name
 		// "javax.portlet.faces.<portlet-name>.preserveActionParams"
 		attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + CHAR_DOT + Bridge.PRESERVE_ACTION_PARAMS;
-		portletContext.setAttribute(attributeName, new Boolean(isPreserveActionParameters()));
+		portletContext.setAttribute(attributeName, isPreserveActionParameters());
 
 		// If a javax.portlet.faces.bridgeEventHandler is registered as an init-param in portlet.xml, then obtain an
 		// instance of the handler and save it as a portlet context attribute as required by Section 3.2 of the JSR 329
@@ -418,27 +414,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 		bridge.doFacesRequest(renderRequest, renderResponse);
 	}
 
-	protected Bridge getBridge() throws PortletException {
-
-		if (bridge == null) {
-			String bridgeClassName = getBridgeClassName();
-
-			if (bridgeClassName != null) {
-				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-				try {
-					Class<?> bridgeClass = classLoader.loadClass(bridgeClassName);
-					bridge = (Bridge) bridgeClass.newInstance();
-				}
-				catch (Exception e) {
-					throw new PortletException(e);
-				}
-			}
-		}
-
-		return bridge;
-	}
-
 	protected BridgeEventHandler getBridgeEventHandler() throws PortletException {
 
 		if (bridgeEventHandler == null) {
@@ -485,41 +460,5 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 
 		return bridgePublicRenderParameterHandler;
-	}
-
-	protected String getClassPathResourceAsString(String resourcePath) {
-		String classPathResourceAsString = null;
-		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-		if (classLoader != null) {
-			InputStream inputStream = classLoader.getResourceAsStream(resourcePath);
-
-			if (inputStream != null) {
-				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-				BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-				try {
-					classPathResourceAsString = bufferedReader.readLine();
-				}
-				catch (IOException e) {
-
-					// Since the API can't use a logging system like SLF4J the best we can do is print to stderr.
-					System.err.println("Unable to read contents of resourcePath=[" + resourcePath + "]");
-				}
-				finally {
-
-					try {
-						bufferedReader.close();
-						inputStreamReader.close();
-						inputStream.close();
-					}
-					catch (IOException e) {
-						; // ignore
-					}
-				}
-			}
-		}
-
-		return classPathResourceAsString;
 	}
 }
