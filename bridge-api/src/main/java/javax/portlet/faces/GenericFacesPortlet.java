@@ -167,9 +167,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 */
 	@Deprecated
 	public String getResponseCharacterSetEncoding(PortletRequest portletRequest) {
-
-		// PROPOSED-FOR-STANDARD: https://issues.apache.org/jira/browse/PORTLETBRIDGE-210
-		// Since this is deprecated, proposal is to remove it entirely for the Bridge 3.0.0 Spec.
 		return null;
 	}
 
@@ -178,9 +175,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 */
 	@Deprecated
 	public String getResponseContentType(PortletRequest portletRequest) {
-
-		// PROPOSED-FOR-STANDARD: https://issues.apache.org/jira/browse/PORTLETBRIDGE-210
-		// Since this is deprecated, proposal is to remove it entirely for the Bridge 3.0.0 Spec.
 		return portletRequest.getResponseContentType();
 	}
 
