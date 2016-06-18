@@ -56,7 +56,14 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Deprecated
 	public static final String BRIDGE_SERVICE_CLASSPATH = "META-INF/services/javax.portlet.faces.Bridge";
 
+	/**
+	 * @deprecated Portlet init parameter that defines the render response ContentType the bridge sets prior to
+	 * rendering. If not set the bridge uses the request's preferred content type. It is deprecated because bridge
+	 * implementations (since JSR 329) no longer utilize it.
+	 */
+	@Deprecated
 	public static final String DEFAULT_CONTENT_TYPE = "javax.portlet.faces.defaultContentType";
+
 	public static final String DEFAULT_VIEWID = "javax.portlet.faces.defaultViewId";
 
 	// Private Data Members
