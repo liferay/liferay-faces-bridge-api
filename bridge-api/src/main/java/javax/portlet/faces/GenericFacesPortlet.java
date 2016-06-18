@@ -261,14 +261,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 		// Determine whether or not all events should be auto-dispatched.
 		String initParamValue = portletConfig.getInitParameter("javax.portlet.faces.autoDispatchEvents");
 
-		if (initParamValue != null) {
-
-			// TCK TestPage034: isAutoDispatchEventsSetTest
-			autoDispatchEvents = Boolean.parseBoolean(initParamValue);
-		}
-		else {
-			autoDispatchEvents = true;
-		}
+		// TCK TestPage034: isAutoDispatchEventsSetTest
+		autoDispatchEvents = ((initParamValue == null) || Boolean.parseBoolean(initParamValue));
 	}
 
 	public boolean isAutoDispatchEvents() {
@@ -297,8 +291,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Override
 	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException,
 		IOException {
-		Bridge bridge = getFacesBridge(actionRequest, actionResponse);
 
+		Bridge bridge = getFacesBridge(actionRequest, actionResponse);
 		bridge.doFacesRequest(actionRequest, actionResponse);
 	}
 
@@ -332,6 +326,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Override
 	public void serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws PortletException, IOException {
+
 		Bridge bridge = getFacesBridge(resourceRequest, resourceResponse);
 		bridge.doFacesRequest(resourceRequest, resourceResponse);
 	}
@@ -369,6 +364,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Override
 	protected void doEdit(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException,
 		IOException {
+
 		Bridge bridge = getFacesBridge(renderRequest, renderResponse);
 		bridge.doFacesRequest(renderRequest, renderResponse);
 	}
@@ -405,6 +401,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Override
 	protected void doHelp(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException,
 		IOException {
+
 		Bridge bridge = getFacesBridge(renderRequest, renderResponse);
 		bridge.doFacesRequest(renderRequest, renderResponse);
 	}
@@ -412,6 +409,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Override
 	protected void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException,
 		IOException {
+
 		Bridge bridge = getFacesBridge(renderRequest, renderResponse);
 		bridge.doFacesRequest(renderRequest, renderResponse);
 	}
