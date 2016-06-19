@@ -186,6 +186,39 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
+	 * Returns an instance of a BridgePublicRenderParameterHandler used to post process public render parameter changes
+	 * that the bridge has pushed into mapped models. This default implementation looks for a portlet initParameter that
+	 * names the class used to instantiate the handler.
+	 *
+	 * @return  an instance of BridgeRenderParameterHandler or null if there is none.
+	 *
+	 * @throws  PortletException
+	 */
+	public BridgePublicRenderParameterHandler getBridgePublicRenderParameterHandler() throws PortletException {
+
+		if (bridgePublicRenderParameterHandler == null) {
+
+			// TCK TestPage016: initMethodTest
+			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER;
+			String className = getPortletConfig().getInitParameter(initParamName);
+
+			if (className != null) {
+				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+
+				try {
+					Class<?> clazz = classLoader.loadClass(className);
+					bridgePublicRenderParameterHandler = (BridgePublicRenderParameterHandler) clazz.newInstance();
+				}
+				catch (Exception e) {
+					throw new PortletException(e);
+				}
+			}
+		}
+
+		return bridgePublicRenderParameterHandler;
+	}
+
+	/**
 	 * Returns a String defining the default render kit id the bridge should ensure for this portlet. If non-null, this
 	 * value is used to override any default render kit id set on an app wide basis in the faces-config.xml. This
 	 * default implementation reads the values from the portlet init_param javax.portlet.faces.defaultRenderKitId. If
@@ -586,38 +619,5 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 		Bridge bridge = getFacesBridge(renderRequest, renderResponse);
 		bridge.doFacesRequest(renderRequest, renderResponse);
-	}
-
-	/**
-	 * Returns an instance of a BridgePublicRenderParameterHandler used to post process public render parameter changes
-	 * that the bridge has pushed into mapped models. This default implementation looks for a portlet initParameter that
-	 * names the class used to instantiate the handler.
-	 *
-	 * @return  an instance of BridgeRenderParameterHandler or null if there is none.
-	 *
-	 * @throws  PortletException
-	 */
-	protected BridgePublicRenderParameterHandler getBridgePublicRenderParameterHandler() throws PortletException {
-
-		if (bridgePublicRenderParameterHandler == null) {
-
-			// TCK TestPage016: initMethodTest
-			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER;
-			String className = getPortletConfig().getInitParameter(initParamName);
-
-			if (className != null) {
-				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-				try {
-					Class<?> clazz = classLoader.loadClass(className);
-					bridgePublicRenderParameterHandler = (BridgePublicRenderParameterHandler) clazz.newInstance();
-				}
-				catch (Exception e) {
-					throw new PortletException(e);
-				}
-			}
-		}
-
-		return bridgePublicRenderParameterHandler;
 	}
 }
