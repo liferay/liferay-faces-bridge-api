@@ -57,13 +57,20 @@ public class GenericFacesPortlet extends GenericPortlet {
 	public static final String BRIDGE_SERVICE_CLASSPATH = "META-INF/services/javax.portlet.faces.Bridge";
 
 	/**
-	 * @deprecated Portlet init parameter that defines the render response ContentType the bridge sets prior to
-	 * rendering. If not set the bridge uses the request's preferred content type. It is deprecated because bridge
-	 * implementations (since JSR 329) no longer utilize it.
+	 * @deprecated  Portlet init parameter that defines the render response ContentType the bridge sets prior to
+	 *              rendering. If not set the bridge uses the request's preferred content type. It is deprecated because
+	 *              bridge implementations (since JSR 329) no longer utilize it.
 	 */
 	@Deprecated
 	public static final String DEFAULT_CONTENT_TYPE = "javax.portlet.faces.defaultContentType";
 
+	/**
+	 * @deprecated  Portlet init parameter that defines the render response CharacterSetEncoding the bridge sets prior
+	 *              to rendering. Typcially only set when the jsp outputs an encoding other then the portlet container's
+	 *              and the portlet container supports response encoding transformation. It is deprecated because bridge
+	 *              implementations (since JSR 329) no longer utilize it.
+	 */
+	@Deprecated
 	public static final String DEFAULT_CHARACTERSET_ENCODING = "javax.portlet.faces.defaultCharacterSetEncoding";
 
 	public static final String DEFAULT_VIEWID = "javax.portlet.faces.defaultViewId";
