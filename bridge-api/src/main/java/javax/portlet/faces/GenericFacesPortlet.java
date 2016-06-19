@@ -23,7 +23,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.ServiceLoader;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -135,7 +134,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 	private BridgePublicRenderParameterHandler bridgePublicRenderParameterHandler;
 	private Map<String, String> defaultViewIdMap;
 	private List<String> excludedRequestAttributes;
-	private String portletName;
 	private Boolean preserveActionParameters;
 
 	/**
@@ -272,11 +270,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 		return bridge;
 	}
 
-	@Override
-	public String getPortletName() {
-		return portletName;
-	}
-
 	/**
 	 * @deprecated  This method is no longer used or called by the <code>GenericFacesPortlet</code> but retained in case
 	 *              a subclass has called it.
@@ -309,7 +302,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Override
 	public void init(PortletConfig portletConfig) throws PortletException {
 
-		portletName = portletConfig.getPortletName();
+		String portletName = portletConfig.getPortletName();
 
 		// Initialize the bridge according to the requirements set forth in Section 3.2 of the JSR 329 Spec. Begin
 		// this process by delegating preliminary initialization to the parent class.
