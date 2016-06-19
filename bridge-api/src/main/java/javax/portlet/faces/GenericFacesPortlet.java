@@ -158,6 +158,38 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
+	 * Returns an instance of a BridgeEventHandler used to process portlet events in a JSF environment. This default
+	 * implementation looks for a portlet initParameter that names the class used to instantiate the handler.
+	 *
+	 * @return  an instance of BridgeEventHandler or null if there is none.
+	 *
+	 * @throws  PortletException
+	 */
+	public BridgeEventHandler getBridgeEventHandler() throws PortletException {
+
+		if (bridgeEventHandler == null) {
+
+			// TCK TestPage016: initMethodTest
+			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.BRIDGE_EVENT_HANDLER;
+			String className = getPortletConfig().getInitParameter(initParamName);
+
+			if (className != null) {
+				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+
+				try {
+					Class<?> clazz = classLoader.loadClass(className);
+					bridgeEventHandler = (BridgeEventHandler) clazz.newInstance();
+				}
+				catch (Exception e) {
+					throw new PortletException(e);
+				}
+			}
+		}
+
+		return bridgeEventHandler;
+	}
+
+	/**
 	 * Returns a String defining the default render kit id the bridge should ensure for this portlet. If non-null, this
 	 * value is used to override any default render kit id set on an app wide basis in the faces-config.xml. This
 	 * default implementation reads the values from the portlet init_param javax.portlet.faces.defaultRenderKitId. If
@@ -566,38 +598,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 		Bridge bridge = getFacesBridge(renderRequest, renderResponse);
 		bridge.doFacesRequest(renderRequest, renderResponse);
-	}
-
-	/**
-	 * Returns an instance of a BridgeEventHandler used to process portlet events in a JSF environment. This default
-	 * implementation looks for a portlet initParameter that names the class used to instantiate the handler.
-	 *
-	 * @return  an instance of BridgeEventHandler or null if there is none.
-	 *
-	 * @throws  PortletException
-	 */
-	protected BridgeEventHandler getBridgeEventHandler() throws PortletException {
-
-		if (bridgeEventHandler == null) {
-
-			// TCK TestPage016: initMethodTest
-			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.BRIDGE_EVENT_HANDLER;
-			String className = getPortletConfig().getInitParameter(initParamName);
-
-			if (className != null) {
-				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-				try {
-					Class<?> clazz = classLoader.loadClass(className);
-					bridgeEventHandler = (BridgeEventHandler) clazz.newInstance();
-				}
-				catch (Exception e) {
-					throw new PortletException(e);
-				}
-			}
-		}
-
-		return bridgeEventHandler;
 	}
 
 	/**
