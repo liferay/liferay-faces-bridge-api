@@ -48,6 +48,7 @@ import javax.portlet.ResourceResponse;
 public class GenericFacesPortlet extends GenericPortlet {
 
 	// Public Constants
+	public static final String BRIDGE_AUTO_DISPATCH_EVENTS = "javax.portlet.faces.autoDispatchEvents";
 	public static final String BRIDGE_CLASS = "javax.portlet.faces.BridgeImplClass";
 
 	/**
@@ -276,7 +277,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 
 		// Determine whether or not all events should be auto-dispatched.
-		String initParamValue = portletConfig.getInitParameter("javax.portlet.faces.autoDispatchEvents");
+		String initParamValue = portletConfig.getInitParameter(BRIDGE_AUTO_DISPATCH_EVENTS);
 
 		// TCK TestPage034: isAutoDispatchEventsSetTest
 		autoDispatchEvents = ((initParamValue == null) || Boolean.parseBoolean(initParamValue));
