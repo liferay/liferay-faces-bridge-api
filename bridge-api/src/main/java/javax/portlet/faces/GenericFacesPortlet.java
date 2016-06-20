@@ -15,14 +15,14 @@
  */
 package javax.portlet.faces;
 
-import com.liferay.faces.bridge.BridgeFactory;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -92,7 +92,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * Application (PortletContext) init parameter that names the bridge class used by this application. Typically not
 	 * used unless more then 1 bridge is configured in an environment as its more usual to rely on the self detection.
 	 */
-	public static final String BRIDGE_CLASS = "javax.portlet.faces.BridgeImplClass";
+	public static final String BRIDGE_CLASS = "javax.portlet.faces.BridgeClassName";
 
 	/**
 	 * Location of the services descriptor file in a brige installation that defines the class name of the bridge
@@ -126,6 +126,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	private boolean autoDispatchEvents;
 	private Bridge bridge;
 	private String bridgeClassName;
+	private Bridge bridgeService;
 	private BridgeEventHandler bridgeEventHandler;
 	private BridgePublicRenderParameterHandler bridgePublicRenderParameterHandler;
 	private Map<String, String> defaultViewIdMap;
@@ -137,7 +138,13 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 */
 	@Override
 	public void destroy() {
-		bridge.destroy();
+
+		try {
+			getBridge().destroy();
+		}
+		catch (PortletException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -147,9 +154,21 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * "META-INF/services/javax.portlet.faces.Bridge" using the current threads classloader and extracts the classname
 	 * from the first line in that file.
 	 *
-	 * @return  the class name of the Bridge class the GenericFacesPortlet uses. null if it can't be determined.
+	 * @return  the class name of the Bridge class the GenericFacesPortlet uses. <code>null</code> if it can't be
+	 *          determined.
 	 */
 	public String getBridgeClassName() {
+
+		if (bridgeClassName == null) {
+
+			// TCK TestPage016: initMethodTest
+			bridgeClassName = getPortletConfig().getInitParameter(BRIDGE_CLASS);
+
+			if (bridgeClassName == null) {
+				bridgeClassName = getBridgeService().getClass().getName();
+			}
+		}
+
 		return bridgeClassName;
 	}
 
@@ -157,7 +176,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * Returns an instance of a BridgeEventHandler used to process portlet events in a JSF environment. This default
 	 * implementation looks for a portlet initParameter that names the class used to instantiate the handler.
 	 *
-	 * @return  an instance of BridgeEventHandler or null if there is none.
+	 * @return  an instance of BridgeEventHandler or <code>null</code> if there is none.
 	 *
 	 * @throws  PortletException  - if an error occurs loading or instantiating the {@link BridgeEventHandler} class.
 	 */
@@ -190,7 +209,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * that the bridge has pushed into mapped models. This default implementation looks for a portlet initParameter that
 	 * names the class used to instantiate the handler.
 	 *
-	 * @return  an instance of BridgeRenderParameterHandler or null if there is none.
+	 * @return  an instance of BridgeRenderParameterHandler or <code>null</code> if there is none.
 	 *
 	 * @throws  PortletException  - if an error occurs loading or instantiating the {@link
 	 *                            BridgePublicRenderParameterHandler} class.
@@ -223,7 +242,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * Returns a String defining the default render kit id the bridge should ensure for this portlet. If non-null, this
 	 * value is used to override any default render kit id set on an app wide basis in the faces-config.xml. This
 	 * default implementation reads the values from the portlet init_param javax.portlet.faces.defaultRenderKitId. If
-	 * not present, null is returned.
+	 * not present, <code>null</code> is returned.
 	 *
 	 * @return  a boolean indicating whether or not the bridge should preserve all the action parameters in the
 	 *          subsequent renders that occur in the same scope.
@@ -330,7 +349,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 			}
 		}
 
-		return bridge;
+		return getBridge();
 	}
 
 	/**
@@ -375,24 +394,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 		// this process by delegating preliminary initialization to the parent class.
 		super.init(portletConfig);
 
-		bridge = BridgeFactory.getBridgeInstance();
-		bridgeClassName = bridge.getClass().getName();
-
-		// Initialize the bridge implementation instance.
-		String customBridgeClassName = getBridgeClassName();
-
-		if (customBridgeClassName == null) {
-
-			// TCK TestPage016: initMethodTest
-			customBridgeClassName = portletConfig.getInitParameter(GenericFacesPortlet.BRIDGE_CLASS);
-		}
-
-		if (customBridgeClassName != null) {
-			bridge = BridgeFactory.getBridgeInstance(customBridgeClassName);
-			bridgeClassName = customBridgeClassName;
-		}
-
-		bridge.init(portletConfig);
+		getBridge().init(portletConfig);
 
 		// Save the default JSF views specified as WEB-INF/portlet.xml init-param value(s) as a portlet context
 		// attribute with name "javax.portlet.faces.<portlet-name>.defaultViewIdMap"
@@ -678,5 +680,45 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 		Bridge bridge = getFacesBridge(renderRequest, renderResponse);
 		bridge.doFacesRequest(renderRequest, renderResponse);
+	}
+
+	private Bridge getBridge() throws PortletException {
+
+		if (bridge == null) {
+
+			bridge = getBridgeService();
+
+			String bridgeClassName = getBridgeClassName();
+
+			if (!bridge.getClass().getName().equals(bridgeClassName)) {
+
+				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+
+				try {
+					Class<?> bridgeClass = classLoader.loadClass(bridgeClassName);
+					bridge = (Bridge) bridgeClass.newInstance();
+				}
+				catch (Exception e) {
+					throw new PortletException(e);
+				}
+			}
+		}
+
+		return bridge;
+	}
+
+	private Bridge getBridgeService() {
+
+		if (bridgeService == null) {
+
+			ServiceLoader<Bridge> serviceLoader = ServiceLoader.load(Bridge.class);
+			Iterator<Bridge> iterator = serviceLoader.iterator();
+
+			while ((bridgeService == null) && iterator.hasNext()) {
+				bridgeService = iterator.next();
+			}
+		}
+
+		return bridgeService;
 	}
 }
