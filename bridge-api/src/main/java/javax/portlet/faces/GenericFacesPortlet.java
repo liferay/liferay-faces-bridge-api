@@ -243,7 +243,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * the incoming request. There is one entry per support <code>PortletMode</code>. The entry key is the name of the
 	 * mode. The entry value is the default viewId for that mode.
 	 *
-	 * @return  the defaultViewIdMap
+	 * @return  the map of default viewIds.
 	 */
 	public Map<String, String> getDefaultViewIdMap() {
 
@@ -279,7 +279,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * scope. This default implementation picks up this list from the comma delimited init_param
 	 * javax.portlet.faces.excludedRequestAttributes.
 	 *
-	 * @return  a List containing the names of the attributes to be excluded. null if it can't be determined.
+	 * @return  a List containing the names of the attributes to be excluded. <code>null</code> if it can't be
+	 *          determined.
 	 */
 	public List<String> getExcludedRequestAttributes() {
 
@@ -493,6 +494,16 @@ public class GenericFacesPortlet extends GenericPortlet {
 		return preserveActionParameters;
 	}
 
+	/**
+	 * Delegates to {@link Bridge#doFacesRequest(ActionRequest, ActionResponse)}.
+	 *
+	 * @param   actionRequest   The current action request.
+	 * @param   actionResponse  The current action response.
+	 *
+	 * @throws  PortletException  - if an error occurs during action request/response processing.
+	 * @throws  IOException       - if an error occurs during action response processing such as a call to {@link
+	 *                            ActionResponse#sendRedirect(String)}.
+	 */
 	@Override
 	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException,
 		IOException {
@@ -501,6 +512,15 @@ public class GenericFacesPortlet extends GenericPortlet {
 		bridge.doFacesRequest(actionRequest, actionResponse);
 	}
 
+	/**
+	 * Delegates to {@link Bridge#doFacesRequest(EventRequest, EventResponse)}.
+	 *
+	 * @param   eventRequest   The current event request.
+	 * @param   eventResponse  The current event response.
+	 *
+	 * @throws  PortletException  - if an error occurs during event request/response processing.
+	 * @throws  IOException       - if an error occurs during event response processing.
+	 */
 	@Override
 	public void processEvent(EventRequest eventRequest, EventResponse eventResponse) throws PortletException,
 		IOException {
@@ -529,13 +549,13 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * Handles resource requests and dispatches to the Bridge.
+	 * Delegates to {@link Bridge#doFacesRequest(ResourceRequest, ResourceResponse)}.
 	 *
 	 * @param   resourceRequest   The current resource request.
 	 * @param   resourceResponse  The current resource response.
 	 *
 	 * @throws  PortletException  - if an error occurs during resource request/response processing.
-	 * @throws  IOException       - if an error occurs writing to the resource response.
+	 * @throws  IOException       - if an error occurs while writing to the resource response.
 	 */
 	@Override
 	public void serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
@@ -546,14 +566,18 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * If mode is VIEW, EDIT, or HELP -- defer to the doView, doEdit, doHelp so subclasses can override. Otherwise
-	 * handle mode here if there is a defaultViewId mapping for it.
+	 * If the <code>javax.portlet.faces.automaticNonFacesViewDispatching</code> init-param is <code>true</code> and the
+	 * {@link Bridge#NONFACES_TARGET_PATH_PARAMETER} render request parameter specifies a value as a non-Faces target
+	 * path, then forward to the non-Faces target path. Otherwise, delegates to the {@link
+	 * GenericPortlet#doDispatch(RenderRequest, RenderResponse)} method so that the {@link #doView(RenderRequest,
+	 * RenderResponse)}, {@link #doEdit(RenderRequest, RenderResponse)}, or {@link #doHelp(RenderRequest,
+	 * RenderResponse)} methods will handle the dispatching.
 	 *
 	 * @param   renderRequest   The current render request.
 	 * @param   renderResponse  The current render response.
 	 *
 	 * @throws  PortletException  - if an error occurs during render request/response processing.
-	 * @throws  IOException       - if an error occurs writing to the render response.
+	 * @throws  IOException       - if an error occurs while writing to the render response.
 	 */
 	@Override
 	protected void doDispatch(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException,
@@ -585,6 +609,16 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 	}
 
+	/**
+	 * Delegates to {@link Bridge#doFacesRequest(RenderRequest, RenderResponse)} in order to render the Faces view
+	 * associated with {@link javax.portlet.PortletMode#EDIT}.
+	 *
+	 * @param   renderRequest   The current render request.
+	 * @param   renderResponse  The current render response.
+	 *
+	 * @throws  PortletException  - if an error occurs during render request/response processing.
+	 * @throws  IOException       - if an error occurs while writing to the render response.
+	 */
 	@Override
 	protected void doEdit(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException,
 		IOException {
@@ -622,6 +656,16 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 	}
 
+	/**
+	 * Delegates to {@link Bridge#doFacesRequest(RenderRequest, RenderResponse)} in order to render the Faces view
+	 * associated with {@link javax.portlet.PortletMode#HELP}.
+	 *
+	 * @param   renderRequest   The current render request.
+	 * @param   renderResponse  The current render response.
+	 *
+	 * @throws  PortletException  - if an error occurs during render request/response processing.
+	 * @throws  IOException       - if an error occurs while writing to the render response.
+	 */
 	@Override
 	protected void doHelp(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException,
 		IOException {
@@ -630,6 +674,16 @@ public class GenericFacesPortlet extends GenericPortlet {
 		bridge.doFacesRequest(renderRequest, renderResponse);
 	}
 
+	/**
+	 * Delegates to {@link Bridge#doFacesRequest(RenderRequest, RenderResponse)} in order to render the Faces view
+	 * associated with {@link javax.portlet.PortletMode#VIEW}.
+	 *
+	 * @param   renderRequest   The current render request.
+	 * @param   renderResponse  The current resource request.
+	 *
+	 * @throws  PortletException  - if an error occurs during render request/response processing.
+	 * @throws  IOException       - if an error occurs while writing to the render response.
+	 */
 	@Override
 	protected void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException,
 		IOException {
