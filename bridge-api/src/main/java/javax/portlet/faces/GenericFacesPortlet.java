@@ -319,13 +319,13 @@ public class GenericFacesPortlet extends GenericPortlet {
 	public Bridge getFacesBridge(PortletRequest portletRequest, PortletResponse portletResponse)
 		throws PortletException {
 
-		String viewId = portletRequest.getParameter(Bridge.FACES_VIEW_ID_PARAMETER);
+		String viewId = portletRequest.getRenderParameters().getValue(Bridge.FACES_VIEW_ID_PARAMETER);
 
 		if (viewId != null) {
 			portletRequest.setAttribute(Bridge.VIEW_ID, viewId);
 		}
 		else {
-			String viewPath = portletRequest.getParameter(Bridge.FACES_VIEW_PATH_PARAMETER);
+			String viewPath = portletRequest.getRenderParameters().getValue(Bridge.FACES_VIEW_PATH_PARAMETER);
 
 			if (viewPath != null) {
 				portletRequest.setAttribute(Bridge.VIEW_PATH, viewPath);
@@ -555,7 +555,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 		IOException {
 
 		String autoNonFacesViewDispatch = getInitParameter("javax.portlet.faces.automaticNonFacesViewDispatching");
-		String nonFacesTargetPath = renderRequest.getParameter(Bridge.NONFACES_TARGET_PATH_PARAMETER);
+		String nonFacesTargetPath = renderRequest.getRenderParameters().getValue(Bridge.NONFACES_TARGET_PATH_PARAMETER);
 
 		if ((autoNonFacesViewDispatch != null) && autoNonFacesViewDispatch.equalsIgnoreCase("true") &&
 				(nonFacesTargetPath != null)) {
