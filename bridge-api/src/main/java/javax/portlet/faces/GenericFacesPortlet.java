@@ -43,7 +43,7 @@ import javax.portlet.ResourceResponse;
 
 /**
  * The <code>GenericFacesPortlet</code> is provided to simplify development of a portlet that in whole or part relies on
- * the Faces bridge to process requests. If all requests are to be handled by the bridge, <code>
+ * the Faces Bridge to process requests. If all requests are to be handled by the bridge, <code>
  * GenericFacesPortlet</code> is a turnkey implementation. Developers do not need to subclass it. However, if there are
  * some situations where the portlet doesn't require bridge services then <code>GenericFacesPortlet</code> can be
  * subclassed and overriden.
@@ -159,7 +159,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 *
 	 * @return  an instance of BridgeEventHandler or null if there is none.
 	 *
-	 * @throws  PortletException
+	 * @throws  PortletException  - if an error occurs loading or instantiating the {@link BridgeEventHandler} class.
 	 */
 	public BridgeEventHandler getBridgeEventHandler() throws PortletException {
 
@@ -192,7 +192,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 *
 	 * @return  an instance of BridgeRenderParameterHandler or null if there is none.
 	 *
-	 * @throws  PortletException
+	 * @throws  PortletException  - if an error occurs loading or instantiating the {@link
+	 *                            BridgePublicRenderParameterHandler} class.
 	 */
 	public BridgePublicRenderParameterHandler getBridgePublicRenderParameterHandler() throws PortletException {
 
@@ -234,9 +235,9 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * Returns the defaultViewIdMap the bridge should use when its unable to resolve to a specific target in the
-	 * incoming request. There is one entry per support <code>PortletMode</code>. The entry key is the name of the mode.
-	 * The entry value is the default viewId for that mode.
+	 * Returns a map of default viewIds that the bridge should use when it is unable to resolve to a specific target in
+	 * the incoming request. There is one entry per support <code>PortletMode</code>. The entry key is the name of the
+	 * mode. The entry value is the default viewId for that mode.
 	 *
 	 * @return  the defaultViewIdMap
 	 */
@@ -305,12 +306,12 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * Returns an initialized bridge instance adequately prepared so the caller can call doFacesRequest directly without
 	 * further initialization.
 	 *
-	 * @param   portletRequest
-	 * @param   portletResponse
+	 * @param   portletRequest   The current portlet request.
+	 * @param   portletResponse  The current portlet response.
 	 *
 	 * @return  An instance of the bridge.
 	 *
-	 * @throws  PortletException  When an error occurs acquiring or initializing the bridge.
+	 * @throws  PortletException  - if an error occurs acquiring or initializing the bridge.
 	 */
 	public Bridge getFacesBridge(PortletRequest portletRequest, PortletResponse portletResponse)
 		throws PortletException {
@@ -335,7 +336,9 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * @deprecated  This method is no longer used or called by the <code>GenericFacesPortlet</code> but retained in case
 	 *              a subclass has called it.
 	 *
-	 * @return      null
+	 * @param       portletRequest  The current portlet request.
+	 *
+	 * @return      <code>null</code>
 	 */
 	@Deprecated
 	public String getResponseCharacterSetEncoding(PortletRequest portletRequest) {
@@ -346,7 +349,9 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * @deprecated  This method is no longer used or called by the <code>GenericFacesPortlet</code> but retained in case
 	 *              a subclass has called it.
 	 *
-	 * @return      request.getResponseContentType()
+	 * @param       portletRequest  The current portlet request.
+	 *
+	 * @return      The value obtained by calling {@link PortletRequest#getResponseContentType()}.
 	 */
 	@Deprecated
 	public String getResponseContentType(PortletRequest portletRequest) {
@@ -354,11 +359,11 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * Initialize generic faces portlet from portlet.xml
+	 * Initializes the <code>GenericFacesPortlet</code> according to the specified portlet configuration.
 	 *
-	 * @param   portletConfig
+	 * @param   portletConfig  The portlet configuration.
 	 *
-	 * @throws  PortletException
+	 * @throws  PortletException  - if an error occurs acquiring or initializing the bridge.
 	 */
 	@Override
 	public void init(PortletConfig portletConfig) throws PortletException {
@@ -514,11 +519,11 @@ public class GenericFacesPortlet extends GenericPortlet {
 	/**
 	 * Handles resource requests and dispatches to the Bridge.
 	 *
-	 * @param   resourceRequest
-	 * @param   resourceResponse
+	 * @param   resourceRequest   The current resource request.
+	 * @param   resourceResponse  The current resource response.
 	 *
-	 * @throws  PortletException
-	 * @throws  IOException
+	 * @throws  PortletException  - if an error occurs during resource request/response processing.
+	 * @throws  IOException       - if an error occurs writing to the resource response.
 	 */
 	@Override
 	public void serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
@@ -532,11 +537,11 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * If mode is VIEW, EDIT, or HELP -- defer to the doView, doEdit, doHelp so subclasses can override. Otherwise
 	 * handle mode here if there is a defaultViewId mapping for it.
 	 *
-	 * @param   renderRequest
-	 * @param   renderResponse
+	 * @param   renderRequest   The current render request.
+	 * @param   renderResponse  The current render response.
 	 *
-	 * @throws  PortletException
-	 * @throws  IOException
+	 * @throws  PortletException  - if an error occurs during render request/response processing.
+	 * @throws  IOException       - if an error occurs writing to the render response.
 	 */
 	@Override
 	protected void doDispatch(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException,
