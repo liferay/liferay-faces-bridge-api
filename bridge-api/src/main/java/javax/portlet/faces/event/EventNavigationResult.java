@@ -15,7 +15,19 @@
  */
 package javax.portlet.faces.event;
 
+import javax.faces.context.FacesContext;
+import javax.portlet.Event;
+
+
 /**
+ * An <code>EventNavigationResult</code> is the type of object that can be returned from a {@link
+ * javax.portlet.faces.BridgeEventHandler#handleEvent(FacesContext, Event)} call. When it is returned as a (non-null)
+ * value, it conveys the Faces navigation information to the bridge that it needs to utilize the Faces {@link
+ * javax.faces.application.NavigationHandler} to evaluate the navigation according to the configured rules. The <code>
+ * fromAction</code> corresponds to the <code>fromAction</code> string in the faces-config.xml navigation rule. The
+ * <code>outcome</code> corresponds to the <code>outcome</code> string in the navigation rule.
+ *
+ * @author  Michael Freedman
  * @author  Neil Griffin
  */
 public class EventNavigationResult {
@@ -26,23 +38,45 @@ public class EventNavigationResult {
 	public EventNavigationResult() {
 	}
 
+	/**
+	 * Constructor which sets the object to the desired fromAction and outcome.
+	 *
+	 * @param  fromAction  Value corresponding to the &lt;from-action&gt; element of a navigation-rule.
+	 * @param  outcome     Value corresponding to the &lt;outcome&gt; element of a navigation-rule.
+	 */
 	public EventNavigationResult(String fromAction, String outcome) {
 		this.fromAction = fromAction;
 		this.outcome = outcome;
 	}
 
+	/**
+	 * @return  Value corresponding to the &lt;from-action&gt; element of a navigation-rule.
+	 */
 	public String getFromAction() {
 		return fromAction;
 	}
 
+	/**
+	 * @return  Value corresponding to the &lt;outcome&gt; element of a navigation-rule.
+	 */
 	public String getOutcome() {
 		return outcome;
 	}
 
+	/**
+	 * Sets the value that corresponds to the &lt;from-action&gt; element of a navigation-rule.
+	 *
+	 * @param  fromAction  The value that corresponds to the &lt;from-action&gt; element of a navigation-rule.
+	 */
 	public void setFromAction(String fromAction) {
 		this.fromAction = fromAction;
 	}
 
+	/**
+	 * Sets the value that corresponds to the &lt;outcome&gt; element of a navigation-rule.
+	 *
+	 * @param  outcome  The value that corresponds to the &lt;from-action&gt; element of a navigation-rule.
+	 */
 	public void setOutcome(String outcome) {
 		this.outcome = outcome;
 	}

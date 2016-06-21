@@ -16,6 +16,10 @@
 package javax.portlet.faces;
 
 /**
+ * Thrown when the portlet invokes one of the bridge's <code>doFacesRequest</code> methods even though the {@link
+ * Bridge#NONFACES_TARGET_PATH_PARAMETER} parameter is present, indicating it is a non-Faces target.
+ *
+ * @author  Michael Freedman
  * @author  Neil Griffin
  */
 public class BridgeNotAFacesRequestException extends BridgeException {

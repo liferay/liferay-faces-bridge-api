@@ -16,6 +16,10 @@
 package javax.portlet.faces;
 
 /**
+ * Thrown when the bridge can't resolve the target view from the request and the portlet hasn't set the portlet request
+ * attribute {@link GenericFacesPortlet#DEFAULT_VIEWID}.
+ *
+ * @author  Michael Freedman
  * @author  Neil Griffin
  */
 public class BridgeDefaultViewNotSpecifiedException extends BridgeException {
