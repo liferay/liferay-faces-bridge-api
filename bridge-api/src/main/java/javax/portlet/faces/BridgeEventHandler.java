@@ -43,11 +43,11 @@ public interface BridgeEventHandler {
 	 * <p>Called by the bridge when it needs to process a portlet event.</p>
 	 *
 	 * <p>Because portlet events have arbitrary payloads the bridge provides no automated mappings to managed beans.
-	 * Instead, the bridge calls the {@link #handleEvent(FacesContext, Event)} method on the <code>
-	 * BridgeEventHandler</code> instance passed to it (via a portlet context attribute at initialization time. This
-	 * method is expected to update any models based on the event's payload and then to perform any needed application
-	 * re-computation to ensure a consistent state. The method is called after the {@link FacesContext} has been
-	 * established and the {@link javax.faces.lifecycle.Lifecycle} has restored the view.</p>
+	 * Instead, the bridge calls this method on the <code>BridgeEventHandler</code> instance passed to it (via a portlet
+	 * context attribute at initialization time. This method is expected to update any models based on the event's
+	 * payload and then to perform any needed application re-computation to ensure a consistent state. The method is
+	 * called after the {@link FacesContext} has been established and the {@link javax.faces.lifecycle.Lifecycle} has
+	 * restored the view.</p>
 	 *
 	 * <p>A view navigation can be affected by returning a non-null {@link EventNavigationResult}. Such an object will
 	 * contain two <code>String</code> values: a fromAction and an outcome. These correspond to the from action and
