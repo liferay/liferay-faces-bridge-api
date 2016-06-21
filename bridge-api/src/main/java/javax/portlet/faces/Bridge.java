@@ -72,26 +72,40 @@ public interface Bridge {
 
 	/**
 	 * Portlet context attribute that a portlet can set prior to calling {@link Bridge#init(PortletConfig)} to configure
-	 * the bridge to use/call the associated eventHandler when processing an event. Value is an instance of <code>
-	 * BridgeEventHandler</code>. As this attribute is scoped to a specific portlet in an application-wide context the
-	 * attribute name must be include the portlet name as follows:
+	 * the bridge to use/call the associated {@link BridgeEventHandler} when processing an event. Value is an instance
+	 * of <code>BridgeEventHandler</code>. As this attribute is scoped to a specific portlet in an application-wide
+	 * context the attribute name must be include the portlet name as follows:
 	 *
 	 * <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
 	 */
 	public static final String BRIDGE_EVENT_HANDLER = "bridgeEventHandler";
 
+	/** Base attribute/context parameter prefix. */
+	public static final String BRIDGE_PACKAGE_PREFIX = "javax.portlet.faces.";
+
 	/**
-	 * Portlet context attribute that a portlet can set prior to calling the bridge's init() method to configure the
-	 * bridge to use/call the associated publicRenderParameterHandler. This handler is used to process updates that
-	 * result from public render parameter changes passed in a request. The bridge first pushs all the public render
-	 * parameter values into the models and then calls this handler's processUpdates method. The handler can then
-	 * compute further model changes based on the changes. Value is an instance of <code>
+	 * Portlet context attribute that a portlet can set prior to calling the {@link #init(PortletConfig)} method to
+	 * configure the bridge to use/call the associated {@link BridgePublicRenderParameterHandler}. This handler is used
+	 * to process updates that result from public render parameter changes passed in a request. The bridge first pushs
+	 * all the public render parameter values into the models and then calls this handler's processUpdates method. The
+	 * handler can then compute further model changes based on the changes. Value is an instance of <code>
 	 * BridgePublicRenderParameterHandler</code>. As this attribute is scoped to a specific portlet in an
 	 * application-wide context the attribute name must be include the portlet name as follows:
 	 *
 	 * <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
 	 */
 	public static final String BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER = "bridgePublicRenderParameterHandler";
+
+	/**
+	 * Portlet context attribute that a portlet can set prior to calling the {@link #init(PortletConfig)} method to
+	 * configure the bridge to default the renderKitId used for rendering this portlet to the named Id. In Faces, the
+	 * default renderKitId is set in the faces-config.xml and is application wide. In 1.2 this can be overidden by a
+	 * specially named request parameter. To allow differing portlets in the same app to use different default render
+	 * kits, without having to add this parameter, the portlet can set this attribute prior to the bridge init(). The
+	 * bridge will recognize this configuration value and on each request add the special faces request parameter to the
+	 * request (if its not already present).
+	 */
+	public static final String DEFAULT_RENDERKIT_ID = "defaultRenderKitId";
 
 	/**
 	 * Portlet context attribute that a portlet must set prior to calling {@link Bridge#init(PortletConfig)} to convey
@@ -249,6 +263,14 @@ public interface Bridge {
 	 * string representation of one of the {@link BridgeRenderPolicy} enum values.
 	 */
 	public static final String RENDER_POLICY = "javax.portlet.faces.RENDER_POLICY";
+
+	/**
+	 * Context initialization parameter that defines the <code>SAVESTATE_FIELD_MARKER</code> in use in the given
+	 * deployment. If not set, consult your bridge implementation documentation to determine which Faces implementations
+	 * it automatically detects and supports. For example the bridge RI will detect and run properly in either the Faces
+	 * RI or MyFaces environments without this being set.
+	 */
+	public static final String SAVESTATE_FIELD_MARKER = "javax.portlet.faces.SAVESTATE_FIELD_MARKER";
 
 	/**
 	 * Portlet request attribute that a portlet may set prior to calling the bridge's {@link
