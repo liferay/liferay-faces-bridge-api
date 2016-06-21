@@ -26,8 +26,12 @@ import javax.portlet.faces.annotation.PortletNamingContainer;
 
 
 /**
- * This class satisfies namespacing requirements of Section 6.6 of the specification.
+ * This class satisfies namespacing requirements of Section 6.6 of the specification. It implements a portlet specific
+ * {@link NamingContainer} that ensures the consumer's unique portletId is encoded in all tree components. The class is
+ * annotated by {@link PortletNamingContainer} allowing the bridge to recognize that this specific {@link UIViewRoot}
+ * implements the behavior.
  *
+ * @author  Michael Freedman
  * @author  Neil Griffin
  */
 @PortletNamingContainer

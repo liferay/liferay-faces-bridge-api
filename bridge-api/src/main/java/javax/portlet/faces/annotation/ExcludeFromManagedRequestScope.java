@@ -24,6 +24,12 @@ import java.lang.annotation.Target;
 
 
 /**
+ * The <code>ExcludeFromManagedRequestScope</code> annotation is used on a class as a signal that instances of this
+ * class are not to be managed by the bridge in the bridge request scope if/when the instance is added to the portlet
+ * container's request scope. This annotation is the preferred method for marking a class for such exclusion and should
+ * be used where ever possible over the secondary configuration techniques additional supported.
+ *
+ * @author  Michael Freedman
  * @author  Neil Griffin
  */
 @Documented
