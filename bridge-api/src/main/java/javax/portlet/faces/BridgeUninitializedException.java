@@ -16,6 +16,10 @@
 package javax.portlet.faces;
 
 /**
+ * Thrown when the one of the bridge's <code>doFacesRequest</code> methods is called and the bridge is in an
+ * uninitialized state.
+ *
+ * @author  Michael Freedman
  * @author  Neil Griffin
  */
 public class BridgeUninitializedException extends BridgeException {

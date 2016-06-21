@@ -23,6 +23,24 @@ import java.lang.annotation.Target;
 
 
 /**
+ * The <code>BridgePreDestroy</code> annotation is used on methods as a callback notification to signal that the
+ * instance is in the process of being removed by the bridge from the bridge request scope. This method complements one
+ * using {@link javax.annotation.PreDestroy} to allow the object to release resources that it has been holding. It
+ * exists because the existing pre-destroy method must be ignored as it is called by the container even though the
+ * bridge continues to manage the object in its request scope. The method on which this annotation is applied MUST
+ * fulfill all of the following criteria:
+ *
+ * <ul>
+ *   <li>The method MUST NOT have any parameters</li>
+ *   <li>The return type of the method MUST be void.</li>
+ *   <li>The method MUST NOT throw a checked exception.</li>
+ *   <li>The method on which it is applied MUST be public.</li>
+ *   <li>The method MUST NOT be static.</li>
+ *   <li>The method MAY be final.</li>
+ *   <li>If the method throws an unchecked exception it is ignored.</li>
+ * </ul>
+ *
+ * @author  Michael Freedman
  * @author  Neil Griffin
  */
 @Documented

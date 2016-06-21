@@ -22,6 +22,10 @@ import javax.faces.context.FacesContext;
 
 
 /**
+ * Utility class designed to make it easy for Faces subsystems including the bridge itself to determine whether this
+ * request is running in a portlet container and/or which portlet request phase it is executing in.
+ *
+ * @author  Michael Freedman
  * @author  Neil Griffin
  */
 public final class BridgeUtil {
@@ -31,6 +35,12 @@ public final class BridgeUtil {
 		throw new AssertionError();
 	}
 
+	/**
+	 * Indicates the portlet lifecycle phase currently being executed within the execution of the Faces lifecycle.
+	 *
+	 * @return  The portlet lifecycle phase if the current request is executing within a portlet environment. Otherwise
+	 *          <code>null</code>.
+	 */
 	public static Bridge.PortletPhase getPortletRequestPhase() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
@@ -39,6 +49,11 @@ public final class BridgeUtil {
 		return (Bridge.PortletPhase) requestMap.get(Bridge.PORTLET_LIFECYCLE_PHASE);
 	}
 
+	/**
+	 * Indicates whether the current request is executing in the portlet container.
+	 *
+	 * @return  <code>true</code> if the request is a portlet request, otherwise <code>false</code>.
+	 */
 	public static boolean isPortletRequest() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
