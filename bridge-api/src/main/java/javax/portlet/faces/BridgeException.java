@@ -19,6 +19,10 @@ import javax.faces.FacesException;
 
 
 /**
+ * Generic exception thrown when the bridge encounters an unexpected error. The message returned in this exception
+ * should contain the details of the specific problem.
+ *
+ * @author  Michael Freedman
  * @author  Neil Griffin
  */
 public class BridgeException extends FacesException {
