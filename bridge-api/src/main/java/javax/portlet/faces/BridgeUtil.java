@@ -43,6 +43,19 @@ public final class BridgeUtil {
 	 */
 	public static Bridge.PortletPhase getPortletRequestPhase() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
+
+		return getPortletRequestPhase(facesContext);
+	}
+
+	/**
+	 * Indicates the portlet lifecycle phase currently being executed within the execution of the Faces lifecycle.
+	 *
+	 * @param   facesContext  The current Faces context.
+	 *
+	 * @return  The portlet lifecycle phase if the current request is executing within a portlet environment. Otherwise
+	 *          <code>null</code>.
+	 */
+	public static Bridge.PortletPhase getPortletRequestPhase(FacesContext facesContext) {
 		ExternalContext externalContext = facesContext.getExternalContext();
 		Map<String, Object> requestMap = externalContext.getRequestMap();
 
@@ -56,6 +69,18 @@ public final class BridgeUtil {
 	 */
 	public static boolean isPortletRequest() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
+
+		return isPortletRequest(facesContext);
+	}
+
+	/**
+	 * Indicates whether the current request is executing in the portlet container.
+	 *
+	 * @param   facesContext  The current Faces context.
+	 *
+	 * @return  <code>true</code> if the request is a portlet request, otherwise <code>false</code>.
+	 */
+	public static boolean isPortletRequest(FacesContext facesContext) {
 		ExternalContext externalContext = facesContext.getExternalContext();
 		Map<String, Object> requestMap = externalContext.getRequestMap();
 		Bridge.PortletPhase portletPhase = (Bridge.PortletPhase) requestMap.get(Bridge.PORTLET_LIFECYCLE_PHASE);
