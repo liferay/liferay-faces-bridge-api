@@ -56,9 +56,9 @@ public interface Bridge {
 
 	/**
 	 * Portlet request attribute set by an include filter in recognition of the {@link #RENDER_CONTENT_AFTER_VIEW}
-	 * attribute. Its value is either char[] or byte[] holding the {@link #AFTER_VIEW_CONTENT} generated while rendering
-	 * a JSP. In conjunction with the bridge this enables preserving rendering order of native JSP rendering and Faces
-	 * rendering in a JSP.
+	 * attribute. Its value is either char[] or byte[] holding the <code>AFTER_VIEW_CONTENT</code> generated while
+	 * rendering a JSP. In conjunction with the bridge this enables preserving rendering order of native JSP rendering
+	 * and Faces rendering in a JSP.
 	 */
 	public static final String AFTER_VIEW_CONTENT = "javax.portlet.faces.AfterViewContent";
 
@@ -284,7 +284,7 @@ public interface Bridge {
 	 * representing the Faces viewId the bridge is to target for this request. Used by a portlet to specifically control
 	 * a request's view target in situations such as navigating from a non-Faces view to a specific Faces view (other
 	 * than the default). Generally, the use of this attribute is mutually exclusive with the use of {@link #VIEW_PATH}.
-	 * If both have been set in a given request, the bridge gives precedence to {@link #VIEW_ID}.
+	 * If both have been set in a given request, the bridge gives precedence to <code>VIEW_ID</code>.
 	 */
 	public static final String VIEW_ID = "javax.portlet.faces.viewId";
 
@@ -303,8 +303,8 @@ public interface Bridge {
 	 * containing a <code>ContextPath</code> relative path in which the Faces viewId is encoded. Like {@link #VIEW_ID},
 	 * this attribute provides a means for a portlet to explicitly control the Faces target for a specific request. It
 	 * is used in situations such as navigating from a non-Faces view to a specific Faces view (other than the default).
-	 * Generally, the use of this attribute is mutually exclusive with the use of {@link #VIEW_PATH}. If both have been
-	 * set in a given request, the bridge gives precedence to {@link #VIEW_ID}.
+	 * Generally, the use of this attribute is mutually exclusive with the use of <code>VIEW_PATH</code>. If both have
+	 * been set in a given request, the bridge gives precedence to {@link #VIEW_ID}.
 	 */
 	public static final String VIEW_PATH = "javax.portlet.faces.viewPath";
 
