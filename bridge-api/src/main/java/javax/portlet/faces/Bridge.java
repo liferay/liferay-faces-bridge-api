@@ -183,6 +183,12 @@ public interface Bridge {
 	public static final String IS_POSTBACK_ATTRIBUTE = "javax.portlet.faces.isPostback";
 
 	/**
+	 * Context initialization parameter that defines the lifecycle ID used to identify the Faces Lifecycle used for this
+	 * application. See also {@link javax.faces.webapp.FacesServlet#LIFECYCLE_ID_ATTR}.
+	 */
+	public static final String LIFECYCLE_ID = "javax.faces.LIFECYCLE_ID";
+
+	/**
 	 * Context initialization parameter that specifies the maximum number of bridge request scopes to be preserved
 	 * across all uses within this application.
 	 */
