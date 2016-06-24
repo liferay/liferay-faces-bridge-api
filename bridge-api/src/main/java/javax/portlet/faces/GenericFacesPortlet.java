@@ -40,6 +40,11 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import com.liferay.faces.bridge.BridgeEventHandlerFactory;
+import com.liferay.faces.bridge.BridgeEventHandlerWrapper;
+import com.liferay.faces.bridge.BridgePublicRenderParameterHandlerFactory;
+import com.liferay.faces.bridge.BridgePublicRenderParameterHandlerWrapper;
+
 
 /**
  * The <code>GenericFacesPortlet</code> is provided to simplify development of a portlet that in whole or part relies on
@@ -90,7 +95,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	/**
 	 * Application (PortletContext) init parameter that names the bridge class used by this application. Typically not
-	 * used unless more then 1 bridge is configured in an environment as its more usual to rely on the self detection.
+	 * used unless more then 1 bridge is configured in an environment as it is more usual to rely on the self detection.
 	 */
 	public static final String BRIDGE_CLASS = "javax.portlet.faces.BridgeClassName";
 
@@ -186,20 +191,12 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 		if (bridgeEventHandler == null) {
 
-			// TCK TestPage016: initMethodTest
 			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.BRIDGE_EVENT_HANDLER;
-			String className = getPortletConfig().getInitParameter(initParamName);
+			PortletConfig portletConfig = getPortletConfig();
+			String bridgeEventHandlerClass = portletConfig.getInitParameter(initParamName);
 
-			if (className != null) {
-				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-				try {
-					Class<?> clazz = classLoader.loadClass(className);
-					bridgeEventHandler = (BridgeEventHandler) clazz.newInstance();
-				}
-				catch (Exception e) {
-					throw new PortletException(e);
-				}
+			if (bridgeEventHandlerClass != null) {
+				bridgeEventHandler = new DeferredBridgeEventHandler(portletConfig);
 			}
 		}
 
@@ -220,20 +217,12 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 		if (bridgePublicRenderParameterHandler == null) {
 
-			// TCK TestPage016: initMethodTest
 			String initParamName = Bridge.BRIDGE_PACKAGE_PREFIX + Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER;
-			String className = getPortletConfig().getInitParameter(initParamName);
+			PortletConfig portletConfig = getPortletConfig();
+			String bridgePublicRenderParameterHandlerClass = portletConfig.getInitParameter(initParamName);
 
-			if (className != null) {
-				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-				try {
-					Class<?> clazz = classLoader.loadClass(className);
-					bridgePublicRenderParameterHandler = (BridgePublicRenderParameterHandler) clazz.newInstance();
-				}
-				catch (Exception e) {
-					throw new PortletException(e);
-				}
+			if (bridgePublicRenderParameterHandlerClass != null) {
+				bridgePublicRenderParameterHandler = new DeferredBridgePublicRenderParameterHandler(portletConfig);
 			}
 		}
 
@@ -355,12 +344,12 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * @deprecated  This method is no longer used or called by the <code>GenericFacesPortlet</code> but retained in case
-	 *              a subclass has called it.
-	 *
 	 * @param       portletRequest  The current portlet request.
 	 *
 	 * @return      <code>null</code>
+	 *
+	 * @deprecated  This method is no longer used or called by the <code>GenericFacesPortlet</code> but retained in case
+	 *              a subclass has called it.
 	 */
 	@Deprecated
 	public String getResponseCharacterSetEncoding(PortletRequest portletRequest) {
@@ -368,12 +357,12 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * @deprecated  This method is no longer used or called by the <code>GenericFacesPortlet</code> but retained in case
-	 *              a subclass has called it.
-	 *
 	 * @param       portletRequest  The current portlet request.
 	 *
 	 * @return      The value obtained by calling {@link PortletRequest#getResponseContentType()}.
+	 *
+	 * @deprecated  This method is no longer used or called by the <code>GenericFacesPortlet</code> but retained in case
+	 *              a subclass has called it.
 	 */
 	@Deprecated
 	public String getResponseContentType(PortletRequest portletRequest) {
@@ -722,5 +711,77 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 
 		return bridgeService;
+	}
+
+	private static class DeferredBridgeEventHandler extends BridgeEventHandlerWrapper {
+
+		private PortletConfig portletConfig;
+
+		// Instance field must be declared volatile in order for the double-check idiom to work (requires JRE 1.5+)
+		private volatile BridgeEventHandler wrappedBridgeEventHandler;
+
+		public DeferredBridgeEventHandler(PortletConfig portletConfig) {
+			this.portletConfig = portletConfig;
+		}
+
+		@Override
+		public BridgeEventHandler getWrapped() {
+
+			BridgeEventHandler bridgeEventHandler = wrappedBridgeEventHandler;
+
+			// First check without locking (not yet thread-safe)
+			if (bridgeEventHandler == null) {
+
+				synchronized (this) {
+
+					bridgeEventHandler = wrappedBridgeEventHandler;
+
+					// Second check with locking (thread-safe)
+					if (bridgeEventHandler == null) {
+						bridgeEventHandler = wrappedBridgeEventHandler = BridgeEventHandlerFactory
+								.getBridgeEventHandlerInstance(portletConfig);
+					}
+				}
+			}
+
+			return bridgeEventHandler;
+		}
+	}
+
+	private static class DeferredBridgePublicRenderParameterHandler extends BridgePublicRenderParameterHandlerWrapper {
+
+		private PortletConfig portletConfig;
+
+		// Instance field must be declared volatile in order for the double-check idiom to work (requires JRE 1.5+)
+		private volatile BridgePublicRenderParameterHandler wrappedBridgePublicRenderParameterHandler;
+
+		public DeferredBridgePublicRenderParameterHandler(PortletConfig portletConfig) {
+			this.portletConfig = portletConfig;
+		}
+
+		@Override
+		public BridgePublicRenderParameterHandler getWrapped() {
+
+			BridgePublicRenderParameterHandler bridgePublicRenderParameterHandler =
+				wrappedBridgePublicRenderParameterHandler;
+
+			// First check without locking (not yet thread-safe)
+			if (bridgePublicRenderParameterHandler == null) {
+
+				synchronized (this) {
+
+					bridgePublicRenderParameterHandler = wrappedBridgePublicRenderParameterHandler;
+
+					// Second check with locking (thread-safe)
+					if (bridgePublicRenderParameterHandler == null) {
+						bridgePublicRenderParameterHandler = wrappedBridgePublicRenderParameterHandler =
+								BridgePublicRenderParameterHandlerFactory.getBridgePublicRenderParameterHandlerInstance(
+									portletConfig);
+					}
+				}
+			}
+
+			return bridgePublicRenderParameterHandler;
+		}
 	}
 }
