@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.liferay.faces</groupId>
 	<artifactId>com.liferay.faces.bridge.api</artifactId>
-	<version>5.0.0-SNAPSHOT</version>
+	<version>6.0.0-SNAPSHOT</version>
 	<name>Liferay Faces Bridge API</name>
 	<description>Liferay Faces Bridge API</description>
 
@@ -100,7 +100,7 @@
 
 	<properties>
 		<faces.api.version>${faces.spec.version}</faces.api.version>
-		<faces.spec.version>2.2</faces.spec.version>
+		<faces.spec.version>2.3-edr1</faces.spec.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire.version>2.12</surefire.version>
