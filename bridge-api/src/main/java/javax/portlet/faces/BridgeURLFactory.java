@@ -13,15 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.bridge;
+package javax.portlet.faces;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.FacesWrapper;
 import javax.faces.context.FacesContext;
-import javax.portlet.faces.BridgeException;
-import javax.portlet.faces.BridgeFactoryFinder;
 
 
 /**
