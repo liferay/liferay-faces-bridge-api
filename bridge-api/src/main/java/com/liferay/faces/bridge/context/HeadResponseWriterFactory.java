@@ -28,10 +28,10 @@ import com.liferay.faces.bridge.BridgeFactoryFinder;
 public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResponseWriterFactory> {
 
 	/**
-	 * Returns an instance of {@link HeadResponseWriter} from the {@link HeadResponseWriterFactory} found by the {@link
+	 * Returns an instance of {@link ResponseWriter} from the {@link HeadResponseWriterFactory} found by the {@link
 	 * BridgeFactoryFinder}.
 	 */
-	public static HeadResponseWriter getHeadResponseWriterInstance(ResponseWriter responseWriter,
+	public static ResponseWriter getHeadResponseWriterInstance(ResponseWriter responseWriter,
 		PortletResponse portletResponse) {
 
 		HeadResponseWriterFactory headResponseWriterFactory = (HeadResponseWriterFactory) BridgeFactoryFinder
@@ -40,6 +40,6 @@ public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResp
 		return headResponseWriterFactory.getHeadResponseWriter(responseWriter, portletResponse);
 	}
 
-	public abstract HeadResponseWriter getHeadResponseWriter(ResponseWriter responseWriter,
+	public abstract ResponseWriter getHeadResponseWriter(ResponseWriter responseWriter,
 		PortletResponse portletResponse);
 }
