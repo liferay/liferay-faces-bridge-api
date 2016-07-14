@@ -26,6 +26,12 @@ import javax.portlet.faces.BridgePublicRenderParameterHandler;
 public abstract class BridgePublicRenderParameterHandlerFactory
 	implements FacesWrapper<BridgePublicRenderParameterHandlerFactory> {
 
+	/**
+	 * Returns a new instance of {@link BridgePublicRenderParameterHandler} from the {@link
+	 * BridgePublicRenderParameterHandlerFactory} found by the {@link FactoryExtensionFinder}. The returned instance is
+	 * designed to be used during execution of a request thread, so it is not guaranteed to be {@link
+	 * java.io.Serializable}.
+	 */
 	public static BridgePublicRenderParameterHandler getBridgePublicRenderParameterHandlerInstance(
 		PortletConfig portletConfig) {
 
@@ -36,9 +42,16 @@ public abstract class BridgePublicRenderParameterHandlerFactory
 		return bridgePublicRenderParameterHandlerFactory.getBridgePublicRenderParameterHandler(portletConfig);
 	}
 
+	/**
+	 * Returns a new instance of {@link BridgePublicRenderParameterHandler}. The returned instance is designed to be
+	 * used during execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 */
 	public abstract BridgePublicRenderParameterHandler getBridgePublicRenderParameterHandler(
 		PortletConfig portletConfig);
 
+	/**
+	 * Returns the wrapped factory instance if this factory has been decorated. Otherwise, this method returns null.
+	 */
 	@Override
 	public abstract BridgePublicRenderParameterHandlerFactory getWrapped();
 }

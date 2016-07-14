@@ -28,8 +28,9 @@ import com.liferay.faces.bridge.BridgeFactoryFinder;
 public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResponseWriterFactory> {
 
 	/**
-	 * Returns an instance of {@link ResponseWriter} from the {@link HeadResponseWriterFactory} found by the {@link
-	 * BridgeFactoryFinder}.
+	 * Returns a new instance of {@link ResponseWriter} from the {@link HeadResponseWriterFactory} found by the {@link
+	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ResponseWriter getHeadResponseWriterInstance(ResponseWriter responseWriter,
 		PortletResponse portletResponse) {
@@ -40,6 +41,16 @@ public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResp
 		return headResponseWriterFactory.getHeadResponseWriter(responseWriter, portletResponse);
 	}
 
+	/**
+	 * Returns a new instance of {@link ResponseWriter}. The returned instance is designed to be used during execution
+	 * of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 */
 	public abstract ResponseWriter getHeadResponseWriter(ResponseWriter responseWriter,
 		PortletResponse portletResponse);
+
+	/**
+	 * Returns the wrapped factory instance if this factory has been decorated. Otherwise, this method returns null.
+	 */
+	@Override
+	public abstract HeadResponseWriterFactory getWrapped();
 }
