@@ -172,7 +172,7 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 	public abstract BridgeURL getBridgeResourceURL(FacesContext facesContext, String uri) throws BridgeException;
 
 	/**
-	 * Returns the wrapped factory instance if this factory has been decorated. Otherwise, this method returns null.
+	 * Returns the wrapped factory instance if this factory decorates another. Otherwise, this method returns null.
 	 */
 	@Override
 	public abstract BridgeURLFactory getWrapped();

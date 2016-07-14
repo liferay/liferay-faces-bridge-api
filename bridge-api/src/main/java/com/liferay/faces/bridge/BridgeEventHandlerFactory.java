@@ -46,7 +46,7 @@ public abstract class BridgeEventHandlerFactory implements Wrapper<BridgeEventHa
 	public abstract BridgeEventHandler getBridgeEventHandler(PortletConfig portletConfig);
 
 	/**
-	 * Returns the wrapped factory instance if this factory has been decorated. Otherwise, this method returns null.
+	 * Returns the wrapped factory instance if this factory decorates another. Otherwise, this method returns null.
 	 */
 	@Override
 	public abstract BridgeEventHandlerFactory getWrapped();
