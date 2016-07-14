@@ -35,8 +35,9 @@ import javax.portlet.faces.BridgeFactoryFinder;
 public abstract class BridgePortletRequestFactory implements FacesWrapper<BridgePortletRequestFactory> {
 
 	/**
-	 * Returns an instance of {@link ActionRequest} from the {@link BridgePortletRequestFactory} found by the {@link
-	 * BridgeFactoryFinder}.
+	 * Returns a new instance of {@link ActionRequest} from the {@link BridgePortletRequestFactory} found by the {@link
+	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ActionRequest getActionRequestInstance(ActionRequest actionRequest, ActionResponse actionResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -48,8 +49,9 @@ public abstract class BridgePortletRequestFactory implements FacesWrapper<Bridge
 	}
 
 	/**
-	 * Returns an instance of {@link EventRequest} from the {@link BridgePortletRequestFactory} found by the {@link
-	 * BridgeFactoryFinder}.
+	 * Returns a new instance of {@link EventRequest} from the {@link BridgePortletRequestFactory} found by the {@link
+	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static EventRequest getEventRequestInstance(EventRequest eventRequest, EventResponse eventResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -61,8 +63,9 @@ public abstract class BridgePortletRequestFactory implements FacesWrapper<Bridge
 	}
 
 	/**
-	 * Returns an instance of {@link RenderRequest} from the {@link BridgePortletRequestFactory} found by the {@link
-	 * BridgeFactoryFinder}.
+	 * Returns a new instance of {@link RenderRequest} from the {@link BridgePortletRequestFactory} found by the {@link
+	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static RenderRequest getRenderRequestInstance(RenderRequest renderRequest, RenderResponse renderResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -74,8 +77,9 @@ public abstract class BridgePortletRequestFactory implements FacesWrapper<Bridge
 	}
 
 	/**
-	 * Returns an instance of {@link ResourceRequest} from the {@link BridgePortletRequestFactory} found by the {@link
-	 * BridgeFactoryFinder}.
+	 * Returns a new instance of {@link ResourceRequest} from the {@link BridgePortletRequestFactory} found by the
+	 * {@link FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request
+	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ResourceRequest getResourceRequestInstance(ResourceRequest resourceRequest,
 		ResourceResponse resourceResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -87,15 +91,37 @@ public abstract class BridgePortletRequestFactory implements FacesWrapper<Bridge
 				bridgeConfig);
 	}
 
+	/**
+	 * Returns a new instance of {@link ActionRequest}. The returned instance is designed to be used during execution of
+	 * a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 */
 	public abstract ActionRequest getActionRequest(ActionRequest actionRequest, ActionResponse actionResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
+	/**
+	 * Returns a new instance of {@link EventRequest}. The returned instance is designed to be used during execution of
+	 * a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 */
 	public abstract EventRequest getEventRequest(EventRequest eventRequest, EventResponse eventResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
+	/**
+	 * Returns a new instance of {@link RenderRequest}. The returned instance is designed to be used during execution of
+	 * a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 */
 	public abstract RenderRequest getRenderRequest(RenderRequest renderRequest, RenderResponse renderResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
+	/**
+	 * Returns a new instance of {@link ResourceRequest}. The returned instance is designed to be used during execution
+	 * of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 */
 	public abstract ResourceRequest getResourceRequest(ResourceRequest resourceRequest,
 		ResourceResponse resourceResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig);
+
+	/**
+	 * Returns the wrapped factory instance if this factory has been decorated. Otherwise, this method returns null.
+	 */
+	@Override
+	public abstract BridgePortletRequestFactory getWrapped();
 }

@@ -24,6 +24,11 @@ import javax.portlet.PortletConfig;
  */
 public abstract class BridgeEventHandlerFactory implements FacesWrapper<BridgeEventHandlerFactory> {
 
+	/**
+	 * Returns a new instance of {@link BridgeEventHandler} from the {@link BridgeEventHandlerFactory} found by the
+	 * {@link FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request
+	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 */
 	public static BridgeEventHandler getBridgeEventHandlerInstance(PortletConfig portletConfig) {
 
 		BridgeEventHandlerFactory bridgeEventHandlerFactory = (BridgeEventHandlerFactory) BridgeFactoryFinder
@@ -32,5 +37,15 @@ public abstract class BridgeEventHandlerFactory implements FacesWrapper<BridgeEv
 		return bridgeEventHandlerFactory.getBridgeEventHandler(portletConfig);
 	}
 
+	/**
+	 * Returns a new instance of {@link BridgeEventHandler}. The returned instance is designed to be used during
+	 * execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 */
 	public abstract BridgeEventHandler getBridgeEventHandler(PortletConfig portletConfig);
+
+	/**
+	 * Returns the wrapped factory instance if this factory has been decorated. Otherwise, this method returns null.
+	 */
+	@Override
+	public abstract BridgeEventHandlerFactory getWrapped();
 }
