@@ -27,8 +27,9 @@ import javax.portlet.PortletRequest;
 public abstract class RequestAttributeInspectorFactory implements Wrapper<RequestAttributeInspectorFactory> {
 
 	/**
-	 * Returns an instance of {@link RequestAttributeInspector} from the {@link RequestAttributeInspectorFactory} found
-	 * by the {@link BridgeFactoryFinder}.
+	 * Returns a new instance of {@link RequestAttributeInspector} from the {@link RequestAttributeInspectorFactory}
+	 * found by the {@link FactoryExtensionFinder}. The returned instance is designed to be used during execution of a
+	 * request thread, so it is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static RequestAttributeInspector getRequestAttributeInspectorInstance(PortletRequest portletRequest,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -40,6 +41,16 @@ public abstract class RequestAttributeInspectorFactory implements Wrapper<Reques
 				bridgeConfig);
 	}
 
+	/**
+	 * Returns a new instance of {@link RequestAttributeInspector}. The returned instance is designed to be used during
+	 * execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 */
 	public abstract RequestAttributeInspector getRequestAttributeInspector(PortletRequest portletRequest,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
+
+	/**
+	 * Returns the wrapped factory instance if this factory has been decorated. Otherwise, this method returns null.
+	 */
+	@Override
+	public abstract RequestAttributeInspectorFactory getWrapped();
 }
