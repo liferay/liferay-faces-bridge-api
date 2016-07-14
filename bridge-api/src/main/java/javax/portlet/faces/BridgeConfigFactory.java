@@ -28,8 +28,9 @@ import javax.portlet.PortletConfig;
 public abstract class BridgeConfigFactory implements FacesWrapper<BridgeConfigFactory> {
 
 	/**
-	 * Returns an instance of {@link BridgeConfig} from the {@link BridgeConfigFactory} found by the {@link
-	 * BridgeFactoryFinder}.
+	 * Returns a new instance of {@link BridgeConfig} from the {@link BridgeConfigFactory} found by the {@link
+	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * is not guaranteed to be {@link java.io.Serializable}.
 	 *
 	 * @param  portletConfig  The configuration associated with the current portlet.
 	 */
@@ -41,5 +42,17 @@ public abstract class BridgeConfigFactory implements FacesWrapper<BridgeConfigFa
 		return bridgeConfigFactory.getBridgeConfig(portletConfig);
 	}
 
+	/**
+	 * Returns a new instance of {@link BridgeConfig}. The returned instance is designed to be used during execution of
+	 * a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 *
+	 * @param  portletConfig  The configuration associated with the current portlet.
+	 */
 	public abstract BridgeConfig getBridgeConfig(PortletConfig portletConfig);
+
+	/**
+	 * Returns the wrapped factory instance if this factory has been decorated. Otherwise, this method returns null.
+	 */
+	@Override
+	public abstract BridgeConfigFactory getWrapped();
 }
