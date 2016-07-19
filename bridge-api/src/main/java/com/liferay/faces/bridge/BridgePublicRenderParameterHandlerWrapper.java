@@ -26,10 +26,10 @@ import javax.portlet.faces.BridgePublicRenderParameterHandler;
 public abstract class BridgePublicRenderParameterHandlerWrapper implements BridgePublicRenderParameterHandler,
 	FacesWrapper<BridgePublicRenderParameterHandler> {
 
-	@Override
+	// Java 1.6+ @Override
 	public abstract BridgePublicRenderParameterHandler getWrapped();
 
-	@Override
+	// Java 1.6+ @Override
 	public void processUpdates(FacesContext facesContext) {
 		getWrapped().processUpdates(facesContext);
 	}

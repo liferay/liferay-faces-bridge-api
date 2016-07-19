@@ -27,10 +27,10 @@ import javax.portlet.faces.event.EventNavigationResult;
  */
 public abstract class BridgeEventHandlerWrapper implements BridgeEventHandler, FacesWrapper<BridgeEventHandler> {
 
-	@Override
+	// Java 1.6+ @Override
 	public abstract BridgeEventHandler getWrapped();
 
-	@Override
+	// Java 1.6+ @Override
 	public EventNavigationResult handleEvent(FacesContext facesContext, Event event) {
 		return getWrapped().handleEvent(facesContext, event);
 	}
