@@ -28,7 +28,7 @@ public abstract class BridgePublicRenderParameterHandlerFactory
 
 	/**
 	 * Returns a new instance of {@link BridgePublicRenderParameterHandler} from the {@link
-	 * BridgePublicRenderParameterHandlerFactory} found by the {@link FactoryExtensionFinder}. The returned instance is
+	 * BridgePublicRenderParameterHandlerFactory} found by the {@link BridgeFactoryFinder}. The returned instance is
 	 * designed to be used during execution of a request thread, so it is not guaranteed to be {@link
 	 * java.io.Serializable}.
 	 */

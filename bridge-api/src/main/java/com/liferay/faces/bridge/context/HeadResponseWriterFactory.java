@@ -29,7 +29,7 @@ public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResp
 
 	/**
 	 * Returns a new instance of {@link ResponseWriter} from the {@link HeadResponseWriterFactory} found by the {@link
-	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
 	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ResponseWriter getHeadResponseWriterInstance(ResponseWriter responseWriter,

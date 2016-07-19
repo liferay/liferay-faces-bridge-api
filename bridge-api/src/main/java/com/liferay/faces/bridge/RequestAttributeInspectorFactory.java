@@ -27,7 +27,7 @@ public abstract class RequestAttributeInspectorFactory implements FacesWrapper<R
 
 	/**
 	 * Returns a new instance of {@link RequestAttributeInspector} from the {@link RequestAttributeInspectorFactory}
-	 * found by the {@link FactoryExtensionFinder}. The returned instance is designed to be used during execution of a
+	 * found by the {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a
 	 * request thread, so it is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static RequestAttributeInspector getRequestAttributeInspectorInstance(PortletRequest portletRequest,
