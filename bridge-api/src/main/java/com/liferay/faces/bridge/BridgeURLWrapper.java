@@ -29,27 +29,27 @@ public abstract class BridgeURLWrapper implements BridgeURL {
 		return getWrapped().getParameter(name);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public Map<String, String[]> getParameterMap() {
 		return getWrapped().getParameterMap();
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public String getViewId() {
 		return getWrapped().getViewId();
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public String removeParameter(String name) {
 		return getWrapped().removeParameter(name);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public void setParameter(String name, String value) {
 		getWrapped().setParameter(name, value);
 	}
 
-	@Override
+	// Java 1.6+ @Override
 	public void setParameter(String name, String[] value) {
 		getWrapped().setParameter(name, value);
 	}
