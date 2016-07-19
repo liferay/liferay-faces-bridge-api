@@ -37,7 +37,7 @@ public abstract class BridgePortletRequestFactory implements Wrapper<BridgePortl
 
 	/**
 	 * Returns a new instance of {@link ActionRequest} from the {@link BridgePortletRequestFactory} found by the {@link
-	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
 	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ActionRequest getActionRequestInstance(ActionRequest actionRequest, ActionResponse actionResponse,
@@ -51,7 +51,7 @@ public abstract class BridgePortletRequestFactory implements Wrapper<BridgePortl
 
 	/**
 	 * Returns a new instance of {@link EventRequest} from the {@link BridgePortletRequestFactory} found by the {@link
-	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
 	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static EventRequest getEventRequestInstance(EventRequest eventRequest, EventResponse eventResponse,
@@ -65,7 +65,7 @@ public abstract class BridgePortletRequestFactory implements Wrapper<BridgePortl
 
 	/**
 	 * Returns a new instance of {@link RenderRequest} from the {@link BridgePortletRequestFactory} found by the {@link
-	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
 	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static RenderRequest getRenderRequestInstance(RenderRequest renderRequest, RenderResponse renderResponse,
@@ -79,7 +79,7 @@ public abstract class BridgePortletRequestFactory implements Wrapper<BridgePortl
 
 	/**
 	 * Returns a new instance of {@link ResourceRequest} from the {@link BridgePortletRequestFactory} found by the
-	 * {@link FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request
+	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
 	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ResourceRequest getResourceRequestInstance(ResourceRequest resourceRequest,

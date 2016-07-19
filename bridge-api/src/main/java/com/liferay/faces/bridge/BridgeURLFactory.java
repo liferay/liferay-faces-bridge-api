@@ -33,7 +33,7 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 	/**
 	 * Returns a new action URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
-	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
 	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgeActionURLInstance(FacesContext facesContext, String uri) {
@@ -45,7 +45,7 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 	/**
 	 * Returns a new bookmarkable URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the
-	 * {@link FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request
+	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
 	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgeBookmarkableURLInstance(FacesContext facesContext, String uri,
@@ -58,7 +58,7 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 	/**
 	 * Returns a new partial action URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the
-	 * {@link FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request
+	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
 	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgePartialActionURLInstance(FacesContext facesContext, String uri) {
@@ -70,7 +70,7 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 	/**
 	 * Returns a new redirect URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
-	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
 	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgeRedirectURLInstance(FacesContext facesContext, String uri,
@@ -83,7 +83,7 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 	/**
 	 * Returns a new resource URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
-	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
 	 * is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgeResourceURLInstance(FacesContext facesContext, String uri) {

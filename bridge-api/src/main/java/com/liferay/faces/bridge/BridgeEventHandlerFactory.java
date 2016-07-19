@@ -28,7 +28,7 @@ public abstract class BridgeEventHandlerFactory implements Wrapper<BridgeEventHa
 
 	/**
 	 * Returns a new instance of {@link BridgeEventHandler} from the {@link BridgeEventHandlerFactory} found by the
-	 * {@link FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request
+	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
 	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeEventHandler getBridgeEventHandlerInstance(PortletConfig portletConfig) {
