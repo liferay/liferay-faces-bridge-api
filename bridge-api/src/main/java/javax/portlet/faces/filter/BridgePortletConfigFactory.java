@@ -27,7 +27,7 @@ public abstract class BridgePortletConfigFactory implements FacesWrapper<BridgeP
 
 	/**
 	 * Returns a new instance of {@link PortletConfig} from the {@link BridgePortletConfigFactory} found by the {@link
-	 * FactoryExtensionFinder}. The returned instance is designed to be used during execution of a request thread, so it
+	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
 	 * is not guaranteed to be {@link java.io.Serializable}.
 	 *
 	 * @param  portletConfig  The configuration associated with the current portlet.
