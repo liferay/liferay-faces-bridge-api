@@ -38,21 +38,14 @@ public abstract class BridgeFactoryFinder {
 		if (instance == null) {
 
 			ServiceLoader<BridgeFactoryFinder> serviceLoader = ServiceLoader.load(BridgeFactoryFinder.class);
+			Iterator<BridgeFactoryFinder> iterator = serviceLoader.iterator();
 
-			if (serviceLoader != null) {
-
-				Iterator<BridgeFactoryFinder> iterator = serviceLoader.iterator();
-
-				while ((instance == null) && iterator.hasNext()) {
-					instance = iterator.next();
-				}
-
-				if (instance == null) {
-					throw new FacesException("Unable locate service for " + BridgeFactoryFinder.class.getName());
-				}
+			while ((instance == null) && iterator.hasNext()) {
+				instance = iterator.next();
 			}
-			else {
-				throw new FacesException("Unable to acquire ServiceLoader for " + BridgeFactoryFinder.class.getName());
+
+			if (instance == null) {
+				throw new FacesException("Unable locate service for " + BridgeFactoryFinder.class.getName());
 			}
 		}
 
