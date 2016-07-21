@@ -25,13 +25,13 @@ import java.util.Set;
 public interface BridgeConfig {
 
 	/**
-	 * Returns a map of bridge configuration attributes.
+	 * Returns an immutable {@link Map} of bridge configuration attributes.
 	 */
 	public Map<String, Object> getAttributes();
 
 	/**
-	 * Returns a list of attribute names that are to be excluded from the bridge request scope as defined in the
-	 * bridge:excluded-attributes element within the faces-config.xml descriptor.
+	 * Returns an immutable {@link Set} of attribute names that are to be excluded from the bridge request scope as
+	 * defined in the bridge:excluded-attributes element within the faces-config.xml descriptor.
 	 */
 	public Set<String> getExcludedRequestAttributes();
 
