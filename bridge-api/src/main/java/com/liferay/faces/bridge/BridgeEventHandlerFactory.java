@@ -27,9 +27,8 @@ import com.liferay.faces.util.helper.Wrapper;
 public abstract class BridgeEventHandlerFactory implements Wrapper<BridgeEventHandlerFactory> {
 
 	/**
-	 * Returns a new instance of {@link BridgeEventHandler} from the {@link BridgeEventHandlerFactory} found by the
-	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
-	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * Returns a thread-safe singleton instance of {@link BridgeEventHandler} from the {@link BridgeEventHandlerFactory}
+	 * found by the {@link BridgeFactoryFinder}.
 	 */
 	public static BridgeEventHandler getBridgeEventHandlerInstance(PortletConfig portletConfig) {
 
@@ -40,8 +39,7 @@ public abstract class BridgeEventHandlerFactory implements Wrapper<BridgeEventHa
 	}
 
 	/**
-	 * Returns a new instance of {@link BridgeEventHandler}. The returned instance is designed to be used during
-	 * execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * Returns a thread-safe singleton instance of {@link BridgeEventHandler}.
 	 */
 	public abstract BridgeEventHandler getBridgeEventHandler(PortletConfig portletConfig);
 
