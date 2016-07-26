@@ -25,8 +25,8 @@ import javax.portlet.PortletConfig;
 public abstract class BridgeEventHandlerFactory implements FacesWrapper<BridgeEventHandlerFactory> {
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link BridgeEventHandler} from the {@link BridgeEventHandlerFactory}
-	 * found by the {@link BridgeFactoryFinder}.
+	 * Returns a thread-safe instance of {@link BridgeEventHandler} from the {@link BridgeEventHandlerFactory} found by
+	 * the {@link BridgeFactoryFinder}.
 	 */
 	public static BridgeEventHandler getBridgeEventHandlerInstance(PortletConfig portletConfig) {
 
@@ -37,7 +37,7 @@ public abstract class BridgeEventHandlerFactory implements FacesWrapper<BridgeEv
 	}
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link BridgeEventHandler}.
+	 * Returns a thread-safe instance of {@link BridgeEventHandler}.
 	 */
 	public abstract BridgeEventHandler getBridgeEventHandler(PortletConfig portletConfig);
 
