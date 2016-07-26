@@ -26,8 +26,8 @@ import javax.portlet.faces.BridgeFactoryFinder;
 public abstract class BridgePortletContextFactory implements FacesWrapper<BridgePortletContextFactory> {
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link PortletContext} from the {@link BridgePortletContextFactory}
-	 * found by the {@link BridgeFactoryFinder}.
+	 * Returns a thread-safe instance of {@link PortletContext} from the {@link BridgePortletContextFactory} found by
+	 * the {@link BridgeFactoryFinder}.
 	 */
 	public static PortletContext getPortletContextInstance(PortletContext portletContext) {
 
@@ -38,7 +38,7 @@ public abstract class BridgePortletContextFactory implements FacesWrapper<Bridge
 	}
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link PortletContext}.
+	 * Returns a thread-safe instance of {@link PortletContext}.
 	 */
 	public abstract PortletContext getPortletContext(PortletContext portletContext);
 
