@@ -27,7 +27,8 @@ public abstract class BridgePublicRenderParameterHandlerFactory
 
 	/**
 	 * Returns a thread-safe instance of {@link BridgePublicRenderParameterHandler} from the {@link
-	 * BridgePublicRenderParameterHandlerFactory} found by the {@link BridgeFactoryFinder}.
+	 * BridgePublicRenderParameterHandlerFactory} found by the {@link BridgeFactoryFinder}. The returned instance is not
+	 * guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgePublicRenderParameterHandler getBridgePublicRenderParameterHandlerInstance(
 		PortletConfig portletConfig) {
@@ -40,7 +41,8 @@ public abstract class BridgePublicRenderParameterHandlerFactory
 	}
 
 	/**
-	 * Returns a thread-safe instance of {@link BridgePublicRenderParameterHandler}.
+	 * Returns a thread-safe instance of {@link BridgePublicRenderParameterHandler}. The returned instance is not
+	 * guaranteed to be {@link java.io.Serializable}.
 	 */
 	public abstract BridgePublicRenderParameterHandler getBridgePublicRenderParameterHandler(
 		PortletConfig portletConfig);
