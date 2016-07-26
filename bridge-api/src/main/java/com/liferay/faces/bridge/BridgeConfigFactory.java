@@ -18,9 +18,6 @@ package com.liferay.faces.bridge;
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
 
-import com.liferay.faces.bridge.BridgeFactoryFinder;
-
-
 /**
  * This abstract class provides a contract for defining a factory that knows how to create instances of type {@link
  * BridgeConfig} and {@link PortletConfig}.
@@ -30,8 +27,8 @@ import com.liferay.faces.bridge.BridgeFactoryFinder;
 public abstract class BridgeConfigFactory implements FacesWrapper<BridgeConfigFactory> {
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link BridgeConfig} from the {@link BridgeConfigFactory} found by
-	 * the {@link BridgeFactoryFinder}.
+	 * Returns a thread-safe instance of {@link BridgeConfig} from the {@link BridgeConfigFactory} found by the
+	 * {@link BridgeFactoryFinder}.
 	 *
 	 * @param  portletConfig  The configuration associated with the current portlet.
 	 */
@@ -44,7 +41,7 @@ public abstract class BridgeConfigFactory implements FacesWrapper<BridgeConfigFa
 	}
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link BridgeConfig}.
+	 * Returns a thread-safe instance of {@link BridgeConfig}.
 	 *
 	 * @param  portletConfig  The configuration associated with the current portlet.
 	 */

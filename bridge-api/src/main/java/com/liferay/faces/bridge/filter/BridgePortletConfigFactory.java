@@ -27,8 +27,8 @@ import com.liferay.faces.bridge.BridgeFactoryFinder;
 public abstract class BridgePortletConfigFactory implements FacesWrapper<BridgePortletConfigFactory> {
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link PortletConfig} from the {@link BridgePortletConfigFactory}
-	 * found by the {@link BridgeFactoryFinder}.
+	 * Returns a thread-safe instance of {@link PortletConfig} from the {@link BridgePortletConfigFactory} found by the
+	 * {@link BridgeFactoryFinder}.
 	 *
 	 * @param  portletConfig  The configuration associated with the current portlet.
 	 */
@@ -41,7 +41,7 @@ public abstract class BridgePortletConfigFactory implements FacesWrapper<BridgeP
 	}
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link PortletConfig}.
+	 * Returns a thread-safe instance of {@link PortletConfig}.
 	 *
 	 * @param  portletConfig  The configuration associated with the current portlet.
 	 */
