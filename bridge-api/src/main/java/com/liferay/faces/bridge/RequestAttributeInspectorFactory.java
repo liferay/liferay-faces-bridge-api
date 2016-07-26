@@ -27,8 +27,8 @@ public abstract class RequestAttributeInspectorFactory implements FacesWrapper<R
 
 	/**
 	 * Returns a new instance of {@link RequestAttributeInspector} from the {@link RequestAttributeInspectorFactory}
-	 * found by the {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a
-	 * request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * found by the {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}.
 	 */
 	public static RequestAttributeInspector getRequestAttributeInspectorInstance(PortletRequest portletRequest,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -41,8 +41,8 @@ public abstract class RequestAttributeInspectorFactory implements FacesWrapper<R
 	}
 
 	/**
-	 * Returns a new instance of {@link RequestAttributeInspector}. The returned instance is designed to be used during
-	 * execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * Returns a new instance of {@link RequestAttributeInspector}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}.
 	 */
 	public abstract RequestAttributeInspector getRequestAttributeInspector(PortletRequest portletRequest,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
