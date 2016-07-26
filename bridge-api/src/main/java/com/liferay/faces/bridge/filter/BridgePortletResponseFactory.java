@@ -37,8 +37,7 @@ public abstract class BridgePortletResponseFactory implements Wrapper<BridgePort
 
 	/**
 	 * Returns a new instance of {@link ActionResponse} from the {@link BridgePortletResponseFactory} found by the
-	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
-	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ActionResponse getActionResponseInstance(ActionRequest actionRequest, ActionResponse actionResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -52,8 +51,7 @@ public abstract class BridgePortletResponseFactory implements Wrapper<BridgePort
 
 	/**
 	 * Returns a new instance of {@link EventResponse} from the {@link BridgePortletResponseFactory} found by the {@link
-	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
-	 * is not guaranteed to be {@link java.io.Serializable}.
+	 * BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static EventResponse getEventResponseInstance(EventRequest eventRequest, EventResponse eventResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -66,8 +64,7 @@ public abstract class BridgePortletResponseFactory implements Wrapper<BridgePort
 
 	/**
 	 * Returns a new instance of {@link RenderResponse} from the {@link BridgePortletResponseFactory} found by the
-	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
-	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static RenderResponse getRenderResponseInstance(RenderRequest renderRequest, RenderResponse renderResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -81,8 +78,7 @@ public abstract class BridgePortletResponseFactory implements Wrapper<BridgePort
 
 	/**
 	 * Returns a new instance of {@link ResourceResponse} from the {@link BridgePortletResponseFactory} found by the
-	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
-	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ResourceResponse getResourceResponseInstance(ResourceRequest resourceRequest,
 		ResourceResponse resourceResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig) {
@@ -95,29 +91,29 @@ public abstract class BridgePortletResponseFactory implements Wrapper<BridgePort
 	}
 
 	/**
-	 * Returns a new instance of {@link ActionResponse}. The returned instance is designed to be used during execution
-	 * of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * Returns a new instance of {@link ActionResponse}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}.
 	 */
 	public abstract ActionResponse getActionResponse(ActionRequest actionRequest, ActionResponse actionResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
 	/**
-	 * Returns a new instance of {@link EventResponse}. The returned instance is designed to be used during execution of
-	 * a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * Returns a new instance of {@link EventResponse}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}.
 	 */
 	public abstract EventResponse getEventResponse(EventRequest eventRequest, EventResponse eventResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
 	/**
-	 * Returns a new instance of {@link RenderResponse}. The returned instance is designed to be used during execution
-	 * of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * Returns a new instance of {@link RenderResponse}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}.
 	 */
 	public abstract RenderResponse getRenderResponse(RenderRequest renderRequest, RenderResponse renderResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
 	/**
-	 * Returns a new instance of {@link ResourceResponse}. The returned instance is designed to be used during execution
-	 * of a request thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * Returns a new instance of {@link ResourceResponse}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}.
 	 */
 	public abstract ResourceResponse getResourceResponse(ResourceRequest resourceRequest,
 		ResourceResponse resourceResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig);

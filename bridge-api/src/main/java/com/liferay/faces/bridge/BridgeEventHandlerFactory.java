@@ -28,7 +28,7 @@ public abstract class BridgeEventHandlerFactory implements Wrapper<BridgeEventHa
 
 	/**
 	 * Returns a thread-safe instance of {@link BridgeEventHandler} from the {@link BridgeEventHandlerFactory} found by
-	 * the {@link BridgeFactoryFinder}.
+	 * the {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeEventHandler getBridgeEventHandlerInstance(PortletConfig portletConfig) {
 
@@ -39,7 +39,8 @@ public abstract class BridgeEventHandlerFactory implements Wrapper<BridgeEventHa
 	}
 
 	/**
-	 * Returns a thread-safe instance of {@link BridgeEventHandler}.
+	 * Returns a thread-safe instance of {@link BridgeEventHandler}. The returned instance is not guaranteed to be
+	 * {@link java.io.Serializable}.
 	 */
 	public abstract BridgeEventHandler getBridgeEventHandler(PortletConfig portletConfig);
 
