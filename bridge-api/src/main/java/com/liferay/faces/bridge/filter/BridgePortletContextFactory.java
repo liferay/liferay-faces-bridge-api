@@ -27,8 +27,8 @@ import com.liferay.faces.util.helper.Wrapper;
 public abstract class BridgePortletContextFactory implements Wrapper<BridgePortletContextFactory> {
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link PortletContext} from the {@link BridgePortletContextFactory}
-	 * found by the {@link BridgeFactoryFinder}.
+	 * Returns a thread-safe instance of {@link PortletContext} from the {@link BridgePortletContextFactory} found by
+	 * the {@link BridgeFactoryFinder}.
 	 */
 	public static PortletContext getPortletContextInstance(PortletContext portletContext) {
 
@@ -39,7 +39,7 @@ public abstract class BridgePortletContextFactory implements Wrapper<BridgePortl
 	}
 
 	/**
-	 * Returns a thread-safe singleton instance of {@link PortletContext}.
+	 * Returns a thread-safe instance of {@link PortletContext}.
 	 */
 	public abstract PortletContext getPortletContext(PortletContext portletContext);
 
