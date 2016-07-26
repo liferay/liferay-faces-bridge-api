@@ -31,8 +31,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 	/**
 	 * Returns a new action URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
-	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
-	 * is not guaranteed to be {@link java.io.Serializable}.
+	 * BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgeActionURLInstance(FacesContext facesContext, String uri) {
 
@@ -43,8 +42,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 	/**
 	 * Returns a new bookmarkable URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the
-	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
-	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgeBookmarkableURLInstance(FacesContext facesContext, String uri,
 		Map<String, List<String>> parameters) {
@@ -56,8 +54,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 	/**
 	 * Returns a new partial action URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the
-	 * {@link BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request
-	 * thread, so it is not guaranteed to be {@link java.io.Serializable}.
+	 * {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgePartialActionURLInstance(FacesContext facesContext, String uri) {
 
@@ -68,8 +65,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 	/**
 	 * Returns a new redirect URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
-	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
-	 * is not guaranteed to be {@link java.io.Serializable}.
+	 * BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgeRedirectURLInstance(FacesContext facesContext, String uri,
 		Map<String, List<String>> parameters) {
@@ -81,8 +77,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 	/**
 	 * Returns a new resource URL instance of {@link BridgeURL} from the {@link BridgeURLFactory} found by the {@link
-	 * BridgeFactoryFinder}. The returned instance is designed to be used during execution of a request thread, so it
-	 * is not guaranteed to be {@link java.io.Serializable}.
+	 * BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static BridgeURL getBridgeResourceURLInstance(FacesContext facesContext, String uri) {
 
@@ -92,10 +87,9 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	}
 
 	/**
-	 * Returns a new action URL instance of {@link BridgeURL}. The returned instance is designed to be used during
-	 * execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}. The return value of
-	 * {@link BridgeURL#toString()} conforms to the deviation requirements of {@link
-	 * javax.faces.context.ExternalContext#encodeActionURL(String)} listed in Section 6.1.3.1 of the Bridge Spec.
+	 * Returns a new action URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the deviation requirements of
+	 * {@link javax.faces.context.ExternalContext#encodeActionURL(String)} listed in Section 6.1.3.1 of the Bridge Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
 	 * @param   uri           The URI that is to be encoded.
@@ -107,10 +101,9 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	public abstract BridgeURL getBridgeActionURL(FacesContext facesContext, String uri) throws BridgeException;
 
 	/**
-	 * Returns a new bookmarkable URL instance of {@link BridgeURL}. The returned instance is designed to be used during
-	 * execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}. The return value of
-	 * {@link BridgeURL#toString()} conforms to the requirements of {@link
-	 * javax.faces.context.ExternalContext#encodeBookmarkableURL(String, Map)}.
+	 * Returns a new bookmarkable URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be
+	 * {@link java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the requirements of
+	 * {@link javax.faces.context.ExternalContext#encodeBookmarkableURL(String, Map)}.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
 	 * @param   uri           The URI that is to be encoded.
@@ -123,10 +116,9 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 		Map<String, List<String>> parameters) throws BridgeException;
 
 	/**
-	 * Returns a new partial action URL instance of {@link BridgeURL}. The returned instance is designed to be used
-	 * during execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}. The return
-	 * value of {@link BridgeURL#toString()} conforms to the requirements of {@link
-	 * javax.faces.context.ExternalContext#encodePartialActionURL(String)}.
+	 * Returns a new partial action URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be
+	 * {@link java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the requirements of
+	 * {@link javax.faces.context.ExternalContext#encodePartialActionURL(String)}.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
 	 * @param   uri           The URI that is to be encoded.
@@ -138,9 +130,8 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	public abstract BridgeURL getBridgePartialActionURL(FacesContext facesContext, String uri) throws BridgeException;
 
 	/**
-	 * Returns a new redirect URL instance of {@link BridgeURL}. The returned instance is designed to be used during
-	 * execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}. The return value of
-	 * {@link BridgeURL#toString()}, conforms to the requirements of {@link
+	 * Returns a new redirect URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}. The return value of {@link BridgeURL#toString()}, conforms to the requirements of {@link
 	 * javax.faces.context.ExternalContext#encodeRedirectURL(String, Map)} and the deviation requirements of {@link
 	 * javax.faces.context.ExternalContext#redirect(String)} listed in Section 6.1.3.1 of the Bridge Spec.
 	 *
@@ -155,10 +146,10 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 		Map<String, List<String>> parameters) throws BridgeException;
 
 	/**
-	 * Returns a new resource URL instance of {@link BridgeURL}. The returned instance is designed to be used during
-	 * execution of a request thread, so it is not guaranteed to be {@link java.io.Serializable}. The return value of
-	 * {@link BridgeURL#toString()} conforms to the deviation requirements of {@link
-	 * javax.faces.context.ExternalContext#encodeResourceURL(String)} listed in Section 6.1.3.1 of the Bridge Spec.
+	 * Returns a new resource URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the deviation requirements of
+	 * {@link javax.faces.context.ExternalContext#encodeResourceURL(String)} listed in Section 6.1.3.1 of the Bridge
+	 * Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
 	 * @param   uri           The URI that is to be encoded.

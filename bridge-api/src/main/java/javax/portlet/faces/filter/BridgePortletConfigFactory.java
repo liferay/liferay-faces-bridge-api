@@ -27,7 +27,7 @@ public abstract class BridgePortletConfigFactory implements FacesWrapper<BridgeP
 
 	/**
 	 * Returns a thread-safe instance of {@link PortletConfig} from the {@link BridgePortletConfigFactory} found by the
-	 * {@link BridgeFactoryFinder}.
+	 * {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 *
 	 * @param  portletConfig  The configuration associated with the current portlet.
 	 */
@@ -40,7 +40,8 @@ public abstract class BridgePortletConfigFactory implements FacesWrapper<BridgeP
 	}
 
 	/**
-	 * Returns a thread-safe instance of {@link PortletConfig}.
+	 * Returns a thread-safe instance of {@link PortletConfig}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}.
 	 *
 	 * @param  portletConfig  The configuration associated with the current portlet.
 	 */

@@ -27,7 +27,7 @@ public abstract class BridgePortletContextFactory implements FacesWrapper<Bridge
 
 	/**
 	 * Returns a thread-safe instance of {@link PortletContext} from the {@link BridgePortletContextFactory} found by
-	 * the {@link BridgeFactoryFinder}.
+	 * the {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static PortletContext getPortletContextInstance(PortletContext portletContext) {
 
@@ -38,7 +38,8 @@ public abstract class BridgePortletContextFactory implements FacesWrapper<Bridge
 	}
 
 	/**
-	 * Returns a thread-safe instance of {@link PortletContext}.
+	 * Returns a thread-safe instance of {@link PortletContext}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}.
 	 */
 	public abstract PortletContext getPortletContext(PortletContext portletContext);
 
