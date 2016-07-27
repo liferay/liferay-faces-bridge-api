@@ -26,31 +26,44 @@ import javax.faces.FacesException;
  */
 public abstract class BridgeFactoryFinder {
 
-	// Private Static Data Members
-	private static BridgeFactoryFinder instance;
-
 	public static Object getFactory(Class<?> clazz) {
 		return getInstance().getFactoryInstance(clazz);
 	}
 
 	public static BridgeFactoryFinder getInstance() throws FacesException {
+		return OnDemandBridgeFactoryFinder.instance;
+	}
 
-		if (instance == null) {
+	public abstract Object getFactoryInstance(Class<?> clazz);
+
+	private static class OnDemandBridgeFactoryFinder {
+
+		// Since this class is not referenced until BridgeFactoryFinder.getInstance() is called, the
+		// BridgeFactoryFinder instance will be lazily initialized when BridgeFactoryFinder.getInstance() is called.
+		// Class initialization is thread-safe. For more details on this pattern, see
+		// http://stackoverflow.com/questions/7420504/threading-lazy-initialization-vs-static-lazy-initialization.
+		private static final BridgeFactoryFinder instance;
+
+		static {
 
 			ServiceLoader<BridgeFactoryFinder> serviceLoader = ServiceLoader.load(BridgeFactoryFinder.class);
 			Iterator<BridgeFactoryFinder> iterator = serviceLoader.iterator();
 
-			while ((instance == null) && iterator.hasNext()) {
-				instance = iterator.next();
+			BridgeFactoryFinder bridgeFactoryFinder = null;
+
+			while ((bridgeFactoryFinder == null) && iterator.hasNext()) {
+				bridgeFactoryFinder = iterator.next();
 			}
 
-			if (instance == null) {
+			if (bridgeFactoryFinder == null) {
 				throw new FacesException("Unable locate service for " + BridgeFactoryFinder.class.getName());
 			}
+
+			instance = bridgeFactoryFinder;
 		}
 
-		return instance;
+		private OnDemandBridgeFactoryFinder() {
+			throw new AssertionError();
+		}
 	}
-
-	public abstract Object getFactoryInstance(Class<?> clazz);
 }
