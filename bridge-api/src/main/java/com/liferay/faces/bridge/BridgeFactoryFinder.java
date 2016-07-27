@@ -19,6 +19,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.faces.FacesException;
 
@@ -28,74 +33,132 @@ import javax.faces.FacesException;
  */
 public abstract class BridgeFactoryFinder {
 
-	// Private Static Data Members
-	private static BridgeFactoryFinder instance;
-
-	public static String getClassPathResourceAsString(String resourcePath) {
-		String classPathResourceAsString = null;
-		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-		if (classLoader != null) {
-			InputStream inputStream = classLoader.getResourceAsStream(resourcePath);
-
-			if (inputStream != null) {
-				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-				BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-				try {
-					classPathResourceAsString = bufferedReader.readLine();
-				}
-				catch (IOException e) {
-
-					// Since the API can't use a logging system like SLF4J the best we can do is print to stderr.
-					System.err.println("Unable to read contents of resourcePath=[" + resourcePath + "]");
-				}
-				finally {
-
-					try {
-						bufferedReader.close();
-						inputStreamReader.close();
-						inputStream.close();
-					}
-					catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-
-		return classPathResourceAsString;
-	}
-
 	public static Object getFactory(Class<?> clazz) {
 		return getInstance().getFactoryInstance(clazz);
 	}
 
 	public static BridgeFactoryFinder getInstance() throws FacesException {
-
-		if (instance == null) {
-
-			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-			try {
-				String factoryFinderService = "META-INF/services/com.liferay.faces.bridge.BridgeFactoryFinder";
-				String facesFactoryFinderClassName = getClassPathResourceAsString(factoryFinderService);
-
-				if (facesFactoryFinderClassName != null) {
-					Class<?> facesFactoryFinderClass = classLoader.loadClass(facesFactoryFinderClassName);
-					instance = (BridgeFactoryFinder) facesFactoryFinderClass.newInstance();
-				}
-				else {
-					throw new FacesException("Unable to load resource=[" + factoryFinderService + "]");
-				}
-			}
-			catch (Exception e) {
-				throw new FacesException(e);
-			}
-		}
-
-		return instance;
+		return OnDemandBridgeFactoryFinder.instance;
 	}
 
 	public abstract Object getFactoryInstance(Class<?> clazz);
+
+	private static class OnDemandBridgeFactoryFinder {
+
+		// Since this class is not referenced until BridgeFactoryFinder.getInstance() is called, the
+		// BridgeFactoryFinder instance will be lazily initialized when BridgeFactoryFinder.getInstance() is called.
+		// Class initialization is thread-safe. For more details on this pattern, see
+		// http://stackoverflow.com/questions/7420504/threading-lazy-initialization-vs-static-lazy-initialization.
+		private static final BridgeFactoryFinder instance;
+
+		static {
+
+			ServiceFinder<BridgeFactoryFinder> serviceLoader = ServiceFinder.load(BridgeFactoryFinder.class);
+			Iterator<BridgeFactoryFinder> iterator = serviceLoader.iterator();
+
+			BridgeFactoryFinder bridgeFactoryFinder = null;
+
+			while ((bridgeFactoryFinder == null) && iterator.hasNext()) {
+				bridgeFactoryFinder = iterator.next();
+			}
+
+			if (bridgeFactoryFinder == null) {
+				throw new FacesException("Unable locate service for " + BridgeFactoryFinder.class.getName());
+			}
+
+			instance = bridgeFactoryFinder;
+		}
+
+		private OnDemandBridgeFactoryFinder() {
+			throw new AssertionError();
+		}
+	}
+
+	private static final class ServiceFinder<S> implements Iterable<S> {
+
+		private Class<S> serviceClass;
+
+		private ServiceFinder(Class<S> serviceClass) {
+			this.serviceClass = serviceClass;
+		}
+
+		private static <S> ServiceFinder<S> load(Class<S> serviceClass) {
+			return new ServiceFinder(serviceClass);
+		}
+
+		public Iterator<S> iterator() {
+
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			List<S> instances = new ArrayList<S>();
+			Enumeration<URL> resources = null;
+
+			try {
+				resources = classLoader.getResources("META-INF/services/" + serviceClass.getName());
+			}
+			catch (IOException e) {
+
+				System.err.println("Unable to obtain resources via path=[META-INF/services/" + serviceClass.getName() +
+					"]:");
+				System.err.println(e);
+			}
+
+			while ((resources != null) && resources.hasMoreElements()) {
+
+				URL resource = resources.nextElement();
+				InputStream inputStream = null;
+				InputStreamReader inputStreamReader = null;
+				BufferedReader bufferedReader = null;
+				String className = null;
+
+				try {
+
+					inputStream = resource.openStream();
+					inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+					bufferedReader = new BufferedReader(inputStreamReader);
+					className = bufferedReader.readLine();
+
+				}
+				catch (IOException e) {
+					System.err.println("Unable to read contents of resource=[" + resource.getPath() + "]");
+				}
+				finally {
+
+					try {
+
+						if (bufferedReader != null) {
+							bufferedReader.close();
+						}
+
+						if (inputStreamReader != null) {
+							inputStreamReader.close();
+						}
+
+						if (inputStream != null) {
+							inputStream.close();
+						}
+					}
+					catch (IOException e) {
+						// ignore
+					}
+				}
+
+				if (className != null) {
+
+					try {
+
+						Class<?> clazz = Class.forName(className);
+						S instance = (S) clazz.newInstance();
+						instances.add(instance);
+					}
+					catch (Exception e) {
+
+						System.err.println("Unable to instantiate class=[" + className + "]:");
+						System.err.println(e);
+					}
+				}
+			}
+
+			return instances.iterator();
+		}
+	}
 }
