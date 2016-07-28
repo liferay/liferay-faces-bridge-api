@@ -53,15 +53,4 @@ public interface BridgeConfig {
 	 */
 	public String getViewIdResourceParameterName();
 
-	/**
-	 * Returns the FQCN specified in the <code>render-response-wrapper-class</code> element of the faces-config.xml
-	 * descriptor.
-	 */
-	public String getWriteBehindRenderResponseWrapper();
-
-	/**
-	 * Returns the FQCN specified in the <code>resource-response-wrapper-class</code> element of the faces-config.xml
-	 * descriptor.
-	 */
-	public String getWriteBehindResourceResponseWrapper();
 }

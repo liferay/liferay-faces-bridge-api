@@ -55,14 +55,6 @@ import javax.portlet.ResourceResponse;
 public interface Bridge {
 
 	/**
-	 * Portlet request attribute set by an include filter in recognition of the {@link #RENDER_CONTENT_AFTER_VIEW}
-	 * attribute. Its value is either char[] or byte[] holding the <code>AFTER_VIEW_CONTENT</code> generated while
-	 * rendering a JSP. In conjunction with the bridge this enables preserving rendering order of native JSP rendering
-	 * and Faces rendering in a JSP.
-	 */
-	public static final String AFTER_VIEW_CONTENT = "javax.portlet.faces.AfterViewContent";
-
-	/**
 	 * Special token parameter in the URL passed to the bridge's implementation of {@link
 	 * javax.faces.context.ExternalContext#encodeResourceURL(String)} that it recognizes as an indication that an URL
 	 * referring back to the page which contains this portlet should be encoded in the resource URL. This reference is
@@ -255,18 +247,7 @@ public interface Bridge {
 	public static final String PRESERVE_ACTION_PARAMS = "preserveActionParams";
 
 	/**
-	 * Portlet request attribute set by the bridge in its {@link
-	 * javax.faces.application.ViewHandler#renderView(javax.faces.context.FacesContext,
-	 * javax.faces.component.UIViewRoot)} method prior to dispatching the request to the view (JSP) indicating a filter
-	 * should put the {@link #AFTER_VIEW_CONTENT} in a buffer on the request for it to process after rendering the view
-	 * components. In conjunction with the filter this enables preserving rendering order of native JSP rendering and
-	 * Faces rendering in a JSP.
-	 */
-	public static final String RENDER_CONTENT_AFTER_VIEW = "javax.portlet.faces.RenderContentAfterView";
-
-	/**
-	 * Context initialization parameter that defines the policy the bridge uses for rendering. Parameter value is the
-	 * string representation of one of the {@link BridgeRenderPolicy} enum values.
+	 * Context initialization parameter that defines the policy the bridge uses for rendering.
 	 */
 	public static final String RENDER_POLICY = "javax.portlet.faces.RENDER_POLICY";
 
@@ -322,18 +303,6 @@ public interface Bridge {
 	 */
 	public static enum PortletPhase {
 		ACTION_PHASE, EVENT_PHASE, RENDER_PHASE, RESOURCE_PHASE
-	}
-
-	/**
-	 * Enumeration whose values describe the render policy used by the bridge to render portlets in this application. A
-	 * policy of {@link BridgeRenderPolicy#DEFAULT} indicates the bridge will first delegate rendering and if this
-	 * results in an exception being thrown will render the itself. A policy of {@link
-	 * BridgeRenderPolicy#ALWAYS_DELEGATE} indicates the bridge will always delegate rendering, never rendering itself.
-	 * A policy of {@link BridgeRenderPolicy#NEVER_DELEGATE} indicates the bridge will always render itself without
-	 * delegating.
-	 */
-	public static enum BridgeRenderPolicy {
-		DEFAULT, ALWAYS_DELEGATE, NEVER_DELEGATE,
 	}
 
 	/**
