@@ -247,11 +247,6 @@ public interface Bridge {
 	public static final String PRESERVE_ACTION_PARAMS = "preserveActionParams";
 
 	/**
-	 * Context initialization parameter that defines the policy the bridge uses for rendering.
-	 */
-	public static final String RENDER_POLICY = "javax.portlet.faces.RENDER_POLICY";
-
-	/**
 	 * Context initialization parameter that defines the <code>SAVESTATE_FIELD_MARKER</code> in use in the given
 	 * deployment. If not set, consult your bridge implementation documentation to determine which Faces implementations
 	 * it automatically detects and supports. For example the bridge RI will detect and run properly in either the Faces
