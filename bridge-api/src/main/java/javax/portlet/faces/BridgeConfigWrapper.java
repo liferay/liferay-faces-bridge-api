@@ -48,11 +48,4 @@ public abstract class BridgeConfigWrapper implements BridgeConfig, FacesWrapper<
 		return getWrapped().getViewIdResourceParameterName();
 	}
 
-	public String getWriteBehindRenderResponseWrapper() {
-		return getWrapped().getWriteBehindRenderResponseWrapper();
-	}
-
-	public String getWriteBehindResourceResponseWrapper() {
-		return getWrapped().getWriteBehindResourceResponseWrapper();
-	}
 }
