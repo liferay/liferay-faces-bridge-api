@@ -46,7 +46,7 @@ public class PortletNamingContainerUIViewRoot extends UIViewRoot implements Nami
 	@Override
 	public String getContainerClientId(FacesContext facesContext) {
 
-		if (BridgeUtil.isPortletRequest()) {
+		if (BridgeUtil.isPortletRequest(facesContext)) {
 
 			if (namespace == null) {
 				ExternalContext externalContext = facesContext.getExternalContext();
