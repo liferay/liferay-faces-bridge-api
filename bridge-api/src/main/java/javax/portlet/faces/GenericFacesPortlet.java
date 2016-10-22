@@ -531,8 +531,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 	public void renderHeaders(HeaderRequest headerRequest, HeaderResponse headerResponse) throws PortletException,
 		IOException {
 
-		// TODO: FACES-2696
-		super.renderHeaders(headerRequest, headerResponse);
+		Bridge bridge = getFacesBridge(headerRequest, headerResponse);
+		bridge.doFacesRequest(headerRequest, headerResponse);
 	}
 
 	/**
