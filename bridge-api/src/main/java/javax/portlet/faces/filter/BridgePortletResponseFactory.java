@@ -20,6 +20,8 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
+import javax.portlet.HeaderRequest;
+import javax.portlet.HeaderResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -62,6 +64,20 @@ public abstract class BridgePortletResponseFactory implements FacesWrapper<Bridg
 	}
 
 	/**
+	 * Returns a new instance of {@link HeaderResponse} from the {@link BridgePortletResponseFactory} found by the
+	 * {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
+	 */
+	public static HeaderResponse getHeaderResponseInstance(HeaderRequest headerRequest, HeaderResponse headerResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
+
+		BridgePortletResponseFactory bridgePortletResponseFactory = (BridgePortletResponseFactory) BridgeFactoryFinder
+			.getFactory(BridgePortletResponseFactory.class);
+
+		return bridgePortletResponseFactory.getHeaderResponse(headerRequest, headerResponse, portletConfig,
+				bridgeConfig);
+	}
+
+	/**
 	 * Returns a new instance of {@link RenderResponse} from the {@link BridgePortletResponseFactory} found by the
 	 * {@link BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
@@ -101,6 +117,13 @@ public abstract class BridgePortletResponseFactory implements FacesWrapper<Bridg
 	 * java.io.Serializable}.
 	 */
 	public abstract EventResponse getEventResponse(EventRequest eventRequest, EventResponse eventResponse,
+		PortletConfig portletConfig, BridgeConfig bridgeConfig);
+
+	/**
+	 * Returns a new instance of {@link HeaderResponse}. The returned instance is not guaranteed to be {@link
+	 * java.io.Serializable}.
+	 */
+	public abstract HeaderResponse getHeaderResponse(HeaderRequest headerRequest, HeaderResponse headerResponse,
 		PortletConfig portletConfig, BridgeConfig bridgeConfig);
 
 	/**
