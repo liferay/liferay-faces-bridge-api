@@ -19,6 +19,8 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
+import javax.portlet.HeaderRequest;
+import javax.portlet.HeaderResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -297,7 +299,7 @@ public interface Bridge {
 	 * Enumeration whose values describe the current portlet phase the bridge is executing Faces within.
 	 */
 	public static enum PortletPhase {
-		ACTION_PHASE, EVENT_PHASE, RENDER_PHASE, RESOURCE_PHASE
+		ACTION_PHASE, EVENT_PHASE, RENDER_PHASE, RESOURCE_PHASE, HEADER_PHASE
 	}
 
 	/**
@@ -357,6 +359,9 @@ public interface Bridge {
 	 */
 	public void doFacesRequest(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws BridgeUninitializedException, BridgeException;
+
+	public void doFacesRequest(HeaderRequest headerRequest, HeaderResponse headerResponse)
+		throws BridgeDefaultViewNotSpecifiedException, BridgeUninitializedException, BridgeException;
 
 	/**
 	 * <p>Called by the portlet. It indicates that the bridge is being placed into service.</p>
