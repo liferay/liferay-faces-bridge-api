@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>javax.portlet.faces</groupId>
+	<artifactId>faces-bridge-spec</artifactId>
+	<version>2.0.1-mr1-SNAPSHOT</version>
+	<name>JSR 329 Specification</name>
+	<description>Portlet 2.0 Bridge for JavaServer™ Faces 1.2 Specification</description>
+	<url>https://java.net/projects/faces-bridge-spec</url>
+
+	<licenses>
+		<license>
+			<name>JSR 329 Specification License</name>
+		</license>
+	</licenses>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<configuration>
+						<archive>
+							<manifestEntries>
+								<Built-By>Release Manager</Built-By>
+								<Specification-Title>Portlet 2.0 Bridge for JavaServer Faces 1.2</Specification-Title>
+								<Specification-Vendor>Java Community Process (JSR 329)</Specification-Vendor>
+								<Specification-Version>${project.version}</Specification-Version>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.4</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.8.1</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>issue-tracking</report>
+							<report>license</report>
+							<report>project-team</report>
+							<report>scm</report>
+							<report>summary</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+</project>

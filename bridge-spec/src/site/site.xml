@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JSR 378: Portlet 3.0 Bridge for JavaServer Faces 2.2" xmlns="http://maven.apache.org/DECORATION/1.6.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/DECORATION/1.6.0 http://maven.apache.org/xsd/decoration-1.6.0.xsd">
+	<body>
+		<head>
+			<link rel="stylesheet" type="text/css" href="css/faces-bridge-spec.css" />
+		</head>
+		<breadcrumbs>
+			<item name="Specification" href="index.html" />
+		</breadcrumbs>
+		<menu name="Specification">
+			<item name="Table of Contents" href="index.html" />
+			<item name="1. Preface" href="chapter-1-preface.html" />
+			<item name="2. Overview" href="chapter-2-overview.html" />
+			<item name="3. Bridge Interface" href="chapter-3-bridge-interface.html" />
+			<item name="4. GenericFacesPortlet" href="chapter-4-genericfacesportlet.html" />
+			<item name="5. Request Lifecycle" href="chapter-5-request-lifecycle.html" />
+			<item name="6. Managing Faces" href="chapter-6-managing-faces.html" />
+			<item name="7. WriteBehindResponse" href="chapter-7-writebehindresponse.html" />
+			<item name="8. Faces Extensions" href="chapter-8-faces-extensions.html" />
+			<item name="Appendix. TCK Tests" href="tck-tests.html" />
+		</menu>
+		<menu name="Project">
+			<item name="Summary" href="project-summary.html" />
+			<item name="License" href="license.html" />
+			<item name="Issues" href="issue-tracking.html" />
+			<item name="Repository" href="source-repository.html" />
+			<item name="Expert Group" href="team-list.html" />
+		</menu>
+		<menu name="Twitter">
+			<item name="@FacesBridgeSpec" href="https://twitter.com/FacesBridgeSpec"></item>
+		</menu>
+	</body>
+	<poweredBy>
+		<logo name="Liferay Faces" href="http://www.liferayfaces.org"
+			  img="images/liferay-faces-bridge-ri.png"/>
+	</poweredBy>
+	<publishDate position="right"/>
+	<version position="right"/>
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.4</version>
+	</skin>
+	<custom>
+		<fluidoSkin>
+			<breadcrumbDivider>»</breadcrumbDivider>
+			<copyrightClass>pull-right</copyrightClass>
+			<gitHub>
+				<projectId>liferay/liferay-faces-bridge-api</projectId>
+				<ribbonOrientation>right</ribbonOrientation>
+				<ribbonColor>black</ribbonColor>
+			</gitHub>
+			<sideBarEnabled>true</sideBarEnabled>
+			<sourceLineNumbersEnabled>false</sourceLineNumbersEnabled>
+			<topBarEnabled>false</topBarEnabled>
+			<!--<twitter>-->
+				<!--<user>FacesBridgeSpec</user>-->
+				<!--<showUser>true</showUser>-->
+				<!--<showFollowers>true</showFollowers>-->
+			<!--</twitter>-->
+		</fluidoSkin>
+	</custom>
+</project>

@@ -1,0 +1,4 @@
+a.externalLink[href^=http], a.externalLink[href^=mailto] {
+	background: none;
+	padding-right: 0px;
+}
