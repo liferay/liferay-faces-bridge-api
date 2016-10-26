@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>javax.portlet.faces</groupId>
 	<artifactId>faces-bridge-spec</artifactId>
-	<version>2.0.1-mr1-SNAPSHOT</version>
-	<name>JSR 329 Specification</name>
-	<description>Portlet 2.0 Bridge for JavaServer™ Faces 1.2 Specification</description>
+	<version>6.0.0-edr1-SNAPSHOT</version>
+	<name>JSR 378 Specification</name>
+	<description>Portlet 3.0 Bridge for JavaServer™ Faces 2.2 Specification</description>
 	<url>https://java.net/projects/faces-bridge-spec</url>
 
 	<licenses>
 		<license>
-			<name>JSR 329 Specification License</name>
+			<name>JSR 378 Specification License</name>
 		</license>
 	</licenses>
 
@@ -31,8 +31,8 @@
 						<archive>
 							<manifestEntries>
 								<Built-By>Release Manager</Built-By>
-								<Specification-Title>Portlet 2.0 Bridge for JavaServer Faces 1.2</Specification-Title>
-								<Specification-Vendor>Java Community Process (JSR 329)</Specification-Vendor>
+								<Specification-Title>Portlet 3.0 Bridge for JavaServer Faces 2.2</Specification-Title>
+								<Specification-Vendor>Java Community Process (JSR 378)</Specification-Vendor>
 								<Specification-Version>${project.version}</Specification-Version>
 							</manifestEntries>
 						</archive>

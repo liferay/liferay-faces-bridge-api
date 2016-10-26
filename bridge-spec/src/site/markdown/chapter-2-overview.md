@@ -1,4 +1,4 @@
-_Version: 2.0.1-mr1-SNAPSHOT_
+_Version: 6.0.0-edr1-SNAPSHOT_
 
 # 2. Overview
 
@@ -26,8 +26,8 @@ behavior for JavaServer&trade; Faces.
 
 ## <a name="2.2"></a>2.2 What is a Portlet?
 
-A portlet is a Java&trade; module that executes within a portlet container that implements the [Portlet 2.0
-Specification](https://www.jcp.org/en/jsr/detail?id=286). Similar to a servlet-based web application (webapp), a portlet
+A portlet is a Java&trade; module that executes within a portlet container that implements the [Portlet 3.0
+Specification](https://www.jcp.org/en/jsr/detail?id=362). Similar to a servlet-based web application (webapp), a portlet
 has the ability to process incoming requests and write to an associated response. Whereas the Servlet API provides
 simple ServletRequest/ServletResponse pattern, the Portlet API provides multiple types of requests and responses. In
 addition, the Portlet Specification requires that portlet containers execute individual portlets within the context of

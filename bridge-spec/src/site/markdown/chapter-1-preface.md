@@ -1,14 +1,14 @@
-_Version: 2.0.1-mr1-SNAPSHOT_
+_Version: 6.0.0-edr1-SNAPSHOT_
 
 # 1. Preface
 
 * * *
 
-This document is the **Portlet 2.0 Bridge for JavaServer&trade; Faces 1.2 Specification**. It defines the subsystem that
+This document is the **Portlet 3.0 Bridge for JavaServer&trade; Faces 2.2 Specification**. It defines the subsystem that
 allows the JavaServer&trade; Faces (JSF) runtime to execute and satisfy a portlet request. The bridge is layered between
 the portlet container and the JSF runtime. As such, its behavior and implementation depends on both. There would need to
 be a discrete bridge specification and implementation for each version combination of the Portlet API and JSF API. This
-version specifies the bridging function necessary to execute JSF 1.2 views and resources in a Java&trade; Portlet 2.0
+version specifies the bridging function necessary to execute JSF 2.2 views and resources in a Java&trade; Portlet 3.0
 environment.
 
 ## <a name="1.1"></a>1.1 Additional Sources
@@ -17,14 +17,14 @@ The specification is intended to be a complete and clear explanation of the port
 the following may be consulted:
 
 - An open source reference implementation (RI) has been made available via the [Liferay Faces
-Bridge](http://www.liferay.com/community/liferay-projects/liferay-faces) project. It runs with the Mojarra 1.2
+Bridge](http://www.liferay.com/community/liferay-projects/liferay-faces) project. It runs with the Mojarra 2.2
 implementation in any portlet container. This RI provides a behavioral benchmark for this specification. Where the
 specification leaves implementation of a particular feature open to interpretation, implementors may use the reference
 implementation as a model that illustrates the intention of the specification.
 - A Technology Compatibility Kit (TCK) has been provided for assessing whether implementations meet the compatibility
 requirements of the this specification. The test results have normative value for resolving questions about whether or
 not an implementation is compliant.
-- If further clarification is required, the JSR 329 Expert Group should be consulted. It is the final arbiter of such
+- If further clarification is required, the JSR 378 Expert Group should be consulted. It is the final arbiter of such
 issues.
 
 Comments and feedback are welcomed, and will be used to improve future versions.
@@ -84,23 +84,23 @@ An accompanying Javadoc&trade; includes the full specifications of classes, inte
 
 ## <a name="1.4"></a>1.4 Important Dependent Java&trade; Specifications
 
-As a bridge between a Java Portlet 2.0 container and a JSF 1.2 environment, this specification depends directly on each
+As a bridge between a Java Portlet 3.0 container and a JSF 2.2 environment, this specification depends directly on each
 of these specifications:
 
-- [JavaServer&trade; Faces 1.2](https://www.jcp.org/en/jsr/detail?id=252)
-- [Java&trade; Portlet Specification 2.0](https://www.jcp.org/en/jsr/detail?id=286)
+- [JavaServer&trade; Faces 2.2](https://www.jcp.org/en/jsr/detail?id=344)
+- [Java&trade; Portlet Specification 3.0](https://www.jcp.org/en/jsr/detail?id=362)
 
-These specifications are available in their respective JSR homes (JSR 252; JSR 286) on
+These specifications are available in their respective JSR homes (JSR 344; JSR 362) on
 [http://www.jcp.org](http://www.jcp.org).
 
 ## <a name="1.5"></a>1.5 Dependent Java&trade; Versions
 
-The portlet bridge should run on any Java Portlet 2.0 container. It should also run on a portlet container running a
+The portlet bridge should run on any Java Portlet 3.0 container. It should also run on a portlet container running a
 newer version of the Java Portlet specification. However, it is recommended that the version of the bridge be paired
 with both the version of the Java Portlet container and JSF runtime it is deployed with. This ensures the best
 implementation for the given environment.
 
-The bridge requires a Java&trade; 1.5 environment because this is the minimum required version for running JSF 1.2.
+The bridge requires a Java&trade; 1.7 environment because this is the minimum required version for running JSF 2.2.
 
 ## <a name="1.6"></a>1.6 Terminology
 
@@ -110,18 +110,13 @@ document are to be interpreted as described in [RFC2119](https://www.ietf.org/rf
 ## <a name="1.7"></a>1.7 Providing Feedback
 
 We welcome any and all feedback about this specification. Please subscribe and e-mail your comments to
-jsr329-observers@faces-bridge-spec.java.net. Please note that due to the volume of feedback that we receive, you will
+jsr378-observers@faces-bridge-spec.java.net. Please note that due to the volume of feedback that we receive, you will
 not normally receive a reply from an engineer. However, each and every comment is read, evaluated, and archived by the
 specification team.
 
 ## <a name="1.8"></a>1.8 Acknowledgments
 
-The Portlet 2.0 Bridge Specification V1.0 is the result of the work of JSR 329 Expert Group which migrated from JSR 301:
-Subbu Allamaraju, Brodi Beartusk, Andy Bosch, Matt Brasier, Benjamin Bratkus, Wesley Budziwojski, Raschka Christian,
-Shankar Djeyassilane, Nikolai Dokovski, Ate Douma, Deepak Gothe, Ted Goddard, Wesley Hales, Jondean Haley, Roger Kitain,
-Danny Machak, Kito Mann, Martin Marinschek, Scott O'Bryan, Stan Silvert, Thomas Spiegl, Shashank Tiwari, Julien Viet,
-James Ward, and Carsten Ziegeler. Besides those above representing themselves, the following companies were represented
-in the expert group: BEA Systems, SAP AG, Oracle Corporation, HIPPO, Sun Microsystems, Icesoft Technologies Inc., Red
-Hat Middleware LLC., Adobe Systems, and S&N AG. Though the contributions of all were important, special thanks is given
-to Nikolai Dokovski of SAP AG and Scott O'Bryan of Oracle Corporation who were particularly active throughout the entire
-specification process and provided immeasurable support and feedback.
+This specification is the result of the work of JSR 378 Expert Group, building upon the foundation of the work done by
+the JSR 329 and JSR 301 Expert Groups. Though the contributions of all were important, special thanks is given to
+Michael Freedman for the work he did representing Oracle as the Spec Lead for JSR 329 and JSR 301. His mastery of the
+subject matter and his attention to detail are second-to-none.

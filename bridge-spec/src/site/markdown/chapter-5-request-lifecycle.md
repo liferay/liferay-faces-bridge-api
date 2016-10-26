@@ -1,4 +1,4 @@
-_Version: 2.0.1-mr1-SNAPSHOT_
+_Version: 6.0.0-edr1-SNAPSHOT_
 
 # 5. Request Lifecycle
 
