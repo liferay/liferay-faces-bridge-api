@@ -537,10 +537,11 @@ either the bridge's construction or a prior `release()`)<sup>[[5.62](tck-tests.h
 implementations may optionally perform security checks before acquiring the RequestDispatcher. Automatic resource
 dispatching is enabled if the portlet developer has specified the following init-param in the portlet.xml descriptor:
 
-	<init-param>
-		<name>javax.portlet.automaticResourceDispatching/name>
-		<value>true</value>
-	</init-param>
+
+    <init-param>
+        <name>javax.portlet.automaticResourceDispatching</name>
+        <value>true</value>
+    </init-param>
 
 - If the request targets a Faces resource:
     - acquire the `FacesContext` and `Lifecycle` as described above ensuring the appropriate target `viewId` will be
