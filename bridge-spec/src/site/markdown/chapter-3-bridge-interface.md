@@ -60,17 +60,6 @@ request scopes maintained by the bridge at any given time for all the portlets i
 application<sup>[[nt](tck-tests.html#NT)]</sup>. If not set the bridge provides an implementation dependent default
 maximum.
 
-`RENDER_POLICY` is a `javax.portlet.faces.Bridge.BridgeRenderPolicy` (enum) valued configuration parameter that when set
-controls whether or not the bridge delegates view rendering to another handler. Valid values include: `ALWAYS_DELEGATE`,
-`NEVER_DELEGATE`, `DEFAULT`. The value `ALWAYS_DELEGATE` indicates the bridge should not render the view itself but
-rather always delegate the rendering<sup>[[3.2](tck-tests.html#3.2)]</sup>. The value `NEVER_DELEGATE` indicates the
-bridge should always render the view itself and never delegate<sup>[[3.3](tck-tests.html#3.3)]</sup>. The value
-`DEFAULT` indicates the bridge should follow the requirements as specified
-[6.2](chapter-6-managing-faces.html#6.2) concerning implementing `renderView()`. This section
-directs the bridge to first delegate the render and if and only if an `Exception` is thrown then render the view based
-on its own logic<sup>[[3.4](tck-tests.html#3.4)]</sup>. If the configuration parameter is not present or has an invalid
-value the bridge renders using default behavior<sup>[[3.5](tck-tests.html#3.5)]</sup>. I.e. as if `DEFAULT` is set.
-
 `LIFECYCLE_ID` is a String valued configuration parameter that describes the `ID` of the `Lifecycle` the bridge uses
 when executing Faces requests<sup>[[3.6](tck-tests.html#3.6)]</sup>. If not set the bridge uses the ID for the default
 lifecycle (`LifecycleFactory.DEFAULT_LIFECYCLE`)<sup>[[3.7](tck-tests.html#3.7)]</sup>.
