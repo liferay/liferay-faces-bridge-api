@@ -190,21 +190,7 @@ _Version: 6.0.0-edr1-SNAPSHOT_
 
     [6.9 Setting the RenderKit used by a Portlet](chapter-6-managing-faces.html#6.9)
 
-7. [WriteBehindResponse](chapter-7-writebehindresponse.html)
-
-    [7.1 Support via a ServletFilter](chapter-7-writebehindresponse.html#7.1)
-
-    [7.1.1 Example Configuration](chapter-7-writebehindresponse.html#7.1.1)
-
-    [7.1.2 Version Considerations](chapter-7-writebehindresponse.html#7.1.2)
-
-    [7.1.3 Performance Considerations](chapter-7-writebehindresponse.html#7.1.3)
-
-    [7.2 Support via Portlet 2.0 ResponseWrapper](chapter-7-writebehindresponse.html#7.2)
-
-    [7.2.1 Configuring the Bridge to use a PortletResponseWrapper/WriteBehindResponse implementation](chapter-7-writebehindresponse.html#7.2.1)
-
-    [7.2.2 Version Considerations](chapter-7-writebehindresponse.html#7.2.2)
+7. _RESERVED_
 
 8. [Faces Extensions](chapter-8-faces-extensions.html)
 

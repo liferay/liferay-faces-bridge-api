@@ -19,38 +19,6 @@ used to verify behavior/compliance in environments that do provide the necessary
 Test: Write a portlet that gets Bridge API class and calls Class.getPackage to get the Specification Title and Version
 to compare with above statement.
 
-[<a name="3.2"></a>3.2] The value `ALWAYS_DELEGATE` indicates the bridge should not render the view itself but rather
-always delegate the rendering.
-
-Test: Run app with this config setting. Test by writing a ApplicationFactory to insert our own Application Impl that
-overrides setViewhandler which creates/installs the test ViewHandler before all others (on first call). In this text
-ViewHandlers render -- check to see what the renderpolicy is and set an appropriate msg indicator on the request
-(attribute)
-
-[<a name="3.3"></a>3.3] The value `NEVER_DELEGATE` indicates the bridge should always render the view itself and never
-delegate.
-
-Test: Run app with this config setting. Test by writing a ApplicationFactory to insert our own Application Impl that
-overrides setViewhandler which creates/installs the test ViewHandler before all others (on first call). In this text
-ViewHandlers render -- check to see what the renderpolicy is and set an appropriate msg indicator on the request
-(attribute)
-
-[<a name="3.4"></a>3.4] `DEFAULT` indicates .... the bridge to first delegate the render and if and only if an Exception
-is thrown then render the view based on its own logic
-
-Test: Run app with this config setting. Test by writing a ApplicationFactory to insert our own Application Impl that
-overrides setViewhandler which creates/installs the test ViewHandler before all others (on first call). In this text
-ViewHandlers render -- check to see what the renderpolicy is and set an appropriate msg indicator on the request
-(attribute)
-
-[<a name="3.5"></a>3.5] If the configuration parameter is not present or has an invalid value the bridge renders using
-default behavior. I.e. as if `DEFAULT` is set
-
-Test: Run app with this config setting. Test by writing a ApplicationFactory to insert our own Application Impl that
-overrides setViewhandler which creates/installs the test ViewHandler before all others (on first call). In this text
-ViewHandlers render -- check to see what the render policy is and set an appropriate msg indicator on the request
-(attribute)
-
 [<a name="3.6"></a>3.6] `LIFECYCLE_ID` is a `String` valued configuration parameter that describes the `ID` of the
 `Lifecycle` the bridge uses when executing Faces requests.
 
@@ -1610,13 +1578,6 @@ then ensure that the event response is set to cause the subsequent render to tar
 
 Test: Do as statement says -- in event handler call redirect to new view. In render, verify we are in that view. Also
 set request attr in action (that raises the event) and verify its not there in render to show that scope not saved.
-
-[<a name="6.132"></a>6.132] Create an instance of a `PortletResponseWrapper` object that implements
-`javax.portlet.faces.BridgeWriteBehindResponse` and set it in the Faces `ExternalContext` by calling
-`ExternalContext.setResponse()`
-
-Test: In JSP that render the page get the ExternalContext.getResponse and check that it implements
-BridgeWriteBehindResponse
 
 [<a name="6.133"></a>6.133] If an instance class is configured, it must be used (render case).
 
