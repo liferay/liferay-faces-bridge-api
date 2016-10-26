@@ -170,11 +170,11 @@ Test: Subclass GFP and override init, call super(), override each of the methods
 were called, verify appropriate context params set.
 
 [<a name="4.3"></a>4.3] When not overridden by a subclass, the `GenericFacesPortlet` processes the request by first
-determining if the target of the request is a Faces or a non-Faces view. A non-Faces view target is recognized if the
-request contains the parameter `_jsfBridgeNonFacesView`. The value of this parameter is the `ContextPath` relative path
-to the non-Faces target. To handle this request the `GenericFacesPortlet` sets the response contentType, if not already
-set, using the preferred contentType expressed by the portlet container. It then uses a portlet `RequestDispatcher` to
-dispatch(include) the non-Faces target.
+determining if the target of the request is a Faces or a non-Faces view. A non-Faces view target is recognized if
+automatic non-Faces view dispatching is enabled and the request contains the parameter `_jsfBridgeNonFacesView`. The
+value of this parameter is the `ContextPath` relative path to the non-Faces target. To handle this request the
+`GenericFacesPortlet` sets the response contentType, if not already set, using the preferred contentType expressed by
+the portlet container. It then uses a portlet `RequestDispatcher` to dispatch(include) the non-Faces target.
 
 Test: Subclass GFP and overide render (to set the testname). Run test as a multirequest test. On action set the
 navigation (face-config.xml) to a viewId that is a non-Faces view (has the appropriate QS parameter.
@@ -659,8 +659,8 @@ prior to acquiring the `FacesContext`.
 Test: render a page that has an iFrame referencing the resource.jsp which outputs its result. In the rendering of the
 result -- test that the phase is set.
 
-[<a name="5.64"></a>5.64] If the request targets a non-Faces resource, acquire a portlet `RequestDispatcher` and use
-`forward()` to render the resource.
+[<a name="5.64"></a>5.64] If automatic resource dispatching is enabled and the request targets a non-Faces resource,
+acquire a portlet `RequestDispatcher` and use `forward()` to render the resource.
 
 Test: Write a servlet that sets a session attribute based on whether its invoked from within a forward (check for
 javax.servlet.forward attrs). Access this as a resource. No markup necessary.

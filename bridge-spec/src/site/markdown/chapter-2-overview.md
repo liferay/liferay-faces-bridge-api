@@ -209,10 +209,10 @@ not being able to modify any consumer managed state, this feature enables many p
 (AJAX) processing is generally modeled as partial page requests. The JSF lifecycle runs exactly the same processing the
 submitted data followed by rendering, however only the impacted portions of the view are processed/rendered.
 
-The bridge deals with portlet served resources in one of two ways. If the request is for a non-JSF resource, the bridge
-handles the request by acquiring a request dispatcher and forwarding the request to the named resource. If the request
-is for a JSF resource, the bridge runs the full JSF lifecycle ensuring that data is processed and the resource (markup)
-is rendered.
+The bridge deals with portlet served resources in one of two ways. If automatic resource dispatching is enabled and the
+request is for a non-JSF resource the bridge handles the request by acquiring a request dispatcher and forwarding the
+request to the named resource. If the request is for a JSF resource, the bridge runs the full JSF lifecycle ensuring
+that data is processed and the resource (markup) is rendered.
 
 ### <a name="2.6.3"></a>2.6.3 Public Render Parameters
 

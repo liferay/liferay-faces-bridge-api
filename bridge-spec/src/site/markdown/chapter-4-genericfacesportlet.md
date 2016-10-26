@@ -201,11 +201,18 @@ annotating event methods).
 ### <a name="4.2.5"></a>4.2.5 Request Processing
 
 When not overridden by a subclass, the `GenericFacesPortlet` processes the request by first determining if the target of
-the request is a Faces or a non-Faces view. A non-Faces view target is recognized if the request contains the parameter
-`_jsfBridgeNonFacesView`. The value of this parameter is the `ContextPath` relative path to the non-Faces target. To
-handle this request the `GenericFacesPortlet` sets the response contentType, if not already set, using the preferred
-contentType expressed by the portlet container. It then uses a portlet `RequestDispatcher` to dispatch(include) the
-non-Faces target<sup>[[4.3](tck-tests.html#4.3)]</sup>.
+the request is a Faces or a non-Faces view. A non-Faces view target is recognized if automatic non-Faces view dispatching
+is enabled and the request contains the parameter `_jsfBridgeNonFacesView`. The value of this parameter is the
+`ContextPath` relative path to the non-Faces target. To handle this request the `GenericFacesPortlet` sets the response
+contentType, if not already set, using the preferred contentType expressed by the portlet container. It then uses a
+portlet `RequestDispatcher` to dispatch(include) the non-Faces target<sup>[[4.3](TCK-Tests.html#4.3)]</sup>. Automatic
+non-Faces view dispatching is enabled if the portlet developer has specified the following init-param in the portlet.xml
+descriptor:
+
+	<init-param>
+		<name>javax.portlet.faces.automaticNonFacesViewDispatching</name>
+		<value>true</value>
+	</init-param>
 
 All other requests are assumed by the `GenericFacesPortlet` to be Faces requests and are executed by calling the bridge.
 To facilitate navigations from non-Faces views to Faces views, the `GenericFacesPortlet` recognizes the request
