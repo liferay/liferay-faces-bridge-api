@@ -541,8 +541,8 @@ addressable resource. To process such an inputURL correctly, this method must:
     parameter(s) it has previously encoded. If this information doesn't exist, the target view is the default `viewId`
     defined by the portlet. The associated pathInfo and servletPath are constructed by determining the servlet mapping
     of the Faces servlet and constructing the appropriate paths such that they conform to the paths the servlet
-    container generates when processing an http request which targets this view as defined in SRV .4.4 in the Servlet
-    2.5 specification<sup>[[6.54](tck-tests.html#6.54)]</sup>.
+    container generates when processing an http request which targets this view as defined in SRV .3.4 in the Servlet
+    2.5 specification titled "Request Path Elements"<sup>[[6.54](tck-tests.html#6.54)]</sup>.
 
     Examples:
 
@@ -564,8 +564,8 @@ addressable resource. To process such an inputURL correctly, this method must:
     parameter(s) it has previously encoded. If this information doesn't exist, the target view is the default `viewId`
     defined by the portlet. The associated pathInfo and servletPath are constructed by determining the servlet mapping
     of the Faces servlet and constructing the appropriate paths such that they conform to the paths the servlet
-    container generates when processing an http request which targets this view as defined in SRV .4.4 in the Servlet
-    2.5 specification<sup>[[6.55](tck-tests.html#6.55)]</sup>.
+    container generates when processing an http request which targets this view as defined in SRV .3.4 in the Servlet
+    2.5 specification titled "Request Path Elements"<sup>[[6.55](tck-tests.html#6.55)]</sup>.
 
     Examples:
 

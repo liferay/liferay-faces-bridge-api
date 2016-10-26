@@ -531,8 +531,17 @@ In processing this request the bridge must:
 either the bridge's construction or a prior `release()`)<sup>[[5.62](tck-tests.html#5.62)]</sup>.
 - set the `javax.portlet.faces.phase` request attribute to `Bridge.PortletPhase.RESOURCE_PHASE` prior to acquiring the
 `FacesContext`<sup>[[5.63](tck-tests.html#5.63)]</sup>.
-- If the request targets a non-Faces resource, acquire a portlet `RequestDispatcher` and use `forward()` to render the
-resource<sup>[[5.64](tck-tests.html#5.64)]</sup>.
+
+- If automatic resource dispatching is enabled and the request targets a non-Faces resource, acquire a portlet
+`RequestDispatcher` and use `forward()` to render the resource<sup>[[5.64](TCK-Tests.html#5.64)]</sup>. Bridge
+implementations may optionally perform security checks before acquiring the RequestDispatcher. Automatic resource
+dispatching is enabled if the portlet developer has specified the following init-param in the portlet.xml descriptor:
+
+	<init-param>
+		<name>javax.portlet.automaticResourceDispatching/name>
+		<value>true</value>
+	</init-param>
+
 - If the request targets a Faces resource:
     - acquire the `FacesContext` and `Lifecycle` as described above ensuring the appropriate target `viewId` will be
     processed [5.2.3](chapter-5-request-lifecycle.html#5.2.3).
