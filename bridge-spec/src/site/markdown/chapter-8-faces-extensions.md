@@ -20,7 +20,7 @@ file. They should not be registered as a service provider.
 
 Unfortunately, the Faces extensions implemented by the bridge aren't limited to those that are configured via the
 service provider mechanism. The bridge also extends the `ViewHandler` and
-`StateManager`[[6.2](chapter-6-managing-faces.html#6.2) and [6.3](chapter-6-managing-faces.html#6.3)]. The `ViewHandler`
+`StateManager`[[6.2](chapter-6-managing-faces.md#6.2) and [6.3](chapter-6-managing-faces.md#6.3)]. The `ViewHandler`
 and `StateManager` are configured in its `faces-config.xml` that its in the `META-INF` directory of its jar file. As
 Faces doesn't define a set precedence order when like configuration exists in other `faces-config.xml` files that are
 also in a `jar`'s `META-INF` directory, one can't control or determine whether or where in the `ViewHandler` or
@@ -29,8 +29,8 @@ delegates where ever possible and then augments the result. When this is not fea
 duplicates the behavior defined by the RI for this function. Other extensions are expected to be implemented in a
 similar manner to avoid obscuring necessary bridge behavior. I.e. they either delegate to ensure the bridge gets a
 chance to execute or they implement the bridge's function directly. Sections
-[8.5](Chapter-8-Faces-Extensions-in-the-Bridge-Environment.html#8.5) and
-[8.6](Chapter-8-Faces-Extensions-in-the-Bridge-Environment.html#8.6) discusses this in detail.
+[8.5](Chapter-8-Faces-Extensions-in-the-Bridge-Environment.md#8.5) and
+[8.6](Chapter-8-Faces-Extensions-in-the-Bridge-Environment.md#8.6) discusses this in detail.
 
 ## <a name="8.2"></a>8.2 Initializing Extensions
 
@@ -102,7 +102,7 @@ environment with the bridge, other `ViewHandler` extensions are expected to:
 - Not run any (servlet) non-portlet container specific code when executing a portlet request.
 - If the extension's `ViewHandler.createView()` returns its own `UIViewRoot` whose `Class.getName` isn't
 `javax.faces.component.UIViewRoot` then the extension should have its `UIViewRoot` implement the same semantics for
-portlet namespacing as described in section [6.6](chapter-6-managing-faces.html#6.6). I.e. the implementation class of
+portlet namespacing as described in section [6.6](chapter-6-managing-faces.md#6.6). I.e. the implementation class of
 its `UIViewRoot` should be annotated to indicate it implements the portlet namespacing semantics and also provide such
 an implementation.
 - If the extension's `ViewHandler.renderView()` handles its own form of rendering then the extension should ensure the
@@ -136,7 +136,7 @@ scope, extensions should explicitly exclude those attributes which do not need t
 needed in each (portlet) request. The preferred way to exclude such an attribute is to annotate the class of the
 attribute's value with `javax.portlet.faces.annotation.ExcludeFromManagedRequestScope`. If this is not feasible,
 attributes can be excluded by declaring them in the extension jar's `faces-config.xml` as described in
-[5.1.2.1](chapter-5-request-lifecycle.html#5.1.2.1). When using this technique care should be taken to only exclude
+[5.1.2.1](chapter-5-request-lifecycle.md#5.1.2.1). When using this technique care should be taken to only exclude
 attributes that are uniquely namespaced as other portlets in the same web application may rely on other extensions
 and/or attributes that might collide with a non-unique name and be mistakenly excluded. In such a situation when
 non-uniquely namespaced attributes are used, the extension developer should merely document for the portlet developer

@@ -55,7 +55,7 @@ can execute and produce fragments of markup that contribute to the overall marku
 The following diagram illustrates the architecture of a Java Portlet Application using the portlet bridge to execute JSF
 pages as the means of generating portlet fragments.
 
-![Java Portlet Application Architectural Diagram Depicting use of Faces Bridge](images/architectural-overview.png)
+![Java Portlet Application Architectural Diagram Depicting use of Faces Bridge](../resources/images/architectural-overview.png)
 
 This diagram shows two entry points to the portlet web application. The entry point depicted on the right (Client WebApp
 Request) models the usual execution of a Faces application. The client makes a direct (browser/http) request to the web
