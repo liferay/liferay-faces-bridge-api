@@ -3,6 +3,8 @@
 This is the Specification for [JSR 378](https://www.jcp.org/en/jsr/detail?id=378), Portlet 3.0 Bridge for
 JavaServer&trade; Faces 2.2.
 
+[Index](src/site/markdown/index.md)
+
 ## License
 
 [JCP License](LICENSE.txt)
