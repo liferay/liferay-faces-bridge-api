@@ -17,13 +17,46 @@
 
 	<build>
 		<plugins>
+			<!-- http://www.avajava.com/tutorials/lessons/what-are-the-phases-of-the-maven-site-lifecycle.html -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
 			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>com.google.code.maven-replacer-plugin</groupId>
+					<artifactId>replacer</artifactId>
+					<version>1.5.3</version>
+					<executions>
+						<execution>
+							<phase>site</phase>
+							<goals>
+								<goal>replace</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<includes>
+							<include>${project.build.directory}/site/*.html</include>
+						</includes>
+						<replacements>
+							<replacement>
+								<token>.md"</token>
+								<value>.html"</value>
+							</replacement>
+							<replacement>
+								<token>.md#</token>
+								<value>.html#</value>
+							</replacement>
+							<replacement>
+								<token>../resources/images</token>
+								<value>images</value>
+							</replacement>
+						</replacements>
+					</configuration>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>

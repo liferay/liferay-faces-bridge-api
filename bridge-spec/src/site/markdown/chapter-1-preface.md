@@ -46,32 +46,32 @@ developers or JSF developers who want quick access to the information that is mo
 
 *Basic information:*
 
-- [Chapter 2](chapter-2-overview.html): This chapter provides a short overview of portlets, JSF, and the bridge
+- [Chapter 2](chapter-2-overview.md): This chapter provides a short overview of portlets, JSF, and the bridge
 architecture. It also introduces you to the terminology used in the specification.
 
-- [Chapter 4](chapter-4-genericfacesportlet.html): This chapter defines the behavior of the GenericFacesPortlet; a
+- [Chapter 4](chapter-4-genericfacesportlet.md): This chapter defines the behavior of the GenericFacesPortlet; a
 portlet implementation provided by the bridge API that is commonly reference in the `portlet-class` element of the
 portlet.xml descriptor. It hides all the details of initializing, configuring, managing, and executing the bridge.
 
-- [Chapter 3](chapter-3-bridge-interface.html): This chapter defines the bridge interface and configuration which a
+- [Chapter 3](chapter-3-bridge-interface.md): This chapter defines the bridge interface and configuration which a
 portlet uses to initialize, configure, manage, and execute it. I.e. defines the interface and configuration details
-hidden to you in [Chapter 4](chapter-4-genericfacesportlet.html) by the GenericFacesPortlet implementation.
+hidden to you in [Chapter 4](chapter-4-genericfacesportlet.md) by the GenericFacesPortlet implementation.
 
-- [Chapter 6, section 6.5](chapter-6-managing-faces.html#6.5) Through subsection 6.5.2.1 plus section 6.5.2.3: these
+- [Chapter 6, section 6.5](chapter-6-managing-faces.md#6.5) Through subsection 6.5.2.1 plus section 6.5.2.3: these
 sections provide information related to portlet specific EL evaluation.
 
 *Advanced Information:*
 
-- [Chapter 6, section 6.8](chapter-6-managing-faces.html#6.8): JSF provides a facility allowing managedbean implementors
+- [Chapter 6, section 6.8](chapter-6-managing-faces.md#6.8): JSF provides a facility allowing managedbean implementors
 to be notified before the bean is destroyed. This section includes important information for supporting this
 notification (correctly) in a portlet environment.
 
-- [Chapter 5, section 5.1](chapter-5-request-lifecycle.html#5.1): This section describes how the portlet and JSF
+- [Chapter 5, section 5.1](chapter-5-request-lifecycle.md#5.1): This section describes how the portlet and JSF
 lifecycles differ and how the bridge manages state to ensure expected behavior in JSF. You will need to understand this
 information and how to exclude specific state from being managed by the bridge if you determine that such state
 management is detrimental/not needed.
 
-- [Chapter 7](chapter-7-writebehindresponse.html): This chapter defines the behavior of a servlet filter that can be
+- [Chapter 7](chapter-7-writebehindresponse.md): This chapter defines the behavior of a servlet filter that can be
 used with the bridge to provide correct markup ordering when your JSF view is represented by a JSP whose output comes
 from regular JSP markup as well has JSF components. **Note**: filter implementations aren't part of the formal
 specification because JSF is structured in such a way as to require distinct implementations per JSF implementation. If

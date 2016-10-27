@@ -73,7 +73,7 @@ but in processAction (i.e. destroy, followed by a doFacesRender), processEvent, 
 
 [<a name="3.14"></a>3.14] This call (destroy()) performs no action if the bridge is in an uninitialized state.
 
-Test: Using test from [3.13](tck-tests.html#3.13) have it call destroy() a second time and verify that no exceptions are
+Test: Using test from [3.13](tck-tests.md#3.13) have it call destroy() a second time and verify that no exceptions are
 thrown.
 
 [<a name="3.15"></a>3.15] `javax.portlet.faces.viewId`: The value of this attribute identifies the Faces `viewId` the
@@ -87,12 +87,12 @@ that y.jsp is activated. I.e. the X.jsp reports an error for the test while Y.js
 the bridge must use for this request in `ContextPath` relative path form (e.g. `/faces/myFacesPage.jsp`). This value may
 optionally contain a query string.
 
-Test: Same test as [3.15](tck-tests.html#3.15) but set a path relative viewId.
+Test: Same test as [3.15](tck-tests.md#3.15) but set a path relative viewId.
 
 [<a name="3.17"></a>3.17] The `BridgeUninitializedException` is thrown if this method (doFacesRequest) is called while
 the bridge is in an uninitialized state
 
-Test: covered by [3.13](tck-tests.html#3.13).
+Test: covered by [3.13](tck-tests.md#3.13).
 
 [<a name="3.18"></a>3.18] The `NullPointerException` is thrown (from doFacesRequest()) if either the passed request or
 response objects are `null`.
@@ -107,7 +107,7 @@ Test: call both action and render forms of doFacesRequest passing null. (Get bri
 [<a name="3.20"></a>3.20] `bridgeEventHandler` is a (instanceof) `BridgeEventHandler` valued attribute identifying the
 instance that is called to handle portlet events received by the bridge
 
-Test: Covered by #[5.56](tck-tests.html#5.56) -- Provide an eventHandler, trigger an event (in the test's action
+Test: Covered by #[5.56](tck-tests.md#5.56) -- Provide an eventHandler, trigger an event (in the test's action
 handler), have the eventHandler set a request attribute indicating its been called, have the test render check this bit.
 
 [<a name="3.21"></a>3.21] `bridgePublicRenderParameterHandler` is a (instanceof) `BridgePublicRenderParameterHandler`
@@ -115,7 +115,7 @@ valued attribute identifying the instance that is called to postprocess incoming
 the bridge has pushed these values into the mapped managed beans. This handler gives the portlet an opportunity to
 recompute and get into a new consistent state after such changes
 
-Test: Covered by #[5.71](tck-tests.html#5.71) -- Provide an PRPHandler, trigger a PRP change during an action (test's
+Test: Covered by #[5.71](tck-tests.md#5.71) -- Provide an PRPHandler, trigger a PRP change during an action (test's
 handler), have the PRPhandler set a request attribute indicating its been called, have the test render check this bit.
 
 [<a name="3.22"></a>3.22] ... the renderkit id the bridge should encode as a request parameter in each request to ensure
@@ -282,7 +282,7 @@ the render the atribute isn't there.
 [<a name="5.5"></a>5.5] For each render request, the bridge identifies the corresponding bridge request scope that
 pertains to this request and if one exists it passes the state in this scope to the current (container) request scope.
 
-Test: Covered by test [5.1](tck-tests.html#5.1).
+Test: Covered by test [5.1](tck-tests.md#5.1).
 
 [<a name="5.6"></a>5.6] For any action parameters that have been preserved, the parameter is restored if and only if
 there isn't an existing parameter of the same name in the incoming request.
@@ -298,7 +298,7 @@ ViewHandler's createView is called not its restoreView.
 [<a name="5.8"></a>5.8] Under normal conditions, a bridge request scope must be maintained at least until the next
 action request (a subsequent bridge request scope is established)
 
-Test: Covered by [5.1](tck-tests.html#5.1)
+Test: Covered by [5.1](tck-tests.md#5.1)
 
 [<a name="5.9"></a>5.9] The bridge must not assume that all render requests following the establishment of a request
 scope (and prior to a subsequent action) are executed in the same bridge request scope.
@@ -328,7 +328,7 @@ inverse -- that other attributes are retained.
 get `Messages` return those Messages in insertion order. The bridge must preserve this requirement while managing such
 Messages within the bridge request scope.
 
-Test: Covered by [5.1](tck-tests.html#5.1) -- the message portion of the test adds 2 messages to the UIView root and
+Test: Covered by [5.1](tck-tests.md#5.1) -- the message portion of the test adds 2 messages to the UIView root and
 verifies they come back in the same order.
 
 [<a name="5.12"></a>5.12] For each `doFacesRequest` invocation processing a Faces target, the bridge must acquire a
@@ -349,12 +349,12 @@ Test: In FacesContextFactory confirm that the attribute is set with the correct 
 [<a name="5.15"></a>5.15] If the request attribute named `javax.portlet.faces.viewId` is non-null then use this value as
 the target `viewId`
 
-Test: Covered by test [3.15](tck-tests.html#3.15)
+Test: Covered by test [3.15](tck-tests.md#3.15)
 
 [<a name="5.16"></a>5.16] If the request attribute named `javax.portlet.faces.viewPath` is non-null then use this value
 to process the `ContextPath` relative path and extract the target `viewId`
 
-Test: Covered by test [3.16](tck-tests.html#3.16)
+Test: Covered by test [3.16](tck-tests.md#3.16)
 
 [<a name="5.17"></a>5.17] If unable to extract a `viewId` from the path throw
 `javax.portlet.faces.BridgeInvalidViewPathException`
@@ -392,17 +392,17 @@ attribute) with a QS param.
 [<a name="5.22"></a>5.22] throw the `BridgeUninitializedException` if the bridge isn't currently initialized (`init()`
 has been called following either the bridge's construction or a prior `release()`) (action)
 
-Test: Covered by the action destroy portion of test [3.13](tck-tests.html#3.13)
+Test: Covered by the action destroy portion of test [3.13](tck-tests.md#3.13)
 
 [<a name="5.23"></a>5.23] set the `javax.portlet.faces.phase` request attribute to `Bridge.PortletPhase.ACTION_PHASE`
 prior to acquiring the `FacesContext`
 
-Test: Covered by test [5.14](tck-tests.html#5.14)
+Test: Covered by test [5.14](tck-tests.md#5.14)
 
 [<a name="5.24"></a>5.24] recognize whether Faces considers the current request processing complete (redirect occurred)
 or not. If its not considered complete .. (set up action response correctly)
 
-Test: Covered by any of our action based scope tests. Test [5.1](tck-tests.html#5.1)
+Test: Covered by any of our action based scope tests. Test [5.1](tck-tests.md#5.1)
 
 [<a name="5.25"></a>5.25] release the `FacesContext` (at end of action)
 
@@ -415,12 +415,12 @@ Test: In portlet that the attribute isn't there after action processing finishes
 [<a name="5.27"></a>5.27] throw the `BridgeUninitializedException` if the bridge isn't currently initialized (`init()`
 has been called following either the bridge's construction or a prior `release()`) (render)
 
-Test: Covered by the action destroy portion of test [3.13](tck-tests.html#3.13)
+Test: Covered by the action destroy portion of test [3.13](tck-tests.md#3.13)
 
 [<a name="5.28"></a>5.28] set the `javax.portlet.faces.phase` request attribute to `Bridge.PortletPhase.RENDER_PHASE`
 prior to acquiring the `FacesContext`.
 
-Test: Covered by test [5.14](tck-tests.html#5.14)
+Test: Covered by test [5.14](tck-tests.md#5.14)
 
 [<a name="5.29"></a>5.29] If `RenderResponse.getContentType()` returns `null` and there is no other indication of
 desired content type (not defined by this specification; i.e. an implementation specific extension) then the bridge must
@@ -433,7 +433,7 @@ that the response ContentType is the one requested (i.e. it was set by the Bridg
 scope satisfying all requirements listed in section 5.1.2 concerning providing an idempotent rendition based on the
 viewId and request scope state referenced in the render request.
 
-Test:  Covered by Test [5.1](tck-tests.html#5.1)
+Test:  Covered by Test [5.1](tck-tests.md#5.1)
 
 [<a name="5.31"></a>5.31] ensure the `RenderKit`'s `ResponseStateManager` `isPostback()` method returns `true` if and
 only if a bridge request scope has been identified and restored
@@ -442,7 +442,7 @@ Test: In render following action -- test that `ResponseStateManager isPostback()
 
 [<a name="5.32"></a>5.32] manually restore the view from its cache if the view hasn't yet been saved by Faces
 
-Test: Covered by Test [5.1](tck-tests.html#5.1)
+Test: Covered by Test [5.1](tck-tests.md#5.1)
 
 [<a name="5.33"></a>5.33a-b] ensure that all `PhaseListeners` listening on the before and after phase of the
 `PhaseId.RESTORE_VIEW` are called
@@ -460,27 +460,27 @@ phase happens.
 existing output, and rerunning this process based on the new target and its request parameters (if the target has a
 query string).
 
-Test: Covered by Test [5.18](tck-tests.html#5.18)
+Test: Covered by Test [5.18](tck-tests.md#5.18)
 
 [<a name="5.36"></a>5.36] if necessary, update the value of the `VIEW_STATE_PARAM` parameter managed in this bridge
 request scope.
 
-Test: Covered by RenderRedisplayTest [5.8](tck-tests.html#5.8). I.e. since this test puts an attribute on the request in
+Test: Covered by RenderRedisplayTest [5.8](tck-tests.md#5.8). I.e. since this test puts an attribute on the request in
 the action and verifies its still there after the redisplay the VIEW_STATE_PARAM must have been updated (internally) or
 else the view couldn't have been restored properly. **Note**: the messages tests also verify this.
 
 [<a name="5.37"></a>5.37] release the `FacesContext` (render).
 
-Test: Same logic as [5.25](tck-tests.html#5.25) except check in the render phase not during an action.
+Test: Same logic as [5.25](tck-tests.md#5.25) except check in the render phase not during an action.
 
 [<a name="5.38"></a>5.38] remove the `javax.portlet.faces.phase` request attribute (render).
 
-Test: Same logic as [5.26](tck-tests.html#5.26) except check in the render phase not during an action.
+Test: Same logic as [5.26](tck-tests.md#5.26) except check in the render phase not during an action.
 
 [<a name="5.39"></a>5.39] If it is not (the same mode), this target `viewId `must be ignored and the mode's default
 `viewId` used instead
 
-Test: Covered by [5.19](tck-tests.html#5.19) test -- i.e. this test changes the mode in the redisplay link -- the
+Test: Covered by [5.19](tck-tests.md#5.19) test -- i.e. this test changes the mode in the redisplay link -- the
 portlet.xml defines a different view as the default edit mode view -- it verifies we end up at the default edit view --
 hence verifing this assertion.
 
@@ -488,7 +488,7 @@ hence verifing this assertion.
 I.e. bridge request scopes are maintained on a per mode basis and must only be used when you (re)render in the same
 mode.
 
-Test: Cover by [5.4](tck-tests.html#5.4)
+Test: Cover by [5.4](tck-tests.md#5.4)
 
 [<a name="5.41"></a>5.41] the bridge must ensure that the `VIEW_STATE_PARAM` request parameter is not exposed during a
 render in which the mode has changed. Typically this occurs automatically as a result of not restoring the bridge
@@ -500,7 +500,7 @@ Test: From action encodes its navigation rule to change to edit mode. In render,
 portlet edit mode.
 
 Test: Covered by many tests. Here is are the basic ones:
-[6.11](tck-tests.html#6.11) and [6.19](tck-tests.html#6.19)
+[6.11](tck-tests.md#6.11) and [6.19](tck-tests.md#6.19)
 
 [<a name="5.43"></a>5.43] the bridge must maintain a set of session attributes named
 `javax.portlet.faces.viewIdHistory.[mode]` where there is one such attribute per supported portlet mode.
@@ -510,12 +510,12 @@ attributes in the session each with the default view as its value.
 
 [<a name="5.44"></a>5.44] The value of this attribute is the last `viewId` that was active for a given mode.
 
-Test: Covered by [5.47](tck-tests.html#5.47)
+Test: Covered by [5.47](tck-tests.md#5.47)
 
 [<a name="5.45"></a>5.45] If a mode has never been active than this attribute's value must be the same as the that
 mode's default `viewId`.
 
-Test: Covered by [5.43](tck-tests.html#5.43)
+Test: Covered by [5.43](tck-tests.md#5.43)
 
 [<a name="5.46"></a>5.46] These extra parameters must be encoded in the `viewId` in a manner that conforms to JSF
 expectations for valid `viewId`s and which will be processed correctly when passed through the calls
@@ -524,7 +524,7 @@ expectations for valid `viewId`s and which will be processed correctly when pass
 also returns to that view with the same state (both in the bridge's request scope, view state, and any other render
 parameters) as existed when this view was added to the history list.
 
-Test: Covered by [5.47](tck-tests.html#5.47)
+Test: Covered by [5.47](tck-tests.md#5.47)
 
 [<a name="5.47"></a>5.47] the bridge must allow, recognize, and evaluate `faces-config.xml` navigation rules where the
 `<to-view-id>` element is a JSF expression.
@@ -557,17 +557,17 @@ indicate encode a mode change, verify that during the render the atribute isn't 
 current request rather maintain a reference to the scope so new request scoped attributes can be merged back into the
 bridge request scope after the lifecycle has run.
 
-Test:  Covered by [5.65](tck-tests.html#5.65)
+Test:  Covered by [5.65](tck-tests.md#5.65)
 
 [<a name="5.52"></a>5.52] Upon completion of each resource request, preserve the scoped data* (described above) into the
 prexisting scope if it exists or otherwise a newly created bridge request scope.
 
-Test:  Covered by [5.66](tck-tests.html#5.66)
+Test:  Covered by [5.66](tck-tests.md#5.66)
 
 [<a name="5.53"></a>5.53] ... throw the `BridgeUninitializedException` if the bridge isn't currently initialized
 (`init()` has been called following either the bridge's construction or a prior `release()`)
 
-Test:  covered by test [3.13](tck-tests.html#3.13)
+Test:  covered by test [3.13](tck-tests.md#3.13)
 
 [<a name="5.54"></a>5.54] set the `javax.portlet.faces.phase` request attribute to `Bridge.PortletPhase.EVENT_PHASE`
 prior to acquiring the `FacesContext`
@@ -619,7 +619,7 @@ is there and has the correct value.
 [<a name="5.62"></a>5.62] throw the `BridgeUninitializedException` if the bridge isn't currently initialized (`init()`
 has been called following either the bridge's construction or a prior `release()`) (resource)
 
-Test: Covered by the resource destroy portion of test [3.13](tck-tests.html#3.13)
+Test: Covered by the resource destroy portion of test [3.13](tck-tests.md#3.13)
 
 [<a name="5.63"></a>5.63] set the `javax.portlet.faces.phase` request attribute to `Bridge.PortletPhase.RESOURCE_PHASE`
 prior to acquiring the `FacesContext`.
@@ -651,11 +651,11 @@ scope at the end of the resource request.
 [<a name="5.67"></a>5.67]  release the FacesContext.
 
 Test: Uses iFrame to the test page to issue the resource request. Other than that its pretty much the same logic as
-[5.25](tck-tests.html#5.25) except check in the resourec phase not during an action.
+[5.25](tck-tests.md#5.25) except check in the resourec phase not during an action.
 
 [<a name="5.68"></a>5.68] remove the `javax.portlet.faces.phase` request attribute (resource).
 
-Test: Same logic as [5.26](tck-tests.html#5.26) except check in the resource phase not during an action.
+Test: Same logic as [5.26](tck-tests.md#5.26) except check in the resource phase not during an action.
 
 [<a name="5.69"></a>5.69] processes incoming public render parameters after the `RESTORE_VIEW` phase of the Faces
 lifecycle has executed and before any other phase runs.
@@ -667,22 +667,22 @@ that PRP isn't set/updated yet. In all other before phases check that PRP is set
 `public-parameter-mappings` section of the `faces-config.xml` `application-extension` section, the bridge calls the set
 accessor of the associated bean's mapped data member.
 
-Test: Though [5.69](tck-tests.html#5.69) also verifies this as well since requires a set, we write an explicit test that
+Test: Though [5.69](tck-tests.md#5.69) also verifies this as well since requires a set, we write an explicit test that
 follows the same pattern as 5.69 but checks the values of the models durign render to ensure they are okay. In addition
 we register the class as a PRP handler and test that the processUpdates is called -- this tests
-[5.71](tck-tests.html#5.71)
+[5.71](tck-tests.md#5.71)
 
 [<a name="5.71"></a>5.71] call its `processUpdates()` passing the `FacesContext` Test:  Covered by
-[5.70](tck-tests.html#5.70)
+[5.70](tck-tests.md#5.70)
 
 [<a name="5.72"></a>5.72] `ACTION_PHASE` ... If a value has changed, the public parameter is set in the response
 
-Test: Covered by both [5.69](tck-tests.html#5.69) and [5.70](tck-tests.html#5.70) as each sets the (transient) model
+Test: Covered by both [5.69](tck-tests.md#5.69) and [5.70](tck-tests.md#5.70) as each sets the (transient) model
 value in the action handler and then tests the PRP repushes this value back to the model in subsequent request(s).
 
 [<a name="5.73"></a>5.73] `EVENT_PHASE` ... If a value has changed, the public parameter is set in the response
 
-Test:  Covered by [5.58](tck-tests.html#5.58)
+Test:  Covered by [5.58](tck-tests.md#5.58)
 
 [<a name="5.74"></a>5.74] set new public render parameters from mapped models whose values have changed (action).
 
@@ -800,7 +800,7 @@ Test: Have test's action target contain additional QS params. Test in render tha
 [<a name="6.18"></a>6.18] (encodeActionURL) If it is a reference to a Faces view the target is the encoded Faces
 `viewId`. (During render)
 
-Test: Basically the same test as #[6.10](tck-tests.html#6.10). If we can render a page contining a form (link) and
+Test: Basically the same test as #[6.10](tck-tests.md#6.10). If we can render a page contining a form (link) and
 navigate through it then the first render must have properly encoded the target view id.
 
 [<a name="6.19"></a>6.19] (encodeActionURL) recognize the query string parameter `javax.portlet.faces.PortletMode` and
@@ -980,7 +980,7 @@ Test: During render: add two request attrs, one via ExternalContext api and othe
 be read using both APIs. Verify that remove works by doing the reverse.
 
 [<a name="6.43"></a>6.43] (getRequestMap) Furthermore these attributes must be managed across portlet requests according
-to the rules defined in section [[5.1.2](chapter-5-request-lifecycle.html#5.1.2)]
+to the rules defined in section [[5.1.2](chapter-5-request-lifecycle.md#5.1.2)]
 
 Test: During action add a set of request attrs that will test all cases of attrs that should be retained in scope and
 attrs that should not be. During render, verify that only those that should be retained are there.
@@ -1010,7 +1010,7 @@ During render (that follows this action) verify the parameters aren't there but 
 depends on the `javax.portlet.faces.[portlet name].preserveActionParams` portlet context attribute. If this context
 attribute exists and has a value of `Boolean.TRUE`, the additional action parameters are preserved/included.
 
-Test: Have portlet configure this. Use same test as #[6.45](tck-tests.html#6.45) but verify that the form params are
+Test: Have portlet configure this. Use same test as #[6.45](tck-tests.md#6.45) but verify that the form params are
 also there during render.
 
 [<a name="6.47"></a>6.47] (getRequestParameterMap) This `Map` must be composed from the set of parameters available via
@@ -1031,7 +1031,7 @@ During render (that follows this action) verify the parameters aren't there but 
 depends on the `javax.portlet.faces.[portlet name].preserveActionParams` portlet context attribute. If this context
 attribute exists and has a value of `Boolean.TRUE`, the additional action parameters are preserved/included.
 
-Test: Have portlet configure this. Use same test as #[6.49](tck-tests.html#6.49) but verify that the form params are
+Test: Have portlet configure this. Use same test as #[6.49](tck-tests.md#6.49) but verify that the form params are
 also there during render.
 
 [<a name="6.50"></a>6.50] (getRequestParameterNames) This `Iterator` must be composed from the set of parameters
@@ -1053,7 +1053,7 @@ During render (that follows this action) verify the parameters aren't there but 
 depends on the `javax.portlet.faces.[portlet name].preserveActionParams` portlet context attribute. If this context
 attribute exists and has a value of `Boolean.TRUE`, the additional action parameters are preserved/included.
 
-Test: Have portlet configure this. Use same test as #[6.51](tck-tests.html#6.51) but verify that the form params are
+Test: Have portlet configure this. Use same test as #[6.51](tck-tests.md#6.51) but verify that the form params are
 also there during render.
 
 [<a name="6.53"></a>6.53] (getRequestParameterValuesMap) This `Map` must be composed from the set of parameters
@@ -1268,7 +1268,7 @@ are used in this test app)
 [<a name="6.87"></a>6.87] If the request isn't a portlet request, delegate `renderView` to the parent and return the
 result without taking any further action. Otherwise ....
 
-Test: Covered by #[3.2](tck-tests.html#3.2), #[3.3](tck-tests.html#3.3), and #[3.4](tck-tests.html#3.4)
+Test: Covered by #[3.2](tck-tests.md#3.2), #[3.3](tck-tests.md#3.3), and #[3.4](tck-tests.md#3.4)
 
 [<a name="6.88"></a>6.88] Prior to the dispatch: Add an attribute named `javax.portlet.faces.RenderContentAfterView`
 with a `java.lang.Boolean` value of `Boolean.TRUE` to the `request` object
@@ -1284,7 +1284,7 @@ Test: In render write the test result into the request attribute not the output 
 [<a name="6.90"></a>6.90] The bridge must prevent the Faces action phases (`ApplyRequestValues`, `ProcessValidations`,
 `UpdateModel`, and `InvokeApplication`) from executing if rendering in a restored bridge request scope.
 
-Test: Covered by #[5.33](tck-tests.html#5.33)
+Test: Covered by #[5.33](tck-tests.md#5.33)
 
 [<a name="6.91"></a>6.91] More specifically, a `UIViewRoot` with the
 `javax.portlet.faces.annotation.PortletNamingContainer` annotation must implement `getContainerClientId()` to return a
@@ -1296,13 +1296,13 @@ getContainerClientId() and ensureit returns something with the portlet namespace
 [<a name="6.92"></a>6.92] The namespace `Id` used in processing `getContainerClientId()` must be consistent for the
 lifetime of the view (across save and restore).
 
-Test: Same test as #[6.91](tck-tests.html#6.91) except get the clientId in action, preserve it, then get the namespace
+Test: Same test as #[6.91](tck-tests.md#6.91) except get the clientId in action, preserve it, then get the namespace
 in render as well as the clientId and ensure that both clientIds contain this namespace.
 
 [<a name="6.93"></a>6.93] Because `getContainerClientId()` can be called during any portlet lifecycle phase (action or
 render).
 
-Test: Covered by #[6.91](tck-tests.html#6.91)
+Test: Covered by #[6.91](tck-tests.md#6.91)
 
 [<a name="6.94"></a>6.94] The convenience class `javax.portlet.faces.PortletNamingContainerUIViewRoot` is provided to
 simplify adding portlet namespacing for Faces extensions (and for internal bridge usage).
@@ -1312,8 +1312,8 @@ Test: Create and instance of this class to ensure it exists.
 [<a name="6.95"></a>6.95] The class is annotated with the `javax.portlet.faces.annotation.PortletNamingContainer`
 annotation.
 
-Test: Ensure instance created in #[6.94](tck-tests.html#6.94) is an instanceof PortletNamingContainer -- this is done as
-part of test #[6.94](tck-tests.html#6.94)
+Test: Ensure instance created in #[6.94](tck-tests.md#6.94) is an instanceof PortletNamingContainer -- this is done as
+part of test #[6.94](tck-tests.md#6.94)
 
 [<a name="6.96"></a>6.96] It implements `getContainerClientId()` to meet the above requirements.
 
@@ -1618,6 +1618,6 @@ the jsp that supplies the iFrame target (resource).
 `ResourceResponseWrapper` the bridge uses as the response object it dispatches to in the bridge's application-extension
 section of the `face-config.xml`
 
-Test: Covered by Tests #[6.133](tck-tests.html#6.133) and #[6.134](tck-tests.html#6.134)
+Test: Covered by Tests #[6.133](tck-tests.md#6.133) and #[6.134](tck-tests.md#6.134)
 
 ## <a name="8"></a>Chapter 8 Tests
