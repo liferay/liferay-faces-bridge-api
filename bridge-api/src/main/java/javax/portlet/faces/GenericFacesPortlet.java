@@ -34,6 +34,7 @@ import javax.portlet.HeaderResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
+import javax.portlet.PortletParameters;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.PortletResponse;
@@ -324,13 +325,13 @@ public class GenericFacesPortlet extends GenericPortlet {
 	public Bridge getFacesBridge(PortletRequest portletRequest, PortletResponse portletResponse)
 		throws PortletException {
 
-		String viewId = portletRequest.getRenderParameters().getValue(Bridge.FACES_VIEW_ID_PARAMETER);
+		String viewId = getPortletParameters(portletRequest).getValue(Bridge.FACES_VIEW_ID_PARAMETER);
 
 		if (viewId != null) {
 			portletRequest.setAttribute(Bridge.VIEW_ID, viewId);
 		}
 		else {
-			String viewPath = portletRequest.getRenderParameters().getValue(Bridge.FACES_VIEW_PATH_PARAMETER);
+			String viewPath = getPortletParameters(portletRequest).getValue(Bridge.FACES_VIEW_PATH_PARAMETER);
 
 			if (viewPath != null) {
 				portletRequest.setAttribute(Bridge.VIEW_PATH, viewPath);
@@ -716,6 +717,16 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 
 		return bridgeService;
+	}
+
+	private PortletParameters getPortletParameters(PortletRequest portletRequest) {
+
+		if (portletRequest instanceof ResourceRequest) {
+			return ((ResourceRequest) portletRequest).getResourceParameters();
+		}
+		else {
+			return portletRequest.getRenderParameters();
+		}
 	}
 
 	private static class DeferredBridgeEventHandler extends BridgeEventHandlerWrapper {
