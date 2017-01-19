@@ -1048,11 +1048,7 @@ will be implicitly resolved by the JSP EL resolver<sup>[[6.100](tck-tests.md#6.1
 - `portletPreferencesValues`: immutable `Map` containing entries equivalent to `PortletPreferences.getMap()`.
 
 The bridge must provide a corresponding Faces EL resolver that recognizes these variable names and resolves them to the
-same object as the JSP resolver<sup>[[6.101](tck-tests.md#6.101)]</sup>. In addition, the bridge must not resolve
-these variables outside of a Faces expression<sup>[[6.100](tck-tests.md#6.100)]</sup>. **Note**: The mechanism Faces
-provides for registering a EL resolver causes the EL resolver to be inserted into the resolution chain for both Faces
-expressions and JSP expressions. For the above objects, the bridge's EL resolver must delegate resolution to the JSP
-resolver within JSP expressions while resolving them within Faces expressions.
+same object as the JSP resolver<sup>[[6.101](tck-tests.md#6.101)]</sup>.
 
 Because JSP EL evaluation and Faces EL evaluation are handled by different resolvers, the following differences are
 noted:
