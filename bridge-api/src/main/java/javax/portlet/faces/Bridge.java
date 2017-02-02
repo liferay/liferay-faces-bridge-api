@@ -360,6 +360,17 @@ public interface Bridge {
 	public void doFacesRequest(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws BridgeUninitializedException, BridgeException;
 
+	/**
+	 * Called by the portlet when it wants the bridge to invoke header request/response processing.
+	 *
+	 * @param   headerRequest   The current header request.
+	 * @param   headerResponse  The current header response.
+	 *
+	 * @throws  BridgeDefaultViewNotSpecifiedException  - if the request indicates to the Bridge that is should use the
+	 *                                                  default viewId and the portlet hasn't supplied one.
+	 * @throws  BridgeUninitializedException            - if the bridge is not initialized.
+	 * @throws  BridgeException                         - if an error occurs during render request/response processing.
+	 */
 	public void doFacesRequest(HeaderRequest headerRequest, HeaderResponse headerResponse)
 		throws BridgeDefaultViewNotSpecifiedException, BridgeUninitializedException, BridgeException;
 
