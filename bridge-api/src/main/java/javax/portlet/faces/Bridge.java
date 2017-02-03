@@ -360,6 +360,9 @@ public interface Bridge {
 	public void doFacesRequest(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws BridgeUninitializedException, BridgeException;
 
+	public void doFacesRequest(HeaderRequest headerRequest, HeaderResponse headerResponse)
+		throws BridgeDefaultViewNotSpecifiedException, BridgeUninitializedException, BridgeException;
+
 	/**
 	 * Called by the portlet when it wants the bridge to invoke header request/response processing.
 	 *
