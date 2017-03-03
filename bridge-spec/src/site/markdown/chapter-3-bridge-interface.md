@@ -136,25 +136,22 @@ This call performs no action if the bridge is in an uninitialized state<sup>[[3.
 
 The bridge is used to execute Faces requests on behalf of the portlet by calling its `doFacesRequest` method:
 
-    public void doFacesRequest(
-        javax.portlet.ActionRequest request,
-        javax.portlet.ActionResponse response)
-            throws BridgeUnititializedException, BridgeDefaultViewNotSpecifiedException,
-                BridgeException, NullPointerException;
+    public void doFacesRequest(javax.portlet.ActionRequest request, javax.portlet.ActionResponse response)
+            throws BridgeUnititializedException, BridgeDefaultViewNotSpecifiedException, BridgeException,
+                NullPointerException;
 
-    public void doFacesRequest(
-        javax.portlet.RenderRequest request,
-        javax.portlet.RenderResponse response);
-            throws BridgeUnititializedException, BridgeDefaultViewNotSpecifiedException,
-                BridgeException, NullPointerException;
+    public void doFacesRequest(javax.portlet.RenderRequest request, javax.portlet.RenderResponse response)
+            throws BridgeUnititializedException, BridgeDefaultViewNotSpecifiedException, BridgeException,
+                NullPointerException;
 
-    public void doFacesRequest(ResourceRequest request, ResourceResponse response)
-            throws BridgeUninitializedException,
-                BridgeException;
+    public void doFacesRequest(javax.portlet.ResourceRequest request, javax.portlet.ResourceResponse response)
+            throws BridgeUninitializedException, BridgeException;
 
-    public void doFacesRequest(EventRequest request, EventResponse response)
-            throws BridgeUninitializedException,
-                BridgeException;
+    public void doFacesRequest(javax.portlet.HeaderRequest request, javax.portlet.HeaderResponse response)
+            throws BridgeDefaultViewNotSpecifiedException, BridgeUninitializedException, BridgeException;
+
+    public void doFacesRequest(javax.portlet.EventRequest request, javax.portlet.EventResponse response)
+            throws BridgeUninitializedException, BridgeException;
 
 Portlets call the appropriate form of this method for each of the request phases in the portlet lifecycle. In Portlet
 2.0 the lifecycle can be more complicated than in Portlet 1.0. I.e. a typical Java Portlet Specification 1.0 (JSR 168)

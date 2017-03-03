@@ -101,11 +101,11 @@ backwards compatibility a bridge may provide an implementation specific mechanis
 - `encodeActionURL()`:
 
 - Process the `inputURL` and construct and encode a corresponding valid portlet (generally action) URL. If called during
-the `RENDER_PHASE` or `RESOURCE_PHASE`, return this URL so it can be written into the markup response. If called during
-the `ACTION_PHASE`, directly encode this URL in the action response. The value and form of the URL returned when running
-in the `ACTION_PHASE` is undefined although it must not be `null`. If called during the `EVENT_PHASE`, directly encode
-this URL in the event response. The value and form of the URL returned when running in the `EVENT_PHASE` is undefined
-although it must not be `null`.
+the `HEADER_PHASE`, `RENDER_PHASE`, or `RESOURCE_PHASE`, return this URL so it can be written into the markup response.
+If called during the `ACTION_PHASE`, directly encode this URL in the action response. The value and form of the URL
+returned when running in the `ACTION_PHASE` is undefined although it must not be `null`. If called during the
+`EVENT_PHASE`, directly encode this URL in the event response. The value and form of the URL returned when running in
+the `EVENT_PHASE` is undefined although it must not be `null`.
 
 - To process such an `inputURL` correctly, this method must:
 
@@ -130,8 +130,8 @@ although it must not be `null`.
             `resourceURL` should be encoded<sup>[[6.102](tck-tests.md#6.102)]</sup>.
             - Following this URL type indicator is an optional query string. Parameter value pairs in the query string
             are the parameters that are to be encoded into the `portletURL`.
-			<br />
-			<br />
+            <br />
+            <br />
             To generate a link to a Faces view, encode the view as the value of either the `_jsfBridgeViewId` or
             `_jsfBridgeViewPath` parameter (depending on whether you are encoding the viewId or the viewPath). Targets
             of such references are run in new empty scopes. An exception is made when the target is the current view and
@@ -139,20 +139,20 @@ although it must not be `null`.
             this case the URL is encoded with the current render parameters and hence retains access to its state/scope.
             In all cases the bridge removes the above parameter(s) from the query string before generating the encoded
             URL.
-			<br />
-			<br />
+            <br />
+            <br />
             For a resource URL, a Faces view is only encoded if one of the `_jsfBridgeViewId` or `_jsfBridgeViewPath`
             parameters is included in the query string, otherwise a non-Faces resource URL is generated. The
             `_jsfBridgeCurrentView` value is used as a shortcut to indicate the resource targets the current view.
-			<br />
-			<br />
+            <br />
+            <br />
             A simplified BNF is:<br />
             `portletURL = Scheme URLType [QueryString]`<br />
             `Scheme = "portlet:"`<br />
             `URLType = ("action" | "render" | "resource")`<br />
             `QueryString = "?" ParameterPair {"&" ParameterPair}`<br />
             `ParameterPair =  Text "=" Text`<br />
-			<br />
+            <br />
          - If the `inputURL` contains a full or relative path then analyze the path information to determine whether it
          encodes a request to a Faces view or a non-Faces view. If it is a reference to a Faces view the target is the
          encoded Faces viewId<sup>[[6.10](tck-tests.md#6.10), [6.18](tck-tests.md#6.18)]</sup>. If it is a reference
@@ -177,7 +177,7 @@ although it must not be `null`.
         - The portlet model allows one to encode changes to the portlet's mode, window state and or security (access)
         level in self-referencing URLs or as a response to an action request. Because the form of this encoding is not
         specified by the portlet standard these values aren't manipulated in the portlet URL's query string. Rather
-        changes are expressed by operating directly on a `PortletURL` object (render phase) or the `actionResponse`
+        changes are expressed by operating directly on a `PortletURL` object (header phase) or the `actionResponse`
         (action phase). As `encodeActionURL()` isolates Faces clients from these APIs/objects, an alternative technique
         is provided so `encodeActionURL()` can recognize and incorporate the necessary changes. This technique
         recognizes special query string parameters in the `inputURL` which are extracted and processed using the
@@ -215,22 +215,24 @@ although it must not be `null`.
              - the target (see action description)
              - the identified state modifications
              - any additional query string parameters that were in the `inputURL`.
-         - If executed during the `RENDER_PHASE` or `RESOURCE_PHASE` and the target was determined by URL path (not
+         - If executed during the `HEADER_PHASE`, `RENDER_PHASE`, or `RESOURCE_PHASE` and the target was determined by
+         URL path (not
          portlet: syntax) and that target is a Faces viewId, construct and return an `actionURL` by calling
          `getResponse().createActionURL().toString()` as follows<sup>[[6.18-6.25](tck-tests.md#6.18),
          [6.111-6.118](tck-tests.md#6.111)]</sup>:
              - encode the target determined above (in an implementation dependent manner).
              - the identified state modifications,
              - any additional query string parameters that were in the `inputURL`.
-         - If executed during the `RENDER_PHASE` or `RESOURCE_PHASE` and the target was determined by its URL path (not
+         - If executed during the `HEADER_PHASE`, `RENDER_PHASE` or `RESOURCE_PHASE` and the target was determined by
+         its URL path (not
          portlet: syntax) and that target is a non-Faces `viewId`, construct and return a `renderURL` by calling
          `getResponse().createRenderURL().toString()` as follows<sup>[[6.136-6.152](tck-tests.md#6.136)]</sup>:
              - encode the target determined above as the value of the parameter named `_jsfBridgeNonFacesView`.
              - the identified state modifications.
              - any additional query string parameters that were in the `inputURL`.
-         - If executed during the `RENDER_PHASE` or `RESOURCE_PHASE` and the target was determined from the portlet:
-         syntax (not by path), construct the appropriate `URL` type determined from the path portion of the based on the
-         `urlTypeInputURL` and return its value in `String` form (using `toString()`) as follows:
+         - If executed during the `HEADER_PHASE`, `RENDER_PHASE` or `RESOURCE_PHASE` and the target was determined from
+         the portlet: syntax (not by path), construct the appropriate `URL` type determined from the path portion of the
+         based on the `urlTypeInputURL` and return its value in `String` form (using `toString()`) as follows:
              - encode the identified state modifications.
              - any additional query string parameters that were in the `inputURL`.
              - if the target of this URL is the current JSF view as determined by the use of the `_jsfBridgeCurrentView`
@@ -331,18 +333,18 @@ addressable resource. To process such an inputURL correctly, this method must:
             - All other query string parameters are added to the `ResourceURL` as parameters.
             - if returning an out of band (http) resource return
             `getResponse().encodeURL(inputURL)`<sup>[[6.28](tck-tests.md#6.28)]</sup>.
-		<br />
-		<br />
-	    **Note on encoding/xml escaping**: because renderkits have their own pre/post processing to deal with situations
-	    calling for xml escaping in URLs, the bridge must return an URL that contains the identical xml escaping (or
-	    not) used in the URL passed to `encodeActionURL`. I.e. if the incoming URL is xml escaped the the returned URL
-	    must also be xml escaped, likewise if the incoming URL isn't escaped the returned URL must not be escaped. In
-	    the case xml escaping can't be determined from the incoming URL, the bridge must assume the URL is not xml
-	    escaped and return an unescaped URL accordingly<sup>[[6.99](tck-tests.md#6.99)]</sup>. Also, because there are
-	    situations where Faces components will further encode returned URL strings by replacing &lt;spaces&gt; in the
-	    `URL` with the '+' which not all portlet containers may be able to subsequently process, the bridge can (should)
-	    `URL`-encode the space character (%20) prior to returning the `URL` regardless of any stipulation regarding base
-	    encoding.
+        <br />
+        <br />
+        **Note on encoding/xml escaping**: because renderkits have their own pre/post processing to deal with situations
+        calling for xml escaping in URLs, the bridge must return an URL that contains the identical xml escaping (or
+        not) used in the URL passed to `encodeActionURL`. I.e. if the incoming URL is xml escaped the the returned URL
+        must also be xml escaped, likewise if the incoming URL isn't escaped the returned URL must not be escaped. In
+        the case xml escaping can't be determined from the incoming URL, the bridge must assume the URL is not xml
+        escaped and return an unescaped URL accordingly<sup>[[6.99](tck-tests.md#6.99)]</sup>. Also, because there are
+        situations where Faces components will further encode returned URL strings by replacing &lt;spaces&gt; in the
+        `URL` with the '+' which not all portlet containers may be able to subsequently process, the bridge can (should)
+        `URL`-encode the space character (%20) prior to returning the `URL` regardless of any stipulation regarding base
+        encoding.
 
 - `getRequest()`:
 
@@ -359,8 +361,8 @@ addressable resource. To process such an inputURL correctly, this method must:
 
     Overrides the name of the character encoding used in the body of this
     request<sup>[[6.37](tck-tests.md#6.37)]</sup>.
-	<br />
-	<br />
+    <br />
+    <br />
     Calling this method after reading request parameters or reading input has no effect and throws no exceptions.
     Calling this method during the RENDER_PHASE is has no effect and throws no
     exceptions<sup>[[6.36](tck-tests.md#6.36)]</sup>.
@@ -376,14 +378,15 @@ addressable resource. To process such an inputURL correctly, this method must:
     comparisons must be performed in a case insensitive manner.
 
     This Map must include the set of properties available via the `javax.portlet.PortletRequest` methods `getProperty()`
-    and `getPropertyNames()` except when executing a `RENDER_REQUEST` or an `EVENT_REQUEST`. Within a `RENDER_REQUEST`
-    or `EVENT_REQUEST`, the map must exclude the `CONTENT-TYPE` and `CONTENT-LENGTH properties` (if they are present in
-    the underlying request)<sup>[[6.38](tck-tests.md#6.38), [6.119](tck-tests.md#6.119)]</sup>.
+    and `getPropertyNames()` except when executing a `HEADER_REQUEST`, `RENDER_REQUEST`, or an `EVENT_REQUEST`. Within a
+    `HEADER_REQUEST`, `RENDER_REQUEST`, or `EVENT_REQUEST`, the map must exclude the `CONTENT-TYPE` and `CONTENT-LENGTH
+    properties` (if they are present in the underlying request)<sup>[[6.38](tck-tests.md#6.38),
+    [6.119](tck-tests.md#6.119)]</sup>.
 
     In addition, to provide compatibility with servlets, the bridge must ensure that the following entries exist in the
     `Map` when the bridge is executing during an `ACTION_PHASE` or `RESOURCE_PHASE`: `Accept`, `Accept-Language`,
     `Content-Type`, and `Content-Length`<sup>[[6.39](tck-tests.md#6.39), [6.120](tck-tests.md#6.120)]</sup>. When
-    executing during a `RENDER_PHASE` or an `EVENT_PHASE` the bridge must only ensure that `Accept` and
+    executing during a `HEADER_PHASE`, `RENDER_PHASE`, or an `EVENT_PHASE` the bridge must only ensure that `Accept` and
     `Accept-Language` exist (and as noted above that `Content-Type` and `Content-Length` don't
     exist)<sup>[[6.38](tck-tests.md#6.38), [6.119](tck-tests.md#6.119)]</sup>. The values for these headers are
     derived as follows:
@@ -418,14 +421,15 @@ addressable resource. To process such an inputURL correctly, this method must:
     comparisons must be performed in a case insensitive manner.
 
     This `Map` must include the set of property names and values available via the `javax.portlet.PortletRequest`
-    methods `getProperty()` and `getPropertyNames()` except when executing a `RENDER_REQUEST` or an `EVENT_REQUEST`.
-    Within a `RENDER_REQUEST` or `EVENT_REQUEST`, the map must exclude the `CONTENT-TYPE` property (if it is present in
-    the underlying request)<sup>[[6.40](tck-tests.md#6.40), [6.121](tck-tests.md#6.121)]</sup>.
+    methods `getProperty()` and `getPropertyNames()` except when executing a `HEADER_REQUEST`, `RENDER_REQUEST` or an
+    `EVENT_REQUEST`. Within a HEADER_REQUEST`, `RENDER_REQUEST`, or `EVENT_REQUEST`, the map must exclude the
+    `CONTENT-TYPE` property (if it is present in the underlying request)<sup>[[6.40](tck-tests.md#6.40),
+    [6.121](tck-tests.md#6.121)]</sup>.
     
     In addition, to provide compatibility with servlets, the bridge must ensure that the following entries exist in the
     Map when the bridge is executing during an `ACTION_PHASE` or `RESOURCE_PHASE`: `Accept`, `Accept-Language`,
     `Content-Type`, and `Content-Length`<sup>[[6.41](tck-tests.md#6.41), [6.122](tck-tests.md#6.122)]</sup>. When
-    executing during a `RENDER_PHASE` or an `EVENT_PHASE` the bridge must only ensure that `Accept` and
+    executing during a `HEADER_PHASE`, `RENDER_PHASE`, or an `EVENT_PHASE` the bridge must only ensure that `Accept` and
     `Accept-Language` exist (and as noted above that `Content-Type` doesn't exist)<sup>[[6.40](tck-tests.md#6.40),
     [6.121](tck-tests.md#6.121)]</sup>. The values for these headers are derived as follows:
 
@@ -490,7 +494,7 @@ addressable resource. To process such an inputURL correctly, this method must:
     `viewId`<sup>[[6.47](tck-tests.md#6.47)]</sup>. This later situation primarily occurs when using a default
     `viewId` provided by the portlet.
     
-    In addition, during a portlet's `RENDER_PHASE`, if not otherwise already in the `Map`, the bridge must include those
+    In addition, during a portlet's `HEADER_PHASE`, if not otherwise already in the `Map`, the bridge must include those
     parameters managed in the corresponding bridge request scope. This always includes the
     `ResponseStateManger.VIEW_STATE_PARAM parameter`<sup>[[6.45](tck-tests.md#6.45)]</sup>. The preservation/inclusion
     of the rest of the action parameters depends on the `javax.portlet.faces.[portlet name].preserveActionParams`
@@ -505,7 +509,7 @@ addressable resource. To process such an inputURL correctly, this method must:
     (query string) of the `viewId`<sup>[[6.50](tck-tests.md#6.50)]</sup>. This later situation primarily occurs when
     using a default `viewId` provided by the portlet.
     
-    In addition, during a portlet's `RENDER_PHASE`, if not otherwise already in the `Iterator`, the bridge must include
+    In addition, during a portlet's `HEADER_PHASE`, if not otherwise already in the `Iterator`, the bridge must include
     those parameter names managed in the corresponding bridge request scope. This always includes the
     `ResponseStateManger.VIEW_STATE_PARAM` parameter<sup>[[6.48](tck-tests.md#6.48)]</sup>. The preservation/inclusion
     of the rest of the action parameters depends on the `javax.portlet.faces.[portlet name].preserveActionParams`
@@ -524,7 +528,7 @@ addressable resource. To process such an inputURL correctly, this method must:
     of the `viewId`<sup>[[6.53](tck-tests.md#6.53)]</sup>. This later situation primarily occurs when using a default
     `viewId` provided by the portlet.
     
-    In addition, during a portlet's `RENDER_PHASE`, if not otherwise already in the `Map`, the bridge must include those
+    In addition, during a portlet's `HEADER_PHASE`, if not otherwise already in the `Map`, the bridge must include those
     parameter names managed in the corresponding bridge request scope. This always includes the
     `ResponseStateManger.VIEW_STATE_PARAM` parameter<sup>[[6.51](tck-tests.md#6.51)]</sup>. The preservation/inclusion
     of the rest of the action parameters depends on the `javax.portlet.faces.[portlet name].preserveActionParams`
@@ -579,30 +583,31 @@ addressable resource. To process such an inputURL correctly, this method must:
     Return the character encoding currently being used to interpret this request. If called during the `ACTION_PHASE` or
     `RESOURCE_PHASE`, returns the value from the corresponding action
     `request.getCharacterEncoding()`<sup>[[6.57](tck-tests.md#6.57), [6.123](tck-tests.md#6.123)]</sup>. If called
-    during the `RENDER_PHASE` or `EVENT_PHASE` it returns `null`<sup>[[6.56](tck-tests.md#6.56),
+    during the HEADER_PHASE`, `RENDER_PHASE`, or `EVENT_PHASE` it returns `null`<sup>[[6.56](tck-tests.md#6.56),
     [6.124](tck-tests.md#6.124)]</sup>.
 
 - `getRequestContentType()`: 
 
     Return the MIME Content-Type for this request. If called during the `ACTION_PHASE` or `RESOURCE_PHASE`, returns the
     value from the corresponding action `request.getContentType()`<sup>[[6.59](tck-tests.md#6.59),
-    [6.125](tck-tests.md#6.125)]</sup>. If called during he `RENDER_PHASE` or `EVENT_PHASE` it returns
-    `null`<sup>[[6.58](tck-tests.md#6.58), [6.126](tck-tests.md#6.126)]</sup>.
+    [6.125](tck-tests.md#6.125)]</sup>. If called during the HEADER_PHASE`, `RENDER_PHASE`, or `EVENT_PHASE` it
+    returns `null`<sup>[[6.58](tck-tests.md#6.58), [6.126](tck-tests.md#6.126)]</sup>.
 
 - `getResponseCharacterEncoding()`: 
 
     Returns the name of the character encoding (MIME charset) used for the body sent in this response. If called during
-    the `RENDER_PHASE` or `RESOURCE_PHASE`, returns the value from the corresponding render
+    the HEADER_PHASE`, `RENDER_PHASE` or `RESOURCE_PHASE`, returns the value from the corresponding render
     `response.getCharacterEncoding()`<sup>[[6.60](tck-tests.md#6.60), [6.127](tck-tests.md#6.127)]</sup>. If called
     during the `ACTION_PHASE` or `EVENT_PHASE` it throws an `IllegalStateException`<sup>[[6.61](tck-tests.md#6.61),
     [6.128](tck-tests.md#6.128)]</sup>.
 
 - `getResponseContentType()`: 
 
-    Return the MIME Content-Type for this response. If called during the `RENDER_PHASE` or `RESOURCE_PHASE`, returns the
-    value from the corresponding render `response.getContentType()`<sup>[[6.62](tck-tests.md#6.62),
-    [6.129](tck-tests.md#6.129)]</sup>. If called during the `ACTION_PHASE` or `EVENT_PHASE` it throws an
-    `IllegalStateException`<sup>[[6.63](tck-tests.md#6.63), [6.130](tck-tests.md#6.130)]</sup>.
+    Return the MIME Content-Type for this response. If called during the HEADER_REQUEST`, `RENDER_PHASE`, or
+    `RESOURCE_PHASE`, returns the value from the corresponding render
+    `response.getContentType()`<sup>[[6.62](tck-tests.md#6.62), [6.129](tck-tests.md#6.129)]</sup>. If called during the
+    `ACTION_PHASE` or `EVENT_PHASE` it throws an `IllegalStateException`<sup>[[6.63](tck-tests.md#6.63),
+    [6.130](tck-tests.md#6.130)]</sup>.
 
 - `getResponse()`:
 
@@ -622,64 +627,65 @@ addressable resource. To process such an inputURL correctly, this method must:
     Because the portlet redirect semantics differ from servlets the bridge implements the following support:
 
     - During an Action Request<sup>[[6.64](tck-tests.md#6.64)]</sup>:
-		<br />
-		<br />
+        <br />
+        <br />
         - if the redirect target URL starts with '#', references a resource outside of this web application, or contains
         the query string parameter `javax.portlet.faces.DirectLink` with a value of "`true`", call
         `ActionResponse.sendRedirect()` passing the `url`.
-		<br />
-		<br />
+        <br />
+        <br />
         This causes the client to redirect from the consumer page to this target.
-		<br />
-		<br />
+        <br />
+        <br />
         - otherwise, ensure that the action response is set to cause the subsequent render to target this redirect view.
         Typically this merely involves ensuring that `encodeActionURL()` has been called on the target.
-		<br />
-		<br />
+        <br />
+        <br />
         This is equivalent to a regular faces navigation, the client doesn't redirect, rather the consumer page renders
         the portlet's new target.
-		<br />
-		<br />
+        <br />
+        <br />
         **Note**: in either case, `FacesContext.responseComplete()` must be called before returning.
 
     - During an Event Request<sup>[[6.131](tck-tests.md#6.131)]</sup>:
-		<br />
-		<br />
+        <br />
+        <br />
         - if the redirect target URL starts with '#', references a resource outside of this web application, or contains
         the query string parameter `javax.portlet.faces.DirectLink` with a value of "`true`". The redirect is ignored.
-		<br />
-		<br />
+        <br />
+        <br />
         - otherwise, ensure that the event response is set to cause the subsequent render to target this redirect view.
         Typically this merely involves ensuring that `encodeActionURL()` has been called on the target.
-		<br />
-		<br />
+        <br />
+        <br />
         This is equivalent to a regular faces navigation, the client doesn't redirect, rather the consumer page renders
         the portlet's new target.
-		<br />
-		<br />
+        <br />
+        <br />
         **Note**: in either case, `FacesContext.responseComplete()` must be called before returning.
 
-    - During a Render Request:
-		<br />
-		<br />
+    - During a Header Request:
+        <br />
+        <br />
         - if the redirect target URL starts with '#', references a resource outside of this web application, or contains
         the query string parameter `javax.portlet.faces.DirectLink` with a value of "`true`". The redirect is ignored.
-		<br />
-		<br />
+        <br />
+        <br />
         - if the redirect target URL references a non-Faces view then throw an
         `IllegalStateException`<sup>[[6.66](tck-tests.md#6.66)]</sup>.
-		<br />
-		<br />
-        - otherwise, encode the redirect target and call `FacesContext.responseComplete()` to ensure the bridge will
-        cease rendering its current view prior to returning any response content. Instead, render the redirect target
-        and returns its output as the response<sup>[[6.65](tck-tests.md#6.65)]</sup>. In addition, support this
-        behavior so that subsequent rerenders will ignore the (original) request target and instead render with the
-        (cached) redirect target URL and its preserved saved (render) view state. Special care is needed in managing
-        public render parameters during a render redirect. The bridge must ensure that the public render parameters
-        passed to this request are carried forward and processed during the rendering of the redirect that occurs within
-        the same render request. However, if subsequent rerender (requests), the bridge must not use any of the public
-        render parameters used in the initial render (redirect) but rather use the public render parameters that are
-        reflected in the (new) request.
+        <br />
+        <br />
+        - otherwise, call `FacesContext.responseComplete()` to ensure the bridge will cease rendering its current view
+        prior to returning any response content. Instead, buffer the markup of the redirect target for rendering during
+        the render phase<sup>[[6.65](tck-tests.md#6.65)]</sup>. In addition, support this behavior so that subsequent
+        rerenders will ignore the (original) request target and instead render with the (cached) redirect target URL and
+        its preserved saved (render) view state. Special care is needed in managing public render parameters during a
+        render redirect. The bridge must ensure that the public render parameters passed to this request are carried
+        forward and processed during the rendering of the redirect that occurs within the same render request. However,
+        if subsequent rerender (requests), the bridge must not use any of the public render parameters used in the
+        initial render (redirect) but rather use the public render parameters that are reflected in the (new) request.
+
+    - During a Render Request: Render the response buffered during the header phase.
 
     - During a Resource Request<sup>[[nt](tck-tests.md#nt)]</sup>: The redirect is ignored. Take no action.
 
@@ -915,9 +921,10 @@ order to override the state writing process allowing it to inspect and preserve 
 The bridge must prevent the Faces action phases (`ApplyRequestValues`, `ProcessValidations`, `UpdateModel`, and
 `InvokeApplication`) from executing if processing an event or rendering in a restored bridge request
 scope<sup>[[6.90](tck-tests.md#6.90)]</sup> [[5.1.2](chapter-5-request-lifecycle.md#5.1.2)]. I.e. during either a
-portlet's `EVENT_PHASE` or `RENDER_PHASE`, when the Faces `Lifecycle` is executed to restore the view, the bridge must
-ensure the lifecycle falls directly through to render after the view is restored. This is most conveniently supported by
-implementing a `PhaseListener` and calling `FacesContext.renderResponse()` when invoked in the `RestoreView` phase.
+portlet's `EVENT_PHASE`, `HEADER_PHASE`, or `RENDER_PHASE`, when the Faces `Lifecycle` is executed to restore the view,
+the bridge must ensure the lifecycle falls directly through to render after the view is restored. This is most
+conveniently supported by implementing a `PhaseListener` and calling `FacesContext.renderResponse()` when invoked in the
+`RestoreView` phase.
 
 ## <a name="6.5"></a>6.5 Expression Language Resolution
 
@@ -961,6 +968,8 @@ implicitly resolved by this JSP EL resolver<sup>[[6.100](tck-tests.md#6.100)]</s
 - `actionResponse`: object of type `javax.portlet.ActionResponse` (only accessible in an `ActionRequest`)
 - `eventRequest`: object of type `javax.portlet.EventRequest` (only accessible in an `EventRequest`)
 - `eventResponse`: object of type `javax.portlet.EventResponse` (only accessible in an `EventRequest`)
+- `headerRequest`: object of type `javax.portlet.HeaderRequest` (only accessible in an `HeaderRequest`)
+- `headerResponse`: object of type `javax.portlet.HeaderResponse` (only accessible in an `HeaderRequest`)
 - `renderRequest`: object of type `javax.portlet.RenderRequest` (only accessible in an `RenderRequest`)
 - `renderResponse`: object of type `javax.portlet.RenderResponse` (only accessible in an `RenderRequest`)
 - `resourceRequest`: object of type `javax.portlet.ResourceRequest` (only accessible in an `ResourceRequest`)
@@ -1038,6 +1047,8 @@ will be implicitly resolved by the JSP EL resolver<sup>[[6.100](tck-tests.md#6.1
 - `actionResponse`: object of type `javax.portlet.ActionResponse` (only accessible in an `ActionRequest`)
 - `eventRequest`: object of type `javax.portlet.EventRequest` (only accessible in an `EventRequest`)
 - `eventResponse`: object of type `javax.portlet.EventResponse` (only accessible in an `EventRequest`)
+- `headerRequest`: object of type `javax.portlet.HeaderRequest` (only accessible in an `HeaderRequest`)
+- `headerResponse`: object of type `javax.portlet.HeaderResponse` (only accessible in an `HeaderRequest`)
 - `renderRequest`: object of type `javax.portlet.RenderRequest` (only accessible in an `RenderRequest`)
 - `renderResponse`: object of type `javax.portlet.RenderResponse` (only accessible in an `RenderRequest`)
 - `resourceRequest`: object of type `javax.portlet.ResourceRequest` (only accessible in an `ResourceRequest`)
@@ -1090,8 +1101,8 @@ The ELResolver must be implemented as follows<sup>[[6.100](tck-tests.md#6.100),[
 <td><tt>getValue</tt></td>
 <td>If running in a non-portlet request or base is non-null return <tt>null</tt>.
 <br />
-If evaluating a JSP expression (non-Faces expression) and property is either <tt>portletConfig</tt>,
-<tt>renderRequest</tt>, or <tt>renderResponse</tt>, return <tt>null</tt>.
+If evaluating a JSP expression (non-Faces expression) and property is <tt>portletConfig</tt>, <tt>headerRequest</tt>, or
+<tt>headerResponse</tt>, <tt>renderRequest</tt>, or <tt>renderResponse</tt>, return <tt>null</tt>.
 <br />
 If base is <tt>null</tt> and property is <tt>null</tt>, throw <tt>PropertyNotFoundException</tt>.
 <br />
@@ -1133,14 +1144,24 @@ as follows:
 <tt>ELException</tt></td>
 </tr>
 <tr>
-<td><tt>renderRequest</tt></td>
-<td>If within an <tt>RenderRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
+<td><tt>headerRequest</tt></td>
+<td>If within a <tt>HeaderRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
 <tt>ELException</tt></td>
 </tr>
 <tr>
-<td><tt>renderResponse</tt></td>
-<td>If within an <tt>RenderRequest</tt> then&nbsp;<tt>ExternalContext.getResponse()</tt> otherwise throw an
+<td><tt>headerResponse</tt></td>
+<td>If within a <tt>HeaderRequest</tt> then&nbsp;<tt>ExternalContext.getResponse()</tt> otherwise throw an
 <tt>ELException</tt></td>
+</tr>
+<tr>
+<td><tt>renderRequest</tt></td>
+<td>If within a <tt>HeaderRequest</tt> or <tt>RenderRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise
+throw an <tt>ELException</tt></td>
+</tr>
+<tr>
+<td><tt>renderResponse</tt></td>
+<td>If within a <tt>HeaderRequest</tt> or <tt>RenderRequest</tt> then&nbsp;<tt>ExternalContext.getResponse()</tt>
+otherwise throw an <tt>ELException</tt></td>
 </tr>
 <tr>
 <td><tt>resourceRequest</tt></td>
@@ -1251,6 +1272,14 @@ The appropriate Class must be stored as the value of the ELResolver.TYPE attribu
 <td><tt>javax.portlet.EventResponse.class</tt></td>
 </tr>
 <tr>
+<td><tt>headerRequest</tt></td>
+<td><tt>javax.portlet.HeaderRequest.class</tt></td>
+</tr>
+<tr>
+<td><tt>headerResponse</tt></td>
+<td><tt>javax.portlet.HeaderResponse.class</tt></td>
+</tr>
+<tr>
 <td><tt>renderRequest</tt></td>
 <td><tt>javax.portlet.RenderRequest.class</tt></td>
 </tr>
@@ -1350,9 +1379,10 @@ annotation must implement `getContainerClientId()` to return a `String` containi
 namespace `Id`, if and only if, called during a portlet request<sup>[[6.91](tck-tests.md#6.91)]</sup>. The namespace
 Id used in processing `getContainerClientId()` must be consistent for the lifetime of the view (across save and
 restore)<sup>[[6.92](tck-tests.md#6.92)]</sup>. Because getContainerClientId() can be called during any portlet
-lifecycle phase (action or render)<sup>[[6.93](tck-tests.md#6.93)]</sup>, care should be taken in implementing this
-support to ensure such consistency as Portlet 1.0 containers only expose the portlet's namespace `Id` during the render
-phase and hence `ExternalContext.encodeNamespace()` throws an exception if called during a portlet action request.
+lifecycle phase (action, header, or render)<sup>[[6.93](tck-tests.md#6.93)]</sup>, care should be taken in implementing
+this support to ensure such consistency as Portlet 1.0 containers only expose the portlet's namespace `Id` during the
+render phase and hence `ExternalContext.encodeNamespace()` throws an exception if called during a portlet action
+request.
 
 The convenience class `javax.portlet.faces.PortletNamingContainerUIViewRoot`<sup>[[6.94](tck-tests.md#6.94)]</sup> is
 provided to simplify adding portlet namespacing for Faces extensions (and for internal bridge usage). This class can
@@ -1372,16 +1402,16 @@ requirements (e.g. when inserting the response into a single overall page form) 
 as an indication that the form fields in the portlet response have already been properly namespaced and hence need not
 be fixed up as part of the form parsing process.
 
-## <a name="6.7"></a>6.7 Supporting isPostback() during RENDER_PHASE
+## <a name="6.7"></a>6.7 Supporting isPostback() during HEADER_PHASE
 
 When rendering, Faces depends on distinguishing between renders that follow action processing within the same request
 and renders that do not. This is determined by calling `ResponseStateManager.isPostback()`. Because portlet renders
 occur in distinct requests from actions, the state Faces depends on to make this determination isn't naturally present.
 As discussed in section [5.1.2](chapter-5-request-lifecycle.md#5.1.2) the bridge is required to ensure the existence
-and/or absence of such state within its render phase in order to ensure proper execution of `isPostback()`.
+and/or absence of such state within its header phase in order to ensure proper execution of `isPostback()`.
 Specifically, the bridge is required to always preserve the `ResponseStateManager.VIEW_STATE_PARAM` parameter in each
 bridge request scope. This is done at the at the end of the `ACTION_PHASE` and `EVENT_PHASE` phase. Furthermore it must
-restore this request parameter at the beginning of each `RENDER_PHASE` phase that corresponds to this bridge request
+restore this request parameter at the beginning of each `HEADER_PHASE` phase that corresponds to this bridge request
 scope such that a call to `ExternalContext.getRequestParameterMap().get(ResponseStateManager.VIEW_STATE_PARAM)` returns
 the restored value<sup>[[6.97](tck-tests.md#6.97)]</sup>. Finally, when its able to restore this parameter the bridge
 must also set the request attribute `javax.portlet.faces.isPostback` with a `Boolean` object whose value is
@@ -1438,7 +1468,7 @@ value all public no argument void return methods annotated by
 container's request scope or its value replaced, the bridge must execute on the (old) attribute's value any public
 no-argument void return method annotated by `BridgePreDestroy` if executing in the action
 phase<sup>[[nt](tck-tests.md#nt)/[6.44](tck-tests.md#6.44)]</sup>. **Note**: because the bridge request scope isn't
-updated during its render phase replace/removal of an attribute's value from the container's request scope must not
+updated during its header phase replace/removal of an attribute's value from the container's request scope must not
 cause the `BridgePreDestroy` method(s) to be called<sup>[[nt](tck-tests.md#nt)/[6.44](tck-tests.md#6.44)]</sup>.
 - When an attribute that is currently maintained in the bridge's request scope is implicitly removed from the
 container's request scope (such as when the container's request scope ends), the bridge does not notify the attribute's

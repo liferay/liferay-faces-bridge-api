@@ -120,11 +120,13 @@ _Version: 5.0.0-edr1-SNAPSHOT_
 
     [5.2.5 Executing a Portlet Event Request](chapter-5-request-lifecycle.md#5.2.5)
 
-    [5.2.6 Executing a Portlet Render Request](chapter-5-request-lifecycle.md#5.2.6)
+    [5.2.6 Executing a Portlet Header Request](chapter-5-request-lifecycle.md#5.2.6)
 
-    [5.2.7 Executing a Portlet Resource Request](chapter-5-request-lifecycle.md#5.2.7)
+    [5.2.7 Executing a Portlet Render Request](chapter-5-request-lifecycle.md#5.2.7)
 
-    [5.2.8 Releasing the FacesContext](chapter-5-request-lifecycle.md#5.2.8)
+    [5.2.8 Executing a Portlet Resource Request](chapter-5-request-lifecycle.md#5.2.8)
+
+    [5.2.9 Releasing the FacesContext](chapter-5-request-lifecycle.md#5.2.9)
 
     [5.3 Processing Public Render Parameters](chapter-5-request-lifecycle.md#5.3)
 
