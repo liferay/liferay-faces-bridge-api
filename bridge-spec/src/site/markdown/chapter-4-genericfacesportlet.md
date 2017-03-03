@@ -92,7 +92,7 @@ presence is ignored.
 ## <a name="4.2"></a>4.2 Structure
 
 The `GenericFacesPortlet` subclasses `javax.portlet.GenericPortlet`. It overrides the `init`, `destroy`, `doDispatch`,
-`doEdit`, `doHelp`, `doView`, and `processAction` methods. In addition it defines the following new methods:
+`doEdit`, `doHelp`, `doView`, `processAction`, and `renderHeaders` methods. In addition it defines the following new methods:
 
     getBridgeClassName
     getDefaultViewIdMap
@@ -186,11 +186,11 @@ The `GenericFacesPortlet` overrides the `doDispatch` method and does the followi
 - otherwise, for non-standard `Modes`, it processes the request as described in [section
 4.2.5](chapter-4-genericfacesportlet.md#4.2.5).
 
-### <a name="4.2.4"></a>4.2.4 doView(), doEdit(), doHelp(), processAction(), serveResource(), processEvent():
+### <a name="4.2.4"></a>4.2.4 doView(), doEdit(), doHelp(), processAction(), serveResource(), processEvent(), renderHeaders():
 
-The `GenericFacesPortlet` overrides the `doView()`, `doEdit()`, `doHelp()`, `processAction()`, and `serveResource()`
-methods and executes the request via the bridge. I.e. portlets that want to override this behavior to detect non-Faces
-targets should either provide this logic in `doDispatch()` or in a subclassed method of the above.
+The `GenericFacesPortlet` overrides the `doView()`, `doEdit()`, `doHelp()`, `processAction()`, `serveResource()`, and
+`renderHeaders()` methods and executes the request via the bridge. I.e. portlets that want to override this behavior to
+detect non-Faces targets should either provide this logic in `doDispatch()` or in a subclassed method of the above.
 
 The `GenericFacesPortlet` overrides the `processEvents()` method and if `isAutoDispatchEvents()` returns `true` executes
 this request via the bridge otherwise it delegates the handling of this event to its superclass. I.e. where the
@@ -209,10 +209,10 @@ portlet `RequestDispatcher` to dispatch(include) the non-Faces target<sup>[[4.3]
 non-Faces view dispatching is enabled if the portlet developer has specified the following init-param in the portlet.xml
 descriptor:
 
-	<init-param>
-		<name>javax.portlet.faces.automaticNonFacesViewDispatching</name>
-		<value>true</value>
-	</init-param>
+    <init-param>
+        <name>javax.portlet.faces.automaticNonFacesViewDispatching</name>
+        <value>true</value>
+    </init-param>
 
 All other requests are assumed by the `GenericFacesPortlet` to be Faces requests and are executed by calling the bridge.
 To facilitate navigations from non-Faces views to Faces views, the `GenericFacesPortlet` recognizes the request
@@ -322,18 +322,18 @@ returned<sup>[[4.18](tck-tests.md#4.18)]</sup>.
 ### <a name="4.2.14"></a>4.2.14 isAutoDispatchEvents()
 
 In general, the bridge is designed to defer to normal portlet processing to ensure it works well in a mixed use
-environment. For example, action, render, and resource requests execute through the complete (`GenericPortlet`) portlet
-call sequence before the `GenericFacesPortlet` dispatches the request to the bridge. This allows none bridge related
-requests to be handled directly by the portlet. Unfortunately, the portlet event model doesn't lend itself as well to
-this delegation model. The portlet event model (via the `GenericPortlet`) encourages the use of method annotation to
-mark the portlet's event handlers. The `GenericPortlet`'s `ProcessEvent()` method provides this behavior. Given that the
-model also doesn't support marking an event as handled, the `GenericFacesPortlet` needs fore knowledge on dispatching
-events to the bridge. The `autoDispatchEvents` boolean provides this information. If true, the `GenericFacesPortlet`
-handles all events by dispatching them directly to the bridge. If false, the `GenericFacesPortlet` doesn't handle any
-events directly, instead it delegates to the standard portlet model which is then responsible for dispatching JSF
-related events directly via the bridge. If not overridden, the `GenericFacesPortlet`'s default behavior for this method
-is to read the portlet initialization parameter `javax.portlet.faces.autoDispatchEvents`. If it exists the value is
-interpreted as a boolean valued `String` (i.e. "true" is `true` while all other values are
+environment. For example, action, header, render, and resource requests execute through the complete (`GenericPortlet`)
+portlet call sequence before the `GenericFacesPortlet` dispatches the request to the bridge. This allows none bridge
+related requests to be handled directly by the portlet. Unfortunately, the portlet event model doesn't lend itself as
+well to this delegation model. The portlet event model (via the `GenericPortlet`) encourages the use of method
+annotation to mark the portlet's event handlers. The `GenericPortlet`'s `ProcessEvent()` method provides this behavior.
+Given that the model also doesn't support marking an event as handled, the `GenericFacesPortlet` needs fore knowledge on
+dispatching events to the bridge. The `autoDispatchEvents` boolean provides this information. If true, the
+`GenericFacesPortlet` handles all events by dispatching them directly to the bridge. If false, the `GenericFacesPortlet`
+doesn't handle any events directly, instead it delegates to the standard portlet model which is then responsible for
+dispatching JSF related events directly via the bridge. If not overridden, the `GenericFacesPortlet`'s default behavior
+for this method is to read the portlet initialization parameter `javax.portlet.faces.autoDispatchEvents`. If it exists
+the value is interpreted as a boolean valued `String` (i.e. "true" is `true` while all other values are
 `false`)<sup>[[4.19](tck-tests.md#4.19)]</sup>. If this initialization parameter doesn't exist, `true` is
 returned<sup>[[4.20](tck-tests.md#4.20)]</sup>.
 

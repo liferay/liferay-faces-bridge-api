@@ -84,16 +84,16 @@ request. What is unique to resources, however, is they can be a POSTBACK. I.e. t
 requesting a partial update and rendition and hence require the full Faces action lifecycle to be run. So like the event
 processing described above, resource request handling also has to deal with saving changes to the restored scope so that
 subsequent render requests will have complete and updated state. The details on managing this are describe below in
-section [5.2.7](chapter-5-request-lifecycle.md#5.2.7).
+section [5.2.8](chapter-5-request-lifecycle.md#5.2.8).
 
 ### <a name="5.1.2"></a>5.1.2 Managing Lifecycle State
 
 To support Faces, the bridge is responsible for encoding portlet (action) responses in a manner that allows it (and
 Faces) to reestablish the request environment that existed at the end of the corresponding action phase during
-subsequent render requests that are identified as pertaining to that action (or event). The term used to describe the
-scope of this managed data is the **bridge request scope**. The bridge request scope manages two types of Faces data:
-the Faces view state and the additional Faces request scope data Faces relies on when executing both the action and the
-render in a single request. Though the Faces view state management is commonly delegated to the normal Faces
+subsequent header/render requests that are identified as pertaining to that action (or event). The term used to describe
+the scope of this managed data is the **bridge request scope**. The bridge request scope manages two types of Faces
+data: the Faces view state and the additional Faces request scope data Faces relies on when executing both the action
+and the render in a single request. Though the Faces view state management is commonly delegated to the normal Faces
 `StateManager` process, the bridge is responsible for ensuring that such state is not restored if it can't restore the
 associated data. This additional associated data is called *scoped data* and
 includes<sup>[[5.1](tck-tests.md#5.1)]</sup>:
@@ -138,7 +138,7 @@ differs from the current request<sup>[[5.50(tck-tests.md#5.50)]</sup>. Such stat
 scoped data structure or indirectly by ensuring its use only occurs if the scope still exists. In addition the bridge
 must encode sufficient information in the action response that allows it to reestablish the data in this scope in
 subsequent in-scope requests.
-- For each render request, if a bridge request scope exists, restore its state to the current (container) request
+- For each header request, if a bridge request scope exists, restore its state to the current (container) request
 scope<sup>[[5.5](tck-tests.md#5.5)]</sup>. For any action parameters that have been preserved, the parameter is
 restored if and only if there isn't an existing parameter of the same name in the incoming
 request<sup>[[5.6](tck-tests.md#5.6)]</sup>.
@@ -163,7 +163,7 @@ subsequent bridge request scope is established)<sup>[[5.8](tck-tests.md#5.8)]</s
 manages this scope in its server and chooses to reclaim this state due to lack of use.
 - The bridge must not assume that all requests following the establishment of a request scope (and prior to a subsequent
 action) are executed in the same bridge request scope<sup>[[5.9](tck-tests.md#5.9)]</sup>. There are a variety of
-reasons that subsequent render requests might reference differing request scopes including a mode change, processing a
+reasons that subsequent header requests might reference differing request scopes including a mode change, processing a
 bookmark(ed) page and consumer history management. Hence the bridge must manage this scope in a manner that ensures that
 each request is encoded with sufficient information as to allow it to decode the specific scope targeted by the request.
 - If a corresponding bridge request scope can't be located or restored then the bridge must ensure that none of the
@@ -302,7 +302,8 @@ implementations to determine its portlet execution context without using `instan
 lifecycle phases. Possible phase values for a portlet based on the Java Portlet Specification 2.0 (JSR 286) include:
 `ACTION_PHASE`, `EVENT_PHASE`, `RENDER_PHASE`, and `RESOURCE_PHASE`. The value `ACTION_PHASE` must be set when
 `doFacesRequest()` is passed an `ActionRequest` and `ActionResponse`. The value `EVENT_PHASE` must be set when
-`doFacesRequest()` is passed an `EventRequest` and `EventResponse`. The value `RENDER_PHASE` must be set when
+`doFacesRequest()` is passed an `EventRequest` and `EventResponse`. The value `HEADER_PHASE` must be set when
+`doFacesRequest()` is passed a `HeaderRequest` and `HeaderResponse`. The value `RENDER_PHASE` must be set when
 `doFacesRequest()` is passed a `RenderRequest` and `RenderResponse`. The value `RESOURCE_PHASE` must be set when
 `doFacesRequest()` is passed an `ResourceRequest` and `ResourceResponse`.
 
@@ -324,8 +325,8 @@ viewId<sup>[[5.15](tck-tests.md#5.15)]</sup>.
 `ContextPath` relative path and extract the target `viewId`<sup>[[5.16](tck-tests.md#5.16)]</sup>. If unable to
 extract a `viewId` from the path throw
 `javax.portlet.faces.BridgeInvalidViewPathException`<sup>[[5.17](tck-tests.md#5.17)]</sup>.
-- If the bridge is processing for the target view in a render request which occurs in the same portlet mode following
-another render request in which a redirect occurred and an action, event, or resource request hasn't been processed in
+- If the bridge is processing for the target view in a header request which occurs in the same portlet mode following
+another header request in which a redirect occurred and an action, event, or resource request hasn't been processed in
 the meantime, use the target `viewId` from the prior redirect<sup>[[5.18](tck-tests.md#5.18)]</sup>.
 
 **Note**: depending on the methodology the bridge relies on to encode the target `viewId` in responses the bridge may
@@ -393,7 +394,7 @@ render parameters as per section [5.3.2](chapter-5-request-lifecycle.md#5.3.2).
 - recognize whether Faces considers the current request processing complete (redirect occurred) or not. If its not
 considered complete<sup>[[5.24](tck-tests.md#5.24)]</sup>:
     - cache the current ViewRoot in a manner that allows the bridge to restore this ViewRoot from the cache when the
-    subsequent render request occurs. (**Note**: JSF 1.2's save mechanism can only be utilized during the rendering
+    subsequent header request occurs. (**Note**: JSF 1.2's save mechanism can only be utilized during the rendering
     process.)
     - encode the ActionResponse in such a way so the bridge will be able to identify and restore the current view (as
     resulted from calling lifecycle.execute).
@@ -423,12 +424,12 @@ either the bridge's construction or a prior `release()`)<sup>[[5.53](tck-tests.m
 request<sup>[[5.55](tck-tests.md#5.55)]</sup>.
 - reestablish (if so indicated) the Faces request scope from the corresponding bridge request scope satisfying all
 requirements listed in section [5.1.2](chapter-5-request-lifecycle.md#5.1.2) concerning providing an idempotent
-rendition based on the `viewId` and request scope state referenced in the render
+rendition based on the `viewId` and request scope state referenced in the header
 request<sup>[[5.48](tck-tests.md#5.48)]</sup>.
 - acquire the `FacesContext` and `Lifecycle` as described above ensuring the appropriate target `viewId` will be
 processed [5.2.3](chapter-5-request-lifecycle.md#5.2.3). **Note**: if the event request follows an action request, the
 Bridge will have to manually restore the view from its cache as it doesn't get saved by Faces until the subsequent
-render request.
+header request.
 - execute the action phase of the Faces lifecycle up through but not beyond the `RestoreView` model phase. This is
 accomplished by installing a `PhaseListener` which terminates processing after the `RestoreView` phase and calling the
 `execute` method on the `Lifecycle` object acquired in section [5.2.1](chapter-5-request-lifecycle.md#5.2.1). For
@@ -460,26 +461,26 @@ If the bridge is called to process an event and it hasn't been initialized with 
 only sets the current non-public request render parameters on the response so they are preserved for the next request
 and then returns<sup>[[5.61](tck-tests.md#5.61)]</sup>.
 
-### <a name="5.2.6"></a>5.2.6 Executing a Portlet Render Request
+### <a name="5.2.6"></a>5.2.6 Executing a Portlet Header Request
 
-The bridge processes a portlet render request when its `doFacesRequest` is
-called with the corresponding portlet Render `request` and `response` objects:
+The bridge processes a portlet header request when its `doFacesRequest` is
+called with the corresponding portlet Header `request` and `response` objects:
 
-    public void doFacesRequest(javax.portlet.RenderRequest request, javax.portlet.RenderResponse response);
+    public void doFacesRequest(javax.portlet.HeaderRequest, javax.portlet.HeaderResponse response);
 
-The bridge may be called to process a portlet render request for either a Faces target or a non-Faces target.
+The bridge may be called to process a portlet header request for either a Faces target or a non-Faces target.
 
 In processing this request for a Faces target the bridge must:
 
 - throw the BridgeUninitializedException if the bridge isn't currently initialized (`init()` has been called following
 either the bridge's construction or a prior `release()`)<sup>[[5.27](tck-tests.md#5.27)]</sup>.
-- set the `javax.portlet.faces.phase` request attribute to `Bridge.PortletPhase.RENDER_PHASE` prior to acquiring the
+- set the `javax.portlet.faces.phase` request attribute to `Bridge.PortletPhase.HEADER_PHASE` prior to acquiring the
 `FacesContext`<sup>[[5.28](tck-tests.md#5.28)]</sup>.
 - acquire the `FacesContext` and `Lifecycle` as described above ensuring the appropriate target `viewId` will be
 processed [5.2.3](chapter-5-request-lifecycle.md#5.2.3).
 - reestablish (if so indicated) the Faces request scope from the corresponding bridge request scope satisfying all
 requirements listed in section [5.1.2](chapter-5-request-lifecycle.md#5.1.2) concerning providing an idempotent
-rendition based on the `viewId` and request scope state referenced in the render
+rendition based on the `viewId` and request scope state referenced in the header
 request<sup>[[5.30](tck-tests.md#5.30)]</sup>.
 - ensure the `RenderKits ResponseStateManager isPostback()` method returns true if and only if a bridge request scope
 has been identified and restored<sup>[[5.31](tck-tests.md#5.31)]</sup>. **Note**: as indicated in section
@@ -511,12 +512,29 @@ calling the `render` method on the `Lifecycle` object acquired in section
 - recognize if a redirect occurs during this render process and handle by discarding any existing output, and rerunning
 this process based on the new target and its request parameters (if the target has a query
 string)<sup>[[5.35](tck-tests.md#5.35)]</sup>.
+- add `target="head"` resources, `@ResourceDependency` resources, and children of `h:head` to the `<head>` section of
+the portal via `headerResponse.addDependency()`.
+- buffer any markup not related to the `<head>` section to be rendered during [the subsequent render
+request](chapter-5-request-lifecycle.md#5.2.7).
 - if necessary, update the value of the `VIEW_STATE_PARAM` parameter managed in this bridge request
 scope<sup>[[5.36](tck-tests.md#5.36)]</sup>.
 - release the `FacesContext`<sup>[[5.37](tck-tests.md#5.37)]</sup>.
 - remove the `javax.portlet.faces.phase request` attribute<sup>[[5.38](tck-tests.md#5.38)]</sup>.
 
-### <a name="5.2.7"></a>5.2.7 Executing a Portlet Resource Request
+### <a name="5.2.7"></a>5.2.7 Executing a Portlet Render Request
+
+The bridge processes a portlet render request when its `doFacesRequest` is
+called with the corresponding portlet Render `request` and `response` objects:
+
+    public void doFacesRequest(javax.portlet.RenderRequest, javax.portlet.RenderResponse response);
+
+The bridge may be called to process a portlet render request for either a Faces target or a non-Faces target.
+
+In processing this request for a Faces target the bridge must:
+
+- render the response produced by the bridge during the header request.
+
+### <a name="5.2.8"></a>5.2.8 Executing a Portlet Resource Request
 
 The bridge processes a portlet resource request when its `doFacesRequest` is called with the corresponding portlet
 Resource `request` and `response` objects:
@@ -567,7 +585,7 @@ dispatching is enabled if the portlet developer has specified the following init
     - release the FacesContext<sup>[[5.67](tck-tests.md#5.67)]</sup>.
 - remove the `javax.portlet.faces.phase` request attribute<sup>[[5.68](tck-tests.md#5.68)]</sup>.
 
-### <a name="5.2.8"></a>5.2.8 Releasing the FacesContext
+### <a name="5.2.9"></a>5.2.9 Releasing the FacesContext
 
 If the bridge has acquired the FacesContext within a doFacesRequest call, it must release it before it returns
 regardless of the disposition of the result. E.g.
@@ -742,8 +760,8 @@ Example `viewId`:
 
 **Note:** In Portlet 1.0 there is no direct API for distinguishing between a request's render parameters and regular
 (post) parameters. To meet the above requirements concerning encoding render parameters, it is recommended that the
-history list only be updated during the render phase. As Portlet 1.0 doesn't carry forward postback parameters into the
-render phase one can infer the render parameters during the render phase as they should be the only parameters
+history list only be updated during the header phase. As Portlet 3.0 doesn't carry forward postback parameters into the
+header phase one can infer the render parameters during the header phase as they should be the only parameters
 received.
 
 - the bridge must allow, recognize, and evaluate `faces-config.xml` navigation rules where the `<to-view-id>` element is

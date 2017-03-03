@@ -17,7 +17,7 @@ For the latest news and updates, follow [@FacesBridgeSpec](https://twitter.com/F
 
 Using [Maven](https://maven.apache.org/) 3.x:
 
-	mvn clean site
+    mvn clean site
 
 ## Community Participation
 

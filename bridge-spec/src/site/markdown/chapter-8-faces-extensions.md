@@ -86,9 +86,9 @@ containers.
 3. avoid completely overriding any method. Where its necessary to do so, the extension must provide equivalent function
 as specified in this specification.
 4. avoid caching the `FacesContext` and other dependent objects in your own variables. In the portlet model the action
-and render phases span requests. A likely bridge implementation creates/destroys the `FacesContext` for each request.
-This means a different `FacesContext` (and dependent) instance exists during the action phase then in the render phase.
-If you cache such instances you will be referencing the wrong, destroyed instance.
+and header/render phases span requests. A likely bridge implementation creates/destroys the `FacesContext` for each
+request. This means a different `FacesContext` (and dependent) instance exists during the action phase then in the
+header/render phase. If you cache such instances you will be referencing the wrong, destroyed instance.
 
 ## <a name="8.5"></a>8.5 Cohabiting with the Bridge's ViewHandler
 
