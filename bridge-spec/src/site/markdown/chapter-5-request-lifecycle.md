@@ -514,7 +514,7 @@ this process based on the new target and its request parameters (if the target h
 string)<sup>[[5.35](tck-tests.md#5.35)]</sup>.
 - add `target="head"` resources, `@ResourceDependency` resources, and children of `h:head` to the `<head>` section of
 the portal via `headerResponse.addDependency()`.
-- buffer any markup not related to the `<head>` section to be rendered during [the subsequent render
+- capture any markup not related to the `<head>` section to be rendered during [the subsequent render
 request](chapter-5-request-lifecycle.md#5.2.7).
 - if necessary, update the value of the `VIEW_STATE_PARAM` parameter managed in this bridge request
 scope<sup>[[5.36](tck-tests.md#5.36)]</sup>.
@@ -532,7 +532,7 @@ The bridge may be called to process a portlet render request for either a Faces 
 
 In processing this request for a Faces target the bridge must:
 
-- render the response produced by the bridge during the header request.
+- write the markup captured bridge during the header request to the response.
 
 ### <a name="5.2.8"></a>5.2.8 Executing a Portlet Resource Request
 

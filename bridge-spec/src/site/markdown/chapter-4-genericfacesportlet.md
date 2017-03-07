@@ -323,7 +323,7 @@ returned<sup>[[4.18](tck-tests.md#4.18)]</sup>.
 
 In general, the bridge is designed to defer to normal portlet processing to ensure it works well in a mixed use
 environment. For example, action, header, render, and resource requests execute through the complete (`GenericPortlet`)
-portlet call sequence before the `GenericFacesPortlet` dispatches the request to the bridge. This allows none bridge
+portlet call sequence before the `GenericFacesPortlet` dispatches the request to the bridge. This allows non-Faces
 related requests to be handled directly by the portlet. Unfortunately, the portlet event model doesn't lend itself as
 well to this delegation model. The portlet event model (via the `GenericPortlet`) encourages the use of method
 annotation to mark the portlet's event handlers. The `GenericPortlet`'s `ProcessEvent()` method provides this behavior.
