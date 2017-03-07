@@ -527,6 +527,18 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 	}
 
+	/**
+	 * Delegates to {@link Bridge#doFacesRequest(HeaderRequest, HeaderResponse)} in order to execute the JSF lifecycle
+	 * for the current view according to its associated {@link javax.portlet.PortletMode} and {@link
+	 * javax.portlet.WindowState}. The markup is captured during the {@link PortletRequest#HEADER_PHASE} so that it can
+	 * be written to the response during the {@link PortletRequest#RENDER_PHASE}.
+	 *
+	 * @param   headerRequest   The current header request.
+	 * @param   headerResponse  The current resource request.
+	 *
+	 * @throws  PortletException  - if an error occurs during header request/response processing.
+	 * @throws  IOException       - if an error occurs while writing to the render response.
+	 */
 	@Override
 	public void renderHeaders(HeaderRequest headerRequest, HeaderResponse headerResponse) throws PortletException,
 		IOException {
@@ -597,8 +609,9 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * Delegates to {@link Bridge#doFacesRequest(RenderRequest, RenderResponse)} in order to render the Faces view
-	 * associated with {@link javax.portlet.PortletMode#EDIT}.
+	 * Delegates to {@link Bridge#doFacesRequest(RenderRequest, RenderResponse)} in order to write the markup captured
+	 * during execution of the JSF lifecycle by the {@link #renderHeaders(HeaderRequest, HeaderResponse)} method to the
+	 * response.
 	 *
 	 * @param   renderRequest   The current render request.
 	 * @param   renderResponse  The current render response.
@@ -614,38 +627,10 @@ public class GenericFacesPortlet extends GenericPortlet {
 		bridge.doFacesRequest(renderRequest, renderResponse);
 	}
 
-	@Override
-	protected void doHeaders(RenderRequest renderRequest, RenderResponse renderResponse) {
-
-		try {
-
-			// Streaming portals like WebSphere (as opposed to buffered portals like Liferay) will set the
-			// javax.portlet.render_part request attribute to a value of "RENDER_HEADERS" which will cause
-			// javax.portlet.GenericPortlet (the superclass of this class) to call this doHeaders(RenderRequest,
-			// RenderResponse) method, but will not in turn call GenericPortlet.doDispatch(RenderRequest,
-			// RenderResponse). That also means that that the doView(RenderRequest, RenderResponse) will not be called
-			// in this class. So if the attribute is set, we call the Bridge.doFacesRequest(RenderRequest,
-			// RenderResponse) method here, so that the Faces lifecycle can be run, and resources added to
-			// h:head can be retrieved. Note that it is the responsibility of the bridge to check for this
-			// attribute as well, because at this point the bridge should not render any JSF views to the response.
-			Object renderPartAttribute = renderRequest.getAttribute(RenderRequest.RENDER_PART);
-
-			if ((renderPartAttribute != null) && renderPartAttribute.equals(RenderRequest.RENDER_HEADERS)) {
-				Bridge bridge = getFacesBridge(renderRequest, renderResponse);
-				bridge.doFacesRequest(renderRequest, renderResponse);
-			}
-		}
-		catch (PortletException e) {
-
-			// Unfortunately the signature for GenericPortlet.doHeaders(RenderRequest, RenderResponse) does not throw
-			// an exception, so we have no choice but to simply report any exceptions by printing the stacktrace.
-			e.printStackTrace();
-		}
-	}
-
 	/**
-	 * Delegates to {@link Bridge#doFacesRequest(RenderRequest, RenderResponse)} in order to render the Faces view
-	 * associated with {@link javax.portlet.PortletMode#HELP}.
+	 * Delegates to {@link Bridge#doFacesRequest(RenderRequest, RenderResponse)} in order to write the markup captured
+	 * during execution of the JSF lifecycle by the {@link #renderHeaders(HeaderRequest, HeaderResponse)} method to the
+	 * response.
 	 *
 	 * @param   renderRequest   The current render request.
 	 * @param   renderResponse  The current render response.
@@ -662,8 +647,9 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * Delegates to {@link Bridge#doFacesRequest(RenderRequest, RenderResponse)} in order to render the Faces view
-	 * associated with {@link javax.portlet.PortletMode#VIEW}.
+	 * Delegates to {@link Bridge#doFacesRequest(RenderRequest, RenderResponse)} in order to write the markup captured
+	 * during execution of the JSF lifecycle by the {@link #renderHeaders(HeaderRequest, HeaderResponse)} method to the
+	 * response.
 	 *
 	 * @param   renderRequest   The current render request.
 	 * @param   renderResponse  The current resource request.
