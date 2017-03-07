@@ -154,15 +154,15 @@ The bridge is used to execute Faces requests on behalf of the portlet by calling
             throws BridgeUninitializedException, BridgeException;
 
 Portlets call the appropriate form of this method for each of the request phases in the portlet lifecycle. In Portlet
-2.0 the lifecycle can be more complicated than in Portlet 1.0. I.e. a typical Java Portlet Specification 1.0 (JSR 168)
-portlet lifecycle invokes the portlet `processAction()` and `render()` methods which results in two calls to the
+2.0/3.0 the lifecycle can be more complicated than in Portlet 1.0. I.e. a typical Java Portlet Specification 1.0 (JSR
+168) portlet lifecycle invokes the portlet `processAction()` and `render()` methods which results in two calls to the
 bridge's `doFacesRequest()`. The first processes the action request by passing the corresponding `ActionRequest` and
 `ActionResponse` objects and the second the render request by passing the corresponding `RenderRequest` and
 `RenderResponse` objects. Likewise, when a Java Portlet Specification 1.0 (JSR 168) portlet lifecycle only invokes
 `render()` such as on the initial request or as a result of `renderURL` invocation, `doFacesRequest()` is only executed
 once passing the corresponding `RenderRequest` and `RenderResponse` objects.
 
-Though this lifecycle remains for Portlet 2.0, additional phases can occur/replace the Portlet 1.0 phases. Portlet
+Though this lifecycle remains for Portlet 2.0/3.0, additional phases can occur/replace the Portlet 1.0 phases. Portlet
 events are communications sent to a portlet by the consuming application to convey pertinent information when
 interactions occur outside of this portlet. i.e. if a portlet action is the lifecycle phase executed when a user
 directly interacts with the portlet, a portlet event is the lifecycle phase when an interaction outside of this portlet
@@ -171,13 +171,19 @@ causes the consumer to need to inform this portlet of the change. Because the po
 to be raised, a portlet can either receive the event as a side effect of it having raised an event during its own action
 processing or in the more common form of the action being directed elsewhere.
 
-The other new request lifecycle phase in Portlet 2.0 is the resource serving phase. Whereas in Portlet 1.0 resources
-couldn't be directly served by the portlet but rather had to be referenced via direct http references, Portlet 2.0
+Another new request lifecycle phase in Portlet 2.0/3.0 is the resource serving phase. Whereas in Portlet 1.0 resources
+couldn't be directly served by the portlet but rather had to be referenced via direct http references, Portlet 2.0/3.0
 allows a portlet to directly return dependent resources. One common use case for this new lifecycle is to implement
 "rich client" behaviors using technologies such as `AJAX`. In this use case the resource is a portion of the portlet's
 page markup which the client requests and inserts directly. Whether this or the more convention use case of acquiring a
 dependent resource such as a javascript file or image, the resource phase can be thought of as an additional step that
 is part of but after a render phase.
+
+A new request lifecycle phase introduced in Portlet 3.0 is the header phase. Whereas in Portlet 1.0/2.0 the
+`doFacesRequest(RenderRequest,RenderResponse)` was called in order to execute the Faces lifecycle and render a markup to
+the response, in Portlet 3.0 the `doFacesRequest(HeaderRequest,HeaderResponse)` is called to execute the Faces lifecycle
+and capture the rendered markup. The `doFacesRequest(RenderRequest,RenderResponse)` method is subsequently called in
+order to write the captured markup to the response.
 
 Each of the `doFacesRequest` lifecycle phase methods takes a portlet request and response object. In addition to the
 incoming information in the portlet request, the portlet provides additional bridge request context by setting
