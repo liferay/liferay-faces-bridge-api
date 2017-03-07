@@ -111,7 +111,7 @@ data and render a markup response. Within this specification *portlet request* i
 
 **action request:** a *portlet request* to process a user interaction.
 
-**header request:** a *portlet request* to generate and capture markup for the portal's <head> section based on the
+**header request:** a *portlet request* to generate and capture markup for the portal's `<head>` section based on the
 *current portlet state.
 
 **render request:** a *portlet request* to write captured markup to the response.

@@ -29,25 +29,30 @@ single client request.
 
 ![Faces Lifecyle Diagram](../resources/images/faces-lifecycle-diagram.png)
 
-Like the Portlet 1.0 model, the Portlet 2.0 model has a multi-request lifecycle primarily split between action (data
-processing) and rendering. The main difference is that the Portlet 2.0 model provides a richer set of operations. In
+Like the Portlet 1.0 model, the Portlet 2.0/3.0 model has a multi-request lifecycle primarily split between action (data
+processing) and rendering. The main difference is that the Portlet 2.0/3.0 model provides a richer set of operations. In
 Portlet 1.0 data processing was limited to those instigated by the client. Such actions were expressed in requests
 handled by the portlet's `processAction` method. Likewise rendering occurred in a single request handled by the
 portlet's `render` method. Within a given lifecycle, such renders might be repeated as the consumer (portal) reacquires
 the current markup. This usually occurs as a result of processing external to this portlet causing the consuming
 application to regenerate the markup for the entire page.
 
-In Portlet 2.0, data processing has been expanded to include events sent by the consumer application (usually as a
+In Portlet 2.0/3.0, data processing has been expanded to include events sent by the consumer application (usually as a
 result of another portlet raising an event). These are processed in the portlet's `processEvent` method. Now a lifecycle
 can begin either with a `processAction` or a `processEvent`. And because events can be chained within a single
 lifecycle, a `processEvent` can be followed by zero or more `processEvents` prior to moving into the render portion of
-the lifecycle. Likewise the Portlet 2.0 rendering model is enriched by including support for portlet's rendering
-resources. The rendering portion of a lifecycle always begins with a call to the portlet's `render` method. This can be
-followed by zero or more resource requests. And like Portlet 1.0, because rendering is supposed to be idempotent, this
-portion of the lifecycle may repeat over and over until a new action or event causes the start of the next lifecycle.
-Figure 3 depicts the difference between the Portlet 1.0 and 2.0 models:
+the lifecycle. Likewise the Portlet 2.0/3.0 rendering model is enriched by including support for portlet's rendering
+resources. The rendering portion of a Portlet 1.0/2.0 lifecycle always begins with a call to the portlet's `render`
+method. In Portlet 3.0, the rendering portion begins in the `renderHeaders` method before `render` is called.  This can
+be followed by zero or more resource requests. Since rendering is supposed to be idempotent, this portion of the
+lifecycle may repeat over and over until a new action or event causes the start of the next lifecycle. Figure 3 depicts
+the difference between the Portlet 1.0, 2.0, and 3.0 models:
 
-![Portlet Lifecycle Comparison](../resources/images/portlet-1-and-2-lifecycle-comparison.png)
+![Portlet 1.0 Lifecycle](../resources/images/portlet-1-lifecycle.png)
+
+![Portlet 2.0 Lifecycle](../resources/images/portlet-2-lifecycle.png)
+
+![Portlet 3.0 Lifecycle](../resources/images/portlet-3-lifecycle.png)
 
 The key difference between the Faces model and the portlet model is that Faces typically executes completely within a
 single request while portlets execute each phase of its lifecycle in distinct requests. Faces relies on this single
@@ -64,6 +69,8 @@ Each of these render requests, if running in the same action scope, renders the 
 necessary Faces state to ensure this behavior.
 
 ![Faces Action Lifecycle in Bridge](../resources/images/faces-action-lifecycle-in-bridge.png)
+
+![Faces Header Lifecycle in Bridge](../resources/images/faces-header-lifecycle-in-bridge.png)
 
 ![Faces Render Lifecycle in Bridge](../resources/images/faces-render-lifecycle-in-bridge.png)
 
