@@ -447,7 +447,7 @@ Test: Covered by Test [5.1](tck-tests.md#5.1)
 [<a name="5.33"></a>5.33a-b] ensure that all `PhaseListeners` listening on the before and after phase of the
 `PhaseId.RESTORE_VIEW` are called
 
-Test: Have test implement/add itself as `PhaseListener` -- in before/after, test that we are in render phase and if so
+Test: Have test implement/add itself as `PhaseListener` -- in before/after, test that we are in header phase and if so
 set attribute that our listener was called. Verify these attributes in test's render. **Note**: verify that the other
 action phases aren't called by also listening on them.
 
