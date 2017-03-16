@@ -689,6 +689,26 @@ Test:  Covered by [5.58](tck-tests.md#5.58)
 Test: TBD In action set a new value in the underlying request scoped managed bean that is mapped to a PRP. Test in
 render that the new value is received and is updated into managed bean.
 
+[<a name="5.75"></a>5.75] for each head resource, the bridge calls `HeaderRequest.addDependency()` to ensure that it is
+added to the portal's `<head>` section.
+
+Test: Use `BridgePortletResponseFactory` to create a `HeaderResponseWrapper` that ensures that
+`HeaderRequest.addDependency()` is called for each head resource (`target="head"`, child of `<h:head>`, or
+`@ResourceDependency`). The `HeaderResponseWrapper` should also ensure that each resource dependency with a resource
+and/or library name is added with the resource name as the `name` argument and the library name as the `scope` argument
+of `HeaderResponse.addDepdendency(name, scope, version, markup)` or
+`HeaderResponse.addDepdendency(name, scope, version)`. Check that
+`HeaderResponse.addProperty(MimeResponse.MARKUP_HEAD_ELEMENT)` is **not** used to add any elements to the `<head>`
+section. Check that resources are rendered in the `<head>` section on the client side .
+
+[<a name="5.76"></a>5.76] capture markup from JSF during the `HEADER_PHASE` and write that captured markup to the
+response during the `RENDER_PHASE`.
+
+Test: Use `BridgePortletResponseFactory` to create a `HeaderResponseWrapper` and a `RenderResponseWrapper` that provide
+a writer that suppresses markup, and determine if any method that writes to the response (`append()`, `format()`,
+`print*()`, or `write()`) is called. Check that no method that writes to the response is called during the
+`HEADER_PHASE` and that at least one method that writes to the response is called during the `RENDER_PHASE`.
+
 ## <a name="6"></a>Chapter 6 Tests
 
 [<a name="6.1"></a>6.1] The file `META-INF/services/javax.faces.context.FacesContextFactory` contains the name of the
