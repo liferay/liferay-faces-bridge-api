@@ -520,9 +520,11 @@ calling the `render` method on the `Lifecycle` object acquired in section
 this process based on the new target and its request parameters (if the target has a query
 string)<sup>[[5.35](tck-tests.md#5.35)]</sup>.
 - add `target="head"` resources, `@ResourceDependency` resources, and children of `h:head` to the `<head>` section of
-the portal via `headerResponse.addDependency()`.
+the portal via `HeaderResponse.addDependency()`. If the resource has a JSF resource name, pass it to
+`HeaderResponse.addDependency()` as the `name` argument. If the resource has a JSF resource library name, pass it to
+`HeaderResponse.addDependency()` as the `scope` argument<sup>[[5.75](tck-tests.md#5.75)]</sup>.
 - capture any markup not related to the `<head>` section to be rendered during [the subsequent render
-request](chapter-5-request-lifecycle.md#5.2.7).
+request](chapter-5-request-lifecycle.md#5.2.7)<sup>[[5.76](tck-tests.md#5.76)]</sup>.
 - if necessary, update the value of the `VIEW_STATE_PARAM` parameter managed in this bridge request
 scope<sup>[[5.36](tck-tests.md#5.36)]</sup>.
 - release the `FacesContext`<sup>[[5.37](tck-tests.md#5.37)]</sup>.
@@ -539,7 +541,8 @@ The bridge may be called to process a portlet render request for either a Faces 
 
 In processing this request for a Faces target the bridge must:
 
-- write the markup captured bridge during the header request to the response.
+- write the markup captured by the bridge during the header request to the
+response<sup>[[5.76](tck-tests.md#5.76)]</sup>.
 
 ### <a name="5.2.8"></a>5.2.8 Executing a Portlet Resource Request
 
