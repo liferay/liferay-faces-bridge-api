@@ -37,7 +37,7 @@ public abstract class BridgeConfigFactory implements Wrapper<BridgeConfigFactory
 	public static BridgeConfig getBridgeConfigInstance(PortletConfig portletConfig) {
 
 		BridgeConfigFactory bridgeConfigFactory = (BridgeConfigFactory) BridgeFactoryFinder.getFactory(
-				BridgeConfigFactory.class);
+				portletConfig.getPortletContext(), BridgeConfigFactory.class);
 
 		return bridgeConfigFactory.getBridgeConfig(portletConfig);
 	}

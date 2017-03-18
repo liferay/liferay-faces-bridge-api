@@ -33,7 +33,7 @@ public abstract class BridgeEventHandlerFactory implements Wrapper<BridgeEventHa
 	public static BridgeEventHandler getBridgeEventHandlerInstance(PortletConfig portletConfig) {
 
 		BridgeEventHandlerFactory bridgeEventHandlerFactory = (BridgeEventHandlerFactory) BridgeFactoryFinder
-			.getFactory(BridgeEventHandlerFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgeEventHandlerFactory.class);
 
 		return bridgeEventHandlerFactory.getBridgeEventHandler(portletConfig);
 	}

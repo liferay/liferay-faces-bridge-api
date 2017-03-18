@@ -33,7 +33,7 @@ public abstract class BridgePortletContextFactory implements Wrapper<BridgePortl
 	public static PortletContext getPortletContextInstance(PortletContext portletContext) {
 
 		BridgePortletContextFactory bridgePortletContextFactory = (BridgePortletContextFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletContextFactory.class);
+			.getFactory(portletContext, BridgePortletContextFactory.class);
 
 		return bridgePortletContextFactory.getPortletContext(portletContext);
 	}
