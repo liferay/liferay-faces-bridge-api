@@ -19,22 +19,43 @@ import java.util.Iterator;
 import java.util.ServiceLoader;
 
 import javax.faces.FacesException;
+import javax.portlet.PortletContext;
 
 
 /**
+ * This class provides a factory lookup mechanism similar to the {@link javax.faces.FactoryFinder} in the JSF API.
+ * Factory instances are stored as attributes in the {@link PortletContext}.
+ *
  * @author  Neil Griffin
  */
 public abstract class BridgeFactoryFinder {
 
-	public static Object getFactory(Class<?> clazz) {
-		return getInstance().getFactoryInstance(clazz);
+	/**
+	 * Returns the factory instance associated with the specified factory class from the specified portlet context.
+	 *
+	 * @param  portletContext  The portlet context associated with the current portlet request.
+	 * @param  factoryClass    The factory {@link java.lang.Class}.
+	 */
+	public static Object getFactory(PortletContext portletContext, Class<?> factoryClass) {
+		return getInstance().getFactoryInstance(portletContext, factoryClass);
 	}
 
+	/**
+	 * Returns the thread-safe Singleton instance of the bridge factory finder.
+	 *
+	 * @throws  FacesException  When the factory extension finder cannot be discovered.
+	 */
 	public static BridgeFactoryFinder getInstance() throws FacesException {
 		return OnDemandBridgeFactoryFinder.instance;
 	}
 
-	public abstract Object getFactoryInstance(Class<?> clazz);
+	/**
+	 * Returns the factory instance associated with the specified factory class from the specified portlet context.
+	 *
+	 * @param  portletContext  The portlet context associated with the current portlet request.
+	 * @param  factoryClass    The factory {@link java.lang.Class}.
+	 */
+	public abstract Object getFactoryInstance(PortletContext portletContext, Class<?> factoryClass);
 
 	private static class OnDemandBridgeFactoryFinder {
 

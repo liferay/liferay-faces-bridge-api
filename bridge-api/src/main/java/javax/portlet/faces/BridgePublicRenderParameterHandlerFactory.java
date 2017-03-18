@@ -35,7 +35,7 @@ public abstract class BridgePublicRenderParameterHandlerFactory
 
 		BridgePublicRenderParameterHandlerFactory bridgePublicRenderParameterHandlerFactory =
 			(BridgePublicRenderParameterHandlerFactory) BridgeFactoryFinder.getFactory(
-				BridgePublicRenderParameterHandlerFactory.class);
+				portletConfig.getPortletContext(), BridgePublicRenderParameterHandlerFactory.class);
 
 		return bridgePublicRenderParameterHandlerFactory.getBridgePublicRenderParameterHandler(portletConfig);
 	}
