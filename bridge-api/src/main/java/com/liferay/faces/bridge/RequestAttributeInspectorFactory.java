@@ -34,7 +34,8 @@ public abstract class RequestAttributeInspectorFactory implements FacesWrapper<R
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		RequestAttributeInspectorFactory requestAttributeInspectorFactory = (RequestAttributeInspectorFactory)
-			BridgeFactoryFinder.getFactory(RequestAttributeInspectorFactory.class);
+			BridgeFactoryFinder.getFactory(portletConfig.getPortletContext(), RequestAttributeInspectorFactory.class);
+			BridgeFactoryFinder.getFactory(portletConfig.getPortletContext(), RequestAttributeInspectorFactory.class);
 
 		return requestAttributeInspectorFactory.getRequestAttributeInspector(portletRequest, portletConfig,
 				bridgeConfig);
