@@ -44,7 +44,7 @@ public abstract class BridgePortletRequestFactory implements FacesWrapper<Bridge
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		BridgePortletRequestFactory bridgePortletRequestFactory = (BridgePortletRequestFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletRequestFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletRequestFactory.class);
 
 		return bridgePortletRequestFactory.getActionRequest(actionRequest, actionResponse, portletConfig, bridgeConfig);
 	}
@@ -57,7 +57,7 @@ public abstract class BridgePortletRequestFactory implements FacesWrapper<Bridge
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		BridgePortletRequestFactory bridgePortletRequestFactory = (BridgePortletRequestFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletRequestFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletRequestFactory.class);
 
 		return bridgePortletRequestFactory.getEventRequest(eventRequest, eventResponse, portletConfig, bridgeConfig);
 	}
@@ -70,7 +70,7 @@ public abstract class BridgePortletRequestFactory implements FacesWrapper<Bridge
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		BridgePortletRequestFactory bridgePortletRequestFactory = (BridgePortletRequestFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletRequestFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletRequestFactory.class);
 
 		return bridgePortletRequestFactory.getHeaderRequest(headerRequest, headerResponse, portletConfig, bridgeConfig);
 	}
@@ -83,7 +83,7 @@ public abstract class BridgePortletRequestFactory implements FacesWrapper<Bridge
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		BridgePortletRequestFactory bridgePortletRequestFactory = (BridgePortletRequestFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletRequestFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletRequestFactory.class);
 
 		return bridgePortletRequestFactory.getRenderRequest(renderRequest, renderResponse, portletConfig, bridgeConfig);
 	}
@@ -96,7 +96,7 @@ public abstract class BridgePortletRequestFactory implements FacesWrapper<Bridge
 		ResourceResponse resourceResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		BridgePortletRequestFactory bridgePortletRequestFactory = (BridgePortletRequestFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletRequestFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletRequestFactory.class);
 
 		return bridgePortletRequestFactory.getResourceRequest(resourceRequest, resourceResponse, portletConfig,
 				bridgeConfig);
