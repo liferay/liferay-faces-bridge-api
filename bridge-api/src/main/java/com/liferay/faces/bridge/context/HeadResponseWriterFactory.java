@@ -17,6 +17,7 @@ package com.liferay.faces.bridge.context;
 
 import javax.faces.FacesWrapper;
 import javax.faces.context.ResponseWriter;
+import javax.portlet.PortletContext;
 import javax.portlet.PortletResponse;
 
 import com.liferay.faces.bridge.BridgeFactoryFinder;
@@ -32,10 +33,10 @@ public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResp
 	 * BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ResponseWriter getHeadResponseWriterInstance(ResponseWriter responseWriter,
-		PortletResponse portletResponse) {
+	  PortletContext portletContext, PortletResponse portletResponse) {
 
 		HeadResponseWriterFactory headResponseWriterFactory = (HeadResponseWriterFactory) BridgeFactoryFinder
-			.getFactory(HeadResponseWriterFactory.class);
+			.getFactory(portletContext, HeadResponseWriterFactory.class);
 
 		return headResponseWriterFactory.getHeadResponseWriter(responseWriter, portletResponse);
 	}
@@ -50,6 +51,6 @@ public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResp
 	/**
 	 * Returns the wrapped factory instance if this factory decorates another. Otherwise, this method returns null.
 	 */
-	// Java 1.6+ @Override
+	@Override
 	public abstract HeadResponseWriterFactory getWrapped();
 }

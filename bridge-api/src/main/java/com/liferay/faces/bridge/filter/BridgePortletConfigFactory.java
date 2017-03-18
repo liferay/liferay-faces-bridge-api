@@ -35,7 +35,7 @@ public abstract class BridgePortletConfigFactory implements FacesWrapper<BridgeP
 	public static PortletConfig getPortletConfigInstance(PortletConfig portletConfig) {
 
 		BridgePortletConfigFactory bridgePortletConfigFactory = (BridgePortletConfigFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletConfigFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletConfigFactory.class);
 
 		return bridgePortletConfigFactory.getPortletConfig(portletConfig);
 	}
@@ -51,6 +51,6 @@ public abstract class BridgePortletConfigFactory implements FacesWrapper<BridgeP
 	/**
 	 * Returns the wrapped factory instance if this factory decorates another. Otherwise, this method returns null.
 	 */
-	// Java 1.6+ @Override
+	@Override
 	public abstract BridgePortletConfigFactory getWrapped();
 }

@@ -34,7 +34,8 @@ public abstract class RequestAttributeInspectorFactory implements FacesWrapper<R
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		RequestAttributeInspectorFactory requestAttributeInspectorFactory = (RequestAttributeInspectorFactory)
-			BridgeFactoryFinder.getFactory(RequestAttributeInspectorFactory.class);
+			BridgeFactoryFinder.getFactory(portletConfig.getPortletContext(), RequestAttributeInspectorFactory.class);
+			BridgeFactoryFinder.getFactory(portletConfig.getPortletContext(), RequestAttributeInspectorFactory.class);
 
 		return requestAttributeInspectorFactory.getRequestAttributeInspector(portletRequest, portletConfig,
 				bridgeConfig);
@@ -50,6 +51,6 @@ public abstract class RequestAttributeInspectorFactory implements FacesWrapper<R
 	/**
 	 * Returns the wrapped factory instance if this factory decorates another. Otherwise, this method returns null.
 	 */
-	// Java 1.6+ @Override
+	@Override
 	public abstract RequestAttributeInspectorFactory getWrapped();
 }

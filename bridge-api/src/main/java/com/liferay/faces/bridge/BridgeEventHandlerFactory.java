@@ -32,7 +32,7 @@ public abstract class BridgeEventHandlerFactory implements FacesWrapper<BridgeEv
 	public static BridgeEventHandler getBridgeEventHandlerInstance(PortletConfig portletConfig) {
 
 		BridgeEventHandlerFactory bridgeEventHandlerFactory = (BridgeEventHandlerFactory) BridgeFactoryFinder
-			.getFactory(BridgeEventHandlerFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgeEventHandlerFactory.class);
 
 		return bridgeEventHandlerFactory.getBridgeEventHandler(portletConfig);
 	}
@@ -46,6 +46,6 @@ public abstract class BridgeEventHandlerFactory implements FacesWrapper<BridgeEv
 	/**
 	 * Returns the wrapped factory instance if this factory decorates another. Otherwise, this method returns null.
 	 */
-	// Java 1.6+ @Override
+	@Override
 	public abstract BridgeEventHandlerFactory getWrapped();
 }

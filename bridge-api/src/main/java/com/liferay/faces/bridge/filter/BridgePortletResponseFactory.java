@@ -43,7 +43,7 @@ public abstract class BridgePortletResponseFactory implements FacesWrapper<Bridg
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		BridgePortletResponseFactory bridgePortletResponseFactory = (BridgePortletResponseFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletResponseFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletResponseFactory.class);
 
 		return bridgePortletResponseFactory.getActionResponse(actionRequest, actionResponse, portletConfig,
 				bridgeConfig);
@@ -57,7 +57,7 @@ public abstract class BridgePortletResponseFactory implements FacesWrapper<Bridg
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		BridgePortletResponseFactory bridgePortletResponseFactory = (BridgePortletResponseFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletResponseFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletResponseFactory.class);
 
 		return bridgePortletResponseFactory.getEventResponse(eventRequest, eventResponse, portletConfig, bridgeConfig);
 	}
@@ -70,7 +70,7 @@ public abstract class BridgePortletResponseFactory implements FacesWrapper<Bridg
 		PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		BridgePortletResponseFactory bridgePortletResponseFactory = (BridgePortletResponseFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletResponseFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletResponseFactory.class);
 
 		return bridgePortletResponseFactory.getRenderResponse(renderRequest, renderResponse, portletConfig,
 				bridgeConfig);
@@ -84,7 +84,7 @@ public abstract class BridgePortletResponseFactory implements FacesWrapper<Bridg
 		ResourceResponse resourceResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig) {
 
 		BridgePortletResponseFactory bridgePortletResponseFactory = (BridgePortletResponseFactory) BridgeFactoryFinder
-			.getFactory(BridgePortletResponseFactory.class);
+			.getFactory(portletConfig.getPortletContext(), BridgePortletResponseFactory.class);
 
 		return bridgePortletResponseFactory.getResourceResponse(resourceRequest, resourceResponse, portletConfig,
 				bridgeConfig);
@@ -121,6 +121,6 @@ public abstract class BridgePortletResponseFactory implements FacesWrapper<Bridg
 	/**
 	 * Returns the wrapped factory instance if this factory decorates another. Otherwise, this method returns null.
 	 */
-	// Java 1.6+ @Override
+	@Override
 	public abstract BridgePortletResponseFactory getWrapped();
 }
