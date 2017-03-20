@@ -103,6 +103,15 @@ public abstract class BridgeFactoryFinder {
 	 */
 	public abstract Object getFactoryInstance(PortletContext portletContext, Class<?> factoryClass);
 
+	/**
+	 * Releases all of the factories that are associated with the specified portlet context. It is designed to be called
+	 * when a portlet application is taken out of service.
+	 *
+	 * @param  portletContext  The portlet context associated with the portlet application that is being taken out of
+	 *                         service.
+	 */
+	public abstract void releaseFactories(PortletContext portletContext);
+
 	private static class OnDemandBridgeFactoryFinder {
 
 		// Since this class is not referenced until BridgeFactoryFinder.getInstance() is called, the
