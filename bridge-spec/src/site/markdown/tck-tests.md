@@ -696,10 +696,10 @@ Test: Use `BridgePortletResponseFactory` to create a `HeaderResponseWrapper` tha
 `HeaderRequest.addDependency()` is called for each head resource (`target="head"`, child of `<h:head>`, or
 `@ResourceDependency`). The `HeaderResponseWrapper` should also ensure that each resource dependency with a resource
 and/or library name is added with the resource name as the `name` argument and the library name as the `scope` argument
-of `HeaderResponse.addDepdendency(name, scope, version, markup)` or
+of `HeaderResponse.addDependency(name, scope, version, markup)` or
 `HeaderResponse.addDepdendency(name, scope, version)`. Check that
 `HeaderResponse.addProperty(MimeResponse.MARKUP_HEAD_ELEMENT)` is **not** used to add any elements to the `<head>`
-section. Check that resources are rendered in the `<head>` section on the client side .
+section. Check that resources are rendered in the `<head>` section on the client side.
 
 [<a name="5.76"></a>5.76] capture markup from JSF during the `HEADER_PHASE` and write that captured markup to the
 response during the `RENDER_PHASE`.
