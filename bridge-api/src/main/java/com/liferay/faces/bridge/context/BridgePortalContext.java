@@ -23,6 +23,9 @@ public final class BridgePortalContext {
 	/**
 	 * Property indicating if the portal application supports adding elements to the &lt;head&gt;...&lt;/head&gt;
 	 * section of the rendered portal page. A non-null value indicates that the portal application provides support.
+	 *
+	 * @since 4.1
+	 * @since 3.1
 	 */
 	public static final String ADD_ELEMENT_TO_HEAD_SUPPORT =
 		"com.liferay.faces.bridge.add.element.to.head.support";
