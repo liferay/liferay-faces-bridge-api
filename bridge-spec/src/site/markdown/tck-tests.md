@@ -642,16 +642,16 @@ rendering of the resource that the attr isn't there.
 [<a name="5.66"></a>5.66] preserve any changes in the current request scope to the bridge request. Reuse the existing
 bridge request scope if it exists, otherwise create one.
 
-Test: Uses Trinidad for PPR. Uses Trinidad button to issue a PPR. Have a GoLink and test field be triggered by this PPR.
-In the resourec request (test method) add a request attribute. Also use this request to swap the names of the buttons so
-the GoLink is now the RunTest trigger. Have the GoLink represent a (redisplay) link back to this page. When it is
-invoked -- I.e. in this render phase, test that the request attribute still exists -- this means it was preserved in the
-scope at the end of the resource request.
+Test: Uses h:commandButton and f:ajax to issue a partial request. Have an h:outputLink and test field be re-rendered in
+the partial-response. In the resource request (test method) add a request attribute. Also use this request to swap the
+names of the buttons so the h:outputLink is now the RunTest trigger. Have the h:outputLink represent a (redisplay)
+link back to this page. When it is invoked -- I.e. in this render phase, test that the request attribute still exists --
+this means it was preserved in the scope at the end of the resource request.
 
 [<a name="5.67"></a>5.67]  release the FacesContext.
 
 Test: Uses iFrame to the test page to issue the resource request. Other than that its pretty much the same logic as
-[5.25](tck-tests.md#5.25) except check in the resourec phase not during an action.
+[5.25](tck-tests.md#5.25) except check in the resource phase not during an action.
 
 [<a name="5.68"></a>5.68] remove the `javax.portlet.faces.phase` request attribute (resource).
 
@@ -1617,9 +1617,9 @@ request the request parameter `Map`(s) returned from `ExternalContext.getRequest
 `Map`(s), the value for this entry must be the value from the underlying request, if it exists, otherwise it must be the
 value in the `javax.portlet.faces.<portletName>.defaultRenderKitId` context attribute
 
-Test: Test uses Trinidad -- have portlet configure the Trinidad renderkit via the portlet.xml entry. Run and action
-followed by a render. Ensure that in each request the parameter is present in each of the three items above and when a
-value is present that it has the correct/configured value.
+Test: Have portlet configure the TestRenderKit via the portlet.xml entry. Run and action followed by a render. Ensure
+that in each request the parameter is present in each of the three items above and when a value is present that it has
+the correct/configured value.
 
 [<a name="6.136"></a>6.136-6.152] If executed during the `RENDER_PHASE` or `RESOURCE_PHASE` and the target was
 determined by its URL path (not portlet: syntax) and that target is a non-Faces `viewId`, construct and return a
