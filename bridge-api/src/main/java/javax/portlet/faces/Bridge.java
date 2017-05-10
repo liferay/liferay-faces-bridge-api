@@ -133,6 +133,24 @@ public interface Bridge {
 	public static final String EXCLUDED_REQUEST_ATTRIBUTES = "excludedRequestAttributes";
 
 	/**
+	 * Request parameter that can be set on a {@link javax.portlet.ResourceURL}. When set to a value of "true", the
+	 * bridge will invoke the JSF lifecycle in the {@link javax.portlet.PortletRequest#RESOURCE_PHASE} of the portlet
+	 * lifecycle. In addition, it will cause {@link javax.faces.context.ExternalContext#getRequestHeaderMap()} to
+	 * contain a "partial/ajax" header so that {@link javax.faces.context.PartialViewContext#isAjaxRequest()} will
+	 * return <code>true</code>.
+	 */
+	public static final String FACES_AJAX_PARAMETER = "_jsfBridgeAjax";
+
+	/**
+	 * Request parameter that can be set on a {@link javax.portlet.ResourceURL}. When set to a value of "true", the
+	 * bridge will invoke the JSF lifecycle in the {@link javax.portlet.PortletRequest#RESOURCE_PHASE} of the portlet
+	 * lifecycle. In addition, it will cause {@link javax.faces.context.ExternalContext#getRequestHeaderMap()} to
+	 * contain a "partial/process" header so that {@link javax.faces.context.PartialViewContext#isPartialRequest()} will
+	 * return <code>true</code>.
+	 */
+	public static final String FACES_PARTIAL_PARAMETER = "_jsfBridgePartial";
+
+	/**
 	 * Special value recognized when encoding an action URL: It is a URL that contains either the {@link
 	 * #FACES_VIEW_ID_PARAMETER} or {@link #FACES_VIEW_PATH_PARAMETER}. The bridge's implementation of {@link
 	 * javax.faces.context.ExternalContext#encodeActionURL(String)} recognizes this value as indicating it needs to
