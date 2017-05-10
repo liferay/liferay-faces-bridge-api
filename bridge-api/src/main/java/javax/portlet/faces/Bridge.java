@@ -194,10 +194,9 @@ public interface Bridge {
 
 	/**
 	 * Request parameter that can be set on a {@link javax.portlet.ResourceURL}. When set to a value of "true", the
-	 * bridge will invoke the JSF lifecycle in the {@link javax.portlet.PortletRequest#RESOURCE_PHASE} of the portlet
-	 * lifecycle. In addition, it will cause {@link javax.faces.context.ExternalContext#getRequestHeaderMap()} to
-	 * contain a "partial/process" header so that {@link javax.faces.context.PartialViewContext#isPartialRequest()} will
-	 * return <code>true</code>.
+	 * bridge will cause {@link javax.faces.context.ExternalContext#getRequestHeaderMap()} to contain a
+	 * "partial/process" header so that {@link javax.faces.context.PartialViewContext#isPartialRequest()} will return
+	 * <code>true</code>.
 	 */
 	public static final String FACES_PARTIAL_PARAMETER = "_jsfBridgePartial";
 
