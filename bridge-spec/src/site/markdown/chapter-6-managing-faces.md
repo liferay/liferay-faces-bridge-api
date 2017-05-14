@@ -77,6 +77,81 @@ context. By and large these descriptions are complete and accurate. Section
 described or are incorrect. For these the bridge must ignore the existing javadoc and implement the behavior as
 described in the next section [6.1.3.1](chapter-6-managing-faces.md#6.1.3.1).
 
+#### Relationship of Faces 1.2 ViewHandler URL Methods to ExternalContext URL Methods
+
+The Faces 1.2 API defined **two types of URLs** that could be rendered to the response: _action_ and _resource_. It also
+established a 1::1 correspondence between "getting" a URL from the view handler and "encoding" a URL via external
+context.
+
+The [ViewHandler.getActionURL(FacesContext facesContext,String
+viewId)](http://docs.oracle.com/javaee/5/api/javax/faces/application/ViewHandler.html#getActionURL%28javax.faces.context.FacesContext%2C%20java.lang.String%29)
+method was designed to return a URL "suitable for rendering" that "selects the specified view identifier" but does not
+encode the URL in any specific way. Instead, it is the responsibility of the caller to subsequently call
+[ExternalContext.encodeActionURL(String)](http://docs.oracle.com/javaee/5/api/javax/faces/context/ExternalContext.html#encodeActionURL%28java.lang.String%29)
+in order to obtain an encoded URL that can be written to the response. For example, Mojarra's
+[com.sun.faces.renderkit.html_basic.FormRenderer](https://github.com/javaserverfaces/mojarra/blob/JSF_1_2_15_B02/jsf-ri/src/com/sun/faces/renderkit/html_basic/FormRenderer.java#L198)
+class follows this convention when writing the `"action"` attribute of a `<form>` element.
+
+Similarly, the [ViewHandler.getResourceURL(FacesContext facesContext, String
+path)](http://docs.oracle.com/javaee/5/api/javax/faces/application/ViewHandler.html#getResourceURL%28javax.faces.context.FacesContext%2C%20java.lang.String%29)
+method was designed to return a URL "suitable for rendering" that "selects the specified web application resource" but
+does not encode the URL in any specific way. Instead, it is the responsibility of the caller to subsequently call
+[ExternalContext.encodeResourceURL(String)](http://docs.oracle.com/javaee/5/api/javax/faces/context/ExternalContext.html#encodeResourceURL%28java.lang.String%29)
+in order to obtain an encoded URL that can be written to the response. For example, Mojarra's
+[com.sun.faces.renderkit.html_basic.ImageRenderer](https://github.com/javaserverfaces/mojarra/blob/JSF_1_2_15_B02/jsf-ri/src/com/sun/faces/renderkit/html_basic/ImageRenderer.java#L134)
+class follows this convention when writing the `"src"` attribute of an `<img>` element.
+
+Upon closer examination of the Faces 1.2 JavaDoc for `ExternalContext.encodeActionURL(String url)` and
+`ExternalContext.encodeResourceURL(String url)`, the following requirements are common to both:
+> Servlet: This must be the value returned by [javax.servlet.http.HttpServletResponse.encodeURL(String url)](http://docs.oracle.com/javaee/5/api/javax/servlet/http/HttpServletResponse.html#encodeURL%28java.lang.String%29).
+>
+> Portlet: This must be the value returned by [javax.portlet.PortletResponse.encodeURL(String url)](http://portals.apache.org/pluto/portlet-2.0-apidocs/javax/portlet/PortletResponse.html#encodeURL%28java.lang.String%29).
+
+The requirement for the "Servlet" use-case is correct, but as section [6.1.3.1](chapter-6-managing-faces.md#6.1.3.1)
+explains, the requirement for the "Portlet" use-case is not adequately described in that it does not take into account
+all the features of the FacesBridge. Regardless, the Faces 1.2 JavaDoc reveals that **the original intent** for these
+methods was to be a simple layer of abstraction to encode/rewrite URLs (such as calling
+`HttpServletResponse.encodeURL(String)` in order to append the `jessionid` URL parameter when the user-agent does not
+support cookies). Further developed in the next section, this **original intent** helps to explain why Faces 2.0
+requires "bookmarkable" and "redirect" URLs to be encoded by calling `ExternalContext.encodeActionURL(String url)`
+before being written to the response.
+
+#### Relationship of Faces 2.0 ViewHandler URL Methods to ExternalContext URL Methods
+
+The Faces 2.0 API added two additional methods for getting URLs from the view handler:
+[ViewHandler.getBookmarkableURL(FacesContext facesContext, String viewId, Map&lt;String,List&lt;String&gt;&gt; parameters, boolean
+includeViewParams)](http://docs.oracle.com/javaee/6/api/javax/faces/application/ViewHandler.html#getBookmarkableURL%28javax.faces.context.FacesContext%2C%20java.lang.String%2C%20java.util.Map%2C%20boolean%29)
+and [ViewHandler.getRedirectURL(FacesContext facesContext, String viewId, Map&lt;String,List&lt;String&gt;&gt; parameters, boolean
+includeViewParams)](http://docs.oracle.com/javaee/6/api/javax/faces/application/ViewHandler.html#getRedirectURL%28javax.faces.context.FacesContext%2C%20java.lang.String%2C%20java.util.Map%2C%20boolean%29).
+However, the Faces 2.0 API **did not add two new types of URLs**. Rather, both "bookmarkable" and "redirect" URLs are
+simply considered to be Faces _action_ URLs (i.e. they target a Faces view). Because of this, both "bookmarkable" and
+"redirect" URLs must ultimately be encoded by calling `ExternalContext.encodeActionURL(String)` before they are
+written to the response.
+
+The Faces 2.0 API maintained the 1::1 correspondence between view handler URL methods and external context URL methods
+by introducing [ExternalContext.encodeBookmarkableURL(String
+url)](http://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html#encodeBookmarkableURL%28java.lang.String%2C%20java.util.Map%29)
+and [ExternalContext.encodeRedirectURL(String
+url)](http://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html#encodeRedirectURL%28java.lang.String%2C%20java.util.Map%29).
+However, the implementation requirements **departed from the pattern** of having the caller of the view handler methods
+to be responsible for calling the corresponding external context methods. Instead, `ViewHandler.getBookmarkableURL(...)`
+would itself be required to first call `ExternalContext.encodeBookmarkableURL(String url)` and pass the result to
+`ExternalContext.encodeActionURL(String url)` before returning the value. Similarly, `ViewHandler.getRedirectURL(...)`
+would itself be required to first call `ExternalContext.encodeRedirectURL(String url)` and pass the result to
+`ExternalContext.encodeActionURL(String url)` before returning the value. As a consequence of this,
+`ViewHandler.getBookmarkableURL(...)` and `ViewHandler.getRedirectURL(...)` both return fully encoded URLs that can be
+written to the response. For example, Mojarra's
+[com.sun.faces.renderkit.html_basic.OutcomeTargetRenderer](https://github.com/javaserverfaces/mojarra/blob/2.2.13/jsf-ri/src/main/java/com/sun/faces/renderkit/html_basic/OutcomeTargetRenderer.java#L194)
+assumes that the return value of `ViewHandler.getBookmarkableURL(...)` can be written directly to the response.
+
+In order to facilitate Ajax, the Faces 2.0 API introduced a **new type of URL** called the _partial action_ URL.
+However, the Faces 2.0 view handler API does not contain a "getPartialActionURL" method. Instead, the value returned by
+the `ViewHandler.getActionURL(FacesContext facesContext, String viewId)` method is to be passed to the
+[ExternalContext.encodePartialActionURL(String
+url)](http://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html#encodePartialActionURL%28java.lang.String%29)
+method before it can be written to the response. This **departs from the pattern** of 1::1 correspondence between
+URL methods in view handler and external context.
+
 #### <a name="6.1.3.1"></a>6.1.3.1 Methods that deviate from Faces 1.2 Javadoc
 
 The following methods require an implementation that aren't adequately described in the Faces 1.2 `ExternalContext`
