@@ -20,6 +20,7 @@ import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
 import javax.portlet.PortletConfig;
+import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -87,6 +88,33 @@ public interface Bridge {
 	 * <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
 	 */
 	public static final String BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER = "bridgePublicRenderParameterHandler";
+
+	/**
+	 * Context initialization parameter that specifies whether or not the bridge request scope extends from an {@link
+	 * PortletRequest#ACTION_PHASE} to a subsequent {@link PortletRequest#ACTION_PHASE}. Default value is <code>
+	 * false</code>, meaning that the bridge request scope begins in the {@link PortletRequest#ACTION_PHASE} and extends
+	 * to the {@link PortletRequest#RENDER_PHASE}.
+	 */
+	public static final String BRIDGE_REQUEST_SCOPE_ACTION_ENABLED =
+		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_ACTION_ENABLED";
+
+	/**
+	 * Context initialization parameter that specifies whether or not Ajax XHR requests that invoke the {@link
+	 * PortletRequest#RESOURCE_PHASE} will participate in the bridge request scope created in a prior {@link
+	 * PortletRequest#ACTION_PHASE}. Default value is <code>false</code>, meaning that the bridge request scope begins
+	 * in the {@link PortletRequest#RESOURCE_PHASE} and ends in the same {@link PortletRequest#RESOURCE_PHASE}.
+	 */
+	public static final String BRIDGE_REQUEST_SCOPE_AJAX_ENABLED =
+		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_AJAX_ENABLED";
+
+	/**
+	 * Context initialization parameter that specifies whether or not XHR requests that invoke the {@link
+	 * PortletRequest#RESOURCE_PHASE} will participate in the bridge request scope created in a prior {@link
+	 * PortletRequest#ACTION_PHASE}. Default value is <code>false</code>, meaning that the bridge request scope begins
+	 * in the {@link PortletRequest#RESOURCE_PHASE} and ends in the same {@link PortletRequest#RESOURCE_PHASE}.
+	 */
+	public static final String BRIDGE_REQUEST_SCOPE_RESOURCE_ENABLED =
+		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_RESOURCE_ENABLED";
 
 	/**
 	 * Portlet context attribute that a portlet can set prior to calling the {@link #init(PortletConfig)} method to
