@@ -22,8 +22,12 @@ import com.liferay.faces.bridge.BridgeFactoryFinder;
 
 
 /**
- * @author  Neil Griffin
+ * @deprecated  Instead, register a custom {@link BridgePortletConfigFactory} that provides a custom instance of {@link
+ *              javax.portlet.PortletConfig}, that in turn provides a method {@link Override} for {@link
+ *              javax.portlet.PortletConfig#getPortletContext()}.
+ * @author      Neil Griffin
  */
+@Deprecated
 public abstract class BridgePortletContextFactory implements FacesWrapper<BridgePortletContextFactory> {
 
 	/**
