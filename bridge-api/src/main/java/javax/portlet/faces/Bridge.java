@@ -64,29 +64,41 @@ public interface Bridge {
 	public static final String BACK_LINK = "javax.portlet.faces.BackLink";
 
 	/**
-	 * Portlet context attribute that a portlet can set prior to calling {@link Bridge#init(PortletConfig)} to configure
-	 * the bridge to use/call the associated {@link BridgeEventHandler} when processing an event. Value is an instance
-	 * of <code>BridgeEventHandler</code>. As this attribute is scoped to a specific portlet in an application-wide
-	 * context the attribute name must be include the portlet name as follows:
+	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "javax.portlet.faces.bridgeEventHandler" instead.
 	 *
-	 * <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
+	 *              <p>Portlet context attribute that a portlet can set prior to calling {@link
+	 *              Bridge#init(PortletConfig)} to configure the bridge to use/call the associated {@link
+	 *              BridgeEventHandler} when processing an event. Value is an instance of <code>
+	 *              BridgeEventHandler</code>. As this attribute is scoped to a specific portlet in an application-wide
+	 *              context the attribute name must be include the portlet name as follows:
+	 *
+	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
+	 *              </p>
 	 */
+	@Deprecated
 	public static final String BRIDGE_EVENT_HANDLER = "bridgeEventHandler";
 
 	/** Base attribute/context parameter prefix. */
 	public static final String BRIDGE_PACKAGE_PREFIX = "javax.portlet.faces.";
 
 	/**
-	 * Portlet context attribute that a portlet can set prior to calling the {@link #init(PortletConfig)} method to
-	 * configure the bridge to use/call the associated {@link BridgePublicRenderParameterHandler}. This handler is used
-	 * to process updates that result from public render parameter changes passed in a request. The bridge first pushs
-	 * all the public render parameter values into the models and then calls this handler's processUpdates method. The
-	 * handler can then compute further model changes based on the changes. Value is an instance of <code>
-	 * BridgePublicRenderParameterHandler</code>. As this attribute is scoped to a specific portlet in an
-	 * application-wide context the attribute name must be include the portlet name as follows:
+	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "javax.portlet.faces.bridgePublicRenderParameterHandler" instead.
 	 *
-	 * <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
+	 *              <p>Portlet context attribute that a portlet can set prior to calling the {@link
+	 *              #init(PortletConfig)} method to configure the bridge to use/call the associated {@link
+	 *              BridgePublicRenderParameterHandler}. This handler is used to process updates that result from public
+	 *              render parameter changes passed in a request. The bridge first pushs all the public render parameter
+	 *              values into the models and then calls this handler's processUpdates method. The handler can then
+	 *              compute further model changes based on the changes. Value is an instance of <code>
+	 *              BridgePublicRenderParameterHandler</code>. As this attribute is scoped to a specific portlet in an
+	 *              application-wide context the attribute name must be include the portlet name as follows:
+	 *
+	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
+	 *              </p>
 	 */
+	@Deprecated
 	public static final String BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER = "bridgePublicRenderParameterHandler";
 
 	/**
@@ -117,25 +129,37 @@ public interface Bridge {
 		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_RESOURCE_ENABLED";
 
 	/**
-	 * Portlet context attribute that a portlet can set prior to calling the {@link #init(PortletConfig)} method to
-	 * configure the bridge to default the renderKitId used for rendering this portlet to the named Id. In Faces, the
-	 * default renderKitId is set in the faces-config.xml and is application wide. In 1.2 this can be overidden by a
-	 * specially named request parameter. To allow differing portlets in the same app to use different default render
-	 * kits, without having to add this parameter, the portlet can set this attribute prior to the bridge init(). The
-	 * bridge will recognize this configuration value and on each request add the special faces request parameter to the
-	 * request (if its not already present).
+	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "javax.portlet.faces.defaultRenderKitId" instead.
+	 *
+	 *              <p>Portlet context attribute that a portlet can set prior to calling the {@link
+	 *              #init(PortletConfig)} method to configure the bridge to default the renderKitId used for rendering
+	 *              this portlet to the named Id. In Faces, the default renderKitId is set in the faces-config.xml and
+	 *              is application wide. In 1.2 this can be overidden by a specially named request parameter. To allow
+	 *              differing portlets in the same app to use different default render kits, without having to add this
+	 *              parameter, the portlet can set this attribute prior to the bridge init(). The bridge will recognize
+	 *              this configuration value and on each request add the special faces request parameter to the request
+	 *              (if its not already present).</p>
 	 */
+	@Deprecated
 	public static final String DEFAULT_RENDERKIT_ID = "defaultRenderKitId";
 
 	/**
-	 * Portlet context attribute that a portlet must set prior to calling {@link Bridge#init(PortletConfig)} to convey
-	 * to the bridge the set of default viewIds that correspond to this portlet's supported portlet modes. Its value is
-	 * a {@link java.util.Map} with one entry per mode. The mode name is the key. The entry's value is the corresponding
-	 * default viewId the bridge should use for this mode. As this attribute is scoped to a specific portlet in an
-	 * application-wide context the attribute name must be include the portlet name as follows:
+	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter
+	 *              "javax.portlet.faces.defaultViewId.view", "javax.portlet.faces.defaultViewId.edit", or
+	 *              "javax.portlet.faces.defaultViewId.help", etc.
 	 *
-	 * <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".defaultViewIdMap"</pre>
+	 *              <p>Portlet context attribute that a portlet must set prior to calling {@link
+	 *              Bridge#init(PortletConfig)} to convey to the bridge the set of default viewIds that correspond to
+	 *              this portlet's supported portlet modes. Its value is a {@link java.util.Map} with one entry per
+	 *              mode. The mode name is the key. The entry's value is the corresponding default viewId the bridge
+	 *              should use for this mode. As this attribute is scoped to a specific portlet in an application-wide
+	 *              context the attribute name must be include the portlet name as follows:
+	 *
+	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".defaultViewIdMap"</pre>
+	 *              </p>
 	 */
+	@Deprecated
 	public static final String DEFAULT_VIEWID_MAP = "defaultViewIdMap";
 
 	/**
@@ -147,15 +171,21 @@ public interface Bridge {
 	public static final String DIRECT_LINK = "javax.portlet.faces.DirectLink";
 
 	/**
-	 * Portlet context attribute that a portlet can set prior to calling {@link Bridge#init(PortletConfig)} to configure
-	 * the bridge to exclude specific attributes from its bridge request scope. Value is a comma delimited list
-	 * containing either a fully qualified attribute name or package name terminated with a ".*" wildcard indicator. In
-	 * this later case, all attributes in the package name which precedes the ".*" are excluded, non recursive. As this
-	 * attribute is scoped to a specific portlet in an application-wide context the attribute name must be include the
-	 * portlet name as follows:
+	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "javax.portlet.faces.excludedRequestAttributes" instead.
 	 *
-	 * <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".excludedRequestAttributes"</pre>
+	 *              <p>Portlet context attribute that a portlet can set prior to calling {@link
+	 *              Bridge#init(PortletConfig)} to configure the bridge to exclude specific attributes from its bridge
+	 *              request scope. Value is a comma delimited list containing either a fully qualified attribute name or
+	 *              package name terminated with a ".*" wildcard indicator. In this later case, all attributes in the
+	 *              package name which precedes the ".*" are excluded, non recursive. As this attribute is scoped to a
+	 *              specific portlet in an application-wide context the attribute name must be include the portlet name
+	 *              as follows:
+	 *
+	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".excludedRequestAttributes"</pre>
+	 *              </p>
 	 */
+	@Deprecated
 	public static final String EXCLUDED_REQUEST_ATTRIBUTES = "excludedRequestAttributes";
 
 	/**
@@ -263,15 +293,21 @@ public interface Bridge {
 	public static final String PORTLET_WINDOWSTATE_PARAMETER = "javax.portlet.faces.WindowState";
 
 	/**
-	 * Portlet context attribute that a portlet can set prior to calling {@link Bridge#init(PortletConfig)} to configure
-	 * the bridge to preserve action parameters received by this portlet along with bridge's request scope so that they
-	 * may be restored and acessed in subsequent renders. If <code>true</code>, the action parameters are preserved. If
-	 * <code>false</code>, they are not preserved. The bridge default is <code>false</code>.<br>
-	 * As this attribute is scoped to a specific portlet in an application-wide context the attribute name must be
-	 * include the portlet name as follows:
+	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "javax.portlet.faces.preserveActionParams" instead.
 	 *
-	 * <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".preserveActionParams"</pre>
+	 *              <p>Portlet context attribute that a portlet can set prior to calling {@link
+	 *              Bridge#init(PortletConfig)} to configure the bridge to preserve action parameters received by this
+	 *              portlet along with bridge's request scope so that they may be restored and acessed in subsequent
+	 *              renders. If <code>true</code>, the action parameters are preserved. If <code>false</code>, they are
+	 *              not preserved. The bridge default is <code>false</code>.<br>
+	 *              As this attribute is scoped to a specific portlet in an application-wide context the attribute name
+	 *              must be include the portlet name as follows:
+	 *
+	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".preserveActionParams"</pre>
+	 *              </p>
 	 */
+	@Deprecated
 	public static final String PRESERVE_ACTION_PARAMS = "preserveActionParams";
 
 	/**
