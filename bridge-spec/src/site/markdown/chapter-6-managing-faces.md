@@ -803,16 +803,19 @@ original objects passed to the constructor if none have been directly set.
 
 - `getInitParameter()`:
 
-    Return the value of the specified application initialization parameter (if any). This must be the result of the
-    `javax.portlet.PortletContext` method `getInitParameter(name)`<sup>[[6.71](tck-tests.md#6.71)]</sup>.
+    Return the value of the specified application initialization parameter (if any). If the result of calling
+    `PortletConfig.getInitParameter(name)` is non-null, then return the non-null value. Otherwise, return the result of
+    calling `PortletContext.getInitParameter(String)`<sup>[[6.71](tck-tests.md#6.71)]</sup>.
 
 - `getInitParameterMap()`:
 
     Return an immutable `Map` whose keys are the set of application initialization parameter names configured for this
     application, and whose values are the corresponding parameter values<sup>[[6.72](tck-tests.md#6.72)]</sup>. The
     returned `Map` must implement the entire contract for an unmodifiable map as described in the JavaDocs for
-    `java.util.Map`. This result must be as if it were synthesized by calling the `javax.portlet.PortletContext` method
-    `getInitParameterNames`, and putting each configured parameter name/value pair into the result.
+    `java.util.Map`. The map keys must be the union of the key names from `PortletConfig.getInitParameterNames()` and
+    `PortletContext.getInitParameterNames()`. Each map value must be equal to the non-null result of calling
+    `PortletConfig.getInitParameter(name)`. Otherwise, if `PortletConfig.getInitParameter(name)` returns a null value
+    then the map value must be equal to the result of calling `PortletContext.getInitParameter(name)`.
 
 - `getRemoteUser()`:
 

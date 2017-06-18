@@ -381,7 +381,7 @@ view. Verify that when the redisplay/new mode occurs you are on the default view
 
 Test: Use a view that includes a redisplay link to the currentView but in a different mode. Don't define a default
 viewId for the new mode (but do define that the mode is supported). Write a portlet that catches the expected
-exceptionto verify the result.
+exception to verify the result.
 
 [<a name="5.21"></a>5.21] When a query string is encountered the bridge must extract this information as part of its
 process of determining the `viewId` and expose the parameters in this query string as additional request parameters.
@@ -1185,17 +1185,20 @@ This must be the current application's `javax.portlet.PortletContext` instance
 
 Test:  verify that the returned value is an instance of PortletContext
 
-[<a name="6.71"></a>6.71] (getInitParameter) Return the value of the specified application initialization parameter (if
-any). This must be the result of the `javax.portlet.PortletContext` method `getInitParameter(name)`
+[<a name="6.71"></a>6.71] (getInitParameter)
+- Verify that each init-param value from portlet.xml is the same as the value from ExternalContext.
+- Verify that each context-param value from web.xml is the same as the value from ExternalContext except for "tckParam2"
+which is expected to be different.
+- Verify that the init parameter value for "tckParam1" from ExternalContext is equal to the context-param value from
+web.xml.
+- Verify that the init parameter value for "tckParam2" from ExternalContext is equal to the init-param value from
+portlet.xml (which verifies that the init-param value from portlet.xml overrides the context-param value from web.xml).
 
-Test: Compare/verify that this call returns the same result as calling the portlet api directly -- get Enum from portlet
-API -- read the first element and ensure you can get with the EC api and it has the same value.
-
-[<a name="6.72"></a>6.72] (getInitParameterMap) Return an immutable `Map` whose keys are the set of application
-initialization parameter names configured for this application, and whose values are the corresponding parameter values
-
-Test: Test for immutability by trying to put something into it. Compare each entry in Map to that of the enum from the
-portlet API and ensure the entries are identical.
+[<a name="6.72"></a>6.72] (getInitParameterMap)
+- Verify that the init parameters are the union of init-params from portlet.xml and context-params from web.xml. 
+- Verify that the init parameter map is immutable.
+- Verify that the param tckParam1 has the same value found in web.xml.
+- Verify that the param tckParam2 has the same value as the overridden one in portlet.xml.
 
 [<a name="6.73"></a>6.73] (getRemoteUser) Return the login name of the user making the current request if any;
 otherwise, return `null`. This must be the value returned by the `javax.portlet.http.PortletRequest` method
