@@ -14,7 +14,7 @@ used to verify behavior/compliance in environments that do provide the necessary
 
 ## <a name="3"></a>Chapter 3 Tests
 
-[<a name="3.1"></a>3.1] For this specification, the returned name must be "Portlet 1.0 Bridge for JavaServer Faces 1.2"
+[<a name="3.1"></a>3.1] For this specification, the returned name must be "Portlet 3.0 Bridge for JavaServer Faces 2.3"
 
 Test: Write a portlet that gets Bridge API class and calls Class.getPackage to get the Specification Title and Version
 to compare with above statement.

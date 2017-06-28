@@ -132,9 +132,9 @@
 						<archive>
 							<manifestEntries>
 								<Built-By>Release Manager</Built-By>
-								<Specification-Title>Portlet 2.0 Bridge for JavaServer Faces 1.2</Specification-Title>
-								<Specification-Vendor>Java Community Process (JSR 329)</Specification-Vendor>
-								<Specification-Version>1.0</Specification-Version>
+								<Specification-Title>Portlet 3.0 Bridge for JavaServer Faces 2.3</Specification-Title>
+								<Specification-Vendor>Java Community Process (JSR TBD)</Specification-Vendor>
+								<Specification-Version>6.0.0</Specification-Version>
 								<Implementation-Title>${project.name}</Implementation-Title>
 								<Implementation-Version>${full.version}</Implementation-Version>
 								<Implementation-Vendor-Id>com.liferay</Implementation-Vendor-Id>
