@@ -403,32 +403,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * @deprecated  This method is no longer used or called by the <code>GenericFacesPortlet</code> but retained in case
-	 *              a subclass has called it.
-	 *
-	 * @param       portletRequest  The current portlet request.
-	 *
-	 * @return      <code>null</code>
-	 */
-	@Deprecated
-	public String getResponseCharacterSetEncoding(PortletRequest portletRequest) {
-		return null;
-	}
-
-	/**
-	 * @deprecated  This method is no longer used or called by the <code>GenericFacesPortlet</code> but retained in case
-	 *              a subclass has called it.
-	 *
-	 * @param       portletRequest  The current portlet request.
-	 *
-	 * @return      The value obtained by calling {@link PortletRequest#getResponseContentType()}.
-	 */
-	@Deprecated
-	public String getResponseContentType(PortletRequest portletRequest) {
-		return portletRequest.getResponseContentType();
-	}
-
-	/**
 	 * Initializes the <code>GenericFacesPortlet</code> according to the specified portlet configuration.
 	 *
 	 * @param   portletConfig  The portlet configuration.
