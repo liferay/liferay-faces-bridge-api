@@ -203,14 +203,9 @@ Test: override method, have this method get values as specified -- test that res
 
 Test: override method, have this method get values as specified -- test that result is same as what super() returned.
 
-[<a name="4.13"></a>4.13] It returns the portlet container's indication of the preferred content type for this response.
+[<a name="4.13"></a>4.13] **AVAILABLE TEST SLOT**
 
-Test: override method, have this method get preeferred content type -- test that result is same as what super()
-returned.
-
-[<a name="4.14"></a>4.14] It returns `null`.
-
-Test:  override method -- test that super() returns null..
+[<a name="4.14"></a>4.14] **AVAILABLE TEST SLOT**
 
 [<a name="4.15"></a>4.15] read the portlet initialization parameter `javax.portlet.faces.bridgeEventHandler` and return
 an instance of the class that corresponds to its value.
@@ -764,10 +759,28 @@ Test: Use encodeActionURL to encode portlet:action?params URL. Verify that the r
 createActionURL()
 
 [<a name="6.10"></a>6.10] (encodeActionURL) If it is a reference to a Faces view the target is the encoded Faces
-`viewId`.
+`viewId` and the client window parameters are (or are not) set as appropriate.
 
-Test: Write test that submits an action and renders result of test (in render). If the result is rendered we
-successfully navigated across an action -- ergo the viewId has to have been encoded someplace.
+Test: bridge-tck-main-portlet (client window feature *disabled*)
+
+- Ensure that when `ExternalContext.encodeActionURL(String)` is called during the `ACTION_PHASE` (due to a navigation
+result triggering a navigation-rule), that:
+
+1. **it does** generate a URL that contains a parameter that is a reference to the Faces `viewId` associated with the
+URI. This can be verified in the `HEADER_PHASE` by having the `<to-view-id>` navigation target simply display test
+results.
+2. **it does not** generate a URL that contains the "jsfwid" and custom client window parameters. This can be verified
+in the `HEADER_PHASE`, since the bridge is required to set URL parameters returned by
+`ExternalContext.encodeActionURL(String)` as render parameters that survive into the `HEADER_PHASE` and `RENDER_PHASE`.
+
+Test: bridge-tck-flows-portlet (client window feature *enabled*)
+
+1. **it does** generate a URL that contains a parameter that is a reference to the Faces `viewId` associated with the
+URI. This can be verified in the `HEADER_PHASE` by having the `<to-view-id>` navigation target simply display test
+results.
+2. **it does** generate a URL that contains the "jsfwid" and custom client window parameters. This can be verified in
+the `HEADER_PHASE`, since the bridge is required to set URL parameters returned by
+`ExternalContext.encodeActionURL(String)` as render parameters that survive into the `HEADER_PHASE` and `RENDER_PHASE`.
 
 [<a name="6.11"></a>6.11] (encodeActionURL) recognize the query string parameter `javax.portlet.faces.PortletMode` and
 use the value of this parameter to identify the mode that should be encoded in the generated reference. (During action)
@@ -820,7 +833,7 @@ Test: Have test's action target contain additional QS params. Test in render tha
 [<a name="6.18"></a>6.18] (encodeActionURL) If it is a reference to a Faces view the target is the encoded Faces
 `viewId`. (During render)
 
-Test: Basically the same test as #[6.10](tck-tests.md#6.10). If we can render a page contining a form (link) and
+Test: Basically the same test as #[6.10](tck-tests.md#6.10). If we can render a page containing a form (link) and
 navigate through it then the first render must have properly encoded the target view id.
 
 [<a name="6.19"></a>6.19] (encodeActionURL) recognize the query string parameter `javax.portlet.faces.PortletMode` and

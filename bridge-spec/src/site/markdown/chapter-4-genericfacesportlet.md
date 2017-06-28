@@ -137,15 +137,15 @@ whether the bridge needs to preserve action parameters for subsequent renders
 [4.2.9](chapter-4-genericfacesportlet.md#4.2.9).
 
 `getBridgeEventHandler()` allows a subclass to override the `GenericFacesPortlet` mechanism for determining the
-`BridgeEventHandler` the bridge should use to process events [4.2.12](chapter-4-genericfacesportlet.md#4.2.12).
+`BridgeEventHandler` the bridge should use to process events [4.2.10](chapter-4-genericfacesportlet.md#4.2.10).
 
 `getBridgePublicRenderParameterHandler()` allows a subclass to override the `GenericFacesPortlet` mechanism for
 determining the `BridgePublicRenderParameterHandler` the bridge should use to post process incoming public render
-parameters [4.2.13](chapter-4-genericfacesportlet.md#4.2.13).
+parameters [4.2.11](chapter-4-genericfacesportlet.md#4.2.11).
 
 `getDefaultRenderKitId()` allows a subclass to override the `GenericFacesPortlet` mechanism for determining the
 renderkit Id (if any) the bridge conveys to Faces for use as the default renderkit Id when acquiring a `RenderKit` and
-rendering [4.2.16](chapter-4-genericfacesportlet.md#4.2.16).
+rendering [4.2.14](chapter-4-genericfacesportlet.md#4.2.14).
 
 **^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
 
@@ -154,23 +154,15 @@ In addition `GenericFacesPortlet` defines the following new methods:
     isAutoDispatchEvents
     getBridgeClassName
     getFacesBridge
-    getResponseContentType
-    getResponseCharacterSetEncoding
 
 `isAutoDispatchEvents()` allows a subclass to override the `GenericFacesPortlet` mechanism for determining the setting
-for the `autoDispatchEvents boolean` [4.2.14](chapter-4-genericfacesportlet.md#4.2.14).
+for the `autoDispatchEvents boolean` [4.2.12](chapter-4-genericfacesportlet.md#4.2.12).
 
 `getBridgeClassName()` allows a subclass to override the GenericFacesPortlet mechanism for determining which bridge
 class to instantiate [4.2.6](chapter-4-genericfacesportlet.md#4.2.6).
 
 `getFacesBridge()` primarily used by a subclass to get the `GenericFacesPortlet`'s bridge in situations where the
-subclass needs to directly call its `doFacesRequest` method. [4.2.15](chapter-4-genericfacesportlet.md#4.2.15).
-
-`getResponseContentType()` is deprecated as it is no longer called by the `GenericFacesPortlet`. It exists merely for
-backwards compatibility in the off chance that a subclass called it.
-
-`getResponseCharacterSetEncoding()` is deprecated as it is no longer called by the `GenericFacesPortlet`. It exists
-merely for backwards compatibility in the off chance that a subclass called it.
+subclass needs to directly call its `doFacesRequest` method. [4.2.13](chapter-4-genericfacesportlet.md#4.2.13).
 
 ### <a name="4.2.1"></a>4.2.1 init():
 
@@ -331,17 +323,7 @@ doesn't exist, `false` is returned<sup>[[4.12](tck-tests.md#4.12)]</sup>.
 
 **^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
 
-### <a name="4.2.10"></a>4.2.10 getResponseContentType()
-
-This is a deprecated method that is no longer called or used by the GenericFacesPortlet. It returns the portlet
-container's indication of the preferred content type for this response<sup>[[4.13](tck-tests.md#4.13)]</sup>.
-
-### <a name="4.2.11"></a>4.2.11 getResponseCharacterSetEncoding()
-
-This is a deprecated method that is no longer called or used by the GenericFacesPortlet. It returns
-null<sup>[[4.14](tck-tests.md#4.14)]</sup>.
-
-### <a name="4.2.12"></a>4.2.12 getBridgeEventHandler()
+### <a name="4.2.10"></a>4.2.10 getBridgeEventHandler()
 
 **vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
 
@@ -359,7 +341,7 @@ returned<sup>[[4.16](tck-tests.md#4.16)]</sup>.
 
 **^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
 
-### <a name="4.2.13"></a>4.2.13 getBridgePublicRenderParameterHandler()
+### <a name="4.2.11"></a>4.2.11 getBridgePublicRenderParameterHandler()
 
 **vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
 
@@ -375,7 +357,7 @@ returned<sup>[[4.18](tck-tests.md#4.18)]</sup>.
 
 **^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
 
-### <a name="4.2.14"></a>4.2.14 isAutoDispatchEvents()
+### <a name="4.2.12"></a>4.2.12 isAutoDispatchEvents()
 
 In general, the bridge is designed to defer to normal portlet processing to ensure it works well in a mixed use
 environment. For example, action, header, render, and resource requests execute through the complete (`GenericPortlet`)
@@ -393,7 +375,7 @@ the value is interpreted as a boolean valued `String` (i.e. "true" is `true` whi
 `false`)<sup>[[4.19](tck-tests.md#4.19)]</sup>. If this initialization parameter doesn't exist, `true` is
 returned<sup>[[4.20](tck-tests.md#4.20)]</sup>.
 
-### <a name="4.2.15"></a>4.2.15 getFacesBridge()
+### <a name="4.2.13"></a>4.2.13 getFacesBridge()
 
 The `GenericFacesPortlet` is designed to be self-servicing. However, there may be times, in particular when dealing with
 events that aren't auto-dispatched, in which a subclass needs to dispatch a request directly to the bridge. To support
@@ -402,7 +384,7 @@ use to call one of the `doFacesRequest()` methods<sup>[[4.21](tck-tests.md#4.21)
 parameters, the `PortletRequest` and `PortletResponse`. The `GenericFacesPortlet` uses these to fully prepare the bridge
 for a `doFacesRequest()` call.
 
-### <a name="4.2.16"></a>4.2.16 getDefaultRenderKitId()
+### <a name="4.2.14"></a>4.2.14 getDefaultRenderKitId()
 
 **vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
 

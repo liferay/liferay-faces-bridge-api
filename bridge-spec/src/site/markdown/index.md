@@ -78,19 +78,15 @@ _Version: 5.0.0-edr1-SNAPSHOT_
 
     [4.2.9 isPreserveActionParameters()](chapter-4-genericfacesportlet.md#4.2.9)
 
-    [4.2.10 getResponseContentType()](chapter-4-genericfacesportlet.md#4.2.10)
+    [4.2.10 getBridgeEventHandler()](chapter-4-genericfacesportlet.md#4.2.12)
 
-    [4.2.11 getResponseCharacterSetEncoding()](chapter-4-genericfacesportlet.md#4.2.11)
+    [4.2.11 getBridgePublicRenderParameterHandler()](chapter-4-genericfacesportlet.md#4.2.13)
 
-    [4.2.12 getBridgeEventHandler()](chapter-4-genericfacesportlet.md#4.2.12)
+    [4.2.12 isAutoDispatchEvents()](chapter-4-genericfacesportlet.md#4.2.14)
 
-    [4.2.13 getBridgePublicRenderParameterHandler()](chapter-4-genericfacesportlet.md#4.2.13)
+    [4.2.13 getFacesBridge()](chapter-4-genericfacesportlet.md#4.2.15)
 
-    [4.2.14 isAutoDispatchEvents()](chapter-4-genericfacesportlet.md#4.2.14)
-
-    [4.2.15 getFacesBridge()](chapter-4-genericfacesportlet.md#4.2.15)
-
-    [4.2.16 getDefaultRenderKitId()](chapter-4-genericfacesportlet.md#4.2.16)
+    [4.2.14 getDefaultRenderKitId()](chapter-4-genericfacesportlet.md#4.2.16)
 
 5. [Request Lifecycle](chapter-5-request-lifecycle.md)
 
