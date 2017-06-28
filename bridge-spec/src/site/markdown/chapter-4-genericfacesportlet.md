@@ -28,16 +28,27 @@ applications relying on the `GenericFacesPortlet` typically do not set this init
 those environments where multiple such resource files exist (because there are multiple bridge implementations in the
 environment) and resource resolution doesn't yield the desired class name.
 
+**vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
+
+_Note: The following behavior has been deprecated as of JSR 378 and is disabled by default. These behavioral_
+_requirements will be removed in the successor to JSR 378._
+
+_Developers can specify the following `init-param` in the portlet.xml descriptor on a per-portlet basis in order to
+enable legacy behavior:_
+
+	<init-param>
+		<name>javax.portlet.faces.initializeNamespacedContextAttributes</name>
+		<value>true</value>
+	</init-param>
+		
 In addition the `GenericFacesPortlet` reads the following portlet initialization parameters and either sets the
-appropriate context attributes<sup>[[4.1](tck-tests.md#4.1)]</sup> to direct the bridge's execution or uses it to
-impact its own behavior:
+appropriate context attributes<sup>[[4.1](tck-tests.md#4.1)]</sup> to direct the bridge's execution:
 
     javax.portlet.faces.defaultViewId.[mode]
     javax.portlet.faces.excludedRequestAttributes
     javax.portlet.faces.preserveActionParams
     javax.portlet.faces.bridgeEventHandler
     javax.portlet.faces.bridgePublicRenderParameterHandler
-    javax.portlet.faces.autoDispatchEvents
     javax.portlet.faces.defaultRenderKitId
 
 `javax.portlet.faces.defaultViewId.[mode]` specifies the name of the `defaultViewId` used for a named portlet
@@ -66,6 +77,17 @@ render parameters into beans. This handler gives the portlet an opportunity to r
 state after such changes. See section [5.3](chapter-5-request-lifecycle.md#5.3) for detail concerning public render
 parameter support.
 
+`javax.portlet.faces.defaultRenderKitId` is a `String` defining this portlet's default renderkit Id. Providing a value
+will cause the `GenericFacesPortlet` to configure the bridge to use this specific default renderkit Id for the portlet
+rather than application level default (set in the `faces-config.xml`).
+
+**^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
+
+In addition the `GenericFacesPortlet` reads the following portlet initialization parameter and either sets the
+appropriate context attributes<sup>[[4.1](tck-tests.md#4.1)]</sup> to impact its own behavior:
+
+    javax.portlet.faces.autoDispatchEvents
+
 `javax.portlet.faces.autoDisptachEvents` is a boolean valued `String` defining whether the bridge overrides regular
 portlet event processing dispatching all events to the bridge. If `true` the `GenericFacesPortlet` overrides
 processEvent() and dispatches all events to the bridge. If `false` the `GenericFacesPortlet` delegates all event
@@ -73,10 +95,6 @@ processing to the standard portlet model. Use `true` if the portlet is written e
 portlet uses a mixture of view technologies. In the later case, the portlet is responsible for recognizing the events
 which should be handled in JSF and dispatch them directly to the bridge. The default value is `true`. See section
 [5.2.5](chapter-5-request-lifecycle.md#5.2.5) for detail concerning handling events.
-
-`javax.portlet.faces.defaultRenderKitId` is a `String` defining this portlet's default renderkit Id. Providing a value
-will cause the `GenericFacesPortlet` to configure the bridge to use this specific default renderkit Id for the portlet
-rather than application level default (set in the `faces-config.xml`).
 
 There are two portlet initialization parameters that were recognized by the Portlet 1.0 bridge that are no longer
 recognized and used in the Portlet 2.0 bridge:
@@ -92,21 +110,19 @@ presence is ignored.
 ## <a name="4.2"></a>4.2 Structure
 
 The `GenericFacesPortlet` subclasses `javax.portlet.GenericPortlet`. It overrides the `init`, `destroy`, `doDispatch`,
-`doEdit`, `doHelp`, `doView`, `processAction`, and `renderHeaders` methods. In addition it defines the following new methods:
+`doEdit`, `doHelp`, `doView`, `processAction`, and `renderHeaders` methods.
 
-    getBridgeClassName
+**vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
+
+_Note: The following methods have been deprecated as of JSR 378 and will be pruned in the successor JSR._
+
+In addition `GenericFacesPortlet` defines the following new methods:
+
     getDefaultViewIdMap
     getExcludedRequestAttributes
     isPreserveActionParameters
-    getResponseContentType
-    getResponseCharacterSetEncoding
     getBridgeEventHandler
     getBridgePublicRenderParameterHandler
-    isAutoDispatchEvents
-    getFacesBridge
-
-`getBridgeClassName()` allows a subclass to override the GenericFacesPortlet mechanism for determining which bridge
-class to instantiate [4.2.6](chapter-4-genericfacesportlet.md#4.2.6).
 
 `getDefaultViewIdMap()` allows a subclass to override the `GenericFacesPortlet` mechanism for determining the `Map` of
 the default `viewId` that should be used in each `PortletMode` when the request doesn't otherwise indicate a specific
@@ -120,12 +136,6 @@ set of request attributes to exclude from the bridge request scope [4.2.8](chapt
 whether the bridge needs to preserve action parameters for subsequent renders
 [4.2.9](chapter-4-genericfacesportlet.md#4.2.9).
 
-`getResponseContentType()` is deprecated as it is no longer called by the `GenericFacesPortlet`. It exists merely for
-backwards compatibility in the off chance that a subclass called it.
-
-`getResponseCharacterSetEncoding()` is deprecated as it is no longer called by the `GenericFacesPortlet`. It exists
-merely for backwards compatibility in the off chance that a subclass called it.
-
 `getBridgeEventHandler()` allows a subclass to override the `GenericFacesPortlet` mechanism for determining the
 `BridgeEventHandler` the bridge should use to process events [4.2.12](chapter-4-genericfacesportlet.md#4.2.12).
 
@@ -133,21 +143,45 @@ merely for backwards compatibility in the off chance that a subclass called it.
 determining the `BridgePublicRenderParameterHandler` the bridge should use to post process incoming public render
 parameters [4.2.13](chapter-4-genericfacesportlet.md#4.2.13).
 
+`getDefaultRenderKitId()` allows a subclass to override the `GenericFacesPortlet` mechanism for determining the
+renderkit Id (if any) the bridge conveys to Faces for use as the default renderkit Id when acquiring a `RenderKit` and
+rendering [4.2.16](chapter-4-genericfacesportlet.md#4.2.16).
+
+**^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
+
+In addition `GenericFacesPortlet` defines the following new methods:
+
+    isAutoDispatchEvents
+    getBridgeClassName
+    getFacesBridge
+    getResponseContentType
+    getResponseCharacterSetEncoding
+
 `isAutoDispatchEvents()` allows a subclass to override the `GenericFacesPortlet` mechanism for determining the setting
 for the `autoDispatchEvents boolean` [4.2.14](chapter-4-genericfacesportlet.md#4.2.14).
+
+`getBridgeClassName()` allows a subclass to override the GenericFacesPortlet mechanism for determining which bridge
+class to instantiate [4.2.6](chapter-4-genericfacesportlet.md#4.2.6).
 
 `getFacesBridge()` primarily used by a subclass to get the `GenericFacesPortlet`'s bridge in situations where the
 subclass needs to directly call its `doFacesRequest` method. [4.2.15](chapter-4-genericfacesportlet.md#4.2.15).
 
-`getDefaultRenderKitId()` allows a subclass to override the `GenericFacesPortlet` mechanism for determining the
-renderkit Id (if any) the bridge conveys to Faces for use as the default renderkit Id when acquiring a `RenderKit` and
-rendering [4.2.16](chapter-4-genericfacesportlet.md#4.2.16).
+`getResponseContentType()` is deprecated as it is no longer called by the `GenericFacesPortlet`. It exists merely for
+backwards compatibility in the off chance that a subclass called it.
+
+`getResponseCharacterSetEncoding()` is deprecated as it is no longer called by the `GenericFacesPortlet`. It exists
+merely for backwards compatibility in the off chance that a subclass called it.
 
 ### <a name="4.2.1"></a>4.2.1 init():
 
 The `GenericFacesPortlet` overrides the `init` method and does the following<sup>[[4.2](tck-tests.md#4.2)]</sup>:
 
 - it determines the specific `Bridge` implementation class to use for this portlet by calling `getBridgeClassName()`.
+
+**vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
+
+_Note: The following method calls are disabled by default since the methods are deprecated. See [Section 4.1](#4.1)_
+_for instructions on how to enable the legacy behavior._
 
 - it calls `getExcludedRequestAttributes()`. The result of this call is set as a `PortletContext` attribute as per this
 specification [3.2](tck-tests.md#3.2).
@@ -166,6 +200,8 @@ per this specification [3.2](tck-tests.md#3.2).
 
 - it calls `getDefaultRenderKitId()`. The result of this call, if not null, is set as a `PortletContext` attribute as
 per this specification [3.2](tck-tests.md#3.2).
+
+**^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
 
 **Note**: instantiating and initializing the bridge may be deferred until it needs to dispatch the first request.
 
@@ -241,6 +277,8 @@ appropriate bridge implementation rather then relying on a specific web applicat
 
 ### <a name="4.2.7"></a>4.2.7 getDefaultViewIdMap()
 
+**vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
+
 Unlike direct web access, in the portlet environment target `viewIds` aren't directly reflected in the request `URL`.
 The bridge is responsible for mapping an incoming request to the correct target. In situations where the incoming
 request doesn't contain specific bridge encoded target information it must map to a default. This default is provided by
@@ -255,7 +293,11 @@ value<sup>[[4.8](tck-tests.md#4.8)]</sup>.
 For the bridge to work properly one entry per supported mode must be provided in the `Map`. If in later use, the bridge
 can't find a needed entry, it throws the `BridgeDefaultViewNotSpecifiedException`.
 
+**^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
+
 ### <a name="4.2.8"></a>4.2.8 getExcludedRequestAttributes()
+
+**vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
 
 As a portlet lifecycle allows multiple (re)renders to occur following an action, the bridge manages an extended notion
 of a request scope to ensure that such rerenders produces identical results. Specifically, portlet scoped request
@@ -272,7 +314,11 @@ parameter, `javax.portlet.faces.excludedRequestAttributes`<sup>[[4.9](tck-tests.
 parameter isn't present `null` is returned which causes the `GenericFacesPortlet` to not set the corresponding
 `PortletContext` attribute<sup>[[4.10](tck-tests.md#4.10)]</sup>.
 
+**^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
+
 ### <a name="4.2.9"></a>4.2.9 isPreserveActionParameters()
+
+**vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
 
 By default the bridge doesn't preserve action parameters into subsequent renders. This can be overridden on a per
 portlet basis by passing a value of true in the appropriate `PortletContext` attribute
@@ -282,6 +328,8 @@ the `GenericFacesPortlet` calls is`PreserveActionParameters()` in its `init()` m
 the portlet initialization parameter,
 `javax.portlet.faces.preserveActionParams`<sup>[[4.11](tck-tests.md#4.11)]</sup>. If this initialization parameter
 doesn't exist, `false` is returned<sup>[[4.12](tck-tests.md#4.12)]</sup>.
+
+**^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
 
 ### <a name="4.2.10"></a>4.2.10 getResponseContentType()
 
@@ -295,6 +343,8 @@ null<sup>[[4.14](tck-tests.md#4.14)]</sup>.
 
 ### <a name="4.2.12"></a>4.2.12 getBridgeEventHandler()
 
+**vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
+
 Because portlet events contain arbitrary (typed) payloads, event processing is delegated by the bridge back to the
 portlet application. The configured `BridgeEventHandler` is called by the bridge at the appropriate point in the
 lifecycle to allow the application to update the model state from information in the event. See
@@ -307,7 +357,11 @@ initialization parameter `javax.portlet.faces.bridgeEventHandler` and return an 
 to its value<sup>[[4.15](tck-tests.md#4.15)]</sup>. If this initialization parameter doesn't exist, null is
 returned<sup>[[4.16](tck-tests.md#4.16)]</sup>.
 
+**^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
+
 ### <a name="4.2.13"></a>4.2.13 getBridgePublicRenderParameterHandler()
+
+**vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
 
 The bridge gives the portlet an opportunity to recompute and resynchronize its models after it has pushed new public
 render parameter values into any corresponding mapped managed beans by calling the `BridgePublicRenderParameterHandler`
@@ -318,6 +372,8 @@ default behavior is to read the portlet initialization parameter
 `javax.portlet.faces.bridgePublicRenderParameterHandler` and return an instance of the class that corresponds to its
 value<sup>[[4.17](tck-tests.md#4.17)]</sup>. If this initialization parameter doesn't exist, `null` is
 returned<sup>[[4.18](tck-tests.md#4.18)]</sup>.
+
+**^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
 
 ### <a name="4.2.14"></a>4.2.14 isAutoDispatchEvents()
 
@@ -348,6 +404,8 @@ for a `doFacesRequest()` call.
 
 ### <a name="4.2.16"></a>4.2.16 getDefaultRenderKitId()
 
+**vvv BEGIN DEPRECATED FUNCTIONALITY vvv**
+
 The `RenderKit` Faces uses commonly resolves to the default set by the application. It is therefore application wide.
 The default Id is resolved first by looking for a well known request parameter. If this parameter doesn't exist then the
 default Id is taken from a configuration setting in the `faces-config.xml`. Finally, if no specific default Id is
@@ -357,3 +415,5 @@ renderkit Id it should configure for this portlet. If not overridden, the `Gener
 return the value of the portlet initialization parameter
 `javax.portlet.faces.defaultRenderKitId`<sup>[[4.22](tck-tests.md#4.22)]</sup>. If this initialization parameter
 doesn't exist, `null` is returned<sup>[[4.23](tck-tests.md#4.23)]</sup>.
+
+**^^^ END OF DEPRECATED FUNCTIONALITY ^^^**
