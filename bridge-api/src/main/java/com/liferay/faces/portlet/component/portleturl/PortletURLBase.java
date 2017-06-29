@@ -43,54 +43,54 @@ public abstract class PortletURLBase extends BaseURL {
 	}
 
 	/**
-	 * <code>copyCurrentRenderParameters</code> attribute description:
-	 * <br /><br />
-	 * When true, copy the current request's render parameters to the URL. Defaults to false.
+	 * <p><code>copyCurrentRenderParameters</code> attribute description:</p>
+	 *
+	 * <p>When true, copy the current request's render parameters to the URL. Defaults to false.</p>
 	 */
 	public boolean isCopyCurrentRenderParameters() {
 		return (Boolean) getStateHelper().eval(PortletURLPropertyKeys.copyCurrentRenderParameters, false);
 	}
 
 	/**
-	 * <code>copyCurrentRenderParameters</code> attribute description:
-	 * <br /><br />
-	 * When true, copy the current request's render parameters to the URL. Defaults to false.
+	 * <p><code>copyCurrentRenderParameters</code> attribute description:</p>
+	 *
+	 * <p>When true, copy the current request's render parameters to the URL. Defaults to false.</p>
 	 */
 	public void setCopyCurrentRenderParameters(boolean copyCurrentRenderParameters) {
 		getStateHelper().put(PortletURLPropertyKeys.copyCurrentRenderParameters, copyCurrentRenderParameters);
 	}
 
 	/**
-	 * <code>portletMode</code> attribute description:
-	 * <br /><br />
-	 * The name of the mode of the portlet which will be accessed via the URL.
+	 * <p><code>portletMode</code> attribute description:</p>
+	 *
+	 * <p>The name of the mode of the portlet which will be accessed via the URL.</p>
 	 */
 	public String getPortletMode() {
 		return (String) getStateHelper().eval(PortletURLPropertyKeys.portletMode, null);
 	}
 
 	/**
-	 * <code>portletMode</code> attribute description:
-	 * <br /><br />
-	 * The name of the mode of the portlet which will be accessed via the URL.
+	 * <p><code>portletMode</code> attribute description:</p>
+	 *
+	 * <p>The name of the mode of the portlet which will be accessed via the URL.</p>
 	 */
 	public void setPortletMode(String portletMode) {
 		getStateHelper().put(PortletURLPropertyKeys.portletMode, portletMode);
 	}
 
 	/**
-	 * <code>windowState</code> attribute description:
-	 * <br /><br />
-	 * The name of the window state of the portlet which will be accessed via the URL.
+	 * <p><code>windowState</code> attribute description:</p>
+	 *
+	 * <p>The name of the window state of the portlet which will be accessed via the URL.</p>
 	 */
 	public String getWindowState() {
 		return (String) getStateHelper().eval(PortletURLPropertyKeys.windowState, null);
 	}
 
 	/**
-	 * <code>windowState</code> attribute description:
-	 * <br /><br />
-	 * The name of the window state of the portlet which will be accessed via the URL.
+	 * <p><code>windowState</code> attribute description:</p>
+	 *
+	 * <p>The name of the window state of the portlet which will be accessed via the URL.</p>
 	 */
 	public void setWindowState(String windowState) {
 		getStateHelper().put(PortletURLPropertyKeys.windowState, windowState);

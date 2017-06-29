@@ -49,54 +49,54 @@ public abstract class BaseURLBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>escapeXml</code> attribute description:
-	 * <br /><br />
-	 * When true, xml special characters will be escaped. Defaults to true.
+	 * <p><code>escapeXml</code> attribute description:</p>
+	 *
+	 * <p>When true, xml special characters will be escaped. Defaults to true.</p>
 	 */
 	public boolean isEscapeXml() {
 		return (Boolean) getStateHelper().eval(BaseURLPropertyKeys.escapeXml, true);
 	}
 
 	/**
-	 * <code>escapeXml</code> attribute description:
-	 * <br /><br />
-	 * When true, xml special characters will be escaped. Defaults to true.
+	 * <p><code>escapeXml</code> attribute description:</p>
+	 *
+	 * <p>When true, xml special characters will be escaped. Defaults to true.</p>
 	 */
 	public void setEscapeXml(boolean escapeXml) {
 		getStateHelper().put(BaseURLPropertyKeys.escapeXml, escapeXml);
 	}
 
 	/**
-	 * <code>secure</code> attribute description:
-	 * <br /><br />
-	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 * <p><code>secure</code> attribute description:</p>
+	 *
+	 * <p>When true, the URL will be secure. Defaults to the security setting of the current request.</p>
 	 */
 	public Boolean getSecure() {
 		return (Boolean) getStateHelper().eval(BaseURLPropertyKeys.secure, null);
 	}
 
 	/**
-	 * <code>secure</code> attribute description:
-	 * <br /><br />
-	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 * <p><code>secure</code> attribute description:</p>
+	 *
+	 * <p>When true, the URL will be secure. Defaults to the security setting of the current request.</p>
 	 */
 	public void setSecure(Boolean secure) {
 		getStateHelper().put(BaseURLPropertyKeys.secure, secure);
 	}
 
 	/**
-	 * <code>var</code> attribute description:
-	 * <br /><br />
-	 * Introduces an EL variable that contains the URL.
+	 * <p><code>var</code> attribute description:</p>
+	 *
+	 * <p>Introduces an EL variable that contains the URL.</p>
 	 */
 	public String getVar() {
 		return (String) getStateHelper().eval(BaseURLPropertyKeys.var, null);
 	}
 
 	/**
-	 * <code>var</code> attribute description:
-	 * <br /><br />
-	 * Introduces an EL variable that contains the URL.
+	 * <p><code>var</code> attribute description:</p>
+	 *
+	 * <p>Introduces an EL variable that contains the URL.</p>
 	 */
 	public void setVar(String var) {
 		getStateHelper().put(BaseURLPropertyKeys.var, var);
