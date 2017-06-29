@@ -45,144 +45,144 @@ public class PortletActionURL extends UIComponentBase {
 	}
 
 	/**
-	 * <code>name</code> attribute description:<br />
-	 * <br />
-	 * The name of the action method to be executed.
+	 * <p><code>name</code> attribute description:</p>
+	 *
+	 * <p>The name of the action method to be executed.</p>
 	 */
 	public String getName() {
 		return (String) getStateHelper().eval(PropertyKeys.name, null);
 	}
 
 	/**
-	 * <code>portletMode</code> attribute description:<br />
-	 * <br />
-	 * The name of the mode of the portlet which will be accessed via the URL.
+	 * <p><code>portletMode</code> attribute description:</p>
+	 *
+	 * <p>The name of the mode of the portlet which will be accessed via the URL.</p>
 	 */
 	public String getPortletMode() {
 		return (String) getStateHelper().eval(PropertyKeys.portletMode, null);
 	}
 
 	/**
-	 * <code>secure</code> attribute description:<br />
-	 * <br />
-	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 * <p><code>secure</code> attribute description:</p>
+	 *
+	 * <p>When true, the URL will be secure. Defaults to the security setting of the current request.</p>
 	 */
 	public Boolean getSecure() {
 		return (Boolean) getStateHelper().eval(PropertyKeys.secure, null);
 	}
 
 	/**
-	 * <code>type</code> attribute description:<br />
-	 * <br />
-	 * The type of parameter to add. Valid values are "action" (the default) and "render".
+	 * <p><code>type</code> attribute description:</p>
+	 *
+	 * <p>The type of parameter to add. Valid values are "action" (the default) and "render".</p>
 	 */
 	public String getType() {
 		return (String) getStateHelper().eval(PropertyKeys.type, "action");
 	}
 
 	/**
-	 * <code>var</code> attribute description:<br />
-	 * <br />
-	 * Introduces an EL variable that contains the URL.
+	 * <p><code>var</code> attribute description:</p>
+	 *
+	 * <p>Introduces an EL variable that contains the URL.</p>
 	 */
 	public String getVar() {
 		return (String) getStateHelper().eval(PropertyKeys.var, null);
 	}
 
 	/**
-	 * <code>windowState</code> attribute description:<br />
-	 * <br />
-	 * The name of the window state of the portlet which will be accessed via the URL.
+	 * <p><code>windowState</code> attribute description:</p>
+	 *
+	 * <p>The name of the window state of the portlet which will be accessed via the URL.</p>
 	 */
 	public String getWindowState() {
 		return (String) getStateHelper().eval(PropertyKeys.windowState, null);
 	}
 
 	/**
-	 * <code>copyCurrentRenderParameters</code> attribute description:<br />
-	 * <br />
-	 * When true, copy the current request's render parameters to the URL. Defaults to false.
+	 * <p><code>copyCurrentRenderParameters</code> attribute description:</p>
+	 *
+	 * <p>When true, copy the current request's render parameters to the URL. Defaults to false.</p>
 	 */
 	public boolean isCopyCurrentRenderParameters() {
 		return (Boolean) getStateHelper().eval(PropertyKeys.copyCurrentRenderParameters, false);
 	}
 
 	/**
-	 * <code>escapeXml</code> attribute description:<br />
-	 * <br />
-	 * When true, xml special characters will be escaped. Defaults to true.
+	 * <p><code>escapeXml</code> attribute description:</p>
+	 *
+	 * <p>When true, xml special characters will be escaped. Defaults to true.</p>
 	 */
 	public boolean isEscapeXml() {
 		return (Boolean) getStateHelper().eval(PropertyKeys.escapeXml, true);
 	}
 
 	/**
-	 * <code>copyCurrentRenderParameters</code> attribute description:<br />
-	 * <br />
-	 * When true, copy the current request's render parameters to the URL. Defaults to false.
+	 * <p><code>copyCurrentRenderParameters</code> attribute description:</p>
+	 *
+	 * <p>When true, copy the current request's render parameters to the URL. Defaults to false.</p>
 	 */
 	public void setCopyCurrentRenderParameters(boolean copyCurrentRenderParameters) {
 		getStateHelper().put(PropertyKeys.copyCurrentRenderParameters, copyCurrentRenderParameters);
 	}
 
 	/**
-	 * <code>escapeXml</code> attribute description:<br />
-	 * <br />
-	 * When true, xml special characters will be escaped. Defaults to true.
+	 * <p><code>escapeXml</code> attribute description:</p>
+	 *
+	 * <p>When true, xml special characters will be escaped. Defaults to true.</p>
 	 */
 	public void setEscapeXml(boolean escapeXml) {
 		getStateHelper().put(PropertyKeys.escapeXml, escapeXml);
 	}
 
 	/**
-	 * <code>name</code> attribute description:<br />
-	 * <br />
-	 * The name of the action method to be executed.
+	 * <p><code>name</code> attribute description:</p>
+	 *
+	 * <p>The name of the action method to be executed.</p>
 	 */
 	public void setName(String name) {
 		getStateHelper().put(PropertyKeys.name, name);
 	}
 
 	/**
-	 * <code>portletMode</code> attribute description:<br />
-	 * <br />
-	 * The name of the mode of the portlet which will be accessed via the URL.
+	 * <p><code>portletMode</code> attribute description:</p>
+	 *
+	 * <p>The name of the mode of the portlet which will be accessed via the URL.</p>
 	 */
 	public void setPortletMode(String portletMode) {
 		getStateHelper().put(PropertyKeys.portletMode, portletMode);
 	}
 
 	/**
-	 * <code>secure</code> attribute description:<br />
-	 * <br />
-	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 * <p><code>secure</code> attribute description:</p>
+	 *
+	 * <p>When true, the URL will be secure. Defaults to the security setting of the current request.</p>
 	 */
 	public void setSecure(Boolean secure) {
 		getStateHelper().put(PropertyKeys.secure, secure);
 	}
 
 	/**
-	 * <code>type</code> attribute description:<br />
-	 * <br />
-	 * The type of parameter to add. Valid values are "action" (the default) and "render".
+	 * <p><code>type</code> attribute description:</p>
+	 *
+	 * <p>The type of parameter to add. Valid values are "action" (the default) and "render".</p>
 	 */
 	public void setType(String type) {
 		getStateHelper().put(PropertyKeys.type, type);
 	}
 
 	/**
-	 * <code>var</code> attribute description:<br />
-	 * <br />
-	 * Introduces an EL variable that contains the URL.
+	 * <p><code>var</code> attribute description:</p>
+	 *
+	 * <p>Introduces an EL variable that contains the URL.</p>
 	 */
 	public void setVar(String var) {
 		getStateHelper().put(PropertyKeys.var, var);
 	}
 
 	/**
-	 * <code>windowState</code> attribute description:<br />
-	 * <br />
-	 * The name of the window state of the portlet which will be accessed via the URL.
+	 * <p><code>windowState</code> attribute description:</p>
+	 *
+	 * <p>The name of the window state of the portlet which will be accessed via the URL.</p>
 	 */
 	public void setWindowState(String windowState) {
 		getStateHelper().put(PropertyKeys.windowState, windowState);

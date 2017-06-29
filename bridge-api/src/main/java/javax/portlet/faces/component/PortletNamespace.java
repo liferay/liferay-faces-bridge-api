@@ -45,18 +45,18 @@ public class PortletNamespace extends UIComponentBase {
 	}
 
 	/**
-	 * <code>var</code> attribute description:<br />
-	 * <br />
-	 * Introduces an EL variable that contains the portlet namespace.
+	 * <p><code>var</code> attribute description:</p>
+	 *
+	 * <p>Introduces an EL variable that contains the portlet namespace.</p>
 	 */
 	public String getVar() {
 		return (String) getStateHelper().eval(NamespacePropertyKeys.var, null);
 	}
 
 	/**
-	 * <code>var</code> attribute description:<br />
-	 * <br />
-	 * Introduces an EL variable that contains the portlet namespace.
+	 * <p><code>var</code> attribute description:</p>
+	 *
+	 * <p>Introduces an EL variable that contains the portlet namespace.</p>
 	 */
 	public void setVar(String var) {
 		getStateHelper().put(NamespacePropertyKeys.var, var);
