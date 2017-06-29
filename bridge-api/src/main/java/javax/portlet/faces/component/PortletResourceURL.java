@@ -40,10 +40,11 @@ public class PortletResourceURL extends UIComponentBase {
 	}
 
 	/**
-	 * <code>cacheability</code> attribute description:<br />
-	 * <br />
-	 * The cacheability of the resource returned by the resourceURL. Valid values include <code>ResourceURL.FULL</code>,
-	 * <code>ResourceURL.PAGE</code>, and <code>ResourceURL.PORTLET</code>. Defaults to <code>ResourceURL.PAGE</code>.
+	 * <p><code>cacheability</code> attribute description:</p>
+	 *
+	 * <p>The cacheability of the resource returned by the resourceURL. Valid values include <code>
+	 * ResourceURL.FULL</code>, <code>ResourceURL.PAGE</code>, and <code>ResourceURL.PORTLET</code>. Defaults to <code>
+	 * ResourceURL.PAGE</code>.</p>
 	 */
 	public String getCacheability() {
 		return (String) getStateHelper().eval(PropertyKeys.cacheability, javax.portlet.ResourceURL.PAGE);
@@ -55,9 +56,9 @@ public class PortletResourceURL extends UIComponentBase {
 	}
 
 	/**
-	 * <code>id</code> attribute description:<br />
-	 * <br />
-	 * The id for the resource.
+	 * <p><code>id</code> attribute description:</p>
+	 *
+	 * <p>The id for the resource.</p>
 	 */
 	@Override
 	public String getId() {
@@ -65,55 +66,56 @@ public class PortletResourceURL extends UIComponentBase {
 	}
 
 	/**
-	 * <code>secure</code> attribute description:<br />
-	 * <br />
-	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 * <p><code>secure</code> attribute description:</p>
+	 *
+	 * <p>When true, the URL will be secure. Defaults to the security setting of the current request.</p>
 	 */
 	public Boolean getSecure() {
 		return (Boolean) getStateHelper().eval(PropertyKeys.secure, null);
 	}
 
 	/**
-	 * <code>var</code> attribute description:<br />
-	 * <br />
-	 * Introduces an EL variable that contains the URL.
+	 * <p><code>var</code> attribute description:</p>
+	 *
+	 * <p>Introduces an EL variable that contains the URL.</p>
 	 */
 	public String getVar() {
 		return (String) getStateHelper().eval(PropertyKeys.var, null);
 	}
 
 	/**
-	 * <code>escapeXml</code> attribute description:<br />
-	 * <br />
-	 * When true, xml special characters will be escaped. Defaults to true.
+	 * <p><code>escapeXml</code> attribute description:</p>
+	 *
+	 * <p>When true, xml special characters will be escaped. Defaults to true.</p>
 	 */
 	public boolean isEscapeXml() {
 		return (Boolean) getStateHelper().eval(PropertyKeys.escapeXml, true);
 	}
 
 	/**
-	 * <code>cacheability</code> attribute description:<br />
-	 * <br />
-	 * The cacheability of the resource returned by the resourceURL. Valid values include <code>ResourceURL.FULL</code>,
-	 * <code>ResourceURL.PAGE</code>, and <code>ResourceURL.PORTLET</code>. Defaults to <code>ResourceURL.PAGE</code>.
+	 * <p><code>cacheability</code> attribute description:</p>
+	 *
+	 * <p>The cacheability of the resource returned by the resourceURL. Valid values include <code>
+	 * ResourceURL.FULL</code>, <code>ResourceURL.PAGE</code>, and <code>ResourceURL.PORTLET</code>. Defaults to <code>
+	 * ResourceURL.PAGE</code>.</p>
 	 */
 	public void setCacheability(String cacheability) {
 		getStateHelper().put(PropertyKeys.cacheability, cacheability);
 	}
 
 	/**
-	 * <code>escapeXml</code> attribute description:<br />
-	 * <br />
-	 * When true, xml special characters will be escaped. Defaults to true.
+	 * <p><code>escapeXml</code> attribute description:</p>
+	 *
+	 * <p>When true, xml special characters will be escaped. Defaults to true.</p>
 	 */
 	public void setEscapeXml(boolean escapeXml) {
 		getStateHelper().put(PropertyKeys.escapeXml, escapeXml);
 	}
 
 	/**
-	 * <code>id</code> attribute description:<br />
-	 * <br />
-	 * The id for the resource.
+	 * <p><code>id</code> attribute description:</p>
+	 *
+	 * <p>The id for the resource.</p>
 	 */
 	@Override
 	public void setId(String id) {
@@ -121,18 +123,18 @@ public class PortletResourceURL extends UIComponentBase {
 	}
 
 	/**
-	 * <code>secure</code> attribute description:<br />
-	 * <br />
-	 * When true, the URL will be secure. Defaults to the security setting of the current request.
+	 * <p><code>secure</code> attribute description:</p>
+	 *
+	 * <p>When true, the URL will be secure. Defaults to the security setting of the current request.</p>
 	 */
 	public void setSecure(Boolean secure) {
 		getStateHelper().put(PropertyKeys.secure, secure);
 	}
 
 	/**
-	 * <code>var</code> attribute description:<br />
-	 * <br />
-	 * Introduces an EL variable that contains the URL.
+	 * <p><code>var</code> attribute description:</p>
+	 *
+	 * <p>Introduces an EL variable that contains the URL.</p>
 	 */
 	public void setVar(String var) {
 		getStateHelper().put(PropertyKeys.var, var);

@@ -47,7 +47,7 @@ public interface Preference {
 	 * @return  the first value associated with this preference, or <code>null</code> if there isn't an associated value
 	 *          or the backing store is inaccessible.
 	 *
-	 * @see     {@link #getValues()}
+	 * @see     #getValues()
 	 */
 	public String getValue();
 
@@ -62,7 +62,7 @@ public interface Preference {
 	 * @return  the list of values associated with this preference, or <code>null</code> if the associated value does
 	 *          not exist.
 	 *
-	 * @see     {@link #getValue()}
+	 * @see     #getValue()
 	 */
 	public List<String> getValues();
 
@@ -110,7 +110,7 @@ public interface Preference {
 	 *
 	 * @throws  ReadOnlyException  - if this preference cannot be modified for this request.
 	 *
-	 * @see     {@link #setValues(String[])}
+	 * @see     #setValues(String[])
 	 */
 	public void setValue(String value) throws ReadOnlyException;
 
@@ -123,7 +123,7 @@ public interface Preference {
 	 *
 	 * @throws  ReadOnlyException  - if this preference cannot be modified for this request.
 	 *
-	 * @see     {@link #setValue(String)}
+	 * @see     #setValue(String)
 	 */
 	public void setValues(String[] values) throws ReadOnlyException;
 }
