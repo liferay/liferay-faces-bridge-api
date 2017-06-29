@@ -28,7 +28,7 @@ import javax.portlet.ResourceResponse;
 
 /**
  * <p>The <code>Bridge</code> interface is used by a portlet to execute a JSF application. Its lifecycle follows the
- * pattern used by other web components such as portlets or servlets, namely:
+ * pattern used by other web components such as portlets or servlets, namely:</p>
  *
  * <ul>
  *   <li><code>init</code>: one time (per portlet) initialization. Usually invoked during portlet <code>init</code> but
@@ -39,7 +39,6 @@ import javax.portlet.ResourceResponse;
  *   <li><code>destroy</code>: called to destroy this bridge instance. Usually invoked during portlet <code>
  *     destroy</code> but may also occur earlier if the portlet decides to reclaim resources.</li>
  * </ul>
- * </p>
  *
  * <p>Portlet developers are encouraged to allow deployers an ability to configure the particular Bridge implementation
  * it uses within a given deployment. This ensures a best fit solution for a given application server, portlet
@@ -405,7 +404,7 @@ public interface Bridge {
 	 * BridgeException</code>.</p>
 	 *
 	 * <p>Initialization context is passed to bridge via <code>PortletContext</code> attributes. The following
-	 * attributes are defined:
+	 * attributes are defined:</p>
 	 *
 	 * <ul>
 	 *   <li><code>javax.portlet.faces.encodeRedirectURL</code>: instructs the bridge to call <code>
@@ -431,7 +430,6 @@ public interface Bridge {
 	 *     For convenience this interfaces defines a number of constants that simplifies constructing and/or recognizing
 	 *     this name.</li>
 	 * </ul>
-	 * </p>
 	 *
 	 * @param   portletConfig  <code>PortletConfig</code> object containing the portlet's configuration and
 	 *                         initialization parameters
