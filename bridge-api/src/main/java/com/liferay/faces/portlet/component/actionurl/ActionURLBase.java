@@ -41,18 +41,18 @@ public abstract class ActionURLBase extends PortletURLBase {
 	}
 
 	/**
-	 * <code>name</code> attribute description:
-	 * <br /><br />
-	 * The name of the action method to be executed.
+	 * <p><code>name</code> attribute description:</p>
+	 *
+	 * <p>The name of the action method to be executed.</p>
 	 */
 	public String getName() {
 		return (String) getStateHelper().eval(ActionURLPropertyKeys.name, null);
 	}
 
 	/**
-	 * <code>name</code> attribute description:
-	 * <br /><br />
-	 * The name of the action method to be executed.
+	 * <p><code>name</code> attribute description:</p>
+	 *
+	 * <p>The name of the action method to be executed.</p>
 	 */
 	public void setName(String name) {
 		getStateHelper().put(ActionURLPropertyKeys.name, name);

@@ -47,36 +47,36 @@ public abstract class PropertyBase extends UIComponentBase {
 	}
 
 	/**
-	 * <code>name</code> attribute description:
-	 * <br /><br />
-	 * The name of the portlet property.
+	 * <p><code>name</code> attribute description:</p>
+	 *
+	 * <p>The name of the portlet property.</p>
 	 */
 	public String getName() {
 		return (String) getStateHelper().eval(PropertyPropertyKeys.name, null);
 	}
 
 	/**
-	 * <code>name</code> attribute description:
-	 * <br /><br />
-	 * The name of the portlet property.
+	 * <p><code>name</code> attribute description:</p>
+	 *
+	 * <p>The name of the portlet property.</p>
 	 */
 	public void setName(String name) {
 		getStateHelper().put(PropertyPropertyKeys.name, name);
 	}
 
 	/**
-	 * <code>value</code> attribute description:
-	 * <br /><br />
-	 * The value of the portlet property.
+	 * <p><code>value</code> attribute description:</p>
+	 *
+	 * <p>The value of the portlet property.</p>
 	 */
 	public String getValue() {
 		return (String) getStateHelper().eval(PropertyPropertyKeys.value, null);
 	}
 
 	/**
-	 * <code>value</code> attribute description:
-	 * <br /><br />
-	 * The value of the portlet property.
+	 * <p><code>value</code> attribute description:</p>
+	 *
+	 * <p>The value of the portlet property.</p>
 	 */
 	public void setValue(String value) {
 		getStateHelper().put(PropertyPropertyKeys.value, value);

@@ -29,7 +29,7 @@ import javax.portlet.ResourceResponse;
 
 /**
  * <p>The <code>Bridge</code> interface is used by a portlet to execute a JSF application. Its lifecycle follows the
- * pattern used by other web components such as portlets or servlets, namely:
+ * pattern used by other web components such as portlets or servlets, namely:</p>
  *
  * <ul>
  *   <li><code>init</code>: one time (per portlet) initialization. Usually invoked during portlet <code>init</code> but
@@ -40,7 +40,6 @@ import javax.portlet.ResourceResponse;
  *   <li><code>destroy</code>: called to destroy this bridge instance. Usually invoked during portlet <code>
  *     destroy</code> but may also occur earlier if the portlet decides to reclaim resources.</li>
  * </ul>
- * </p>
  *
  * <p>Portlet developers are encouraged to allow deployers an ability to configure the particular Bridge implementation
  * it uses within a given deployment. This ensures a best fit solution for a given application server, portlet
@@ -71,10 +70,9 @@ public interface Bridge {
 	 *              Bridge#init(PortletConfig)} to configure the bridge to use/call the associated {@link
 	 *              BridgeEventHandler} when processing an event. Value is an instance of <code>
 	 *              BridgeEventHandler</code>. As this attribute is scoped to a specific portlet in an application-wide
-	 *              context the attribute name must be include the portlet name as follows:
+	 *              context the attribute name must be include the portlet name as follows:</p>
 	 *
 	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
-	 *              </p>
 	 */
 	@Deprecated
 	public static final String BRIDGE_EVENT_HANDLER = "bridgeEventHandler";
@@ -93,10 +91,9 @@ public interface Bridge {
 	 *              values into the models and then calls this handler's processUpdates method. The handler can then
 	 *              compute further model changes based on the changes. Value is an instance of <code>
 	 *              BridgePublicRenderParameterHandler</code>. As this attribute is scoped to a specific portlet in an
-	 *              application-wide context the attribute name must be include the portlet name as follows:
+	 *              application-wide context the attribute name must be include the portlet name as follows:</p>
 	 *
 	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
-	 *              </p>
 	 */
 	@Deprecated
 	public static final String BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER = "bridgePublicRenderParameterHandler";
@@ -154,10 +151,9 @@ public interface Bridge {
 	 *              this portlet's supported portlet modes. Its value is a {@link java.util.Map} with one entry per
 	 *              mode. The mode name is the key. The entry's value is the corresponding default viewId the bridge
 	 *              should use for this mode. As this attribute is scoped to a specific portlet in an application-wide
-	 *              context the attribute name must be include the portlet name as follows:
+	 *              context the attribute name must be include the portlet name as follows:</p>
 	 *
 	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".defaultViewIdMap"</pre>
-	 *              </p>
 	 */
 	@Deprecated
 	public static final String DEFAULT_VIEWID_MAP = "defaultViewIdMap";
@@ -180,10 +176,9 @@ public interface Bridge {
 	 *              package name terminated with a ".*" wildcard indicator. In this later case, all attributes in the
 	 *              package name which precedes the ".*" are excluded, non recursive. As this attribute is scoped to a
 	 *              specific portlet in an application-wide context the attribute name must be include the portlet name
-	 *              as follows:
+	 *              as follows:</p>
 	 *
 	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".excludedRequestAttributes"</pre>
-	 *              </p>
 	 */
 	@Deprecated
 	public static final String EXCLUDED_REQUEST_ATTRIBUTES = "excludedRequestAttributes";
@@ -302,10 +297,9 @@ public interface Bridge {
 	 *              renders. If <code>true</code>, the action parameters are preserved. If <code>false</code>, they are
 	 *              not preserved. The bridge default is <code>false</code>.<br>
 	 *              As this attribute is scoped to a specific portlet in an application-wide context the attribute name
-	 *              must be include the portlet name as follows:
+	 *              must be include the portlet name as follows:</p>
 	 *
 	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".preserveActionParams"</pre>
-	 *              </p>
 	 */
 	@Deprecated
 	public static final String PRESERVE_ACTION_PARAMS = "preserveActionParams";
@@ -433,7 +427,7 @@ public interface Bridge {
 	 * BridgeException</code>.</p>
 	 *
 	 * <p>Initialization context is passed to bridge via <code>PortletContext</code> attributes. The following
-	 * attributes are defined:
+	 * attributes are defined:</p>
 	 *
 	 * <ul>
 	 *   <li><code>javax.portlet.faces.encodeRedirectURL</code>: instructs the bridge to call <code>
@@ -459,7 +453,6 @@ public interface Bridge {
 	 *     For convenience this interfaces defines a number of constants that simplifies constructing and/or recognizing
 	 *     this name.</li>
 	 * </ul>
-	 * </p>
 	 *
 	 * @param   portletConfig  <code>PortletConfig</code> object containing the portlet's configuration and
 	 *                         initialization parameters
