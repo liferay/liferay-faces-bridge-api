@@ -25,8 +25,6 @@ import javax.portlet.faces.Bridge;
  * Section 6.1.3.1 of the Bridge Spec.
  *
  * @see     Bridge#DIRECT_LINK
- * @see     Bridge#FACES_AJAX_PARAMETER
- * @see     Bridge#FACES_PARTIAL_PARAMETER
  * @see     Bridge#FACES_VIEW_ID_PARAMETER
  * @see     Bridge#FACES_VIEW_PATH_PARAMETER
  * @see     Bridge#NONFACES_TARGET_PATH_PARAMETER
