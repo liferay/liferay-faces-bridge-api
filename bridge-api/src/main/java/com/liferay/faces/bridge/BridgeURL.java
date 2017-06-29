@@ -17,6 +17,8 @@ package com.liferay.faces.bridge;
 
 import java.util.Map;
 
+import javax.portlet.faces.Bridge;
+
 
 /**
  * This interface represents a bridge URL, meaning a URL that has convenience methods for representing URLs according to
