@@ -22,6 +22,15 @@ import java.util.Map;
  * This interface represents a bridge URL, meaning a URL that has convenience methods for representing URLs according to
  * Section 6.1.3.1 of the Bridge Spec.
  *
+ * @see     Bridge#DIRECT_LINK
+ * @see     Bridge#FACES_AJAX_PARAMETER
+ * @see     Bridge#FACES_PARTIAL_PARAMETER
+ * @see     Bridge#FACES_VIEW_ID_PARAMETER
+ * @see     Bridge#FACES_VIEW_PATH_PARAMETER
+ * @see     Bridge#NONFACES_TARGET_PATH_PARAMETER
+ * @see     Bridge#PORTLET_MODE_PARAMETER
+ * @see     Bridge#PORTLET_WINDOWSTATE_PARAMETER
+ * @see     Bridge#PORTLET_SECURE_PARAMETER
  * @author  Neil Griffin
  */
 public interface BridgeURL {
