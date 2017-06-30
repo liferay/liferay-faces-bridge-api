@@ -4,16 +4,94 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>javax.portlet.faces</groupId>
 	<artifactId>faces-bridge-spec</artifactId>
-	<version>5.0.0-edr1-SNAPSHOT</version>
+	<version>5.0.0-edr1</version>
 	<name>JSR 378 Specification</name>
 	<description>Portlet 3.0 Bridge for JavaServer™ Faces 2.2 Specification</description>
-	<url>https://java.net/projects/faces-bridge-spec</url>
+
+	<organization>
+		<name>Liferay, Inc</name>
+		<url>http://www.liferay.com</url>
+	</organization>
+
+	<issueManagement>
+		<system>Atlassian JIRA</system>
+		<url>https://issues.liferay.com/issues/?jql=project%20%3D%20FACES%20AND%20component%20in%20(%22FacesBridge%20API%22%2C%20%22FacesBridge%20Spec%22%2C%20%22FacesBridge%20TCK%22)</url>
+	</issueManagement>
 
 	<licenses>
 		<license>
 			<name>JSR 378 Specification License</name>
+			<comments>The license is based on the pre-final-license.txt template from the JCP.</comments>
+			<url>https://github.com/liferay/liferay-faces-bridge-api/tree/5.0.0-edr1/bridge-spec/LICENSE.txt</url>
 		</license>
 	</licenses>
+
+	<url>http://www.liferayfaces.org/web/guest/jcp/jsr-378</url>
+
+	<developers>
+		<developer>
+			<name>Cagatay Civici</name>
+			<organization>PrimeFaces</organization>
+			<organizationUrl>http://www.primefaces.org</organizationUrl>
+		</developer>
+		<developer>
+			<name>Ken Fyten</name>
+			<organization>ICEsoft Technologies Inc.</organization>
+			<organizationUrl>http://www.icesoft.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Mansi Gaba</name>
+			<organization>IBM</organization>
+			<organizationUrl>http://www.ibm.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Juan Gonzalez</name>
+			<organization></organization>
+			<organizationUrl></organizationUrl>
+		</developer>
+		<developer>
+			<name>Neil Griffin (Specification Lead)</name>
+			<organization>Liferay, Inc.</organization>
+			<organizationUrl>http://www.liferay.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Josh Juneau</name>
+			<organization></organization>
+			<organizationUrl></organizationUrl>
+		</developer>
+		<developer>
+			<name>Kito Mann</name>
+			<organization>Virtua</organization>
+			<organizationUrl>http://virtua.tech/</organizationUrl>
+		</developer>
+		<developer>
+			<name>Leonardo Alfredo Uribe Panesso</name>
+			<organization>Irian Solutions GmbH</organization>
+			<organizationUrl>http://www.irian.at/</organizationUrl>
+		</developer>
+		<developer>
+			<name>Vernon Singleton</name>
+			<organization>Liferay, Inc.</organization>
+			<organizationUrl>http://www.liferay.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Kyle Stiemann</name>
+			<organization>Liferay, Inc.</organization>
+			<organizationUrl>http://www.liferay.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Ren Zhijun</name>
+			<organization>Oracle Corporation</organization>
+			<organizationUrl>http://www.oracle.com</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/liferay/liferay-faces-bridge-api</connection>
+		<developerConnection>scm:git:https://github.com/liferay/liferay-faces-bridge-api</developerConnection>
+		<url>scm:git:https://github.com/liferay/liferay-faces-bridge-api</url>
+		<tag>HEAD</tag>
+	</scm>
 
 	<build>
 		<plugins>
@@ -74,7 +152,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.4</version>
+					<version>3.6</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -85,6 +163,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>2.8.1</version>
+				<configuration>
+					<linkOnly>true</linkOnly>
+				</configuration>
 				<reportSets>
 					<reportSet>
 						<reports>
