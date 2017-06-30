@@ -1,4 +1,4 @@
-_Version: 6.0.0-edr1-SNAPSHOT_
+_Version: 5.0.0-edr1_
 
 # 3. Bridge Interface
 
