@@ -119,15 +119,6 @@ public interface Bridge {
 		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_AJAX_ENABLED";
 
 	/**
-	 * Context initialization parameter that specifies whether or not XHR requests that invoke the {@link
-	 * PortletRequest#RESOURCE_PHASE} will participate in the bridge request scope created in a prior {@link
-	 * PortletRequest#ACTION_PHASE}. Default value is <code>false</code>, meaning that the bridge request scope begins
-	 * in the {@link PortletRequest#RESOURCE_PHASE} and ends in the same {@link PortletRequest#RESOURCE_PHASE}.
-	 */
-	public static final String BRIDGE_REQUEST_SCOPE_RESOURCE_ENABLED =
-		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_RESOURCE_ENABLED";
-
-	/**
 	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
 	 *              "javax.portlet.faces.defaultRenderKitId" instead.
 	 *
