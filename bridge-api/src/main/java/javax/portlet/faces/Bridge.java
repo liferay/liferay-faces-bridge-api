@@ -99,24 +99,6 @@ public interface Bridge {
 	public static final String BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER = "bridgePublicRenderParameterHandler";
 
 	/**
-	 * Context initialization parameter that specifies whether or not the bridge request scope extends from an {@link
-	 * PortletRequest#ACTION_PHASE} to a subsequent {@link PortletRequest#ACTION_PHASE}. Default value is <code>
-	 * false</code>, meaning that the bridge request scope begins in the {@link PortletRequest#ACTION_PHASE} and extends
-	 * to the {@link PortletRequest#RENDER_PHASE}.
-	 */
-	public static final String BRIDGE_REQUEST_SCOPE_ACTION_ENABLED =
-		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_ACTION_ENABLED";
-
-	/**
-	 * Context initialization parameter that specifies whether or not Ajax XHR requests that invoke the {@link
-	 * PortletRequest#RESOURCE_PHASE} will participate in the bridge request scope created in a prior {@link
-	 * PortletRequest#ACTION_PHASE}. Default value is <code>false</code>, meaning that the bridge request scope begins
-	 * in the {@link PortletRequest#RESOURCE_PHASE} and ends in the same {@link PortletRequest#RESOURCE_PHASE}.
-	 */
-	public static final String BRIDGE_REQUEST_SCOPE_AJAX_ENABLED =
-		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_AJAX_ENABLED";
-
-	/**
 	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
 	 *              "javax.portlet.faces.defaultRenderKitId" instead.
 	 *
