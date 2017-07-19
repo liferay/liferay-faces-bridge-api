@@ -39,7 +39,8 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgeActionURL(facesContext, uri);
 	}
@@ -53,7 +54,8 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgeBookmarkableURL(facesContext, uri, parameters);
 	}
@@ -66,7 +68,8 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgePartialActionURL(facesContext, uri);
 	}
@@ -80,7 +83,8 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgeRedirectURL(facesContext, uri, parameters);
 	}
@@ -93,7 +97,8 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgeResourceURL(facesContext, uri);
 	}
@@ -114,8 +119,9 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 	/**
 	 * Returns a new bookmarkable URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be
-	 * {@link java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the requirements of
-	 * {@link javax.faces.context.ExternalContext#encodeBookmarkableURL(String, Map)}.
+	 * {@link java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the deviation
+	 * requirements of {@link javax.faces.context.ExternalContext#encodeBookmarkableURL(String, Map)} listed in Section
+	 * 6.1.3.1 of the Bridge Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
 	 * @param   uri           The URI that is to be encoded.
@@ -129,8 +135,9 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 	/**
 	 * Returns a new partial action URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be
-	 * {@link java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the requirements of
-	 * {@link javax.faces.context.ExternalContext#encodePartialActionURL(String)}.
+	 * {@link java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the deviation
+	 * requirements of {@link javax.faces.context.ExternalContext#encodePartialActionURL(String)} listed in Section
+	 * 6.1.3.1 of the Bridge Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
 	 * @param   uri           The URI that is to be encoded.
@@ -143,9 +150,9 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 
 	/**
 	 * Returns a new redirect URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be {@link
-	 * java.io.Serializable}. The return value of {@link BridgeURL#toString()}, conforms to the requirements of {@link
-	 * javax.faces.context.ExternalContext#encodeRedirectURL(String, Map)} and the deviation requirements of {@link
-	 * javax.faces.context.ExternalContext#redirect(String)} listed in Section 6.1.3.1 of the Bridge Spec.
+	 * java.io.Serializable}. The return value of {@link BridgeURL#toString()}, conforms to the deviation requirements
+	 * of {@link javax.faces.context.ExternalContext#encodeRedirectURL(String, Map)} listed in Section 6.1.3.1 of the
+	 * Bridge Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
 	 * @param   uri           The URI that is to be encoded.
