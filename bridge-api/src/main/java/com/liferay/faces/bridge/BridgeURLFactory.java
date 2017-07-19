@@ -41,7 +41,8 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgeActionURL(facesContext, uri);
 	}
@@ -55,7 +56,8 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgeBookmarkableURL(facesContext, uri, parameters);
 	}
@@ -68,7 +70,8 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgePartialActionURL(facesContext, uri);
 	}
@@ -82,7 +85,8 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgeRedirectURL(facesContext, uri, parameters);
 	}
@@ -95,7 +99,8 @@ public abstract class BridgeURLFactory implements Wrapper<BridgeURLFactory> {
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		PortletContext portletContext = (PortletContext) externalContext.getContext();
-		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext, BridgeURLFactory.class);
+		BridgeURLFactory bridgeURLFactory = (BridgeURLFactory) BridgeFactoryFinder.getFactory(portletContext,
+				BridgeURLFactory.class);
 
 		return bridgeURLFactory.getBridgeResourceURL(facesContext, uri);
 	}
