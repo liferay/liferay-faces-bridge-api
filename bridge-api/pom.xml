@@ -99,7 +99,6 @@
 	</scm>
 
 	<properties>
-		<bnd.version>3.3.0</bnd.version>
 		<faces.api.version>${faces.spec.version}</faces.api.version>
 		<faces.spec.version>2.3</faces.spec.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
@@ -113,41 +112,12 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.5.1</version>
+					<version>3.1</version>
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
 						<encoding>UTF-8</encoding>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>biz.aQute.bnd</groupId>
-					<artifactId>bnd-maven-plugin</artifactId>
-					<version>${bnd.version}</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>bnd-process</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>biz.aQute.bnd</groupId>
-					<artifactId>bnd-baseline-maven-plugin</artifactId>
-					<version>${bnd.version}</version>
-					<configuration>
-						<includeDistributionManagement>false</includeDistributionManagement>
-						<fullReport>true</fullReport>
-					</configuration>
-					<executions>
-						<execution>
-							<id>baseline</id>
-							<goals>
-								<goal>baseline</goal>
-							</goals>
-						</execution>
-					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -157,10 +127,9 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.0.2</version>
+					<version>2.4</version>
 					<configuration>
 						<archive>
-							<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 							<manifestEntries>
 								<Built-By>Release Manager</Built-By>
 								<Specification-Title>Portlet 3.0 Bridge for JavaServer Faces 2.3</Specification-Title>
@@ -245,14 +214,6 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			<plugin>
-				<groupId>biz.aQute.bnd</groupId>
-				<artifactId>bnd-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>biz.aQute.bnd</groupId>
-				<artifactId>bnd-baseline-maven-plugin</artifactId>
-			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
