@@ -378,8 +378,7 @@ javadoc:
         replace it with a parameter whose name is the value of this parameter and whose value is the `String` (`URL`
         path) returned after calling `ViewHandler.getActionURL()` passing the current
         `viewId`<sup>[[6.30](tck-tests.md#6.30)]</sup>.
-        <br />
-        <br />
+        <br/><br />
         This encodes a "back link" into the resource URL allowing the targeted resource a way back to the calling
         portlet page. E.g. use of `h:outputLink`.
         - determine whether the targeted resources will be satisfied using Portlet 2.0 in protocol resource serving
@@ -388,12 +387,9 @@ javadoc:
             - the query string contains the parameter `javax.portlet.faces.InProtocolResourceLink`
             - the target is a Faces resource, one that in a servlet environment would be processed running through the
             `FacesServlet`.
-        <br />
-        <br />
+        <br/><br />
         **Note**: The bridge can choose the strategy for acquiring (representing) all other resources though it is noted
         that out of band (http) resource access is generally more efficient.
-        <br />
-        <br />
         - if returning an in protocol resource, return the `String` representation of a `resourceURL` created using
         `response.createResourceURL()` after processing `PortletURL` related state modifications:
             - as you can't change a portlet's mode in a resource request, remove and ignore the query string parameter
@@ -408,8 +404,7 @@ javadoc:
             - All other query string parameters are added to the `ResourceURL` as parameters.
             - if returning an out of band (http) resource return
             `getResponse().encodeURL(inputURL)`<sup>[[6.28](tck-tests.md#6.28)]</sup>.
-        <br />
-        <br />
+        <br /><br />
         **Note on encoding/xml escaping**: because renderkits have their own pre/post processing to deal with situations
         calling for xml escaping in URLs, the bridge must return an URL that contains the identical xml escaping (or
         not) used in the URL passed to `encodeActionURL`. I.e. if the incoming URL is xml escaped the the returned URL
@@ -420,6 +415,7 @@ javadoc:
         `URL` with the '+' which not all portlet containers may be able to subsequently process, the bridge can (should)
         `URL`-encode the space character (%20) prior to returning the `URL` regardless of any stipulation regarding base
         encoding.
+        <br /><br />
 
 - `getRequest()`:
 
