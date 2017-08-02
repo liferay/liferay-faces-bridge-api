@@ -159,30 +159,30 @@ javadoc:
 
 - `dispatch()`:
 
-Dispatch a request to the specified resource to create output for this response. This must be accomplished by calling
-the `javax.portlet.PortletContext` method `getRequestDispatcher()`, and calling the
-`forward()`<sup>[[6.3](tck-tests.md#6.3)]</sup> method on the resulting object unless `dispatch()` has already been
-called (at least once) within this portlet request. If `dispatch()` has already been called within this portlet request,
-then `include()` may be called rather than `forward()`. This situation might occur in a bridge that doesn't wrap the
-response prior to dispatch with a wrapper that prevents committing the response which happens implicitly at the
-completion of the forward processing.
+	Dispatch a request to the specified resource to create output for this response. This must be accomplished by
+	calling the `javax.portlet.PortletContext` method `getRequestDispatcher()`, and calling the
+	`forward()`<sup>[[6.3](tck-tests.md#6.3)]</sup> method on the resulting object unless `dispatch()` has already been
+	called (at least once) within this portlet request. If `dispatch()` has already been called within this portlet
+	request, then `include()` may be called rather than `forward()`. This situation might occur in a bridge that doesn't
+	wrap the response prior to dispatch with a wrapper that prevents committing the response which happens implicitly at
+	the completion of the forward processing.
 
-**Note:** Because the Portlet 1.0 bridge was restricted to using `include()`, rendering may appear differently when the
-application runs in a 1.0 vs. a 2.0 bridge. Specifically, in a Portlet 2.0 bridge any markup written prior to calling
-`dispatch` will not be returned to the client, while it will in a Portlet 1.0 bridge environment. For (potential)
-backwards compatibility a bridge may provide an implementation specific mechanism to be configured to support portlet
-1.0 bridge dispatch behavior (only use `include`) as long as this is not the default behavior.
+	**Note:** Because the Portlet 1.0 bridge was restricted to using `include()`, rendering may appear differently when
+	*the application runs in a 1.0 vs. a 2.0 bridge. Specifically, in a Portlet 2.0 bridge any markup written prior to
+	*calling `dispatch` will not be returned to the client, while it will in a Portlet 1.0 bridge environment. For
+	*(potential) backwards compatibility a bridge may provide an implementation specific mechanism to be configured to
+	*support portlet 1.0 bridge dispatch behavior (only use `include`) as long as this is not the default behavior.
 
 - `encodeActionURL()`:
 
-- Process the `inputURL` and construct and encode a corresponding valid portlet (generally action) URL. If called during
-the `HEADER_PHASE` or `RESOURCE_PHASE`, return this URL so it can be written into the markup response. If called during
-the `ACTION_PHASE`, directly encode this URL in the action response. The value and form of the URL returned when running
-in the `ACTION_PHASE` is undefined although it must not be `null`. If called during the `EVENT_PHASE`, directly encode
-this URL in the event response. The value and form of the URL returned when running in the `EVENT_PHASE` isundefined
-although it must not be `null`.
-
-- To process such an `inputURL` correctly, this method must:
+	Process the `inputURL` and construct and encode a corresponding valid portlet (generally action) URL. If called
+	during the `HEADER_PHASE` or `RESOURCE_PHASE`, return this URL so it can be written into the markup response. If
+	called during the `ACTION_PHASE`, directly encode this URL in the action response. The value and form of the URL
+	returned when running in the `ACTION_PHASE` is undefined although it must not be `null`. If called during the
+	`EVENT_PHASE`, directly encode this URL in the event response. The value and form of the URL returned when running
+	in the `EVENT_PHASE` isundefined although it must not be `null`.
+	
+	To process such an `inputURL` correctly, this method must:
 
     - If the `inputURL` starts with the # character<sup>[[6.4](tck-tests.md#6.4)]</sup> or the `inputURL` is an
     absolute path external to this portlet application<sup>[[6.5](tck-tests.md#6.5)]</sup> return the `inputURL`
@@ -322,16 +322,18 @@ although it must not be `null`.
 
 - `encodeResourceURL()`:
 
-In Portlet 1.0 resources were not served by the portlet but rather accessed directly by the consumer using an http
-(resource) request. Portlet 2.0 introduces a second type of resourceURL, a (in-protocol) portlet served resource. A
-resourceURL of this type signifies that the portlet itself should be called by the consumer to generate the resource.
-The Portlet 2.0 APIs provide distinct calls for creating a reference to portlet served resource to one that is accessed
-directly. As Faces only has a single concept of a resourceURL, the bridge uses a heuristic to determine which of these
-two access methods it uses to reference the resource. In summary, resourceURLs that target a Faces view are constructed
-to be served by the portlet while those that don't target a Faces view are constructed to be accessed directly.
+	In Portlet 1.0 resources were not served by the portlet but rather accessed directly by the consumer using an http
+	(resource) request. Portlet 2.0 introduces a second type of resourceURL, a (in-protocol) portlet served resource. A
+	resourceURL of this type signifies that the portlet itself should be called by the consumer to generate the
+	resource. The Portlet 2.0 APIs provide distinct calls for creating a reference to portlet served resource to one
+	that is accessed directly. As Faces only has a single concept of a resourceURL, the bridge uses a heuristic to
+	determine which of these two access methods it uses to reference the resource. In summary, resourceURLs that target
+	a Faces view are constructed to be served by the portlet while those that don't target a Faces view are constructed
+	to be accessed directly.
 
-This method returns the inputURL after performing any rewriting needed to ensure that it will correctly identify an
-addressable resource. To process such an inputURL correctly, this method must:
+	This method returns the inputURL after performing any rewriting needed to ensure that it will correctly identify an
+	addressable resource. To process such an inputURL correctly, this method must:
+
     - If the `inputURL` is *opaque*, in that it is an absolute URI with a scheme-specific part that doesn't begin with a
     slash character (e.g. `mailto:java-net@java.sun.com`) and the scheme isn't portlet:, return the `inputURL`
     unchanged<sup>[[6.26](tck-tests.md#6.26)]</sup>.
