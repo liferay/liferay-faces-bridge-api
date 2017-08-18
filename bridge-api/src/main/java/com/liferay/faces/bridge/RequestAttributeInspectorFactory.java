@@ -36,7 +36,6 @@ public abstract class RequestAttributeInspectorFactory implements Wrapper<Reques
 
 		RequestAttributeInspectorFactory requestAttributeInspectorFactory = (RequestAttributeInspectorFactory)
 			BridgeFactoryFinder.getFactory(portletConfig.getPortletContext(), RequestAttributeInspectorFactory.class);
-			BridgeFactoryFinder.getFactory(portletConfig.getPortletContext(), RequestAttributeInspectorFactory.class);
 
 		return requestAttributeInspectorFactory.getRequestAttributeInspector(portletRequest, portletConfig,
 				bridgeConfig);
