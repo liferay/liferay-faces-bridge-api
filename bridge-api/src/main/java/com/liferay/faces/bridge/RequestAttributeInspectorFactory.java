@@ -51,6 +51,6 @@ public abstract class RequestAttributeInspectorFactory implements Wrapper<Reques
 	/**
 	 * Returns the wrapped factory instance if this factory decorates another. Otherwise, this method returns null.
 	 */
-	// Java 1.6+ @Override
+	@Override
 	public abstract RequestAttributeInspectorFactory getWrapped();
 }

@@ -28,10 +28,10 @@ import com.liferay.faces.util.helper.Wrapper;
  */
 public abstract class BridgeEventHandlerWrapper implements BridgeEventHandler, Wrapper<BridgeEventHandler> {
 
-	// Java 1.6+ @Override
+	@Override
 	public abstract BridgeEventHandler getWrapped();
 
-	// Java 1.6+ @Override
+	@Override
 	public EventNavigationResult handleEvent(FacesContext facesContext, Event event) {
 		return getWrapped().handleEvent(facesContext, event);
 	}

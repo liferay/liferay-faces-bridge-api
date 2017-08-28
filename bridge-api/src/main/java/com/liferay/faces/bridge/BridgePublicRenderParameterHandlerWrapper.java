@@ -27,10 +27,10 @@ import com.liferay.faces.util.helper.Wrapper;
 public abstract class BridgePublicRenderParameterHandlerWrapper implements BridgePublicRenderParameterHandler,
 	Wrapper<BridgePublicRenderParameterHandler> {
 
-	// Java 1.6+ @Override
+	@Override
 	public abstract BridgePublicRenderParameterHandler getWrapped();
 
-	// Java 1.6+ @Override
+	@Override
 	public void processUpdates(FacesContext facesContext) {
 		getWrapped().processUpdates(facesContext);
 	}
