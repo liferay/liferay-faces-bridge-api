@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ public abstract class BridgeFactoryFinder {
 	 * @throws  FacesException  When the factory extension finder cannot be discovered.
 	 */
 	public static BridgeFactoryFinder getInstance() throws FacesException {
-		return OnDemandBridgeFactoryFinder.instance;
+		return OnDemandBridgeFactoryFinder.INSTANCE;
 	}
 
 	/**
@@ -105,13 +105,13 @@ public abstract class BridgeFactoryFinder {
 	 */
 	public abstract void releaseFactories(PortletContext portletContext);
 
-	private static class OnDemandBridgeFactoryFinder {
+	private static final class OnDemandBridgeFactoryFinder {
 
 		// Since this class is not referenced until BridgeFactoryFinder.getInstance() is called, the
 		// BridgeFactoryFinder instance will be lazily initialized when BridgeFactoryFinder.getInstance() is called.
 		// Class initialization is thread-safe. For more details on this pattern, see
 		// http://stackoverflow.com/questions/7420504/threading-lazy-initialization-vs-static-lazy-initialization.
-		private static final BridgeFactoryFinder instance;
+		private static final BridgeFactoryFinder INSTANCE;
 
 		static {
 
@@ -128,7 +128,7 @@ public abstract class BridgeFactoryFinder {
 				throw new FacesException("Unable locate service for " + BridgeFactoryFinder.class.getName());
 			}
 
-			instance = bridgeFactoryFinder;
+			INSTANCE = bridgeFactoryFinder;
 		}
 
 		private OnDemandBridgeFactoryFinder() {
