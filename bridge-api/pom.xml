@@ -64,6 +64,7 @@
 	</scm>
 
 	<properties>
+		<bnd.version>3.5.0</bnd.version>
 		<faces.api.version>${faces.spec.version}</faces.api.version>
 		<faces.spec.version>2.2</faces.spec.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
@@ -94,7 +95,9 @@
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>2.4</version>
 					<configuration>
+						<useDefaultManifestFile>true</useDefaultManifestFile>
 						<archive>
+							<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 							<manifestEntries>
 								<Built-By>Release Manager</Built-By>
 								<Specification-Title>Portlet 2.0 Bridge for JavaServer Faces 2.2</Specification-Title>
@@ -176,6 +179,64 @@
 		</pluginManagement>
 		<plugins>
 			<plugin>
+				<groupId>biz.aQute.bnd</groupId>
+				<artifactId>bnd-maven-plugin</artifactId>
+				<version>${bnd.version}</version>
+				<configuration>
+					<bnd>
+						<![CDATA[
+							# Consult individual package-info.java files to determine Export-Packages and versions.
+							-exportcontents: ${packages;VERSIONED}
+							# javax.el is automatically imported with the following versions:
+							# javax.el;version="[2.2.0,3.0.0)", but versions 3.0.0+ are also valid.
+							Import-Package: \
+								!javax.portlet.faces,\
+								!javax.portlet.faces.*,\
+								!com.liferay.faces.bridge,\
+								!com.liferay.faces.bridge.*,\
+								!com.liferay.faces.portlet,\
+								!com.liferay.faces.portlet.*,\
+								javax.el;version="[2.2.0,4.0.0)",\
+								*
+							# The following configuration enables the Bridge API bundle to obtain necessary SPI
+							# implementations. Although these services are technically required for Bridge API to
+							# function, any bundle which implements these services depends on Bridge API's
+							# packages. In order to allow Bridge API to be deployed before any bundles which implement
+							# its SPIs, each capability is marked as optional.
+							Require-Capability: \
+								osgi.serviceloader;filter:="(osgi.serviceloader=javax.portlet.faces.Bridge)";\
+								resolution:=optional;cardinality:=multiple,\
+								osgi.serviceloader;filter:="(osgi.serviceloader=com.liferay.faces.bridge.BridgeFactoryFinder)";\
+								resolution:=optional;cardinality:=multiple,\
+								osgi.extender; filter:="(osgi.extender=osgi.serviceloader.processor)";resolution:=optional
+						]]>
+					</bnd>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>bnd-process</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>biz.aQute.bnd</groupId>
+				<artifactId>bnd-baseline-maven-plugin</artifactId>
+				<version>${bnd.version}</version>
+				<configuration>
+					<includeDistributionManagement>false</includeDistributionManagement>
+				</configuration>
+				<executions>
+					<execution>
+						<id>baseline</id>
+						<goals>
+							<goal>baseline</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
 			</plugin>
@@ -226,6 +287,13 @@
 	</profiles>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi.annotation</artifactId>
+			<version>6.0.1</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
