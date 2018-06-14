@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * <p>The <code>Bridge</code> interface is used by a portlet to execute a JSF application. Its lifecycle follows the
@@ -54,6 +56,7 @@ import javax.portlet.ResourceResponse;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
+@ProviderType
 public interface Bridge {
 
 	/**

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,13 @@ import javax.portlet.PortletContext;
 import javax.portlet.PortletResponse;
 import javax.portlet.faces.BridgeFactoryFinder;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * @author  Neil Griffin
  */
+@ProviderType
 public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResponseWriterFactory> {
 
 	/**
@@ -32,7 +35,7 @@ public abstract class HeadResponseWriterFactory implements FacesWrapper<HeadResp
 	 * BridgeFactoryFinder}. The returned instance is not guaranteed to be {@link java.io.Serializable}.
 	 */
 	public static ResponseWriter getHeadResponseWriterInstance(ResponseWriter responseWriter,
-	  PortletContext portletContext, PortletResponse portletResponse) {
+		PortletContext portletContext, PortletResponse portletResponse) {
 
 		HeadResponseWriterFactory headResponseWriterFactory = (HeadResponseWriterFactory) BridgeFactoryFinder
 			.getFactory(portletContext, HeadResponseWriterFactory.class);

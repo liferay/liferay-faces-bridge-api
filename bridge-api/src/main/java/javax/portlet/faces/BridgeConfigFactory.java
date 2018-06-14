@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ package javax.portlet.faces;
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * This abstract class provides a contract for defining a factory that knows how to create instances of type {@link
@@ -25,6 +27,7 @@ import javax.portlet.PortletConfig;
  *
  * @author  Neil Griffin
  */
+@ProviderType
 public abstract class BridgeConfigFactory implements FacesWrapper<BridgeConfigFactory> {
 
 	/**

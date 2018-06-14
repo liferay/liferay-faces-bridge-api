@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ import java.io.Serializable;
 import javax.faces.FacesWrapper;
 import javax.portlet.StateAwareResponse;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * <p>The purpose of this class is to provide support a vendor-specific feature of Liferay Portal that provides the
@@ -33,14 +35,15 @@ import javax.portlet.StateAwareResponse;
  *
  * @author  Neil Griffin
  */
+@ProviderType
 public class EventPayloadWrapper implements FacesWrapper<Serializable>, Serializable {
 
 	// serialVersionUID
 	private static final long serialVersionUID = 9167031956551424140L;
 
-	// Private Data Members
-	private boolean redirect;
-	private Serializable wrappedPayload;
+	// Private Final Data Members
+	private final boolean redirect;
+	private final Serializable wrappedPayload;
 
 	/**
 	 * Constructs a new {@link EventPayloadWrapper} instance.

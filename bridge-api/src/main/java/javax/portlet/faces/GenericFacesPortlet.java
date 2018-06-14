@@ -43,6 +43,8 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import org.osgi.annotation.versioning.ConsumerType;
+
 
 /**
  * The <code>GenericFacesPortlet</code> is provided to simplify development of a portlet that in whole or part relies on
@@ -82,6 +84,7 @@ import javax.portlet.ResourceResponse;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
+@ConsumerType
 public class GenericFacesPortlet extends GenericPortlet {
 
 	/**

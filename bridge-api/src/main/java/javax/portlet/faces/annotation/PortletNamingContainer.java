@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@ import java.lang.annotation.Target;
 
 import javax.portlet.faces.component.PortletNamingContainerUIViewRoot;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * This annotation is applied to the Bridge API {@link PortletNamingContainerUIViewRoot} and can be applied to others if
@@ -35,5 +37,6 @@ import javax.portlet.faces.component.PortletNamingContainerUIViewRoot;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.TYPE })
+@ProviderType
 public @interface PortletNamingContainer {
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package javax.portlet.faces;
 
 import javax.faces.FacesException;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * Generic exception thrown when the bridge encounters an unexpected error. The message returned in this exception
@@ -25,6 +27,7 @@ import javax.faces.FacesException;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
+@ProviderType
 public class BridgeException extends FacesException {
 
 	private static final long serialVersionUID = 5803855762197476832L;
