@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ import java.util.List;
 
 import javax.portlet.ReadOnlyException;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * The <code>Preference</code> interface allows one to access each value from {@link javax.portlet.PortletPreferences}
@@ -29,7 +31,7 @@ import javax.portlet.ReadOnlyException;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
-
+@ProviderType
 public interface Preference {
 
 	/**

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,23 @@
  */
 package com.liferay.faces.bridge.context;
 
+import org.osgi.annotation.versioning.ProviderType;
+
+
 /**
  * @author  Neil Griffin
  */
+@ProviderType
 public final class BridgePortalContext {
 
 	/**
 	 * Property indicating if the portal application supports adding elements to the &lt;head&gt;...&lt;/head&gt;
 	 * section of the rendered portal page. A non-null value indicates that the portal application provides support.
 	 *
-	 * @since 4.1
-	 * @since 3.1
+	 * @since  4.1
+	 * @since  3.1
 	 */
-	public static final String ADD_ELEMENT_TO_HEAD_SUPPORT =
-		"com.liferay.faces.bridge.add.element.to.head.support";
+	public static final String ADD_ELEMENT_TO_HEAD_SUPPORT = "com.liferay.faces.bridge.add.element.to.head.support";
 
 	/**
 	 * Property indicating if the portal application supports adding a &lt;script src=".." /&gt; resource to the

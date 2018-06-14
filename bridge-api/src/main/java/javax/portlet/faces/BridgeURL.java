@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package javax.portlet.faces;
 
 import java.util.Map;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * This interface represents a bridge URL, meaning a URL that has convenience methods for representing URLs according to
@@ -33,6 +35,7 @@ import java.util.Map;
  * @see     Bridge#PORTLET_SECURE_PARAMETER
  * @author  Neil Griffin
  */
+@ProviderType
 public interface BridgeURL {
 
 	/**

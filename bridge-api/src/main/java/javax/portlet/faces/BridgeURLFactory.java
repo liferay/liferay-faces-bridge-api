@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,12 +23,15 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.portlet.PortletContext;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * This factory is responsible for creating instances of {@link BridgeURL}.
  *
  * @author  Neil Griffin
  */
+@ProviderType
 public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory> {
 
 	/**

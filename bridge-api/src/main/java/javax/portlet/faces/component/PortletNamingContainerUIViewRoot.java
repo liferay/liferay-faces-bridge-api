@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@ import javax.faces.context.FacesContext;
 import javax.portlet.faces.BridgeUtil;
 import javax.portlet.faces.annotation.PortletNamingContainer;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * This class satisfies namespacing requirements of Section 6.6 of the specification. It implements a portlet specific
@@ -35,6 +37,7 @@ import javax.portlet.faces.annotation.PortletNamingContainer;
  * @author  Neil Griffin
  */
 @PortletNamingContainer
+@ProviderType
 public class PortletNamingContainerUIViewRoot extends UIViewRoot implements NamingContainer, Serializable {
 
 	// serialVersionUID

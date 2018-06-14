@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ package javax.portlet.faces.event;
 import javax.faces.context.FacesContext;
 import javax.portlet.Event;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * An <code>EventNavigationResult</code> is the type of object that can be returned from a {@link
@@ -30,6 +32,7 @@ import javax.portlet.Event;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
+@ProviderType
 public class EventNavigationResult {
 
 	private String fromAction;

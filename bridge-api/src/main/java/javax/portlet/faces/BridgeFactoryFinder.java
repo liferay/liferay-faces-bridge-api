@@ -21,6 +21,8 @@ import java.util.ServiceLoader;
 import javax.faces.FacesException;
 import javax.portlet.PortletContext;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * This class provides a factory lookup mechanism similar to the {@link javax.faces.FactoryFinder} in the JSF API.
@@ -28,6 +30,7 @@ import javax.portlet.PortletContext;
  *
  * @author  Neil Griffin
  */
+@ProviderType
 public abstract class BridgeFactoryFinder {
 
 	/**
