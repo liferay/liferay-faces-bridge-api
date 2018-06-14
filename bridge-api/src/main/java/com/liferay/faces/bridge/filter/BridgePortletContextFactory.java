@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ package com.liferay.faces.bridge.filter;
 import javax.faces.FacesWrapper;
 import javax.portlet.PortletContext;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 import com.liferay.faces.bridge.BridgeFactoryFinder;
 
 
@@ -28,6 +30,7 @@ import com.liferay.faces.bridge.BridgeFactoryFinder;
  * @author      Neil Griffin
  */
 @Deprecated
+@ProviderType
 public abstract class BridgePortletContextFactory implements FacesWrapper<BridgePortletContextFactory> {
 
 	/**

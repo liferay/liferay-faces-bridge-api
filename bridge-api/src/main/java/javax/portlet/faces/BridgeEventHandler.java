@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ import javax.faces.context.FacesContext;
 import javax.portlet.Event;
 import javax.portlet.faces.event.EventNavigationResult;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * <p>The <code>BridgeEventHandler</code> interface defines the class the bridge relies on to process portlet events.
@@ -37,6 +39,7 @@ import javax.portlet.faces.event.EventNavigationResult;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
+@ProviderType
 public interface BridgeEventHandler {
 
 	/**

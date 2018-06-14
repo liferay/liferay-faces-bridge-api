@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,13 @@ import javax.faces.FacesWrapper;
 import javax.portlet.PortletConfig;
 import javax.portlet.faces.BridgePublicRenderParameterHandler;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 
 /**
  * @author  Neil Griffin
  */
+@ProviderType
 public abstract class BridgePublicRenderParameterHandlerFactory
 	implements FacesWrapper<BridgePublicRenderParameterHandlerFactory> {
 
@@ -35,8 +38,8 @@ public abstract class BridgePublicRenderParameterHandlerFactory
 		PortletConfig portletConfig) {
 
 		BridgePublicRenderParameterHandlerFactory bridgePublicRenderParameterHandlerFactory =
-			(BridgePublicRenderParameterHandlerFactory) BridgeFactoryFinder.getFactory(
-				portletConfig.getPortletContext(), BridgePublicRenderParameterHandlerFactory.class);
+			(BridgePublicRenderParameterHandlerFactory) BridgeFactoryFinder.getFactory(portletConfig
+				.getPortletContext(), BridgePublicRenderParameterHandlerFactory.class);
 
 		return bridgePublicRenderParameterHandlerFactory.getBridgePublicRenderParameterHandler(portletConfig);
 	}

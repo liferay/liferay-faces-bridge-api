@@ -40,10 +40,10 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import org.osgi.annotation.versioning.ConsumerType;
+
 import com.liferay.faces.bridge.BridgeEventHandlerFactory;
-import com.liferay.faces.bridge.BridgeEventHandlerWrapper;
 import com.liferay.faces.bridge.BridgePublicRenderParameterHandlerFactory;
-import com.liferay.faces.bridge.BridgePublicRenderParameterHandlerWrapper;
 
 
 /**
@@ -84,6 +84,7 @@ import com.liferay.faces.bridge.BridgePublicRenderParameterHandlerWrapper;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
+@ConsumerType
 public class GenericFacesPortlet extends GenericPortlet {
 
 	/**
