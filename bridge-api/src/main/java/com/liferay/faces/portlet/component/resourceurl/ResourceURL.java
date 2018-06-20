@@ -17,14 +17,14 @@ package com.liferay.faces.portlet.component.resourceurl;
 
 import javax.faces.component.FacesComponent;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
 @FacesComponent(value = ResourceURL.COMPONENT_TYPE)
-@ProviderType
+@ConsumerType
 public class ResourceURL extends ResourceURLBase {
 	// Initial Generation
 }

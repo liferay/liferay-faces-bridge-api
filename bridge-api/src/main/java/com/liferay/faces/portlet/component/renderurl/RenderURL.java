@@ -17,14 +17,14 @@ package com.liferay.faces.portlet.component.renderurl;
 
 import javax.faces.component.FacesComponent;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
 @FacesComponent(value = RenderURL.COMPONENT_TYPE)
-@ProviderType
+@ConsumerType
 public class RenderURL extends RenderURLBase {
 	// Initial Generation
 }

@@ -17,14 +17,14 @@ package com.liferay.faces.portlet.component.property;
 
 import javax.faces.component.FacesComponent;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
 @FacesComponent(value = Property.COMPONENT_TYPE)
-@ProviderType
+@ConsumerType
 public class Property extends PropertyBase {
 	// Initial Generation
 }

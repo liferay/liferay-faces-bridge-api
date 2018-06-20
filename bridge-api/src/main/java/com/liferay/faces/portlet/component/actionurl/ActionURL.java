@@ -17,14 +17,14 @@ package com.liferay.faces.portlet.component.actionurl;
 
 import javax.faces.component.FacesComponent;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
 @FacesComponent(value = ActionURL.COMPONENT_TYPE)
-@ProviderType
+@ConsumerType
 public class ActionURL extends ActionURLBase {
 	// Initial Generation
 }

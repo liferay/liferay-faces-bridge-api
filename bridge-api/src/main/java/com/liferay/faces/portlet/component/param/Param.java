@@ -17,14 +17,14 @@ package com.liferay.faces.portlet.component.param;
 
 import javax.faces.component.FacesComponent;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
 @FacesComponent(value = Param.COMPONENT_TYPE)
-@ProviderType
+@ConsumerType
 public class Param extends ParamBase {
 	// Initial Generation
 }

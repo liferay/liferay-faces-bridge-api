@@ -17,14 +17,14 @@ package com.liferay.faces.portlet.component.namespace;
 
 import javax.faces.component.FacesComponent;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
 @FacesComponent(value = Namespace.COMPONENT_TYPE)
-@ProviderType
+@ConsumerType
 public class Namespace extends NamespaceBase {
 	// Initial Generation
 }
