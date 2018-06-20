@@ -18,14 +18,14 @@ package javax.portlet.faces.component;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
-import org.osgi.annotation.versioning.ConsumerType;
+import org.osgi.annotation.versioning.ProviderType;
 
 
 /**
  * @author  Neil Griffin
  */
 @FacesComponent(value = PortletRenderURL.COMPONENT_TYPE)
-@ConsumerType
+@ProviderType
 public class PortletRenderURL extends UIComponentBase {
 
 	// Public Constants

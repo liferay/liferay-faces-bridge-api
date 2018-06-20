@@ -21,7 +21,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.FacesEvent;
 
-import org.osgi.annotation.versioning.ConsumerType;
+import org.osgi.annotation.versioning.ProviderType;
 
 import com.liferay.faces.bridge.event.FileUploadEvent;
 
@@ -30,7 +30,7 @@ import com.liferay.faces.bridge.event.FileUploadEvent;
  * @author  Neil Griffin
  */
 @FacesComponent(value = InputFile.COMPONENT_TYPE)
-@ConsumerType
+@ProviderType
 public class InputFile extends InputFileBase {
 
 	@Override
