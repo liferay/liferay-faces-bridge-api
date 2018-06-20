@@ -17,7 +17,7 @@ package javax.portlet.faces;
 
 import javax.faces.FacesException;
 
-import org.osgi.annotation.versioning.ConsumerType;
+import org.osgi.annotation.versioning.ProviderType;
 
 
 /**
@@ -27,7 +27,7 @@ import org.osgi.annotation.versioning.ConsumerType;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
-@ConsumerType
+@ProviderType
 public class BridgeException extends FacesException {
 
 	private static final long serialVersionUID = 5803855762197476832L;

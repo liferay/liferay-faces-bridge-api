@@ -15,7 +15,7 @@
  */
 package javax.portlet.faces;
 
-import org.osgi.annotation.versioning.ConsumerType;
+import org.osgi.annotation.versioning.ProviderType;
 
 
 /**
@@ -25,7 +25,7 @@ import org.osgi.annotation.versioning.ConsumerType;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
-@ConsumerType
+@ProviderType
 public class BridgeInvalidViewPathException extends BridgeException {
 
 	private static final long serialVersionUID = 8192388822641501588L;
