@@ -15,7 +15,7 @@
  */
 package javax.portlet.faces;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
@@ -25,7 +25,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * @author  Michael Freedman
  * @author  Neil Griffin
  */
-@ProviderType
+@ConsumerType
 public class BridgeDefaultViewNotSpecifiedException extends BridgeException {
 
 	private static final long serialVersionUID = 7492388860641501588L;
