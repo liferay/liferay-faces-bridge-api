@@ -148,15 +148,12 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 */
 	public static final String DEFAULT_VIEWID = "javax.portlet.faces.defaultViewId";
 
-	// Private Final Data Members
-	private final BridgeEventHandlerAccessor bridgeEventHandlerAccessor = new BridgeEventHandlerAccessor();
-	private final BridgePublicRenderParameterHandlerAccessor bridgePublicRenderParameterHandlerAccessor =
-		new BridgePublicRenderParameterHandlerAccessor();
-
 	// Private Data Members
 	private boolean autoDispatchEvents;
 	private Bridge bridge;
 	private String bridgeClassName;
+	private BridgeEventHandler bridgeEventHandler;
+	private BridgePublicRenderParameterHandler bridgePublicRenderParameterHandler;
 	private Bridge bridgeService;
 	private Map<String, String> defaultViewIdMap;
 	private List<String> excludedRequestAttributes;
@@ -219,10 +216,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 */
 	@Deprecated
 	public BridgeEventHandler getBridgeEventHandler() throws PortletException {
-
-		PortletConfig portletConfig = getPortletConfig();
-
-		return bridgeEventHandlerAccessor.get(portletConfig);
+		return bridgeEventHandler;
 	}
 
 	/**
@@ -245,10 +239,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 */
 	@Deprecated
 	public BridgePublicRenderParameterHandler getBridgePublicRenderParameterHandler() throws PortletException {
-
-		PortletConfig portletConfig = getPortletConfig();
-
-		return bridgePublicRenderParameterHandlerAccessor.get(portletConfig);
+		return bridgePublicRenderParameterHandler;
 	}
 
 	/**
@@ -433,14 +424,15 @@ public class GenericFacesPortlet extends GenericPortlet {
 		super.init(portletConfig);
 		getBridge().init(portletConfig);
 
+		bridgeEventHandler = new DeferredBridgeEventHandler(portletConfig);
+		bridgePublicRenderParameterHandler = new DeferredBridgePublicRenderParameterHandler(portletConfig);
+
 		// If the "javax.portlet.faces.initializeNamespacedContextAttributes" init-param is specified in
 		// WEB-INF/portlet.xml as "true", then perform the legacy JSR 301/329 behavior of creating namespaced portlet
 		// context attributes now at portlet initialization time in the GenericFacesPortlet API. Starting with JSR 378,
 		// this behavior is disabled by default.
 		String initParam = portletConfig.getInitParameter(INITIALIZE_NAMESPACED_CONTEXT_ATTRIBUTES);
 		boolean initializeNamespacedContextAttributes = "true".equalsIgnoreCase(initParam);
-		bridgeEventHandlerAccessor.init(portletConfig);
-		bridgePublicRenderParameterHandlerAccessor.init(portletConfig);
 
 		if (initializeNamespacedContextAttributes) {
 
@@ -796,7 +788,15 @@ public class GenericFacesPortlet extends GenericPortlet {
 		private volatile T t = null;
 
 		/** Private (thread-unsafe) data member initialized in the {@link #init(javax.portlet.PortletConfig)} method. */
-		private Boolean initParamValueExists;
+		private final boolean initParamValueExists;
+
+		public ThreadSafeAccessor(String initParameterNameSuffix, PortletConfig portletConfig) {
+
+			String initParameterName = Bridge.BRIDGE_PACKAGE_PREFIX + initParameterNameSuffix;
+			String handlerClassName = portletConfig.getInitParameter(initParameterName);
+
+			initParamValueExists = (handlerClassName != null);
+		}
 
 		/**
 		 * Returns the {@link ThreadSafeAccessor} value. The value is lazily initialized by the first thread that
@@ -830,20 +830,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 
 		/**
-		 * This method is guaranteed to be called in {@link GenericFacesPortlet#init(javax.portlet.PortletConfig)} which
-		 * is a single-threaded context so thread-unsafe members such as ({@link #initParamValueExists}) are guaranteed
-		 * to be initialized before multiple threads attempt to access them in the {@link
-		 * #get(javax.portlet.PortletConfig)} method.
-		 */
-		public final void init(PortletConfig portletConfig) {
-
-			String initParameterName = Bridge.BRIDGE_PACKAGE_PREFIX + getInitParameterNameSuffix();
-			String handlerClassName = portletConfig.getInitParameter(initParameterName);
-
-			initParamValueExists = (handlerClassName != null);
-		}
-
-		/**
 		 * Returns the initial value of the {@link ThreadSafeAccessor}. This method will only be called once by a single
 		 * thread to obtain the initial value. Subclasses must override this method to provide the process necessary to
 		 * compute the initial value of the {@link ThreadSafeAccessor}.
@@ -851,11 +837,13 @@ public class GenericFacesPortlet extends GenericPortlet {
 		 * @param  args  The argument needed to initialize the {@link ThreadSafeAccessor} value.
 		 */
 		protected abstract T computeValue(PortletConfig portletConfig);
-
-		protected abstract String getInitParameterNameSuffix();
 	}
 
 	private static final class BridgeEventHandlerAccessor extends ThreadSafeAccessor<BridgeEventHandler> {
+
+		public BridgeEventHandlerAccessor(PortletConfig portletConfig) {
+			super(Bridge.BRIDGE_EVENT_HANDLER, portletConfig);
+		}
 
 		@Override
 		protected BridgeEventHandler computeValue(PortletConfig portletConfig) {
@@ -864,15 +852,14 @@ public class GenericFacesPortlet extends GenericPortlet {
 			// default factory instance.
 			return BridgeEventHandlerFactory.getBridgeEventHandlerInstance(portletConfig);
 		}
-
-		@Override
-		protected String getInitParameterNameSuffix() {
-			return Bridge.BRIDGE_EVENT_HANDLER;
-		}
 	}
 
 	private static final class BridgePublicRenderParameterHandlerAccessor
 		extends ThreadSafeAccessor<BridgePublicRenderParameterHandler> {
+
+		public BridgePublicRenderParameterHandlerAccessor(PortletConfig portletConfig) {
+			super(Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER, portletConfig);
+		}
 
 		@Override
 		protected BridgePublicRenderParameterHandler computeValue(PortletConfig portletConfig) {
@@ -882,10 +869,43 @@ public class GenericFacesPortlet extends GenericPortlet {
 			return BridgePublicRenderParameterHandlerFactory.getBridgePublicRenderParameterHandlerInstance(
 					portletConfig);
 		}
+	}
+
+	private static final class DeferredBridgeEventHandler extends BridgeEventHandlerWrapper {
+
+		// Private Final Data Members
+		private final PortletConfig portletConfig;
+		private final BridgeEventHandlerAccessor bridgeEventHandlerAccessor;
+
+		public DeferredBridgeEventHandler(PortletConfig portletConfig) {
+
+			this.portletConfig = portletConfig;
+			this.bridgeEventHandlerAccessor = new BridgeEventHandlerAccessor(portletConfig);
+		}
 
 		@Override
-		protected String getInitParameterNameSuffix() {
-			return Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER;
+		public BridgeEventHandler getWrapped() {
+			return bridgeEventHandlerAccessor.get(portletConfig);
+		}
+	}
+
+	private static final class DeferredBridgePublicRenderParameterHandler
+		extends BridgePublicRenderParameterHandlerWrapper {
+
+		// Private Final Data Members
+		private final PortletConfig portletConfig;
+		private final BridgePublicRenderParameterHandlerAccessor bridgePublicRenderParameterHandlerAccessor;
+
+		public DeferredBridgePublicRenderParameterHandler(PortletConfig portletConfig) {
+
+			this.portletConfig = portletConfig;
+			this.bridgePublicRenderParameterHandlerAccessor = new BridgePublicRenderParameterHandlerAccessor(
+					portletConfig);
+		}
+
+		@Override
+		public BridgePublicRenderParameterHandler getWrapped() {
+			return bridgePublicRenderParameterHandlerAccessor.get(portletConfig);
 		}
 	}
 }
