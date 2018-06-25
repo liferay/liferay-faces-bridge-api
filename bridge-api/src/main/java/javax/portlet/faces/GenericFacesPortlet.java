@@ -159,6 +159,15 @@ public class GenericFacesPortlet extends GenericPortlet {
 	private List<String> excludedRequestAttributes;
 	private Boolean preserveActionParameters;
 
+	private static boolean isBridgeHandlerAvailable(String bridgeHandlerInitParameterNameSuffix,
+		PortletConfig portletConfig) {
+
+		String initParameterName = Bridge.BRIDGE_PACKAGE_PREFIX + bridgeHandlerInitParameterNameSuffix;
+		String handlerClassName = portletConfig.getInitParameter(initParameterName);
+
+		return (handlerClassName != null);
+	}
+
 	/**
 	 * Release resources, specifically it destroys the bridge.
 	 */
@@ -216,7 +225,15 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 */
 	@Deprecated
 	public BridgeEventHandler getBridgeEventHandler() throws PortletException {
-		return bridgeEventHandler;
+
+		PortletConfig portletConfig = getPortletConfig();
+
+		if (isBridgeHandlerAvailable(Bridge.BRIDGE_EVENT_HANDLER, portletConfig)) {
+			return bridgeEventHandler;
+		}
+		else {
+			return null;
+		}
 	}
 
 	/**
@@ -239,7 +256,15 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 */
 	@Deprecated
 	public BridgePublicRenderParameterHandler getBridgePublicRenderParameterHandler() throws PortletException {
-		return bridgePublicRenderParameterHandler;
+
+		PortletConfig portletConfig = getPortletConfig();
+
+		if (isBridgeHandlerAvailable(Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER, portletConfig)) {
+			return bridgePublicRenderParameterHandler;
+		}
+		else {
+			return null;
+		}
 	}
 
 	/**
@@ -765,17 +790,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 		// Instance field must be declared volatile in order for the double-check idiom to work (requires JRE 1.5+)
 		private volatile T t = null;
 
-		/** Private (thread-unsafe) data member initialized in the {@link #init(javax.portlet.PortletConfig)} method. */
-		private final boolean initParamValueExists;
-
-		public ThreadSafeAccessor(String initParameterNameSuffix, PortletConfig portletConfig) {
-
-			String initParameterName = Bridge.BRIDGE_PACKAGE_PREFIX + initParameterNameSuffix;
-			String handlerClassName = portletConfig.getInitParameter(initParameterName);
-
-			initParamValueExists = (handlerClassName != null);
-		}
-
 		/**
 		 * Returns the {@link ThreadSafeAccessor} value. The value is lazily initialized by the first thread that
 		 * attempts to access it.
@@ -787,11 +801,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 			T t = this.t;
 
-			// Only attempt to initilize the handler if the handler init-param exists.
-			if (initParamValueExists &&
-
-					// First check without locking (not yet thread-safe)
-					(t == null)) {
+			// First check without locking (not yet thread-safe)
+			if (t == null) {
 
 				synchronized (this) {
 
@@ -819,10 +830,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	private static final class BridgeEventHandlerAccessor extends ThreadSafeAccessor<BridgeEventHandler> {
 
-		public BridgeEventHandlerAccessor(PortletConfig portletConfig) {
-			super(Bridge.BRIDGE_EVENT_HANDLER, portletConfig);
-		}
-
 		@Override
 		protected BridgeEventHandler computeValue(PortletConfig portletConfig) {
 
@@ -834,10 +841,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	private static final class BridgePublicRenderParameterHandlerAccessor
 		extends ThreadSafeAccessor<BridgePublicRenderParameterHandler> {
-
-		public BridgePublicRenderParameterHandlerAccessor(PortletConfig portletConfig) {
-			super(Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER, portletConfig);
-		}
 
 		@Override
 		protected BridgePublicRenderParameterHandler computeValue(PortletConfig portletConfig) {
@@ -858,7 +861,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 		public DeferredBridgeEventHandler(PortletConfig portletConfig) {
 
 			this.portletConfig = portletConfig;
-			this.bridgeEventHandlerAccessor = new BridgeEventHandlerAccessor(portletConfig);
+			this.bridgeEventHandlerAccessor = new BridgeEventHandlerAccessor();
 		}
 
 		@Override
@@ -877,8 +880,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 		public DeferredBridgePublicRenderParameterHandler(PortletConfig portletConfig) {
 
 			this.portletConfig = portletConfig;
-			this.bridgePublicRenderParameterHandlerAccessor = new BridgePublicRenderParameterHandlerAccessor(
-					portletConfig);
+			this.bridgePublicRenderParameterHandlerAccessor = new BridgePublicRenderParameterHandlerAccessor();
 		}
 
 		@Override
