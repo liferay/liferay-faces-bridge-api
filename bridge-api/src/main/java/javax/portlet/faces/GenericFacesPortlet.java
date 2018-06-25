@@ -43,7 +43,9 @@ import javax.portlet.ResourceResponse;
 import org.osgi.annotation.versioning.ConsumerType;
 
 import com.liferay.faces.bridge.BridgeEventHandlerFactory;
+import com.liferay.faces.bridge.BridgeEventHandlerWrapper;
 import com.liferay.faces.bridge.BridgePublicRenderParameterHandlerFactory;
+import com.liferay.faces.bridge.BridgePublicRenderParameterHandlerWrapper;
 
 
 /**
