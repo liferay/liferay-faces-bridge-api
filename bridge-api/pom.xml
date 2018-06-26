@@ -80,9 +80,13 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.1</version>
 					<configuration>
+						<encoding>UTF-8</encoding>
+						<fork>true</fork>
+						<executable>${jdk6.javac.executable}</executable>
+						<compilerVersion>1.6</compilerVersion>
 						<source>1.6</source>
 						<target>1.6</target>
-						<encoding>UTF-8</encoding>
+						<verbose>true</verbose>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -244,6 +248,29 @@
 	</build>
 
 	<profiles>
+		<profile>
+			<id>linux</id>
+			<activation>
+				<os>
+					<family>unix</family>
+					<name>Linux</name>
+				</os>
+			</activation>
+			<properties>
+				<jdk6.javac.executable>${env.HOME}/Tools/jdk1.6.0_45/bin/javac</jdk6.javac.executable>
+			</properties>
+		</profile>
+		<profile>
+			<id>mac</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<jdk6.javac.executable>/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin/javac</jdk6.javac.executable>
+			</properties>
+		</profile>
 		<profile>
 			<id>release</id>
 			<build>
