@@ -18,13 +18,13 @@ package javax.portlet.faces;
 import javax.faces.FacesWrapper;
 import javax.faces.context.FacesContext;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
-@ProviderType
+@ConsumerType
 public abstract class BridgePublicRenderParameterHandlerWrapper implements BridgePublicRenderParameterHandler,
 	FacesWrapper<BridgePublicRenderParameterHandler> {
 

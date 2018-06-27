@@ -17,13 +17,13 @@ package javax.portlet.faces;
 
 import java.util.Map;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
-@ProviderType
+@ConsumerType
 public abstract class BridgeURLWrapper implements BridgeURL {
 
 	public abstract BridgeURL getWrapped();

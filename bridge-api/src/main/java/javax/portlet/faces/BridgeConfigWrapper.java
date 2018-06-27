@@ -20,13 +20,13 @@ import java.util.Set;
 
 import javax.faces.FacesWrapper;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
-@ProviderType
+@ConsumerType
 public abstract class BridgeConfigWrapper implements BridgeConfig, FacesWrapper<BridgeConfig> {
 
 	public abstract BridgeConfig getWrapped();

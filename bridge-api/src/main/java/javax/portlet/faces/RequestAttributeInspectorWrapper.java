@@ -17,13 +17,13 @@ package javax.portlet.faces;
 
 import javax.faces.FacesWrapper;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
-@ProviderType
+@ConsumerType
 public abstract class RequestAttributeInspectorWrapper implements RequestAttributeInspector,
 	FacesWrapper<RequestAttributeInspector> {
 
