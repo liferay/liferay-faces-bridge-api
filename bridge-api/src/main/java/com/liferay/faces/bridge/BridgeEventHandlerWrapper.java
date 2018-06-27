@@ -21,13 +21,13 @@ import javax.portlet.Event;
 import javax.portlet.faces.BridgeEventHandler;
 import javax.portlet.faces.event.EventNavigationResult;
 
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.annotation.versioning.ConsumerType;
 
 
 /**
  * @author  Neil Griffin
  */
-@ProviderType
+@ConsumerType
 public abstract class BridgeEventHandlerWrapper implements BridgeEventHandler, FacesWrapper<BridgeEventHandler> {
 
 	@Override
