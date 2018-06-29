@@ -271,7 +271,7 @@
 			<id>compileWithJDK6Mac</id>
 			<activation>
 				<file>
-					<exists>${use.jdk6.for.compile}</exists>
+					<exists>${jdk6.javac.executable}</exists>
 				</file>
 				<os>
 					<family>mac</family>
