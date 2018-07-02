@@ -523,8 +523,10 @@ string)<sup>[[5.35](tck-tests.md#5.35)]</sup>.
 the portal via `HeaderResponse.addDependency()`. If the resource has a JSF resource name, pass it to
 `HeaderResponse.addDependency()` as the `name` argument. If the resource has a JSF resource library name, pass it to
 `HeaderResponse.addDependency()` as the `scope` argument<sup>[[5.75](tck-tests.md#5.75)]</sup>.
-- capture any markup not related to the `<head>` section to be rendered during [the subsequent render
-request](chapter-5-request-lifecycle.md#5.2.7)<sup>[[5.76](tck-tests.md#5.76)]</sup>.
+- capture any markup not related to the `<head>` section as a header request attribute named
+"javax.portlet.renderResponseOuput" that is to be rendered during [the subsequent render request]
+(chapter-5-request-lifecycle.md#5.2.7)<sup>[[5.76](tck-tests.md#5.76)]</sup>. The value of the attribute is
+implementation-dependent.
 - if necessary, update the value of the `VIEW_STATE_PARAM` parameter managed in this bridge request
 scope<sup>[[5.36](tck-tests.md#5.36)]</sup>.
 - release the `FacesContext`<sup>[[5.37](tck-tests.md#5.37)]</sup>.
