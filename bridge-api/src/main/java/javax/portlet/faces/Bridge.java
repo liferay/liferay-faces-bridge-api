@@ -265,6 +265,14 @@ public interface Bridge {
 	public static final String NONFACES_TARGET_PATH_PARAMETER = "_jsfBridgeNonFacesView";
 
 	/**
+	 * Portlet request attribute that the bridge implementation sets in the {@link PortletRequest#HEADER_PHASE} after
+	 * the RENDER_RESPONSE phase of the JSF lifecycle has completed. The bridge implementation ensures that the value of
+	 * the attribute (which is implementation dependent) is written to the response at the end of the {@link
+	 * PortletRequest#RENDER_PHASE} of the portlet lifecycle.
+	 */
+	public static final String RENDER_RESPONSE_OUTPUT = "javax.portlet.faces.renderResponseOutput";
+
+	/**
 	 * Portlet request attribute set by the bridge prior to creating/acquiring a {@link
 	 * javax.faces.context.FacesContext}. Its value indicates which portlet phase this Faces is executing in. It can be
 	 * used by Faces subsystems not only to determine the portlet execution phase but if present (not null) as an

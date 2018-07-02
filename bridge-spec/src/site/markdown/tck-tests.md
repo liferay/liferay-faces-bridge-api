@@ -696,8 +696,8 @@ of `HeaderResponse.addDependency(name, scope, version, markup)` or
 `HeaderResponse.addProperty(MimeResponse.MARKUP_HEAD_ELEMENT)` is **not** used to add any elements to the `<head>`
 section. Check that resources are rendered in the `<head>` section on the client side.
 
-[<a name="5.76"></a>5.76] capture markup from JSF during the `HEADER_PHASE` and write that captured markup to the
-response during the `RENDER_PHASE`.
+[<a name="5.76"></a>5.76] capture markup from JSF during the `HEADER_PHASE` as a request attribute named
+"javax.portlet.faces.renderResponseOutput" and write that captured markup to the response during the `RENDER_PHASE`.
 
 Test: Use `BridgePortletResponseFactory` to create a `HeaderResponseWrapper` and a `RenderResponseWrapper` that provide
 a writer that suppresses markup, and determine if any method that writes to the response (`append()`, `format()`,
