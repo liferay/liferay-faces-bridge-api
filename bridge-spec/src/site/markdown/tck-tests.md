@@ -417,9 +417,8 @@ prior to acquiring the `FacesContext`.
 
 Test: Covered by test [5.14](tck-tests.md#5.14)
 
-[<a name="5.29"></a>5.29] If `RenderResponse.getContentType()` returns `null` and there is no other indication of
-desired content type (not defined by this specification; i.e. an implementation specific extension) then the bridge must
-call `RenderResponse.setContentType()` passing the value returned from `RenderRequest.getResponseContentType()`
+[<a name="5.29"></a>5.29] If `HeaderResponse.getContentType()` returns `null` then return the value of the corresponding
+`request.getContentType()`.
 
 Test: Have portlet call doFacesRequest directly without setting the ContentType -- check in the render portion of Test
 that the response ContentType is the one requested (i.e. it was set by the Bridge)

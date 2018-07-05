@@ -673,9 +673,12 @@ javadoc:
 - `getResponseContentType()`: 
 
     Return the MIME Content-Type for this response. If called during the HEADER_REQUEST`, or `RESOURCE_PHASE`, returns
-    the value from the corresponding render `response.getContentType()`<sup>[[6.62](tck-tests.md#6.62),
-    [6.129](tck-tests.md#6.129)]</sup>. If called during the `ACTION_PHASE` or `EVENT_PHASE` it throws an
-    `IllegalStateException`<sup>[[6.63](tck-tests.md#6.63), [6.130](tck-tests.md#6.130)]</sup>.
+    the value from the corresponding `response.getContentType()`<sup>[[6.62](tck-tests.md#6.62),
+    [6.129](tck-tests.md#6.129)]</sup>. However, if the return value of the corresponding `response.getContentType()` is
+    null, then it returns the value from the corresponding
+    `request.getContentType()`<sup>[[5.29](tck-tests.md#5.29)]</sup>. If called during the `ACTION_PHASE` or
+    `EVENT_PHASE` it throws an `IllegalStateException`<sup>[[6.63](tck-tests.md#6.63),
+    [6.130](tck-tests.md#6.130)]</sup>.
 
 - `getResponse()`:
 
