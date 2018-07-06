@@ -450,7 +450,7 @@ javadoc:
 
     This Map must include the set of properties available via the `javax.portlet.PortletRequest` methods `getProperty()`
     and `getPropertyNames()` except when executing a `HEADER_REQUEST` or an `EVENT_REQUEST`. Within a `HEADER_REQUEST`
-    or `EVENT_REQUEST`, the map must exclude the `CONTENT-TYPE` and `CONTENT-LENGTH properties` (if they are present in
+    or `EVENT_REQUEST`, the map must exclude the `Content-Type` and `Content-Length` properties (if they are present in
     the underlying request)<sup>[[6.38](tck-tests.md#6.38), [6.119](tck-tests.md#6.119)]</sup>.
 
     In addition, to provide compatibility with servlets, the bridge must ensure that the following entries exist in the
