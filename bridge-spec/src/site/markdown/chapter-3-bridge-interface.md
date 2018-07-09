@@ -51,11 +51,23 @@ The bridge initializes itself on the basis of application initialization paramet
 `PortletContext` attributes set by the calling portlet. The bridge recognizes the following application initialization
 parameters:
 
+    javax.portlet.faces.BRIDGE_REQUEST_SCOPE_ACTION_ENABLED
+    javax.portlet.faces.BRIDGE_REQUEST_SCOPE_AJAX_ENABLED
     javax.portlet.faces.MAX_MANAGED_REQUEST_SCOPES
     javax.portlet.faces.RENDER_POLICY
     javax.faces.LIFECYCLE_ID
 
-`MAX_MANAGED_REQUEST_SCOPES` is an `Integer` valued configuration parameter that describes the maximum number of bridge
+`BRIDGE_REQUEST_SCOPE_ACTION_ENABLED` is a boolean configuration parameter that specifies whether or not the bridge
+request scope extends from an `ACTION_PHASE` to a subsequent `ACTION_PHASE`. The default value is `false`, meaning that
+the bridge request scope begins in the `ACTION_PHASE` and extends to the
+`RENDER_PHASE`<sup>[[5.8](tck-tests.md#5.8)]</sup>.
+
+`BRIDGE_REQUEST_SCOPE_AJAX_ENABLED` is a boolean configuration parameter that specifies whether or not Ajax XHR requests
+that invoke the `RESOURCE_PHASE` will participate in the bridge request scope created in a prior `ACTION_PHASE`. The
+default value is `false`, meaning that the bridge request scope begins in the `RESOURCE_PHASE` and ends in the same
+`RESOURCE_PHASE`<sup>[[5.66](tck-tests.md#5.66)]</sup>.
+
+`MAX_MANAGED_REQUEST_SCOPES` is an integer valued configuration parameter that describes the maximum number of bridge
 request scopes maintained by the bridge at any given time for all the portlets in this web
 application<sup>[[nt](tck-tests.md#NT)]</sup>. If not set the bridge provides an implementation dependent default
 maximum.
