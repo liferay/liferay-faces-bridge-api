@@ -291,7 +291,30 @@ bridge must acquire the FacesContext by calling the `FacesContextFactory`<sup>[[
     FacesContextFactory contextFactory =
         (FacesContextFactory) FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
 
-The `FacesContext` is acquired from the factory by passing the corresponding `PortletContext`, `PortletRequest`,
+Prior to acquiring the `FacesContext`, the following objects must be decorated:
+
+- `PortletConfig` must be decorated by calling `BridgePortletConfigFactory.getPortletConfig(PortletConfig
+portletConfig)`.
+- `PortletContext` must be decorated by calling the `PortletConfig.getPortletContext()` method on the decorated
+`PortletConfig` object.
+- `PortletRequest` must be decorated by calling the appropriate method in the `BridgePortletRequestFactory`. For
+example, during the `ACTION_PHASE` of the portlet lifecycle, the `getActionRequest(ActionRequest actionRequest,
+ActionResponse actionResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig)` method must be called.
+- `PortletResponse` must be decorated by calling the appropriate method in the `BridgePortletResponseFactory`. For
+example, during the `ACTION_PHASE` of the portlet lifecycle, the `getActionResponse(ActionRequest actionRequest,
+ActionResponse actionResponse, PortletConfig portletConfig, BridgeConfig bridgeConfig)` method must be called.
+
+In addition, the bridge is required to set the following request attributes on the decorated `PortletRequest` so that
+bridge implementors and JSF portlet developers can access the portlet configuration and bridge configuration during
+request processing:
+
+| Name | Value |
+| ---- | ----- |
+| javax.portlet.PortletConfig | Decorated `PortletConfig` |
+| javax.portlet.faces.BridgeConfig | Return value of `BridgeConfigFactory.getBridgeConfig(PortletConfig
+decoratedPortletConfig)` |
+
+The `FacesContext` is acquired from the factory by passing the decorated `PortletContext`, `PortletRequest`,
 `PortletResponse` objects and the `Lifecycle` acquired in section
 [5.2.1](chapter-5-request-lifecycle.md#5.2.1)<sup>[[5.13](tck-tests.md#5.13)]</sup>. For example:
 
