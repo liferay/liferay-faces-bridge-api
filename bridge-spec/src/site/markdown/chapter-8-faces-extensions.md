@@ -141,3 +141,25 @@ attributes that are uniquely namespaced as other portlets in the same web applic
 and/or attributes that might collide with a non-unique name and be mistakenly excluded. In such a situation when
 non-uniquely namespaced attributes are used, the extension developer should merely document for the portlet developer
 her need to configure such an exclusion in the application's portlet.xml for each portlet that utilizes the extension.
+
+## <a name="8.8"></a>8.8 Factories
+
+The bridge API defines a set of factories as extension points, each of which is discoverable by the
+`javax.portlet.faces.BridgeFactoryFinder` mechanism.
+
+| Factory FQCN | Corresponding Element in faces-config.xml |
+| ------------ | ----------------------------------------- |
+| javax.portlet.faces.BridgeConfigFactory | bridge:bridge-config-factory |
+| javax.portlet.faces.BridgeEventHandlerFactory | bridge:bridge-event-handler-factory |
+| javax.portlet.faces.BridgePublicRenderParameterHandlerFactory | bridge:bridge-public-render-parameter-handler-factory |
+| javax.portlet.faces.BridgeURLFactory | bridge:bridge-url-factory |
+| javax.portlet.faces.RequestAttributeInspectorFactory | bridge:request-attribute-inspector-factory |
+| javax.portlet.faces.filter.BridgePortletConfigFactory | bridge:bridge-portlet-config-factory |
+| javax.portlet.faces.filter.BridgePortletRequestFactory | bridge:bridge-portlet-request-factory |
+| javax.portlet.faces.filter.BridgePortletResponseFactory | bridge:bridge-portlet-response-factory |
+
+The bridge must follow the standard discovery algorithm described in Section 11.2.6.1 of the JSF 2.2 Specification
+titled "FactoryFinder" for each factory. In addition, the bridge must follow the requirements for building up the
+chain-of-responsibility according Section 11.4.8 of the JSF 2.2 Specification titled "Ordering of Artifacts". Finally,
+the bridge must provide a default implementation for each factory, each of which is the final authority in its
+respective delegation chain.
