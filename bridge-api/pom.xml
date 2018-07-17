@@ -253,10 +253,7 @@
 								javax.el;version="[2.2.0,4.0.0)",\
 								*
 							# The following configuration enables the Bridge API bundle to obtain necessary SPI
-							# implementations. Although these services are technically required for Bridge API to
-							# function, any bundle which implements these services depends on Bridge API's
-							# packages. In order to allow Bridge API to be deployed before any bundles which implement
-							# its SPIs, each capability is marked as optional.
+							# implementations.
 							Require-Capability: \
 								osgi.serviceloader;filter:="(osgi.serviceloader=javax.portlet.faces.Bridge)";\
 								cardinality:=multiple,\
