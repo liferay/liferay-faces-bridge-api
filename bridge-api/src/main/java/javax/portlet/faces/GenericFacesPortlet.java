@@ -446,9 +446,9 @@ public class GenericFacesPortlet extends GenericPortlet {
 			bridgePublicRenderParameterHandler = new DeferredBridgePublicRenderParameterHandler(portletConfig);
 
 			// If the "javax.portlet.faces.initializeNamespacedContextAttributes" init-param is specified in
-			// WEB-INF/portlet.xml as "true", then perform the legacy JSR 301/329 behavior of creating namespaced portlet
-			// context attributes now at portlet initialization time in the GenericFacesPortlet API. Starting with JSR 378,
-			// this behavior is disabled by default.
+			// WEB-INF/portlet.xml as "true", then perform the legacy JSR 301/329 behavior of creating namespaced
+			// portlet context attributes now at portlet initialization time in the GenericFacesPortlet API. Starting
+			// with JSR 378, this behavior is disabled by default.
 			String initParam = portletConfig.getInitParameter(INITIALIZE_NAMESPACED_CONTEXT_ATTRIBUTES);
 			boolean initializeNamespacedContextAttributes = "true".equalsIgnoreCase(initParam);
 
@@ -465,14 +465,14 @@ public class GenericFacesPortlet extends GenericPortlet {
 				attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + "." + Bridge.EXCLUDED_REQUEST_ATTRIBUTES;
 				portletContext.setAttribute(attributeName, getExcludedRequestAttributes());
 
-				// Save the "javax.portlet.faces.preserveActionParams" init-param value as a portlet context attribute with
-				// name "javax.portlet.faces.<portlet-name>.preserveActionParams"
+				// Save the "javax.portlet.faces.preserveActionParams" init-param value as a portlet context attribute
+				// with name "javax.portlet.faces.<portlet-name>.preserveActionParams"
 				attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + "." + Bridge.PRESERVE_ACTION_PARAMS;
 				portletContext.setAttribute(attributeName, isPreserveActionParameters());
 
-				// If a javax.portlet.faces.bridgeEventHandler is registered as an init-param in portlet.xml, then obtain an
-				// instance of the handler and save it as a portlet context attribute as required by Section 3.2 of the JSR
-				// 329 Spec.
+				// If a javax.portlet.faces.bridgeEventHandler is registered as an init-param in portlet.xml, then
+				// obtain an instance of the handler and save it as a portlet context attribute as required by Section
+				// 3.2 of the JSR 329 Spec.
 				BridgeEventHandler bridgeEventHandlerInstance = getBridgeEventHandler();
 
 				if (bridgeEventHandlerInstance != null) {
@@ -492,8 +492,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 				if (bridgePublicRenderParameterHandlerInstance != null) {
 
 					// Attribute name format: javax.portlet.faces.{portlet-name}.bridgePublicRenderParameterHandler
-					String bridgeEventHandlerAttributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletConfig.getPortletName() +
-						"." + Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER;
+					String bridgeEventHandlerAttributeName = Bridge.BRIDGE_PACKAGE_PREFIX +
+						portletConfig.getPortletName() + "." + Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER;
 					portletContext.setAttribute(bridgeEventHandlerAttributeName,
 						bridgePublicRenderParameterHandlerInstance);
 				}
