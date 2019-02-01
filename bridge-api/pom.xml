@@ -64,7 +64,7 @@
 	</scm>
 
 	<properties>
-		<bnd.version>3.5.0</bnd.version>
+		<bnd.version>4.1.0</bnd.version>
 		<faces.api.version>${faces.spec.version}</faces.api.version>
 		<faces.spec.version>2.2</faces.spec.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
@@ -190,6 +190,11 @@
 				<artifactId>bnd-baseline-maven-plugin</artifactId>
 				<version>${bnd.version}</version>
 				<configuration>
+					<base>
+						<groupId>${project.groupId}</groupId>
+						<artifactId>${project.artifactId}</artifactId>
+						<version>(,4.1.0]</version>
+					</base>
 					<includeDistributionManagement>false</includeDistributionManagement>
 				</configuration>
 				<executions>
