@@ -326,6 +326,30 @@
 				</resources>
 			</build>
 		</profile>
+		<profile>
+			<id>generate-docs</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.10.4</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>javadoc</goal>
+								</goals>
+								<phase>generate-resources</phase>
+								<configuration>
+									<destDir>${project.artifact.selectedVersion.majorVersion}.${project.artifact.selectedVersion.minorVersion}</destDir>
+									<reportOutputDirectory>${project.build.directory}/javadoc/bridge-api</reportOutputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<dependencies>
