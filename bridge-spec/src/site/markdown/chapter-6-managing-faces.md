@@ -1041,12 +1041,11 @@ implicitly resolved by this JSP EL resolver<sup>[[6.100](tck-tests.md#6.100)]</s
 - `actionResponse`: object of type `javax.portlet.ActionResponse` (only accessible in an `ActionRequest`)
 - `eventRequest`: object of type `javax.portlet.EventRequest` (only accessible in an `EventRequest`)
 - `eventResponse`: object of type `javax.portlet.EventResponse` (only accessible in an `EventRequest`)
-- `headerRequest`: object of type `javax.portlet.HeaderRequest` (only accessible in an `HeaderRequest`)
-- `headerResponse`: object of type `javax.portlet.HeaderResponse` (only accessible in an `HeaderRequest`)
-- `renderRequest`: object of type `javax.portlet.RenderRequest` (only accessible in an `RenderRequest`)
-- `renderResponse`: object of type `javax.portlet.RenderResponse` (only accessible in an `RenderRequest`)
-- `resourceRequest`: object of type `javax.portlet.ResourceRequest` (only accessible in an `ResourceRequest`)
-- `resourceResponse`: object of type `javax.portlet.ResourceResponse` (only accessible in an `ResourceRequest`)
+- `headerRequest`: object of type `javax.portlet.HeaderRequest` (only accessible in a `HeaderRequest`)
+- `headerResponse`: object of type `javax.portlet.HeaderResponse` (only accessible in a `HeaderRequest`)
+- `renderRequest`: object of type `javax.portlet.RenderRequest` (only accessible in a `HeaderRequest`)
+- `resourceRequest`: object of type `javax.portlet.ResourceRequest` (only accessible in a `ResourceRequest`)
+- `resourceResponse`: object of type `javax.portlet.ResourceResponse` (only accessible in a `ResourceRequest`)
 - `portletSession`: current `PortletSession` object.
 - `portletSessionScope`: immutable `Map` containing `PortletSession` attribute/values at `PORTLET_SCOPE`.
 - `portletPreferences`: current `PortletPreferences` object.
