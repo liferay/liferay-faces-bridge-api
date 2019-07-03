@@ -1043,7 +1043,8 @@ implicitly resolved by this JSP EL resolver<sup>[[6.100](tck-tests.md#6.100)]</s
 - `eventResponse`: object of type `javax.portlet.EventResponse` (only accessible in an `EventRequest`)
 - `headerRequest`: object of type `javax.portlet.HeaderRequest` (only accessible in a `HeaderRequest`)
 - `headerResponse`: object of type `javax.portlet.HeaderResponse` (only accessible in a `HeaderRequest`)
-- `renderRequest`: object of type `javax.portlet.RenderRequest` (only accessible in a `HeaderRequest`)
+- `renderRequest`: object of type `javax.portlet.HeaderRequest` (only accessible in a `HeaderRequest`)
+- `renderResponse`: object of type `javax.portlet.HeaderResponse` (only accessible in a `HeaderRequest`)
 - `resourceRequest`: object of type `javax.portlet.ResourceRequest` (only accessible in a `ResourceRequest`)
 - `resourceResponse`: object of type `javax.portlet.ResourceResponse` (only accessible in a `ResourceRequest`)
 - `portletSession`: current `PortletSession` object.
