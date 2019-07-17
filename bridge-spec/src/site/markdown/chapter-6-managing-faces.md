@@ -315,7 +315,7 @@ javadoc:
          <br />
          Note on encoding/xml escaping: because renderkits have their own pre/post processing to deal with situations
          calling for xml escaping in URLs, the bridge must return an URL that contains the identical xml escaping (or
-         not) used in the URL passed to encodeActionURL. I.e. if the incoming URL is xml escaped the the returned URL
+         not) used in the URL passed to encodeActionURL. I.e. if the incoming URL is xml escaped the returned URL
          must also be xml escaped, likewise if the incoming URL isn't escaped the returned URL must not be escaped. In
          the case xml escaping can't be determined from the incoming URL, the bridge must assume the URL is not xml
          escaped and return an unescaped URL accordingly.<sup>[[6.99](tck-tests.md#6.99)]</sup>
@@ -407,7 +407,7 @@ javadoc:
         <br /><br />
         **Note on encoding/xml escaping**: because renderkits have their own pre/post processing to deal with situations
         calling for xml escaping in URLs, the bridge must return an URL that contains the identical xml escaping (or
-        not) used in the URL passed to `encodeActionURL`. I.e. if the incoming URL is xml escaped the the returned URL
+        not) used in the URL passed to `encodeActionURL`. I.e. if the incoming URL is xml escaped the returned URL
         must also be xml escaped, likewise if the incoming URL isn't escaped the returned URL must not be escaped. In
         the case xml escaping can't be determined from the incoming URL, the bridge must assume the URL is not xml
         escaped and return an unescaped URL accordingly<sup>[[6.99](tck-tests.md#6.99)]</sup>. Also, because there are
@@ -1186,8 +1186,9 @@ as follows:
 <table style="border: 1px solid black;">
 <thead>
 <tr>
-<th>EL object name</th>
-<th>result</th>
+<th>EL Object Name</th>
+<th>Result</th>
+<th>Decoration Requirements</th>
 </tr>
 </thead>
 <tbody>
@@ -1195,82 +1196,99 @@ as follows:
 <td><tt>portletConfig</tt></td>
 <td><tt>portletConfig</tt> object (recommended implementation is to place the <tt>portletConfig</tt> object on the
 <tt>ELContext</tt> so can pull it here).</td>
+<td>Decorated by the BridgePortletConfigFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>actionRequest</tt></td>
 <td>If within an <tt>ActionRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
 <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>actionResponse</tt></td>
 <td>If within an <tt>ActionRequest</tt> then&nbsp;<tt>ExternalContext.getResponse() </tt>otherwise throw an
 <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletResponseFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>eventRequest</tt></td>
 <td>If within an <tt>EventRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
 <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>eventResponse</tt></td>
 <td>If within an <tt>EventRequest</tt> then&nbsp;<tt>ExternalContext.getResponse()</tt> otherwise throw an
 <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletResponseFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>headerRequest</tt></td>
 <td>If within a <tt>HeaderRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
 <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>headerResponse</tt></td>
 <td>If within a <tt>HeaderRequest</tt> then&nbsp;<tt>ExternalContext.getResponse()</tt> otherwise throw an
 <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletResponseFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>renderRequest</tt></td>
 <td>If within a <tt>HeaderRequest</tt> or <tt>RenderRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise
 throw an <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>renderResponse</tt></td>
 <td>If within a <tt>HeaderRequest</tt> or <tt>RenderRequest</tt> then&nbsp;<tt>ExternalContext.getResponse()</tt>
 otherwise throw an <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletResponseFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>resourceRequest</tt></td>
 <td>If within an <tt>ResourceRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
 <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>resourceResponse</tt></td>
 <td>If within an <tt>ResourceRequest</tt> then <tt>ExternalContext.getResponse()</tt> otherwise throw an
 <tt>ELException</tt></td>
+<td>Decorated by the BridgePortletResponseFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>portletSession</tt></td>
 <td><tt>ExternalContext.getSession()</tt></td>
+<td>Since the PortletSession object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>portletSessionScope</tt></td>
 <td><tt>ExternalContext.getSessionMap()</tt></td>
+<td>Since the PortletSession object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>httpSessionScope</tt></td>
 <td>an internally constructed <tt>Map</tt> containing those portlet session attributes at <tt>APPLICATION_SCOPE.</tt></td>
+<td>Since the PortletSession object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>portletPreferences</tt></td>
 <td><tt>ExternalContext.getRequest()).getPreferences()</tt></td>
+<td>Since the PortletPreferences object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>portletPreferencesValues</tt></td>
 <td><tt>ExternalContext.getRequest()).getPreferences().getMap()</tt></td>
+<td>Since the PortletPreferences object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
 <td><tt>mutablePortletPreferencesValues</tt></td>
 <td>An internally constructed <tt>Map &lt;String, javax.portlet.faces.preference.Preference&gt;</tt>. There is one entry per
 portlet preference. The key is the preference name. The value is an object representing a single portlet preference (as
 defined by this interface). Entries may not be added or deleted but and entry can be changed.</td>
+<td>Since the PortletPreferences object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="5.2.2">Section 5.2.2</a></td>
 </tr>
 </tbody>
 </table>
