@@ -1,4 +1,4 @@
-_Version: 5.0.0-edr3-SNAPSHOT_
+_Version: 5.0.0-edr3_
 
 # 4. GenericFacesPortlet
 
