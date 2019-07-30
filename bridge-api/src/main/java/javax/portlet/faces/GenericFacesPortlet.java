@@ -206,8 +206,14 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 		if (bridgeClassName == null) {
 
-			// TCK TestPage016: initMethodTest
-			bridgeClassName = getPortletConfig().getInitParameter(BRIDGE_CLASS);
+			PortletConfig portletConfig = getPortletConfig();
+
+			// Work around LPS-98920 Non-injected bean portlet state is lost before destroy() method called
+			if (portletConfig != null) {
+
+				// TCK TestPage016: initMethodTest
+				bridgeClassName = portletConfig.getInitParameter(BRIDGE_CLASS);
+			}
 
 			if (bridgeClassName == null) {
 
