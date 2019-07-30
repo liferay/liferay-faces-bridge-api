@@ -920,12 +920,6 @@ public class GenericFacesPortlet extends GenericPortlet {
 		}
 
 		@Override
-		public void doFacesRequest(HeaderRequest headerRequest, HeaderResponse headerResponse)
-			throws BridgeUninitializedException, BridgeException {
-			bridgeAccessor.get(portletConfig).doFacesRequest(headerRequest, headerResponse);
-		}
-
-		@Override
 		public void doFacesRequest(ActionRequest actionRequest, ActionResponse actionResponse)
 			throws BridgeDefaultViewNotSpecifiedException, BridgeUninitializedException, BridgeException {
 			bridgeAccessor.get(portletConfig).doFacesRequest(actionRequest, actionResponse);
