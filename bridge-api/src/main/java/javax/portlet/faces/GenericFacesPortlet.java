@@ -16,7 +16,10 @@
 package javax.portlet.faces;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -176,19 +179,32 @@ public class GenericFacesPortlet extends GenericPortlet {
 	@Override
 	public void destroy() {
 
-		try {
+		// If the portlet config is null then that means CDI instantiated a new instance of this class solely in
+		// order to call this destroy method. For more information, see: https://issues.liferay.com/browse/LPS-98920
+		PortletConfig portletConfig = getPortletConfig();
 
-			// In an OSGi environment, the portlet may be temporarily initialized and destroyed before the Bridge is
-			// available. In that situation, since the bridge was not initialized, there is no need to clean up on
-			// destroy.
-			Bridge bridge = getBridge();
-
-			if (bridge != null) {
-				bridge.destroy();
-			}
+		if (portletConfig == null) {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
+			String dateTime = dateFormat.format(Calendar.getInstance().getTime());
+			System.err.println(dateTime + " ERROR [GenericFacesPortlet] Unable to destroy the bridge. " +
+				"For more information, see: " + "https://issues.liferay.com/browse/LPS-98920");
 		}
-		catch (PortletException e) {
-			e.printStackTrace();
+		else {
+
+			try {
+
+				// In an OSGi environment, the portlet may be temporarily initialized and destroyed before the Bridge is
+				// available. In that situation, since the bridge was not initialized, there is no need to clean up on
+				// destroy.
+				Bridge bridge = getBridge();
+
+				if (bridge != null) {
+					bridge.destroy();
+				}
+			}
+			catch (PortletException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
