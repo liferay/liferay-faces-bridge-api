@@ -71,12 +71,8 @@ lifecycles differ and how the bridge manages state to ensure expected behavior i
 information and how to exclude specific state from being managed by the bridge if you determine that such state
 management is detrimental/not needed.
 
-- [Chapter 7](chapter-7-writebehindresponse.md): This chapter defines the behavior of a servlet filter that can be
-used with the bridge to provide correct markup ordering when your JSF view is represented by a JSP whose output comes
-from regular JSP markup as well has JSF components. **Note**: filter implementations aren't part of the formal
-specification because JSF is structured in such a way as to require distinct implementations per JSF implementation. If
-you need such a filter to correct the jsp ordering problem you will have to search for a publicly available
-implementation for your JSF implementation type or write one yourself.
+- [Chapter 7](cdi.md): This chapter describes the FacesBridge requirements for supporting bean portlet registration, CDI
+scopes, and alternative CDI producers.
 
 ## <a name="1.3"></a>1.3 API Reference
 
@@ -89,8 +85,9 @@ of these specifications:
 
 - [JavaServer&trade; Faces 2.2](https://www.jcp.org/en/jsr/detail?id=344)
 - [Java&trade; Portlet Specification 3.0](https://www.jcp.org/en/jsr/detail?id=362)
+- [Contexts and Dependency Injection for the Java EE Platform 1.1](https://www.jcp.org/en/jsr/detail?id=346)
 
-These specifications are available in their respective JSR homes (JSR 344; JSR 362) on
+These specifications are available in their respective JSR homes (JSR 344; JSR 362; JSR 346) on
 [http://www.jcp.org](http://www.jcp.org).
 
 ## <a name="1.5"></a>1.5 Dependent Java&trade; Versions
