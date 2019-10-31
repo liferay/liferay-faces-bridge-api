@@ -4,7 +4,19 @@ _Version: 6.0.0-pr-SNAPSHOT_
 
 * * *
 
-Summary of TCK Tests related to Specification Assertions
+Implementations of the FacesBridge are required to pass all of the tests defined for the Technology Compatibility Kit
+(TCK) which consists of the following WAR modules:
+
+- bridge-tck-lifecycle-set-portlet
+- bridge-tck-main-portlet
+- jsf-showcase-portlet
+
+**Note:** The
+[jsf-showcase-portlet](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet) is based
+on the [JSF Showcase](https://github.com/liferay/liferay-faces-showcase/tree/3.x), which demonstrates typical usages of
+JSF stock components.
+
+### Summary of TCK Tests related to Specification Assertions
 
 [<a name="NT"></a>NT] Not Testable
 
