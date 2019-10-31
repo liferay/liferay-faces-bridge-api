@@ -1665,6 +1665,13 @@ the jsp that supplies the iFrame target (resource).
 
 ## <a name="9"></a>Chapter 9 Tests
 
+[<a name="9.1"></a>9.1] TODO: TCK compatibility for the `h:body` component
+
+- Two portlets exist on the portal page: PortletA, PortletB
+- PortletB has has two forms: FormA, FormB
+- Submit the second form with `<f:ajax execute="@form" render="@all" />`
+- Verify that the DOM was only updated for PortletB and that both forms in PortletB have a hidden field with "javax.faces.ViewState" as part of the name attribute.
+
 [<a name="9.3"></a>9.3] TCK compatibility for the `h:inputFile` component is satisfied by the following JSF Showcase
 use-cases:
 
