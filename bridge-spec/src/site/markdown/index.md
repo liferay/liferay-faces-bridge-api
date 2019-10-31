@@ -188,7 +188,7 @@ _Version: 5.0.0-pr-SNAPSHOT_
 
     [6.9 Setting the RenderKit used by a Portlet](chapter-6-managing-faces.md#6.9)
 
-7. _RESERVED_
+7. [CDI](chapter-7-cdi.md)
 
 8. [Faces Extensions](chapter-8-faces-extensions.md)
 
