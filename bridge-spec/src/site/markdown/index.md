@@ -226,3 +226,8 @@ _Version: 5.0.0-edr2-SNAPSHOT_
 
     [Chapter 8 Tests](tck-tests.md#8)
 
+    [Chapter 9 Tests](tck-tests.md#9)
+
+9. [UI Components](chapter-9-ui-components.md)
+
+    [9.1 h:inputFile](chapter-9-ui-components.md#9.1)
