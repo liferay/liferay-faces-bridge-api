@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ServiceLoader;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
@@ -85,6 +86,7 @@ import org.osgi.annotation.versioning.ConsumerType;
  * @author  Neil Griffin
  */
 @ConsumerType
+@ApplicationScoped
 public class GenericFacesPortlet extends GenericPortlet {
 
 	/**
