@@ -1672,6 +1672,10 @@ the jsp that supplies the iFrame target (resource).
 - Submit the second form with `<f:ajax execute="@form" render="@all" />`
 - Verify that the DOM was only updated for PortletB and that both forms in PortletB have a hidden field with "javax.faces.ViewState" as part of the name attribute.
 
+[<a name="9.2"></a>9.2] TCK compatibility for the `h:head` component
+
+- bridge-tck-main-portlet/src/main/webapp/tests/resourcesRenderedInHeadTest.xhtml
+
 [<a name="9.3"></a>9.3] TCK compatibility for the `h:inputFile` component is satisfied by the following JSF Showcase
 use-cases:
 
