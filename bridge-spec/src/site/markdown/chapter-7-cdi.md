@@ -7,7 +7,23 @@ _Version: 5.0.0-pr-SNAPSHOT_
 The Portlet 3.0 Specification requires the *portlet container* to support portlets that rely on Contexts and Dependency
 Injection (CDI). Such portlets are commonly referred to as "bean" portlets. The portlet container must extend the
 functionality of the *CDI container* in order to instantiate bean portlets (which makes it possible for developers to
-use the `@Inject` annotation within bean portlet classes).
+use the `@Inject` annotation within bean portlet classes). The portlet container must implement CDI scopes in order to
+support beans annotated with `@javax.portlet.annotations.PortletRequestScoped`,
+`@javax.portlet.annotations.PortletSessionScoped`, and `@javax.portlet.annotations.RenderStateScoped`.
+
+The CDI 1.1 Specification requires the *CDI runtime* to implement scopes in order to support beans annotated with
+`@javax.enterprise.context.ApplicationScoped`, `@javax.enterprise.context.RequestScoped`,
+`@javax.enterprise.context.SessionScoped`, and `@javax.enterprise.context.ConversationScoped`. However, the Portlet 3.0
+Specification requires that beans annotated with `@javax.enterprise.context.ApplicationScoped` be stored as a
+`javax.portlet.PortletContext` attribute. It also requires the portlet container to regard beans annotated with
+`@javax.enterprise.context.RequestScoped` as though they were annotated with
+`@javax.portlet.annotations.PortletRequestScoped`. Similarly, it requires the portlet container to regard beans
+annotated with `@javax.enterprise.context.SessionScoped` as though they were annotated with
+`@javax.portlet.annotations.PortletSessionScoped`. Since it does not define requirements for
+`@javax.enterprise.context.ConversationScoped`, the conversation scope is unsupported in a portlet environment.
+
+The JSF 2.2 Specification requires the *JSF runtime* to implement CDI scopes for beans annotated with
+`@javax.faces.view.ViewScoped` and `@javax.faces.flow.FlowScoped`.
 
 ## <a name="7.1"></a>7.1 Bean Portlet Registration.
 
@@ -16,3 +32,11 @@ portlets annotated with `@PortletConfiguration` as well as any portlets defined 
 The FacesBridge must support bean portlet registration but requires the developer to use `GenericFacesPortlet` (or a
 class that extends `GenericFacesPortlet`). To this end, the `GenericFacesPortlet` class is annotated with
 `@javax.enterprise.context.ApplicationScoped` which will ensure that the bean portlet is registered as a singleton.
+
+## <a name="7.2"></a>7.2 Bean Portlet Scopes.
+
+The FacesBridge must not prevent the developer from utilizing any of the aforementioned CDI scopes that are supported by
+the Portlet 3.0 and JSF 2.2 Specifications. However, the developer must realize that a bean annotated with
+`@javax.enterprise.context.RequestScoped` or `@javax.portlet.annotations.PortletRequestScoped` will _not_ participate in
+the "Bridge Request Scope" as defined by [5.1.2](chapter-5-request-lifecycle.md#5.1.2). Instead, the developer must
+annotate such beans with `@javax.portlet.faces.annotation.BridgeRequestScoped`.
