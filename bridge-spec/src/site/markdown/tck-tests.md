@@ -1661,10 +1661,4 @@ the jsp that supplies the iFrame target (resource).
 
 ## <a name="7"></a>Chapter 7 Tests
 
-[<a name="7.1"></a>7.1] One configures the particular implementation of the `RenderResponseWrapper` and/or
-`ResourceResponseWrapper` the bridge uses as the response object it dispatches to in the bridge's application-extension
-section of the `face-config.xml`
-
-Test: Covered by Tests #[6.133](tck-tests.md#6.133) and #[6.134](tck-tests.md#6.134)
-
 ## <a name="8"></a>Chapter 8 Tests
