@@ -16,7 +16,7 @@
 			<item name="4. GenericFacesPortlet" href="chapter-4-genericfacesportlet.html" />
 			<item name="5. Request Lifecycle" href="chapter-5-request-lifecycle.html" />
 			<item name="6. Managing Faces" href="chapter-6-managing-faces.html" />
-			<item name="7. AVAILABLE" href="" />
+			<item name="7. CDI" href="chapter-7-cdi.html" />
 			<item name="8. Faces Extensions" href="chapter-8-faces-extensions.html" />
 			<item name="Appendix. TCK Tests" href="tck-tests.html" />
 		</menu>
