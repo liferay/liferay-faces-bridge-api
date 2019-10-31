@@ -810,10 +810,10 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	/**
 	 * This class represents a lazily initialized, effectively immutable value. The value is initialized in a
-	 * thread-safe way such that {@link #computeValue(java.lang.Object)} is only called once by a single thread.
+	 * thread-safe way such that {@link #computeValue(PortletConfig)} is only called once by a single thread.
 	 *
-	 * @param   <T>  The type that will be returned from the {@link #get(java.lang.Object)} and {@link
-	 *               #computeValue(java.lang.Object)} methods.
+	 * @param   <T>  The type that will be returned from the {@link #get(PortletConfig)} and {@link
+	 *               #computeValue(PortletConfig)} methods.
 	 *
 	 * @author  Kyle Stiemann
 	 */
@@ -855,7 +855,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 		 * thread to obtain the initial value. Subclasses must override this method to provide the process necessary to
 		 * compute the initial value of the {@link ThreadSafeAccessor}.
 		 *
-		 * @param  args  The argument needed to initialize the {@link ThreadSafeAccessor} value.
+		 * @param  portletConfig  The argument needed to initialize the {@link ThreadSafeAccessor} value.
 		 */
 		protected abstract T computeValue(PortletConfig portletConfig);
 	}
