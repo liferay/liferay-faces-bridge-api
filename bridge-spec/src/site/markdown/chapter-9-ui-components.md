@@ -9,7 +9,7 @@ in the JSF API module. In most cases, these renderers function equally well in b
 However, some component renderers must be overridden by the FacesBridge in order for them to function properly in a
 portlet environment.
 
-## <a name="9.1"></a>9.1 h:inputFile
+## <a name="9.3"></a>9.3 h:inputFile
 
 The `h:inputFile` component tag causes an instance of
 [javax.faces.component.html.HtmlInputFile](https://javaserverfaces.github.io/docs/2.2/javadocs/javax/faces/component/html/HtmlInputFile.html)
@@ -54,4 +54,4 @@ XHTML Facelet View:
 	    </h:form>
     </ui:composition>
 
-Test: <sup>[[9.1](tck-tests.md#9.1)]</sup>
+Test: <sup>[[9.3](tck-tests.md#9.3)]</sup>
