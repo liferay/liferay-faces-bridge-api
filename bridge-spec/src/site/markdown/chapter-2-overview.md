@@ -1,4 +1,4 @@
-_Version: 5.0.0-edr2-SNAPSHOT_
+_Version: 6.0.0-pr-SNAPSHOT_
 
 # 2. Overview
 
