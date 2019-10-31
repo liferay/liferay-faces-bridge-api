@@ -40,3 +40,42 @@ the Portlet 3.0 and JSF 2.2 Specifications. However, the developer must realize 
 `@javax.enterprise.context.RequestScoped` or `@javax.portlet.annotations.PortletRequestScoped` will _not_ participate in
 the "Bridge Request Scope" as defined by [5.1.2](chapter-5-request-lifecycle.md#5.1.2). Instead, the developer must
 annotate such beans with `@javax.portlet.faces.annotation.BridgeRequestScoped`.
+
+## <a name="7.3"></a>7.3 Producers.
+
+Section 20.3.1 of the Portlet 3.0 Specification titled "Portlet Request Scoped Beans" provides a table that lists all of
+the `@Named` `@PortletRequestScoped` CDI beans and their corresponding EL names. Since the FacesBridge provides factories
+that potentially decorate these `@PortletRequestScoped` beans, the FacesBridge must provide alternative CDI producers.
+
+|EL Name|FacesBridge Factory|
+|-------|-------------------|
+|actionParams|BridgePortletRequestFactory|
+|actionRequest|BridgePortletRequestFactory|
+|actionResponse|BridgePortletResponseFactory|
+|clientDataRequest|BridgePortletRequestFactory|
+|contextPath|BridgePortletRequestFactory|
+|cookies|BridgePortletRequestFactory|
+|eventRequest|BridgePortletRequestFactory|
+|eventResponse|BridgePortletResponseFactory|
+|headerRequest|BridgePortletRequestFactory|
+|headerResponse|BridgePortletResponseFactory|
+|locales|BridgePortletRequestFactory|
+|mimeResponse|BridgePortletResponseFactory|
+|mutableRenderParams|BridgePortletRequestFactory|
+|namespace|BridgePortletResponseFactory|
+|portletConfig|BridgePortletConfigFactory|
+|portletContext|BridgePortletConfigFactory|
+|portletMode|BridgePortletRequestFactory|
+|portletName|BridgePortletConfigFactory|
+|portletPreferences|BridgePortletRequestFactory|
+|portletRequest|BridgePortletRequestFactory|
+|portletResponse|BridgePortletResponseFactory|
+|portletSession|BridgePortletRequestFactory|
+|renderParams|BridgePortletRequestFactory|
+|renderRequest|BridgePortletRequestFactory|
+|renderResponse|BridgePortletResponseFactory|
+|resourceRequest|BridgePortletRequestFactory|
+|resourceResponse|BridgePortletResponseFactory|
+|stateAwareResponse|BridgePortletResponseFactory|
+|windowId|BridgePortletRequestFactory|
+|windowState|BridgePortletRequestFactory|
