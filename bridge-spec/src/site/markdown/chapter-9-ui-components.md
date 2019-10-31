@@ -65,6 +65,28 @@ due to the solution provided by
 
 Test: <sup>[[9.1](tck-tests.md#9.1)]</sup>
 
+## <a name="9.2"></a>9.2 h:head
+
+According to the portlet specification, elements such as `<head>`, `<title>`, and `<body>` may not be output to the
+response by a portlet. Because of this, the FacesBridge must prevent the Faces runtime from writing `<head>...</head>`
+to the response when it invokes the renderer for `h:head`. Instead, the FacesBridge must ensure that a JSF resources
+(which are targeted for the head) are _added_ to the head by calling `HeaderResponse.addResourceDependency(String name,
+String scope, String version, String markup)` for each resource.
+
+The following Facelet markup demonstrates usage of the `h:head` tag as well as the "jsf.js" resource being targeted for
+the head due to the presence of the `f:ajax` tag:
+
+    <f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+        <h:head/>
+        <h:form>
+            <h:inputText>
+                <f:ajax render="@form" />
+            </h:inputText>
+        </h:form>
+    </f:view>
+
+Test: <sup>[[9.2](tck-tests.md#9.2)]</sup>
+
 ## <a name="9.3"></a>9.3 h:inputFile
 
 The `h:inputFile` component tag causes an instance of
