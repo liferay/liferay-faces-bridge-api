@@ -190,6 +190,12 @@ _Version: 5.0.0-pr-SNAPSHOT_
 
 7. [CDI](chapter-7-cdi.md)
 
+    [7.1 Bean Portlet Registration](chapter-7-cdi.md#7.1)
+
+    [7.2 Bean Portlet Scopes](chapter-7-cdi.md#7.2)
+
+    [7.3 Producers](chapter-7-cdi.md#7.3)
+
 8. [Faces Extensions](chapter-8-faces-extensions.md)
 
     [8.1 Configuration](chapter-8-faces-extensions.md#8.1)
