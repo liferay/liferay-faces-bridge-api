@@ -1682,7 +1682,7 @@ use-cases:
 - [General](https://github.com/liferay/liferay-faces-showcase/blob/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/inputfile/general/inputFile.xhtml)
 - [Instant Ajax](https://github.com/liferay/liferay-faces-showcase/blob/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/inputfile/instant-ajax/inputFile.xhtml)
 
-[<a name="9.4"></a>9.4] TODO: TCK compatibility for the `h:message` and `h:messages` components are satisfied by the
+[<a name="9.4"></a>9.4] TCK compatibility for the `h:message` and `h:messages` components are satisfied by the
 following JSF Showcase use-cases:
 
 - [h:message (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/message/general)
