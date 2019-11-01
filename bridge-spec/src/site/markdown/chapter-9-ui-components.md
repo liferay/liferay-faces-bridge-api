@@ -133,3 +133,29 @@ XHTML Facelet View:
     </ui:composition>
 
 Test: <sup>[[9.3](tck-tests.md#9.3)]</sup>
+
+## <a name="9.4"></a>9.4 h:message and h:messages
+
+The Portlet Specification defines the following CSS class names for the portlet container to supply via CSS style
+sheets:
+
+- portlet-msg-alert
+- portlet-msg-error
+- portlet-msg-info
+- portlet-msg-status
+- portlet-msg-success
+ 
+This feature provides developers with a way to rely on standard CSS class names for styling text base elements.
+
+The JSF Specification defines the `h:message` and `h:messages` component tags that developers can use to provide
+feedback to the user. The FacesBridge must ensure that the `errorClass`, `fatalClass`, `infoClass`, and `warnClass`
+attribute values are appended with the standard portlet CSS class names according to the following mapping:
+
+|UIComponent Attribute|Portlet CSS Class|
+|---------------------|-----------------|
+|errorClass|portlet-msg-error|
+|fatalClass|portlet-msg-error|
+|infoClass|portlet-msg-info|
+|warnClass|portlet-msg-alert|
+
+Test: <sup>[[9.4](tck-tests.md#9.4)]</sup>
