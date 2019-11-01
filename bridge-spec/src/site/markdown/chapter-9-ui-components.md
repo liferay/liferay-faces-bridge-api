@@ -261,3 +261,21 @@ The FacesBridge implementation must provide a corresponding renderer that will o
 Test: <sup>[[9.9](tck-tests.md#9.9)]</sup>
 
 ## <a name="9.10"></a>9.10 portlet:resourceURL
+
+The FacesBridge API must define the `javax.portlet.faces.component.PortletResourceURL` component that extends
+`javax.faces.component.UIComponentBase`. The component family must be `"javax.portlet.faces.URL"` and the component type
+must be `"javax.portlet.faces.ResourceURL"`.
+
+The FacesBridge implementation must provide the `portlet:resourceURL` component tag with the following attributes:
+
+- cacheability
+- escapeXml
+- id
+- secure
+- var
+
+The FacesBridge implementation must provide a corresponding renderer that will output the `toString()` value of a
+`javax.portlet.ResourceURL` according to the requirements listed in Section 26.4 of the Portlet 3.0 Specification titled
+"resourceURL Tag".
+
+Test: <sup>[[9.10](tck-tests.md#9.10)]</sup>
