@@ -1714,3 +1714,8 @@ Showcase use-case:
 
 - [portlet:renderURL (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/renderurl/general)
 
+[<a name="9.10"></a>9.10] TCK compatibility for the `portlet:resourceURL` component is satisfied by the following JSF
+Showcase use-case:
+
+- [portlet:resourceURL (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/resourceurl/general)
+
