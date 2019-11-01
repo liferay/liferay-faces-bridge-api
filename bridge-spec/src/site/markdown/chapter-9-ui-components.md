@@ -206,6 +206,22 @@ Test: <sup>[[9.6](tck-tests.md#9.6)]</sup>
 
 ## <a name="9.8"></a>9.8 portlet:property
 
+The FacesBridge API must define the `javax.portlet.faces.component.PortletProperty` component that extends
+`javax.faces.component.UIComponentBase`. The component family must be `"javax.portlet.faces.URL"` and the component type
+must be `"javax.portlet.faces.Property"`.
+
+The FacesBridge implementation must provide the `portlet:property` component tag with the following attributes:
+
+- name
+- value
+
+The `portlet:property` component tag is designed to be used as a child of a surrounding `portlet:actionURL`,
+`portlet:renderURL`, or `portlet:renderURL` component tag. The FacesBridge implementation must provide a corresponding
+renderer that will add properties on the underlying portlet URL according to the requirements listed in Section 26.7 of
+the Portlet 3.0 Specification titled "property Tag".
+
+Test: <sup>[[9.8](tck-tests.md#9.8)]</sup>
+
 ## <a name="9.9"></a>9.9 portlet:renderURL
 
 ## <a name="9.10"></a>9.10 portlet:resourceURL
