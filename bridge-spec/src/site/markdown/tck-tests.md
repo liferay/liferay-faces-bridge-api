@@ -1687,3 +1687,8 @@ following JSF Showcase use-cases:
 
 - [h:message (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/message/general)
 - [h:messages (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/messages/general)
+
+[<a name="9.5"></a>9.5] TCK compatibility for the `portlet:actionURL` component is satisfied by the following JSF
+Showcase use-case:
+
+- [portlet:actionURL (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/actionurl/general)
