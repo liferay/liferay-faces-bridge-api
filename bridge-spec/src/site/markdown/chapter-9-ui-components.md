@@ -175,7 +175,6 @@ The FacesBridge implementation must provide the `portlet:actionURL` component ta
 - name
 - portletMode
 - secure
-- type
 - var
 - windowState
 

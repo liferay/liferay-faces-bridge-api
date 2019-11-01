@@ -34,7 +34,7 @@ public class PortletParam extends UIComponentBase {
 
 	// Protected Enumerations
 	protected enum ParamPropertyKeys {
-		name, value
+		name, value, type
 	}
 
 	public PortletParam() {
@@ -50,16 +50,25 @@ public class PortletParam extends UIComponentBase {
 	/**
 	 * <p><code>name</code> attribute description:</p>
 	 *
-	 * <p>The name of the render parameter.</p>
+	 * <p>The name of the parameter.</p>
 	 */
 	public String getName() {
 		return (String) getStateHelper().eval(ParamPropertyKeys.name, null);
 	}
 
 	/**
+	 * <p><code>type</code> attribute description:</p>
+	 *
+	 * <p>The type of the parameter.</p>
+	 */
+	public String getType() {
+		return (String) getStateHelper().eval(ParamPropertyKeys.type, null);
+	}
+
+	/**
 	 * <p><code>value</code> attribute description:</p>
 	 *
-	 * <p>The value of the render parameter.</p>
+	 * <p>The value of the parameter.</p>
 	 */
 	public String getValue() {
 		return (String) getStateHelper().eval(ParamPropertyKeys.value, null);
@@ -68,16 +77,27 @@ public class PortletParam extends UIComponentBase {
 	/**
 	 * <p><code>name</code> attribute description:</p>
 	 *
-	 * <p>The name of the render parameter.</p>
+	 * <p>The name of the parameter.</p>
 	 */
 	public void setName(String name) {
 		getStateHelper().put(ParamPropertyKeys.name, name);
 	}
 
 	/**
+	 * <p><code>type</code> attribute description:</p>
+	 *
+	 * <p>The type of the parameter. When used with a surrounding <code>portlet:actionURL</code> the valid values are
+	 * "action" (the default) and "render". When used with a surrounding <code>portlet:renderURL</code> or <code>
+	 * portlet:resourceURL</code> this attribute is ignored.</p>
+	 */
+	public void setType(String type) {
+		getStateHelper().put(ParamPropertyKeys.type, type);
+	}
+
+	/**
 	 * <p><code>value</code> attribute description:</p>
 	 *
-	 * <p>The value of the render parameter.</p>
+	 * <p>The value of the parameter.</p>
 	 */
 	public void setValue(String value) {
 		getStateHelper().put(ParamPropertyKeys.value, value);
