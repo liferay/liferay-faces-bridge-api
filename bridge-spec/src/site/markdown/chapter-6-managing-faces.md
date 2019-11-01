@@ -1318,7 +1318,7 @@ If base is <code>null</code> and property is a String equal to any of the above 
 </tr>
 <tr>
 <td><code>isReadOnly</code></td>
-<td>If running in a non-portlet request or base is non-null, return null.
+<td>If running in a non-portlet request or base is non-null, return true.
 <br />
 If base is <code>null</code> and property is <code>null</code>, throw <code>PropertyNotFoundException</code>.
 <br />
