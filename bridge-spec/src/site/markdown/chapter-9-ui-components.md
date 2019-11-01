@@ -241,4 +241,23 @@ Test: <sup>[[9.8](tck-tests.md#9.8)]</sup>
 
 ## <a name="9.9"></a>9.9 portlet:renderURL
 
+The FacesBridge API must define the `javax.portlet.faces.component.PortletRenderURL` component that extends
+`javax.faces.component.UIComponentBase`. The component family must be `"javax.portlet.faces.URL"` and the component type
+must be `"javax.portlet.faces.RenderURL"`.
+
+The FacesBridge implementation must provide the `portlet:renderURL` component tag with the following attributes:
+
+- copyCurrentRenderParameters
+- escapeXml
+- portletMode
+- secure
+- var
+- windowState
+
+The FacesBridge implementation must provide a corresponding renderer that will output the `toString()` value of a
+`javax.portlet.RenderURL` according to the requirements listed in Section 26.3 of the Portlet 3.0 Specification titled
+"renderURL Tag".
+
+Test: <sup>[[9.9](tck-tests.md#9.9)]</sup>
+
 ## <a name="9.10"></a>9.10 portlet:resourceURL

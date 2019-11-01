@@ -1709,3 +1709,8 @@ use-cases:
 (vendor-neutral) perspective, since calls to `BaseURL.addProperty(String,String)` are intended to alter the portlet URL
 in a vendor-specific manner.
 
+[<a name="9.9"></a>9.9] TCK compatibility for the `portlet:renderURL` component is satisfied by the following JSF
+Showcase use-case:
+
+- [portlet:renderURL (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/renderurl/general)
+
