@@ -187,10 +187,26 @@ Test: <sup>[[9.5](tck-tests.md#9.5)]</sup>
 
 ## <a name="9.6"></a>9.6 portlet:namespace
 
-## <a name="9.8"></a>9.7 portlet:param
+The FacesBridge API must define the `javax.portlet.faces.component.PortletNamespace` component that extends
+`javax.faces.component.UIComponentBase`. The component family must be `"javax.portlet.faces.Namespace"` and the component type
+must be `"javax.portlet.faces.Namespace"`.
 
-## <a name="9.9"></a>9.8 portlet:property
+The FacesBridge implementation must provide the `portlet:actionURL` component tag with the following attribute:
 
-## <a name="9.10"></a>9.9 portlet:renderURL
+- var
 
-## <a name="9.11"></a>9.10 portlet:resourceURL
+The FacesBridge implementation must provide a corresponding renderer that will output the response namespace according
+to the requirements listed in Section 26.5 of the Portlet 3.0 Specification titled "namespace Tag". However, the value
+of the response namespace must be obtained by calling
+`FacesContext.getCurrentInstance().getExternalContext().encodeNamespace("")` rather than
+`PortletResponse.getNamespace()` in order to allow for decoration via the `ExternalContext` extension point.
+
+Test: <sup>[[9.6](tck-tests.md#9.6)]</sup>
+
+## <a name="9.7"></a>9.7 portlet:param
+
+## <a name="9.8"></a>9.8 portlet:property
+
+## <a name="9.9"></a>9.9 portlet:renderURL
+
+## <a name="9.10"></a>9.10 portlet:resourceURL
