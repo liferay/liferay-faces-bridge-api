@@ -1697,3 +1697,11 @@ Showcase use-case:
 Showcase use-case:
 
 - [portlet:namespace (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/namespace/general)
+
+[<a name="9.7"></a>9.7] TCK compatibility for the `portlet:param` component is satisfied by the following JSF
+Showcase use-cases:
+
+- [portlet:actionURL (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/actionurl/general)
+- [portlet:renderURL (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/renderurl/general)
+- [portlet:resourceURL (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/resourceurl/general)
+
