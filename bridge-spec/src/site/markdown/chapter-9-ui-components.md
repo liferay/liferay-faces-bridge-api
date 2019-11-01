@@ -170,13 +170,15 @@ must be `"javax.portlet.faces.ActionURL"`.
 
 The FacesBridge implementation must provide the `portlet:actionURL` component tag with the following attributes:
 
-- copyCurrentRenderParameters
-- escapeXml
-- name
-- portletMode
-- secure
-- var
-- windowState
+|Name|Type|
+|----|----|
+|copyCurrentRenderParameters|`boolean`|
+|escapeXml|`boolean`|
+|name|`java.lang.String`|
+|portletMode|`java.lang.String`|
+|secure|`java.lang.Boolean`|
+|var|`java.lang.String`|
+|windowState|`java.lang.String`|
 
 The FacesBridge implementation must provide a corresponding renderer that will output the `toString()` value of a
 `javax.portlet.ActionURL` according to the requirements listed in Section 26.2 of the Portlet 3.0 Specification titled
@@ -192,7 +194,9 @@ must be `"javax.portlet.faces.Namespace"`.
 
 The FacesBridge implementation must provide the `portlet:actionURL` component tag with the following attribute:
 
-- var
+|Name|Type|
+|----|----|
+|var|`java.lang.String`|
 
 The FacesBridge implementation must provide a corresponding renderer that will output the response namespace according
 to the requirements listed in Section 26.5 of the Portlet 3.0 Specification titled "namespace Tag". However, the value
@@ -210,9 +214,11 @@ must be `"javax.portlet.faces.Param"`.
 
 The FacesBridge implementation must provide the `portlet:param` component tag with the following attributes:
 
-- name
-- type
-- value
+|Name|Type|
+|----|----|
+|name|`java.lang.String`|
+|type|`java.lang.String`|
+|value|`java.lang.String`|
 
 The `portlet:param` component tag is designed to be used as a child of a surrounding `portlet:actionURL`,
 `portlet:renderURL`, or `portlet:renderURL` component tag. The FacesBridge implementation must provide a corresponding
@@ -229,8 +235,10 @@ must be `"javax.portlet.faces.Property"`.
 
 The FacesBridge implementation must provide the `portlet:property` component tag with the following attributes:
 
-- name
-- value
+|Name|Type|
+|----|----|
+|name|`java.lang.String`|
+|value|`java.lang.String`|
 
 The `portlet:property` component tag is designed to be used as a child of a surrounding `portlet:actionURL`,
 `portlet:renderURL`, or `portlet:renderURL` component tag. The FacesBridge implementation must provide a corresponding
@@ -247,12 +255,14 @@ must be `"javax.portlet.faces.RenderURL"`.
 
 The FacesBridge implementation must provide the `portlet:renderURL` component tag with the following attributes:
 
-- copyCurrentRenderParameters
-- escapeXml
-- portletMode
-- secure
-- var
-- windowState
+|Name|Type|
+|----|----|
+|copyCurrentRenderParameters|`boolean`|
+|escapeXml|`boolean`|
+|portletMode|`java.lang.String`|
+|secure|`java.lang.Boolean`|
+|var|`java.lang.String`|
+|windowState|`java.lang.String`|
 
 The FacesBridge implementation must provide a corresponding renderer that will output the `toString()` value of a
 `javax.portlet.RenderURL` according to the requirements listed in Section 26.3 of the Portlet 3.0 Specification titled
@@ -268,11 +278,13 @@ must be `"javax.portlet.faces.ResourceURL"`.
 
 The FacesBridge implementation must provide the `portlet:resourceURL` component tag with the following attributes:
 
-- cacheability
-- escapeXml
-- id
-- secure
-- var
+|Name|Type|
+|----|----|
+|cacheability|`java.lang.String`|
+|escapeXml|`boolean`|
+|id|`java.lang.String`|
+|secure|`java.lang.Boolean`|
+|var|`java.lang.String`|
 
 The FacesBridge implementation must provide a corresponding renderer that will output the `toString()` value of a
 `javax.portlet.ResourceURL` according to the requirements listed in Section 26.4 of the Portlet 3.0 Specification titled
