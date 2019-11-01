@@ -1171,16 +1171,16 @@ The ELResolver must be implemented as follows<sup>[[6.100](tck-tests.md#6.100),[
 </thead>
 <tbody>
 <tr>
-<td><tt>getValue</tt></td>
-<td>If running in a non-portlet request or base is non-null return <tt>null</tt>.
+<td><code>getValue</code></td>
+<td>If running in a non-portlet request or base is non-null return <code>null</code>.
 <br />
-If evaluating a JSP expression (non-Faces expression) and property is <tt>portletConfig</tt>, <tt>headerRequest</tt>, or
-<tt>headerResponse</tt>, <tt>renderRequest</tt>, or <tt>renderResponse</tt>, return <tt>null</tt>.
+If evaluating a JSP expression (non-Faces expression) and property is <code>portletConfig</code>, <code>headerRequest</code>, or
+<code>headerResponse</code>, <code>renderRequest</code>, or <code>renderResponse</code>, return <code>null</code>.
 <br />
-If base is <tt>null</tt> and property is <tt>null</tt>, throw <tt>PropertyNotFoundException</tt>.
+If base is <code>null</code> and property is <code>null</code>, throw <code>PropertyNotFoundException</code>.
 <br />
-If none of the above and base is <tt>null</tt> and property is a String equal to one of the above names, call
-<tt>setPropertyResolved(true)</tt> on the argument <tt>ELContext</tt> and return result, where property and result are
+If none of the above and base is <code>null</code> and property is a String equal to one of the above names, call
+<code>setPropertyResolved(true)</code> on the argument <code>ELContext</code> and return result, where property and result are
 as follows:
 <br />
 <table style="border: 1px solid black;">
@@ -1193,99 +1193,99 @@ as follows:
 </thead>
 <tbody>
 <tr>
-<td><tt>portletConfig</tt></td>
-<td><tt>portletConfig</tt> object (recommended implementation is to place the <tt>portletConfig</tt> object on the
-<tt>ELContext</tt> so can pull it here).</td>
+<td><code>portletConfig</code></td>
+<td><code>portletConfig</code> object (recommended implementation is to place the <code>portletConfig</code> object on the
+<code>ELContext</code> so can pull it here).</td>
 <td>Decorated by the BridgePortletConfigFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>actionRequest</tt></td>
-<td>If within an <tt>ActionRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
-<tt>ELException</tt></td>
+<td><code>actionRequest</code></td>
+<td>If within an <code>ActionRequest</code> then <code>ExternalContext.getRequest()</code> otherwise throw an
+<code>ELException</code></td>
 <td>Decorated by the BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>actionResponse</tt></td>
-<td>If within an <tt>ActionRequest</tt> then&nbsp;<tt>ExternalContext.getResponse() </tt>otherwise throw an
-<tt>ELException</tt></td>
+<td><code>actionResponse</code></td>
+<td>If within an <code>ActionRequest</code> then&nbsp;<code>ExternalContext.getResponse() </code>otherwise throw an
+<code>ELException</code></td>
 <td>Decorated by the BridgePortletResponseFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>eventRequest</tt></td>
-<td>If within an <tt>EventRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
-<tt>ELException</tt></td>
+<td><code>eventRequest</code></td>
+<td>If within an <code>EventRequest</code> then <code>ExternalContext.getRequest()</code> otherwise throw an
+<code>ELException</code></td>
 <td>Decorated by the BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>eventResponse</tt></td>
-<td>If within an <tt>EventRequest</tt> then&nbsp;<tt>ExternalContext.getResponse()</tt> otherwise throw an
-<tt>ELException</tt></td>
+<td><code>eventResponse</code></td>
+<td>If within an <code>EventRequest</code> then&nbsp;<code>ExternalContext.getResponse()</code> otherwise throw an
+<code>ELException</code></td>
 <td>Decorated by the BridgePortletResponseFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>headerRequest</tt></td>
-<td>If within a <tt>HeaderRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
-<tt>ELException</tt></td>
+<td><code>headerRequest</code></td>
+<td>If within a <code>HeaderRequest</code> then <code>ExternalContext.getRequest()</code> otherwise throw an
+<code>ELException</code></td>
 <td>Decorated by the BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>headerResponse</tt></td>
-<td>If within a <tt>HeaderRequest</tt> then&nbsp;<tt>ExternalContext.getResponse()</tt> otherwise throw an
-<tt>ELException</tt></td>
+<td><code>headerResponse</code></td>
+<td>If within a <code>HeaderRequest</code> then&nbsp;<code>ExternalContext.getResponse()</code> otherwise throw an
+<code>ELException</code></td>
 <td>Decorated by the BridgePortletResponseFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>renderRequest</tt></td>
-<td>If within a <tt>HeaderRequest</tt> or <tt>RenderRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise
-throw an <tt>ELException</tt></td>
+<td><code>renderRequest</code></td>
+<td>If within a <code>HeaderRequest</code> or <code>RenderRequest</code> then <code>ExternalContext.getRequest()</code> otherwise
+throw an <code>ELException</code></td>
 <td>Decorated by the BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>renderResponse</tt></td>
-<td>If within a <tt>HeaderRequest</tt> or <tt>RenderRequest</tt> then&nbsp;<tt>ExternalContext.getResponse()</tt>
-otherwise throw an <tt>ELException</tt></td>
+<td><code>renderResponse</code></td>
+<td>If within a <code>HeaderRequest</code> or <code>RenderRequest</code> then&nbsp;<code>ExternalContext.getResponse()</code>
+otherwise throw an <code>ELException</code></td>
 <td>Decorated by the BridgePortletResponseFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>resourceRequest</tt></td>
-<td>If within an <tt>ResourceRequest</tt> then <tt>ExternalContext.getRequest()</tt> otherwise throw an
-<tt>ELException</tt></td>
+<td><code>resourceRequest</code></td>
+<td>If within an <code>ResourceRequest</code> then <code>ExternalContext.getRequest()</code> otherwise throw an
+<code>ELException</code></td>
 <td>Decorated by the BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>resourceResponse</tt></td>
-<td>If within an <tt>ResourceRequest</tt> then <tt>ExternalContext.getResponse()</tt> otherwise throw an
-<tt>ELException</tt></td>
+<td><code>resourceResponse</code></td>
+<td>If within an <code>ResourceRequest</code> then <code>ExternalContext.getResponse()</code> otherwise throw an
+<code>ELException</code></td>
 <td>Decorated by the BridgePortletResponseFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>portletSession</tt></td>
-<td><tt>ExternalContext.getSession()</tt></td>
+<td><code>portletSession</code></td>
+<td><code>ExternalContext.getSession()</code></td>
 <td>Since the PortletSession object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>portletSessionScope</tt></td>
-<td><tt>ExternalContext.getSessionMap()</tt></td>
+<td><code>portletSessionScope</code></td>
+<td><code>ExternalContext.getSessionMap()</code></td>
 <td>Since the PortletSession object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>httpSessionScope</tt></td>
-<td>an internally constructed <tt>Map</tt> containing those portlet session attributes at <tt>APPLICATION_SCOPE.</tt></td>
+<td><code>httpSessionScope</code></td>
+<td>an internally constructed <code>Map</code> containing those portlet session attributes at <code>APPLICATION_SCOPE.</code></td>
 <td>Since the PortletSession object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>portletPreferences</tt></td>
-<td><tt>ExternalContext.getRequest()).getPreferences()</tt></td>
+<td><code>portletPreferences</code></td>
+<td><code>ExternalContext.getRequest()).getPreferences()</code></td>
 <td>Since the PortletPreferences object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>portletPreferencesValues</tt></td>
-<td><tt>ExternalContext.getRequest()).getPreferences().getMap()</tt></td>
+<td><code>portletPreferencesValues</code></td>
+<td><code>ExternalContext.getRequest()).getPreferences().getMap()</code></td>
 <td>Since the PortletPreferences object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
 </tr>
 <tr>
-<td><tt>mutablePortletPreferencesValues</tt></td>
-<td>An internally constructed <tt>Map &lt;String, javax.portlet.faces.preference.Preference&gt;</tt>. There is one entry per
+<td><code>mutablePortletPreferencesValues</code></td>
+<td>An internally constructed <code>Map &lt;String, javax.portlet.faces.preference.Preference&gt;</code>. There is one entry per
 portlet preference. The key is the preference name. The value is an object representing a single portlet preference (as
 defined by this interface). Entries may not be added or deleted but and entry can be changed.</td>
 <td>Since the PortletPreferences object is obtained by calling PortletRequest.getPortletSession(), it is decorated by BridgePortletRequestFactory as described in <a href="#5.2.2">Section 5.2.2</a></td>
@@ -1293,44 +1293,44 @@ defined by this interface). Entries may not be added or deleted but and entry ca
 </tbody>
 </table>
 <br />
-If base is <tt>null</tt>, and property does not match one of the above property names, return null.</td>
+If base is <code>null</code>, and property does not match one of the above property names, return null.</td>
 </tr>
 <tr>
-<td><tt>getType</tt></td>
+<td><code>getType</code></td>
 <td>If running in a non-portlet request or base is non-null, return null.
 <br />
-If base is <tt>null</tt> and property is <tt>null</tt>, throw <tt>PropertyNotFoundException</tt>.
+If base is <code>null</code> and property is <code>null</code>, throw <code>PropertyNotFoundException</code>.
 <br />
-If base is <tt>null</tt> and property is a String equal to any of the above names, call
-<tt>setPropertyResolved(true)</tt> on the argument <tt>ELContext</tt> and return null to indicate that no types are
+If base is <code>null</code> and property is a String equal to any of the above names, call
+<code>setPropertyResolved(true)</code> on the argument <code>ELContext</code> and return null to indicate that no types are
 accepted to setValue() for these attributes.
 <br />
 Otherwise, null;</td>
 </tr>
 <tr>
-<td><tt>setValue</tt></td>
+<td><code>setValue</code></td>
 <td>If running in a non-portlet request or base is non-null, return null.
 <br />
-If base is <tt>null</tt> and property is <tt>null</tt>, throw <tt>PropertyNotFoundException</tt>.
+If base is <code>null</code> and property is <code>null</code>, throw <code>PropertyNotFoundException</code>.
 <br />
-If base is <tt>null</tt> and property is a String equal to any of the above names throw
-<tt>javax.el.PropertyNotWriteableException</tt>, since these objects are read-only.</td>
+If base is <code>null</code> and property is a String equal to any of the above names throw
+<code>javax.el.PropertyNotWriteableException</code>, since these objects are read-only.</td>
 </tr>
 <tr>
-<td><tt>isReadOnly</tt></td>
+<td><code>isReadOnly</code></td>
 <td>If running in a non-portlet request or base is non-null, return null.
 <br />
-If base is <tt>null</tt> and property is <tt>null</tt>, throw <tt>PropertyNotFoundException</tt>.
+If base is <code>null</code> and property is <code>null</code>, throw <code>PropertyNotFoundException</code>.
 <br />
-If base is <tt>null</tt> and property is a String equal to any of the above names call
-<tt>setPropertyResolved(true)</tt> on the argument <tt>ELContext</tt> and return true.</td>
+If base is <code>null</code> and property is a String equal to any of the above names call
+<code>setPropertyResolved(true)</code> on the argument <code>ELContext</code> and return true.</td>
 </tr>
 <tr>
 <td>
 <span>getFeatureDescriptors</span></td>
 <td><span>If base is non-null, return null.</span>
 <br />
-<span>If base is <tt>null</tt>, return an Iterator containing java.beans.FeatureDescriptor instances, one for each of
+<span>If base is <code>null</code>, return an Iterator containing java.beans.FeatureDescriptor instances, one for each of
 the above names. It is required that all of these FeatureDescriptor instances set Boolean.TRUE as the value of the
 ELResolver.RESOLVABLE_AT_DESIGN_TIME attribute. For the name and short of FeatureDescriptor, return the EL object name.
 The appropriate Class must be stored as the value of the ELResolver.TYPE attribute as follows:</span>
@@ -1343,72 +1343,72 @@ The appropriate Class must be stored as the value of the ELResolver.TYPE attribu
 </thead>
 <tbody>
 <tr>
-<td><tt>portletConfig</tt></td>
-<td><tt>javax.portlet.PortletConfig.class</tt></td>
+<td><code>portletConfig</code></td>
+<td><code>javax.portlet.PortletConfig.class</code></td>
 </tr>
 <tr>
-<td><tt>actionRequest</tt></td>
-<td><tt>javax.portlet.ActionRequest.class</tt></td>
+<td><code>actionRequest</code></td>
+<td><code>javax.portlet.ActionRequest.class</code></td>
 </tr>
 <tr>
-<td><tt>actionResponse</tt></td>
-<td><tt>javax.portlet.ActionResponse.class</tt></td>
+<td><code>actionResponse</code></td>
+<td><code>javax.portlet.ActionResponse.class</code></td>
 </tr>
 <tr>
-<td><tt>eventRequest</tt></td>
-<td><tt>javax.portlet.EventRequest.class</tt></td>
+<td><code>eventRequest</code></td>
+<td><code>javax.portlet.EventRequest.class</code></td>
 </tr>
 <tr>
-<td><tt>eventResponse</tt></td>
-<td><tt>javax.portlet.EventResponse.class</tt></td>
+<td><code>eventResponse</code></td>
+<td><code>javax.portlet.EventResponse.class</code></td>
 </tr>
 <tr>
-<td><tt>headerRequest</tt></td>
-<td><tt>javax.portlet.HeaderRequest.class</tt></td>
+<td><code>headerRequest</code></td>
+<td><code>javax.portlet.HeaderRequest.class</code></td>
 </tr>
 <tr>
-<td><tt>headerResponse</tt></td>
-<td><tt>javax.portlet.HeaderResponse.class</tt></td>
+<td><code>headerResponse</code></td>
+<td><code>javax.portlet.HeaderResponse.class</code></td>
 </tr>
 <tr>
-<td><tt>renderRequest</tt></td>
-<td><tt>javax.portlet.RenderRequest.class</tt></td>
+<td><code>renderRequest</code></td>
+<td><code>javax.portlet.RenderRequest.class</code></td>
 </tr>
 <tr>
-<td><tt>renderResponse</tt></td>
-<td><tt>javax.portlet.RenderResponse.class</tt></td>
+<td><code>renderResponse</code></td>
+<td><code>javax.portlet.RenderResponse.class</code></td>
 </tr>
 <tr>
-<td><tt>resourceRequest</tt></td>
-<td><tt>javax.portlet.ResourceRequest.class</tt></td>
+<td><code>resourceRequest</code></td>
+<td><code>javax.portlet.ResourceRequest.class</code></td>
 </tr>
 <tr>
-<td><tt>resourceResponse</tt></td>
-<td><tt>javax.portlet.ResourceResponse.class</tt></td>
+<td><code>resourceResponse</code></td>
+<td><code>javax.portlet.ResourceResponse.class</code></td>
 </tr>
 <tr>
-<td><tt>portletSession</tt></td>
-<td><tt>javax.portlet.PortletSession.class</tt></td>
+<td><code>portletSession</code></td>
+<td><code>javax.portlet.PortletSession.class</code></td>
 </tr>
 <tr>
-<td><tt>portletSessionScope</tt></td>
-<td><tt>Map.class</tt></td>
+<td><code>portletSessionScope</code></td>
+<td><code>Map.class</code></td>
 </tr>
 <tr>
-<td><tt>httpSessionScope</tt></td>
-<td><tt>Map.class</tt></td>
+<td><code>httpSessionScope</code></td>
+<td><code>Map.class</code></td>
 </tr>
 <tr>
-<td><tt>portletPreferences</tt></td>
-<td><tt>javax.portlet.PortletPreferences.class</tt></td>
+<td><code>portletPreferences</code></td>
+<td><code>javax.portlet.PortletPreferences.class</code></td>
 </tr>
 <tr>
-<td><tt>portletPreferencesValues</tt></td>
-<td><tt>Map.class</tt></td>
+<td><code>portletPreferencesValues</code></td>
+<td><code>Map.class</code></td>
 </tr>
 <tr>
-<td><tt>mutablePortletPreferencesValues</tt></td>
-<td><tt>Map.class</tt></td>
+<td><code>mutablePortletPreferencesValues</code></td>
+<td><code>Map.class</code></td>
 </tr>
 </tbody>
 </table>
@@ -1419,7 +1419,7 @@ must be false. The preferred property must be true.</td>
 <td><span>getCommonPropertyType</span></td>
 <td>If base is non-null, return null.
 <br />
-If base is <tt>null</tt> and return String.class</td>
+If base is <code>null</code> and return String.class</td>
 </tr>
 </tbody>
 </table>
