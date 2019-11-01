@@ -204,6 +204,23 @@ Test: <sup>[[9.6](tck-tests.md#9.6)]</sup>
 
 ## <a name="9.7"></a>9.7 portlet:param
 
+The FacesBridge API must define the `javax.portlet.faces.component.PortletParam` component that extends
+`javax.faces.component.UIComponentBase`. The component family must be `"javax.portlet.faces.URL"` and the component type
+must be `"javax.portlet.faces.Param"`.
+
+The FacesBridge implementation must provide the `portlet:param` component tag with the following attributes:
+
+- name
+- type
+- value
+
+The `portlet:param` component tag is designed to be used as a child of a surrounding `portlet:actionURL`,
+`portlet:renderURL`, or `portlet:renderURL` component tag. The FacesBridge implementation must provide a corresponding
+renderer that will set parameters on the underlying portlet URL according to the requirements listed in Section 26.6 of
+the Portlet 3.0 Specification titled "param Tag".
+
+Test: <sup>[[9.7](tck-tests.md#9.7)]</sup>
+
 ## <a name="9.8"></a>9.8 portlet:property
 
 The FacesBridge API must define the `javax.portlet.faces.component.PortletProperty` component that extends
