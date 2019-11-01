@@ -9,6 +9,8 @@ in the JSF API module. In most cases, these renderers function equally well in b
 However, some component renderers must be overridden by the FacesBridge in order for them to function properly in a
 portlet environment.
 
+Additionally, the FacesBridge is required to provide JSF `UIComponent` equivalents for the Portlet 3.0 JSP tags.
+
 ## <a name="9.1"></a>9.1 h:body
 
 According to the portlet specification, elements such as `<head>`, `<title>`, and `<body>` may not be output to the
@@ -159,3 +161,36 @@ attribute values are appended with the standard portlet CSS class names accordin
 |warnClass|portlet-msg-alert|
 
 Test: <sup>[[9.4](tck-tests.md#9.4)]</sup>
+
+## <a name="9.5"></a>9.5 portlet:actionURL
+
+The FacesBridge API must define the `javax.portlet.faces.component.PortletActionURL` component that extends
+`javax.faces.component.UIComponentBase`. The component family must be `"javax.portlet.faces.URL"` and the component type
+must be `"javax.portlet.faces.ActionURL"`.
+
+The FacesBridge implementation must provide the `portlet:actionURL` component tag with the following attributes:
+
+- copyCurrentRenderParameters
+- escapeXml
+- name
+- portletMode
+- secure
+- type
+- var
+- windowState
+
+The FacesBridge implementation must provide a corresponding renderer that will output the `toString()` value of a
+`javax.portlet.ActionURL` according to the requirements listed in Section 26.2 of the Portlet 3.0 Specification titled
+"actionURL Tag".
+
+Test: <sup>[[9.5](tck-tests.md#9.5)]</sup>
+
+## <a name="9.6"></a>9.6 portlet:namespace
+
+## <a name="9.8"></a>9.7 portlet:param
+
+## <a name="9.9"></a>9.8 portlet:property
+
+## <a name="9.10"></a>9.9 portlet:renderURL
+
+## <a name="9.11"></a>9.10 portlet:resourceURL
