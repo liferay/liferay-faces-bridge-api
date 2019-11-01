@@ -1648,7 +1648,7 @@ Test: Have portlet configure the TestRenderKit via the portlet.xml entry. Run an
 that in each request the parameter is present in each of the three items above and when a value is present that it has
 the correct/configured value.
 
-[<a name="6.136"></a>6.136-6.125] If executed during the `RENDER_PHASE` or `RESOURCE_PHASE` and the target was
+[<a name="6.136"></a>6.136] If executed during the `RENDER_PHASE` or `RESOURCE_PHASE` and the target was
 determined by its URL path (not portlet: syntax) and that target is a non-Faces `viewId`, construct and return a
 `renderURL` ...
 
