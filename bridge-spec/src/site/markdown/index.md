@@ -230,4 +230,22 @@ _Version: 6.0.0-pr-SNAPSHOT_
 
 9. [UI Components](chapter-9-ui-components.md)
 
-    [9.1 h:inputFile](chapter-9-ui-components.md#9.1)
+    [9.1 h:body](chapter-9-ui-components.md#9.1)
+
+    [9.2 h:head](chapter-9-ui-components.md#9.2)
+
+    [9.3 h:inputFile](chapter-9-ui-components.md#9.3)
+
+    [9.4 h:message and h:messages](chapter-9-ui-components.md#9.4)
+
+    [9.5 portlet:actionURL](chapter-9-ui-components.md#9.5)
+
+    [9.6 portlet:namespace](chapter-9-ui-components.md#9.6)
+
+    [9.7 portlet:param](chapter-9-ui-components.md#9.7)
+
+    [9.8 portlet:property](chapter-9-ui-components.md#9.8)
+
+    [9.9 portlet:renderURL](chapter-9-ui-components.md#9.9)
+
+    [9.10 portlet:resourceURL](chapter-9-ui-components.md#9.10)
