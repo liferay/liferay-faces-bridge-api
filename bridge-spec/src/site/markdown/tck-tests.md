@@ -1692,3 +1692,8 @@ following JSF Showcase use-cases:
 Showcase use-case:
 
 - [portlet:actionURL (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/actionurl/general)
+
+[<a name="9.6"></a>9.6] TCK compatibility for the `portlet:namespace` component is satisfied by the following JSF
+Showcase use-case:
+
+- [portlet:namespace (General)](https://github.com/liferay/liferay-faces-bridge-impl/tree/5.x/demo/jsf-showcase-portlet/src/main/webapp/WEB-INF/component/portlet/namespace/general)
