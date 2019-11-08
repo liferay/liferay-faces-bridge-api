@@ -193,6 +193,10 @@ javadoc:
     `javax.portlet.faces.DirectLink` and its value is false then remove the `javax.portlet.faces.DirectLink` parameter
     and its value from the query string and continue processing (using the next step concerning determining the target
     of the `URL`)<sup>[[6.7](tck-tests.md#6.7)]</sup>.
+    - If the client window feature is enabled and the URI does not have a `ResponseStateManager.CLIENT_WINDOW_URL_PARAM`
+    parameter, then set the parameter on the URI with the value returned by `javax.faces.lifecycle.ClientWindow#getId()`
+    as well as any associated parameters returned by
+    `javax.faces.lifecycle.ClientWindow.getQueryURLParameters(FacesContext)` <sup>[[6.10](tck-tests.md#6.10)]</sup>.
     - Determine the target of the `URL`:
         - If the `inputURL` starts with the URI scheme `"portlet:"` the target is the portlet itself. Interpret this
         `inputURL` as follows:
