@@ -8,6 +8,7 @@ Implementations of the FacesBridge are required to pass all of the tests defined
 (TCK) which consists of the following WAR modules:
 
 - bridge-tck-lifecycle-set-portlet
+- bridge-tck-flows-portlet
 - bridge-tck-main-portlet
 - jsf-showcase-portlet
 
