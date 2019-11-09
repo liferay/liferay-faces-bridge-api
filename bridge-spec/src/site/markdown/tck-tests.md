@@ -770,10 +770,28 @@ Test: Use encodeActionURL to encode portlet:action?params URL. Verify that the r
 createActionURL()
 
 [<a name="6.10"></a>6.10] (encodeActionURL) If it is a reference to a Faces view the target is the encoded Faces
-`viewId`.
+`viewId` and the client window parameters are (or are not) set as appropriate.
 
-Test: Write test that submits an action and renders result of test (in render). If the result is rendered we
-successfully navigated across an action -- ergo the viewId has to have been encoded someplace.
+Test: bridge-tck-main-portlet (client window feature *disabled*)
+
+- Ensure that when `ExternalContext.encodeActionURL(String)` is called during the `ACTION_PHASE` (due to a navigation
+result triggering a navigation-rule), that:
+
+1. **it does** generate a URL that contains a parameter that is a reference to the Faces `viewId` associated with the
+URI. This can be verified in the `HEADER_PHASE` by having the `<to-view-id>` navigation target simply display test
+results.
+2. **it does not** generate a URL that contains the "jsfwid" and custom client window parameters. This can be verified
+in the `HEADER_PHASE`, since the bridge is required to set URL parameters returned by
+`ExternalContext.encodeActionURL(String)` as render parameters that survive into the `HEADER_PHASE` and `RENDER_PHASE`.
+
+Test: bridge-tck-flows-portlet (client window feature *enabled*)
+
+1. **it does** generate a URL that contains a parameter that is a reference to the Faces `viewId` associated with the
+URI. This can be verified in the `HEADER_PHASE` by having the `<to-view-id>` navigation target simply display test
+results.
+2. **it does** generate a URL that contains the "jsfwid" and custom client window parameters. This can be verified in
+the `HEADER_PHASE`, since the bridge is required to set URL parameters returned by
+`ExternalContext.encodeActionURL(String)` as render parameters that survive into the `HEADER_PHASE` and `RENDER_PHASE`.
 
 [<a name="6.11"></a>6.11] (encodeActionURL) recognize the query string parameter `javax.portlet.faces.PortletMode` and
 use the value of this parameter to identify the mode that should be encoded in the generated reference. (During action)
