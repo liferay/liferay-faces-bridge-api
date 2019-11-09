@@ -413,10 +413,14 @@ either the bridge's construction or a prior `release()`)<sup>[[5.22](tck-tests.m
 `FacesContext`<sup>[[5.23](tck-tests.md#5.23)]</sup>.
 - acquire the `FacesContext` and `Lifecycle` as described above ensuring the appropriate target `viewId` will be
 processed [5.2.3](chapter-5-request-lifecycle.md#5.2.3).
+- create or restore the client window. For example:
+
+        lifecycle.attachWindow(facesContext);
+
 - execute the action phase of the Faces lifecycle. This is accomplished by calling the execute method on the Lifecycle
 object acquired in section [5.2.1](chapter-5-request-lifecycle.md#5.2.1). For example:
 
-    lifecycle.execute(context);
+        lifecycle.execute(facesContext);
 
 Provide a `PhaseListener` that recognizes the `RESTORE_VIEW afterPhase`. Within this notification process any public
 render parameters as per section [5.3.2](chapter-5-request-lifecycle.md#5.3.2).
@@ -465,7 +469,7 @@ accomplished by installing a `PhaseListener` which terminates processing after t
 `execute` method on the `Lifecycle` object acquired in section [5.2.1](chapter-5-request-lifecycle.md#5.2.1). For
 example:
 
-    lifecycle.execute(context);
+        lifecycle.execute(facesContext);
 
 Provide a `PhaseListener` that recognizes the `RESTORE_VIEW` `afterPhase`. Within this notification process any public
 render parameters as per section [5.3.2](chapter-5-request-lifecycle.md#5.3.2).
@@ -517,11 +521,16 @@ has been identified and restored<sup>[[5.31](tck-tests.md#5.31)]</sup>. **Note**
 [5.1.2](chapter-5-request-lifecycle.md#5.1.2) this is controlled by both restoring the value of the
 `ResponseStateManager.VIEW_STATE_PARAM` parameter from the bridge request scope and setting the
 `javax.portlet.faces.isPostback` attribute with a `Boolean` whose value is `true`.
+
+- create or restore the client window. For example:
+
+        lifecycle.attachWindow(facesContext);
+
 - ensure the corresponding Faces `view` is (re)established for the targeted Faces `viewId`. This is accomplished by
 calling the `execute` method on the `Lifecycle` object acquired in section
 [5.2.1](chapter-5-request-lifecycle.md#5.2.1). For example:
 
-    lifecycle.execute(context);
+        lifecycle.execute(facesContext);
 
 In meeting this requirement the bridge must:
 
@@ -537,7 +546,7 @@ render parameters as per section [5.3.2](chapter-5-request-lifecycle.md#5.3.2)
 calling the `render` method on the `Lifecycle` object acquired in section
 [5.2.1](chapter-5-request-lifecycle.md#5.2.1). For example:
 
-    lifecycle.render(context);
+        lifecycle.render(context);
 
 - recognize if a redirect occurs during this render process and handle by discarding any existing output, and rerunning
 this process based on the new target and its request parameters (if the target has a query
@@ -601,11 +610,15 @@ dispatching is enabled if the portlet developer has specified the following init
     processed [5.2.3](chapter-5-request-lifecycle.md#5.2.3).
     - do not reestablish the Faces request scope from the corresponding bridge request
     scope<sup>[[5.65](tck-tests.md#5.65)]</sup>.
+    - create or restore the client window. For example:
+
+            lifecycle.attachWindow(facesContext);
+
     - ensure the corresponding Faces `view` is (re)established for the targeted Faces `viewId`. This is accomplished by
     calling the `execute` method on the `Lifecycle` object acquired in section
     [5.2.1](chapter-5-request-lifecycle.md#5.2.1). For example:
 
-            lifecycle.execute(context);
+            lifecycle.execute(facesContext);
 
     Provide a `PhaseListener` that recognizes the `RESTORE_VIEW afterPhase`. Within this notification process any public
     render parameters as per section [5.3.2](chapter-5-request-lifecycle.md#5.3.2).
