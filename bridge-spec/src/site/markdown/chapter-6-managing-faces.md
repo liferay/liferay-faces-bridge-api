@@ -923,6 +923,20 @@ original objects passed to the constructor if none have been directly set.
     Log the specified message to the application object. This must be performed by calling the equivalent form of the
     `javax.portlet.PortletContext` method `log()`.
 
+#### <a name="6.1.3.3"></a>6.1.3.3 Methods that deviate from Faces 2.0 Javadoc
+
+The following methods require an implementation that aren't adequately described in the Faces 2.0 `ExternalContext`
+javadoc:
+
+- `setResponseStatus(int statusCode)`:
+
+    The FacesBridge must follow the requirements in the JSF 2.0 JavaDoc. However, in a portlet environment it is only
+    possible to set the response status during the `RESOURCE_PHASE` of the portlet lifecycle. Because of this, the
+    FacesBridge will only be required to set the status code during the `RESOURCE_PHASE`. Rather than calling
+    `HttpServletResponse.setStatus(int statusCode)`, the FacesBridge must call the new Portlet 3.0
+    `ResourceResponse.setStatus(int statusCode)` method. In all other phases of the portlet lifecycle, calling
+    `ExternalContext.setResponseStatus(int statusCode)` is a no-op for the FacesBridge. <sup>[[6.137](tck-tests.md#6.137)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
