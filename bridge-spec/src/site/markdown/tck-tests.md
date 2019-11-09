@@ -1660,6 +1660,23 @@ things do right its the render of the portlet after the test URL has been cliuck
 renderURL not a portlet actionURL) . Resource tests are the same as the render tests except the testURL is rendered in
 the jsp that supplies the iFrame target (resource).
 
+[<a name="6.137"></a>6.137] TODO: setResponseStatusTest (bridge-tck-main-portlet)
+
+- Dispatch an XHR that targets the ResourceURL for a known cacheable image resource such as
+"#{resource[myValidLibrary:myValidImage]}" and verify that the status code is HttpServletResponse.SC_OK (200).
+- Dispatch an XHR that targets the ResourceURL for the same cacheable image resource such as
+"#{resource[myValidLibrary:myValidImage]}" and verify that the status code is HttpServletResponse.NOT_MODIFIED (304).
+- Dispatch an XHR that targets the ResourceURL for a missing image resource such as
+"#{resource[myInvalidLibrary:myValidImage]}" and verify that the status code is HttpServletResponse.SC_NOT_FOUND (404).
+- Dispatch an XHR that targets the ResourceURL for a missing image resource such as
+"#{resource[myValidLibrary:myInvalidImage]}" and verify that the status code is HttpServletResponse.SC_NOT_FOUND (404).
+- Dispatch an XHR that targets the ResourceURL for a banned path such as "/WEB-INF" and verify that the status code is
+HttpServletResponse.SC_NOT_FOUND (404).
+- Dispatch an XHR that targets the ResourceURL for a banned character sequence such as "../../" and verify that the
+status code is HttpServletResponse.SC_NOT_FOUND (404).
+- Dispatch an XHR that targets the ResourceURL for a facelet document such as "myView.xhtml" and verify that the status
+code is HttpServletResponse.SC_NOT_FOUND (404).
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
