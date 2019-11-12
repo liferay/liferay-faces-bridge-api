@@ -943,6 +943,11 @@ javadoc:
     `HttpServletResponse.addCookie(Cookie)`, the FacesBridge must call `PortletResponse.addCookie(Cookie)`.
     <sup>[[6.138](tck-tests.md#6.138)]</sup>.
 
+- `getFlash()`:
+
+    The FacesBridge is not required to support this method. Due to time constraints, the feature was considered to be
+    out-of-scope for JSR 378. Support has been postponed to a maintenance release or to a subsequent JSR.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
