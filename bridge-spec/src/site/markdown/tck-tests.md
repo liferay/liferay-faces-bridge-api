@@ -1717,6 +1717,11 @@ result of both to be 8080.
 `ClientDataRequest.getContentLength()` and `ExternalContext.getRequestContentLength()` and expect the result of both to
 be equal to each other.
 
+[<a name="6.145"></a>6.145] TCK compatibility for setResponseContentType(String) is satisfied by the following JSF
+Showcase use-case:
+
+- [h:graphicImage (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/graphicimage/general)
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
