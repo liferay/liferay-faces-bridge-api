@@ -978,6 +978,12 @@ javadoc:
     `ServletContext.getRealPath(String)` the FacesBridge must call `PortletContext.getRealPath(String)`.
     <sup>[[6.143](tck-tests.md#6.143)]</sup>.
 
+- `getRequestContentLength()`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call
+    `ServletRequest.getContentLength()` the FacesBridge must call `ClientDataRequest.getContentLength()`.
+    <sup>[[6.144](tck-tests.md#6.144)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
