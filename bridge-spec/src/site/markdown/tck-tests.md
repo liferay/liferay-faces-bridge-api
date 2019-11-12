@@ -1691,6 +1691,11 @@ implementation detail.
 - During a render, call `PortletContext.getMimeType("index.html")` and `ExternalContext.getMimeType("index.html")` and
 expect the result of both to be `"text/html"`.
 
+[<a name="6.140"></a>6.140] TODO: getRequestScheme()) (bridge-tck-main-portlet)
+
+- During a render, call `PortletRequest.getScheme()` and `ExternalContext.getRequestScheme()` and expect the result of
+both to be `"http"`.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
