@@ -1701,6 +1701,11 @@ both to be `"http"`.
 - During a render, call `PortletRequest.getServerName()` and `ExternalContext.getRequestServerName()` and expect the
 result of both to be `"localhost"`.
 
+[<a name="6.142"></a>6.142] TODO: getRequestServerPort()) (bridge-tck-main-portlet)
+
+- During a render, call `PortletRequest.getServerPort()` and `ExternalContext.getRequestServerPort()` and expect the
+result of both to be 8080.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
