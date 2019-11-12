@@ -1012,6 +1012,12 @@ javadoc:
     only valid to call this method during the RESOURCE_PHASE of the portlet lifecycle.
     <sup>[[6.146](tck-tests.md#6.146)]</sup>.
 
+- `invalidateSession()`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call
+    `HttpSession.invalidate()` the FacesBridge must call `PortletSession.invalidate()`.
+    <sup>[[6.147](tck-tests.md#6.147)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
