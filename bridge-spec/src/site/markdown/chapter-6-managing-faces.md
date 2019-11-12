@@ -954,6 +954,12 @@ javadoc:
     `ServletContext.getMimeType(String)` the FacesBridge must call `PortletContext.getMimeType(String)`.
     <sup>[[6.139](tck-tests.md#6.139)]</sup>.
 
+- `getRequestScheme()`
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call
+    `ServletRequest.getScheme()` the FacesBridge must call `PortletRequest.getScheme()`.
+    <sup>[[6.140](tck-tests.md#6.140)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
