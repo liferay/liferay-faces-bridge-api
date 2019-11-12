@@ -966,6 +966,12 @@ javadoc:
     `ServletRequest.getServerName()` the FacesBridge must call `PortletRequest.getServerName()`.
     <sup>[[6.141](tck-tests.md#6.141)]</sup>.
 
+- `getRequestServerPort()`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call
+    `ServletRequest.getServerPort()` the FacesBridge must call `PortletRequest.getServerPort()`.
+    <sup>[[6.142](tck-tests.md#6.142)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
