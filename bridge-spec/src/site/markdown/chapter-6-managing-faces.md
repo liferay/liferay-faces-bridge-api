@@ -937,6 +937,12 @@ javadoc:
     `ResourceResponse.setStatus(int statusCode)` method. In all other phases of the portlet lifecycle, calling
     `ExternalContext.setResponseStatus(int statusCode)` is a no-op for the FacesBridge. <sup>[[6.137](tck-tests.md#6.137)]</sup>.
 
+- `addResponseCookie(String name, String value, Map<String,Object> properties)`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than calling
+    `HttpServletResponse.addCookie(Cookie)`, the FacesBridge must call `PortletResponse.addCookie(Cookie)`.
+    <sup>[[6.138](tck-tests.md#6.138)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces

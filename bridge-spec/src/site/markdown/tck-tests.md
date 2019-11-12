@@ -1677,6 +1677,15 @@ status code is HttpServletResponse.SC_NOT_FOUND (404).
 - Dispatch an XHR that targets the ResourceURL for a facelet document such as "myView.xhtml" and verify that the status
 code is HttpServletResponse.SC_NOT_FOUND (404).
 
+[<a name="6.138"></a>6.138] TODO: addResponseCookie (bridge-tck-main-portlet)
+
+- During an action, call `ActionResponse.addCookie(cookie)`. Upon subsequent render, call `RenderRequest.getCookies()`
+to verify that the cookie is present.
+
+Note that it is not valid to test for the presence of the cookie on the client, because the Portlet 3.0 JavaDoc for
+`PortletResponse.addProperty(Cookie)` states that the cookie may be stored on the server (rather than the client) as an
+implementation detail.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
