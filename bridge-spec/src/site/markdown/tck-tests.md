@@ -1727,6 +1727,12 @@ Showcase use-case:
 
 - [h:graphicImage (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/graphicimage/general)
 
+[<a name="6.147"></a>6.147] TODO: invalidateSession()) (bridge-tck-main-portlet)
+
+- During a render, set a portlet session attribute to a unique value such as {{System.nanoTime()}} and render the
+portlet session value to the HTML output. Submit an action and call {{ExternalContext.invalidate()}} and re-render the
+portlet session value. The value must be null after invalidation.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
