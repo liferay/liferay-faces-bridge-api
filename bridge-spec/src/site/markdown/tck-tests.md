@@ -1686,32 +1686,32 @@ Note that it is not valid to test for the presence of the cookie on the client, 
 `PortletResponse.addProperty(Cookie)` states that the cookie may be stored on the server (rather than the client) as an
 implementation detail.
 
-[<a name="6.139"></a>6.139] TODO: getMimeType(String)) (bridge-tck-main-portlet)
+[<a name="6.139"></a>6.139] TODO: getMimeType(String) (bridge-tck-main-portlet)
 
 - During a render, call `PortletContext.getMimeType("index.html")` and `ExternalContext.getMimeType("index.html")` and
 expect the result of both to be `"text/html"`.
 
-[<a name="6.140"></a>6.140] TODO: getRequestScheme()) (bridge-tck-main-portlet)
+[<a name="6.140"></a>6.140] TODO: getRequestScheme() (bridge-tck-main-portlet)
 
 - During a render, call `PortletRequest.getScheme()` and `ExternalContext.getRequestScheme()` and expect the result of
 both to be `"http"`.
 
-[<a name="6.141"></a>6.141] TODO: getRequestServerName()) (bridge-tck-main-portlet)
+[<a name="6.141"></a>6.141] TODO: getRequestServerName() (bridge-tck-main-portlet)
 
 - During a render, call `PortletRequest.getServerName()` and `ExternalContext.getRequestServerName()` and expect the
 result of both to be `"localhost"`.
 
-[<a name="6.142"></a>6.142] TODO: getRequestServerPort()) (bridge-tck-main-portlet)
+[<a name="6.142"></a>6.142] TODO: getRequestServerPort() (bridge-tck-main-portlet)
 
 - During a render, call `PortletRequest.getServerPort()` and `ExternalContext.getRequestServerPort()` and expect the
 result of both to be 8080.
 
-[<a name="6.143"></a>6.143] TODO: getRealPath(String)) (bridge-tck-main-portlet)
+[<a name="6.143"></a>6.143] TODO: getRealPath(String) (bridge-tck-main-portlet)
 
 - During a render, call `PortletContext.getRealPath("/WEB-INF/faces-config.xml")` and
 `ExternalContext.getRealPath("/WEB-INF/faces-config.xml")` and expect the result of both to be equal to each other.
 
-[<a name="6.144"></a>6.144] TODO: getRequestContentLength()) (bridge-tck-main-portlet)
+[<a name="6.144"></a>6.144] TODO: getRequestContentLength() (bridge-tck-main-portlet)
 
 - During the ACTION_PHASE and also during an f:ajax submission (RESOURCE_PHASE), call
 `ClientDataRequest.getContentLength()` and `ExternalContext.getRequestContentLength()` and expect the result of both to
@@ -1732,6 +1732,12 @@ Showcase use-case:
 - During a render, set a portlet session attribute to a unique value such as `System.nanoTime()` and render the portlet
 session value to the HTML output. Submit an action and call `ExternalContext.invalidate()` and re-render the portlet
 session value. The value must be null after invalidation.
+
+[<a name="6.148"></a>6.148] TODO: setResponseHeader(String,String) (bridge-tck-main-portlet)
+
+- In the HEADER_PHASE call `ExternalContext.setResponseHeader("headerPhase", "true")` and then verify that the header is
+present in the page via Javascript. It is not possible to test during the RESOURCE_PHASE since the jsf.js client-side
+library is in control of the XHR dispatched via f:ajax.
 
 ## <a name="7"></a>Chapter 7 Tests
 
