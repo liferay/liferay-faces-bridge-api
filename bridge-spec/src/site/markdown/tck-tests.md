@@ -1739,6 +1739,13 @@ session value. The value must be null after invalidation.
 present in the page via Javascript. It is not possible to test during the RESOURCE_PHASE since the jsf.js client-side
 library is in control of the XHR dispatched via f:ajax.
 
+[<a name="6.149"></a>6.149] TODO: addResponseHeader(String,String) (bridge-tck-main-portlet)
+
+- In the HEADER_PHASE call `ExternalContext.addResponseHeader("headerPhase", "abc")` and
+`ExternalContext.addResponseHeader("headerPhase", "xyz")`. Then verify that both values for the header are present in
+the page via Javascript. It is not possible to test during the RESOURCE_PHASE since the jsf.js client-side library is in
+control of the XHR dispatched via f:ajax.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
