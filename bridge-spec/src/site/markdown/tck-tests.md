@@ -1722,6 +1722,11 @@ Showcase use-case:
 
 - [h:graphicImage (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/graphicimage/general)
 
+[<a name="6.146"></a>6.146] TCK compatibility for setResponseContentLength(int) is satisfied by the following JSF
+Showcase use-case:
+
+- [h:graphicImage (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/graphicimage/general)
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
