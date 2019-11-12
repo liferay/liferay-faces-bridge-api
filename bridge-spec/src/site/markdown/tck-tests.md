@@ -1711,6 +1711,12 @@ result of both to be 8080.
 - During a render, call `PortletContext.getRealPath("/WEB-INF/faces-config.xml")` and
 `ExternalContext.getRealPath("/WEB-INF/faces-config.xml")` and expect the result of both to be equal to each other.
 
+[<a name="6.144"></a>6.144] TODO: getRequestContentLength()) (bridge-tck-main-portlet)
+
+- During the ACTION_PHASE and also during an f:ajax submission (RESOURCE_PHASE), call
+`ClientDataRequest.getContentLength()` and `ExternalContext.getRequestContentLength()` and expect the result of both to
+be equal to each other.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
