@@ -948,7 +948,7 @@ javadoc:
     The FacesBridge is not required to support this method. Due to time constraints, the feature was considered to be
     out-of-scope for JSR 378. Support has been postponed to a maintenance release or to a subsequent JSR.
 
-- `getMimeType(String)` 
+- `getMimeType(String)`:
 
     The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call
     `ServletContext.getMimeType(String)` the FacesBridge must call `PortletContext.getMimeType(String)`.
