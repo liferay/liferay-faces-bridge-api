@@ -1696,6 +1696,11 @@ expect the result of both to be `"text/html"`.
 - During a render, call `PortletRequest.getScheme()` and `ExternalContext.getRequestScheme()` and expect the result of
 both to be `"http"`.
 
+[<a name="6.141"></a>6.141] TODO: getRequestServerName()) (bridge-tck-main-portlet)
+
+- During a render, call `PortletRequest.getServerName()` and `ExternalContext.getRequestServerName()` and expect the
+result of both to be `"localhost"`.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
