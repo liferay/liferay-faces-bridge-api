@@ -1790,6 +1790,13 @@ Showcase use-case:
 
 (The `action` attribute specifies `faces-redirect=true`)
 
+[<a name="6.156"></a>6.156] TCK compatibility for `encodePartialActionURL(String)` is satisfied by the following JSF
+Showcase use-case:
+
+- [h:inputText (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/inputtext/general)
+
+(The `<h:form>` is submitted by an `<h:commandButton>` with `<f:ajax>` which requires a partial action URL).
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
