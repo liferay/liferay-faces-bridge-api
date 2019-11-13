@@ -1091,7 +1091,7 @@ javadoc:
     only valid to call this method during the RESOURCE_PHASE of the portlet lifecycle.
     <sup>[[6.153](tck-tests.md#6.153)]</sup>.
 
-- `encodeBookmarkableURL(String,String,Map<String,List<String>>)`:
+- `encodeBookmarkableURL(String,Map<String,List<String>>)`:
 
     The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, the requirements are satisfied by
     returning the `toString()` return value of `BridgeURLFactory.getBridgeBookmarkableURL(FacesContext facesContext,
