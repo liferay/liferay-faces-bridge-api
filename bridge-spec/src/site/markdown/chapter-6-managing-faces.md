@@ -1056,6 +1056,13 @@ javadoc:
     not testable by the Selenium-based TCK since there is no way to write to the response if
     `MimeResponse.isCommitted()` returns `true`.
 
+- `responseReset()`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call
+    `HttpServletResponse.reset()` the FacesBridge must call `MimeResponse.reset()`. It is only valid to call this method
+    during the HEADER_PHASE, RENDER_PHASE, and RESOURCE_PHASE of the portlet lifecycle.
+    <sup>[[6.150](tck-tests.md#6.150)]</sup>
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
