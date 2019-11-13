@@ -124,7 +124,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	 * Returns a new bookmarkable URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be
 	 * {@link java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the deviation
 	 * requirements of {@link javax.faces.context.ExternalContext#encodeBookmarkableURL(String, Map)} listed in Section
-	 * 6.1.3.1 of the Bridge Spec.
+	 * 6.1.3.3 of the Bridge Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
 	 * @param   uri           The URI that is to be encoded.
