@@ -1783,6 +1783,13 @@ Showcase use-case:
 
 - [h:link (Param)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/link/param)
 
+[<a name="6.155"></a>6.155] TCK compatibility for `encodeRedirectURL(String,Map<String,List<String>>)` is satisfied by the following JSF
+Showcase use-case:
+
+- [h:commandLink (Param)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/commandlink/param)
+
+(The `action` attribute specifies `faces-redirect=true`)
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests

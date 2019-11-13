@@ -1097,6 +1097,12 @@ javadoc:
     returning the `toString()` return value of `BridgeURLFactory.getBridgeBookmarkableURL(FacesContext facesContext,
     String uri, Map<String, List<String>> parameters)`. <sup>[[6.154](tck-tests.md#6.154)]</sup>.
 
+- `encodeRedirectURL(String,String,Map<String,List<String>>)`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, the requirements are satisfied by
+    returning the `toString()` return value of `BridgeURLFactory.getBridgeRedirectURL(FacesContext facesContext,
+    String uri, Map<String, List<String>> parameters)`. <sup>[[6.155](tck-tests.md#6.155)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
