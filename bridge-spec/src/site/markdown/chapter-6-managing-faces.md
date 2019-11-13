@@ -1097,7 +1097,7 @@ javadoc:
     returning the `toString()` return value of `BridgeURLFactory.getBridgeBookmarkableURL(FacesContext facesContext,
     String uri, Map<String, List<String>> parameters)`. <sup>[[6.154](tck-tests.md#6.154)]</sup>.
 
-- `encodeRedirectURL(String,String,Map<String,List<String>>)`:
+- `encodeRedirectURL(String,Map<String,List<String>>)`:
 
     The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, the requirements are satisfied by
     returning the `toString()` return value of `BridgeURLFactory.getBridgeRedirectURL(FacesContext facesContext,
