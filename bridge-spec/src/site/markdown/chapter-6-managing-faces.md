@@ -1063,11 +1063,11 @@ javadoc:
     during the HEADER_PHASE, RENDER_PHASE, and RESOURCE_PHASE of the portlet lifecycle.
     <sup>[[6.150](tck-tests.md#6.150)]</sup>
 
-- `ExternalContext.responseSendError(int,String)`:
+- `responseSendError(int,String)`:
 
     The FacesBridge is unable to comply with the requirements specified in the JSF 2.2 JavaDoc because the Portlet 3.0
-    API does not have an equivalent to HttpServletResponse.sendError(int,String). Instead, this method should call
-    through to the ExternalContext.setResponseStatus(int) method. It is only valid to call this method during the
+    API does not have an equivalent to `HttpServletResponse.sendError(int,String)`. Instead, this method must call
+    through to the `ExternalContext.setResponseStatus(int)` method. It is only valid to call this method during the
     RESOURCE_PHASE of the portlet lifecycle. However, it is not possible to test during the RESOURCE_PHASE since the
     jsf.js client-side library is in control of the XHR dispatched via f:ajax.
 
