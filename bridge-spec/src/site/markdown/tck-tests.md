@@ -1746,6 +1746,16 @@ library is in control of the XHR dispatched via f:ajax.
 the page via Javascript. It is not possible to test during the RESOURCE_PHASE since the jsf.js client-side library is in
 control of the XHR dispatched via f:ajax.
 
+[<a name="6.150"></a>6.150] TODO: responseReset() (bridge-tck-main-portlet)
+
+- In the HEADER_PHASE call `ExternalContext.setResponseHeader("headerPhase", "true")`. In order to write something to
+the response, make sure that the header phase dispatches to a JSF view that produces markup. In the RENDER_PHASE, call
+`ExternalContext.responseReset()` followed by manually writing something to the response with
+`ExternalContext.getResponseOutputWriter().write("<span>response was reset</span>")`. Then verify that the header is not
+present in the page via Javascript and that the only markup for the portlet is the span. It is not possible to call this
+during the RENDER_PHASE since the JSF lifecycle runs It is not possible to test during the RESOURCE_PHASE since the
+jsf.js client-side library is in control of the XHR dispatched via f:ajax
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
