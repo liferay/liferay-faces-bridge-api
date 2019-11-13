@@ -156,6 +156,8 @@ _Version: 6.0.0-pr-SNAPSHOT_
 
     [6.1.3.3 Methods that deviate from Faces 2.0 Javadoc](chapter-6-managing-faces.md#6.1.3.3)
 
+    [6.1.3.4 Methods that deviate from Faces 2.1 Javadoc](chapter-6-managing-faces.md#6.1.3.4)
+
     [6.2 ViewHandler](chapter-6-managing-faces.md#6.2)
 
     [6.2.1 Method Requirements](chapter-6-managing-faces.md#6.2.1)

@@ -1109,6 +1109,17 @@ javadoc:
     returning the `toString()` return value of `BridgeURLFactory.getBridgePartialActionURL(FacesContext facesContext,
     String uri)`. <sup>[[6.156](tck-tests.md#6.156)]</sup>.
 
+#### <a name="6.1.3.4"></a>6.1.3.4 Methods that deviate from Faces 2.1 Javadoc
+
+The following methods require an implementation that aren't adequately described in the Faces 2.1 `ExternalContext`
+javadoc:
+
+- `getSessionMaxInactiveInterval()`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call
+    `HttpSession.getMaxInactiveInterval()` the FacesBridge must call `PortletSession.getMaxInactiveInterval()`.
+    <sup>[[6.157](tck-tests.md#6.157)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
