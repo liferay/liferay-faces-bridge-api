@@ -1091,6 +1091,12 @@ javadoc:
     only valid to call this method during the RESOURCE_PHASE of the portlet lifecycle.
     <sup>[[6.153](tck-tests.md#6.153)]</sup>.
 
+- `encodeBookmarkableURL(String,String,Map<String,List<String>>)`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, the requirements are satisfied by
+    returning the `toString()` return value of `BridgeURLFactory.getBridgeBookmarkableURL(FacesContext facesContext,
+    String uri, Map<String, List<String>> parameters)`. <sup>[[6.154](tck-tests.md#6.154)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces

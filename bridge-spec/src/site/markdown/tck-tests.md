@@ -1778,6 +1778,11 @@ Showcase use-case:
 
 (Each image is served up from a ResourceHandler which sets the content length – the client receives a corresponding `Content-Length` header)
 
+[<a name="6.154"></a>6.154] TCK compatibility for `encodeBookmarkableURL(String,Map<String,List<String>>)` is satisfied by the following JSF
+Showcase use-case:
+
+- [h:link (Param)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/link/param)
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
