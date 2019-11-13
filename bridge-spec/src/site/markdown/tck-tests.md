@@ -1756,6 +1756,13 @@ present in the page via Javascript and that the only markup for the portlet is t
 during the RENDER_PHASE since the JSF lifecycle runs It is not possible to test during the RESOURCE_PHASE since the
 jsf.js client-side library is in control of the XHR dispatched via f:ajax
 
+[<a name="6.151"></a>6.151] TCK compatibility for setResponseStatus(int) is satisfied by the following JSF
+Showcase use-case:
+
+- [h:graphicImage (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/graphicimage/general)
+
+(Each image is served up from a ResourceHandler which sets a response status of 200)
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
