@@ -1147,6 +1147,16 @@ javadoc:
 
     The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call `HttpSession.getId()`
     the FacesBridge must call `PortletSession.getId()`. <sup>[[6.161](tck-tests.md#6.161)]</sup>.
+  
+#### <a name="6.1.3.6"></a>6.1.3.6 Methods that conform with Faces 2.2 Javadoc
+
+- `getClientWindow()`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. <sup>[[6.162](tck-tests.md#6.162)]</sup>.
+    
+- `setClientWindow(ClientWindow)`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. <sup>[[6.162](tck-tests.md#6.162)]</sup>.
 
 ## <a name="6.2"></a>6.2 ViewHandler
 
