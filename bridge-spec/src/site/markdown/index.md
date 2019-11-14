@@ -162,6 +162,10 @@ _Version: 5.0.0-pr-SNAPSHOT_
 
     [6.1.3.6 Methods that conform with Faces 2.2 Javadoc](chapter-6-managing-faces.md#6.1.3.6)
 
+    [6.1.4 ResourceHandler Methods](chapter-6-managing-faces.md#6.1.4)
+
+    [6.1.4.1 Methods that deviate from Faces 2.2 Javadoc](chapter-6-managing-faces.md#6.1.4.1)
+
     [6.2 ViewHandler](chapter-6-managing-faces.md#6.2)
 
     [6.2.1 Method Requirements](chapter-6-managing-faces.md#6.2.1)
