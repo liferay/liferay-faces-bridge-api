@@ -1808,6 +1808,12 @@ Showcase use-case:
 pass the incremented value as an argument with a call to `ExternalContext.setSessionMaxInactiveInterval(int)`. Then call
 `ExternalContext.getSessionMaxInactiveInterval()` compare the return value with the incremented value for equality.
 
+[<a name="6.159"></a>6.159] TODO: isSecure() (bridge-tck-main-portlet)
+
+- During a render, call `PortletRequest.isSecure()` and `ExternalContext.isSecure()` and assert that the return value of
+both is false. Since the TCK runs with HTTP URLs, it is not possible to test ExternalContext.isSecure() for HTTPS at
+this time.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
