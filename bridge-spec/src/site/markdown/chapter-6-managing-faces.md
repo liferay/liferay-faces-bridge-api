@@ -1143,6 +1143,11 @@ javadoc:
     have an equivalent to `ServletContext.getContextPath()`, the FacesBridge must rely on the Faces runtime to discover
     the application context path during initialization. <sup>[[6.160](tck-tests.md#6.160)]</sup>.
 
+- `getSessionId(boolean)`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call `HttpSession.getId()`
+    the FacesBridge must call `PortletSession.getId()`. <sup>[[6.161](tck-tests.md#6.161)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
