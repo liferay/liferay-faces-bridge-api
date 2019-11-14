@@ -1132,6 +1132,17 @@ javadoc:
     `HttpServletRequest.isSecure()` the FacesBridge must call `PortletRequest.isSecure()`.
     <sup>[[6.159](tck-tests.md#6.159)]</sup>.
 
+#### <a name="6.1.3.5"></a>6.1.3.5 Methods that deviate from Faces 2.2 Javadoc
+
+The following methods require an implementation that aren't adequately described in the Faces 2.2 `ExternalContext`
+javadoc:
+
+- `getApplicationContextPath()`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, since the Portlet 3.0 API does not
+    have an equivalent to `ServletContext.getContextPath()`, the FacesBridge must rely on the Faces runtime to discover
+    the application context path during initialization. <sup>[[6.160](tck-tests.md#6.160)]</sup>.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
