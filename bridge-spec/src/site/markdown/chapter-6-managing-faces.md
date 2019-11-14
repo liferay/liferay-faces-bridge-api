@@ -1158,6 +1158,38 @@ javadoc:
 
     The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. <sup>[[6.162](tck-tests.md#6.162)]</sup>.
 
+### <a name="6.1.4"></a>6.1.4 ResourceHandler Methods
+
+The JSF 2.2 Javadoc defines the `javax.faces.application.ResourceHandler` abstract class which is an extension point for
+creating and retrieving resources such as images, scripts, CSS style sheets, Facelet documents, etc. The FacesBridge
+will need to provide its own `ResourceHandler` in the `<resource-handler>` delegation chain in order to ensure that
+resource URLs will work in a portlet environment. In a webapp/servlet environment, Faces resource URLs follow a
+"/javax.faces.resource/resource_name?ln=library_name" type of syntax. The FacesBridge will need to transform such URLs
+such that a resource name is specified as the "javax.faces.resource" parameter, rather than using
+"/javax.faces.resource" as a resource path identifier.
+
+#### <a name="6.1.4.1"></a>6.1.4.1 Methods that deviate from Faces 2.2 Javadoc
+
+The following methods require an implementation that aren't adequately described in the Faces 2.2 `ExternalContext`
+javadoc:
+
+- `handleResourceRequest(FacesContext)`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, the FacesBridge must call the
+    following portlet-equivalent methods instead:
+    
+    |Servlet API Method|Equivalent Portlet API Method|
+    |------------------|-----------------------------|
+    |`HttpServletResponse.setStatus(int)`|`ResourceResponse.setStatus(int)`|
+    |`HttpServletResponse.setContentType(String)`|`ResourceResponse.setContentType(String)`|
+    |`HttpServletResponse.setContentLength(int)`|`ResourceResponse.setContentLength(int)`|
+    |`HttpServletResponse.setHeader(String,String)`|`ResourceResponse.setProperty(String,String)`|
+
+- `isResourceURL(String)`:
+
+    Returns `true` if the specified value is a resource URL according to the presence of a "javax.faces.resource"
+    parameter, which is encoded according to the format of `ResourceURL.toString()` by the underlying portlet container.
+
 ## <a name="6.2"></a>6.2 ViewHandler
 
 The Faces `ViewHandler` is the pluggability mechanism that allows implementations to extend the JavaServer Faces
