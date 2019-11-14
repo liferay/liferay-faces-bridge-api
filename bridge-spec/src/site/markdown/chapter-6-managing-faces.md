@@ -1120,12 +1120,17 @@ javadoc:
     `HttpSession.getMaxInactiveInterval()` the FacesBridge must call `PortletSession.getMaxInactiveInterval()`.
     <sup>[[6.157](tck-tests.md#6.157)]</sup>.
 
-
 - `setSessionMaxInactiveInterval(int)`:
 
     The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call
     `HttpSession.setMaxInactiveInterval(int)` the FacesBridge must call `PortletSession.setMaxInactiveInterval(int)`.
     <sup>[[6.158](tck-tests.md#6.158)]</sup>.
+
+- `isSecure()`:
+
+    The FacesBridge must follow the requirements in the JSF 2.2 JavaDoc. However, rather than call
+    `HttpServletRequest.isSecure()` the FacesBridge must call `PortletRequest.isSecure()`.
+    <sup>[[6.159](tck-tests.md#6.159)]</sup>.
 
 ## <a name="6.2"></a>6.2 ViewHandler
 
