@@ -1814,6 +1814,15 @@ pass the incremented value as an argument with a call to `ExternalContext.setSes
 both is false. Since the TCK runs with HTTP URLs, it is not possible to test ExternalContext.isSecure() for HTTPS at
 this time.
 
+[<a name="6.160"></a>6.160] TODO: getApplicationContextPath() (bridge-tck-main-portlet)
+
+- Register a `javax.faces.event.SystemEventListener` that listens for events associated with
+`javax.faces.application.Application`. When the event is received, call `FacesContext.getCurrentInstance()` in order to
+acquire the "startup" `FacesContext` instance provided by the Faces runtime. Then call
+`FacesContext.getExternalContext()` in order to get the "startup" `ExternalContext` provided by the Faces runtime.
+Remember the return value of `ExternalContext.getApplicationContextPath()`. During a render, assert that the remembered
+application context path is equal to the value of `ExternalContext.getApplicationContextPath()`.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
