@@ -1825,7 +1825,9 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="6.161"></a>6.161] TODO: getSessionId(boolean) (bridge-tck-main-portlet)
 
-- During a render, call `PortletSession.getId(false)` and assert that it is equal to `ExternalContext.getSessionId(false)`. Also call `PortletSession.getId(true)` and assert that it is equal to `ExternalContext.getSessionId(true)`.
+- During a render, call `PortletSession.getId(false)` and assert that it is equal to
+`ExternalContext.getSessionId(false)`. Also call `PortletSession.getId(true)` and assert that it is equal to
+`ExternalContext.getSessionId(true)`.
 
 ## <a name="7"></a>Chapter 7 Tests
 
