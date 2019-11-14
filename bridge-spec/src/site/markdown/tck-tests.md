@@ -1829,6 +1829,12 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 `ExternalContext.getSessionId(false)`. Also call `PortletSession.getId(true)` and assert that it is equal to
 `ExternalContext.getSessionId(true)`.
 
+[<a name="6.162"></a>6.162] TODO: getClientWindow() / setClientWindow(ClientWindow) (bridge-tck-flows-portlet)
+
+- During a render, call `ExternalContext.setClientWindow(ClientWindow)` by passing an instance of
+`javax.faces.lifecycle.ClientWindow` which is a special TCK implementation. Then call
+`ExternalContext.getClientWindow()` and assert that it is the same instance.
+
 ## <a name="7"></a>Chapter 7 Tests
 
 ## <a name="8"></a>Chapter 8 Tests
