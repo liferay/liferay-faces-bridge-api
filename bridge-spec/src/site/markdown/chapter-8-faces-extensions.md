@@ -163,3 +163,12 @@ titled "FactoryFinder" for each factory. In addition, the bridge must follow the
 chain-of-responsibility according Section 11.4.8 of the JSF 2.2 Specification titled "Ordering of Artifacts". Finally,
 the bridge must provide a default implementation for each factory, each of which is the final authority in its
 respective delegation chain.
+
+The `javax.portlet.faces.BridgeFactoryFinder` mechanism may not be invoked at the time of portlet/bridge initialization,
+such as when the `Bridge.init(PortletConfig)` method is called. This is caused by the fact that the Portlet
+Specification does not require portlet container implementations to ensure that a `ServletContextListener` (like the
+Mojarra `ConfigureListener`) execute before portlets are initialized. While this is indeed the case with Apache Pluto
+(the portlet reference implementation), it is not necessarily the case with other portlet containers. As a result, the
+`javax.portlet.faces.BridgeFactoryFinder` can only be used to find factories during request/response processing. This
+also has the effect of preventing factories from returning objects that are guaranteed to be stateless, thread-safe
+singletons unless the factories use a thread-safe double-checked locking pattern to initialize the objects.
