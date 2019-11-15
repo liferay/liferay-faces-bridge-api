@@ -224,6 +224,8 @@ _Version: 5.0.0-pr-SNAPSHOT_
 
     [8.7 Excluding Attributes](chapter-8-faces-extensions.md#8.7)
 
+    [8.8 Factories](chapter-8-faces-extensions.md#8.8)
+
     [Appendix. TCK Tests](tck-tests.md)
 
     [Chapter 3 Tests](tck-tests.md#3)
