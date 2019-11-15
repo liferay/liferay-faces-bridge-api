@@ -131,7 +131,7 @@ bridge uses such a scope itself to preserve internal information about the Faces
 and used as needed to satisfy the request. For example, if the bridge manages the view's view state, it would acquire
 this information so that it may be used to fully restore the view during the action processing.
 - Upon completion of each portlet action preserve the *scoped data* (described above) in a newly created bridge request
-scope if the action doesn't terminate because of a redirect<sup>[[5.3](tck-tests.md#5.3)]</sup> or the navigational
+scope if the action doesn't terminate because of a redirect<sup>[[5.3](tck-tests.md#5.3)]</sup> and the navigational
 target of the action doesn't specify a portlet mode that differs from the current
 request<sup>[[5.4](tck-tests.md#5.4)]</sup>. Such state may either be managed directly in a scoped data structure or
 indirectly by ensuring its use only occurs if the scope still exists. In addition the bridge must encode sufficient
