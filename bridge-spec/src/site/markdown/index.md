@@ -1,4 +1,4 @@
-_Version: 5.0.0-pr-SNAPSHOT_
+_Version: 5.0.0-pr_
 
 # Table of Contents
 
