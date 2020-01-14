@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>javax.portlet.faces</groupId>
 	<artifactId>faces-bridge-spec</artifactId>
-	<version>5.0.0-pr</version>
+	<version>5.0.0-SNAPSHOT</version>
 	<name>JSR 378 Specification</name>
 	<description>Portlet 3.0 Bridge for JavaServer™ Faces 2.2 Specification</description>
 
@@ -22,7 +22,7 @@
 		<license>
 			<name>JSR 378 Specification License</name>
 			<comments>The license is based on the pre-final-license.txt template from the JCP.</comments>
-			<url>https://github.com/liferay/liferay-faces-bridge-api/tree/5.0.0-pr/bridge-spec/LICENSE.txt</url>
+			<url>https://github.com/liferay/liferay-faces-bridge-api/tree/5.0.0/bridge-spec/LICENSE.txt</url>
 		</license>
 	</licenses>
 
