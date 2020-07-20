@@ -13,5 +13,5 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@org.osgi.annotation.versioning.Version("1.0.2")
+@org.osgi.annotation.versioning.Version("6.0.0")
 package javax.portlet.faces.event;
