@@ -259,7 +259,7 @@
 							Require-Capability: \
 								osgi.serviceloader;filter:="(osgi.serviceloader=javax.portlet.faces.Bridge)";\
 								cardinality:=multiple,\
-								osgi.serviceloader;filter:="(osgi.serviceloader=com.liferay.faces.bridge.BridgeFactoryFinder)";\
+								osgi.serviceloader;filter:="(osgi.serviceloader=javax.portlet.faces.BridgeFactoryFinder)";\
 								cardinality:=multiple,\
 								osgi.extender; filter:="(osgi.extender=osgi.serviceloader.processor)"
 						]]>
