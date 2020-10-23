@@ -285,9 +285,6 @@
 		</profile>
 		<profile>
 			<id>release</id>
-			<properties>
-				<use.jdk6.for.compile>true</use.jdk6.for.compile>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>
