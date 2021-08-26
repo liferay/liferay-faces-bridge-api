@@ -1660,7 +1660,7 @@ things do right its the render of the portlet after the test URL has been cliuck
 renderURL not a portlet actionURL) . Resource tests are the same as the render tests except the testURL is rendered in
 the jsp that supplies the iFrame target (resource).
 
-[<a name="6.137"></a>6.137] TODO: setResponseStatusTest (bridge-tck-main-portlet)
+[<a name="6.137"></a>6.137] NYI: setResponseStatusTest (bridge-tck-main-portlet)
 
 - Dispatch an XHR that targets the ResourceURL for a known cacheable image resource such as
 "#{resource[myValidLibrary:myValidImage]}" and verify that the status code is HttpServletResponse.SC_OK (200).
@@ -1677,7 +1677,7 @@ status code is HttpServletResponse.SC_NOT_FOUND (404).
 - Dispatch an XHR that targets the ResourceURL for a facelet document such as "myView.xhtml" and verify that the status
 code is HttpServletResponse.SC_NOT_FOUND (404).
 
-[<a name="6.138"></a>6.138] TODO: addResponseCookie (bridge-tck-main-portlet)
+[<a name="6.138"></a>6.138] NYI: addResponseCookie (bridge-tck-main-portlet)
 
 - During an action, call `ActionResponse.addCookie(cookie)`. Upon subsequent render, call `RenderRequest.getCookies()`
 to verify that the cookie is present.
@@ -1686,32 +1686,32 @@ Note that it is not valid to test for the presence of the cookie on the client, 
 `PortletResponse.addProperty(Cookie)` states that the cookie may be stored on the server (rather than the client) as an
 implementation detail.
 
-[<a name="6.139"></a>6.139] TODO: getMimeType(String) (bridge-tck-main-portlet)
+[<a name="6.139"></a>6.139] NYI: getMimeType(String) (bridge-tck-main-portlet)
 
 - During a render, call `PortletContext.getMimeType("index.html")` and `ExternalContext.getMimeType("index.html")` and
 expect the result of both to be `"text/html"`.
 
-[<a name="6.140"></a>6.140] TODO: getRequestScheme() (bridge-tck-main-portlet)
+[<a name="6.140"></a>6.140] NYI: getRequestScheme() (bridge-tck-main-portlet)
 
 - During a render, call `PortletRequest.getScheme()` and `ExternalContext.getRequestScheme()` and expect the result of
 both to be `"http"`.
 
-[<a name="6.141"></a>6.141] TODO: getRequestServerName() (bridge-tck-main-portlet)
+[<a name="6.141"></a>6.141] NYI: getRequestServerName() (bridge-tck-main-portlet)
 
 - During a render, call `PortletRequest.getServerName()` and `ExternalContext.getRequestServerName()` and expect the
 result of both to be `"localhost"`.
 
-[<a name="6.142"></a>6.142] TODO: getRequestServerPort() (bridge-tck-main-portlet)
+[<a name="6.142"></a>6.142] NYI: getRequestServerPort() (bridge-tck-main-portlet)
 
 - During a render, call `PortletRequest.getServerPort()` and `ExternalContext.getRequestServerPort()` and expect the
 result of both to be 8080.
 
-[<a name="6.143"></a>6.143] TODO: getRealPath(String) (bridge-tck-main-portlet)
+[<a name="6.143"></a>6.143] NYI: getRealPath(String) (bridge-tck-main-portlet)
 
 - During a render, call `PortletContext.getRealPath("/WEB-INF/faces-config.xml")` and
 `ExternalContext.getRealPath("/WEB-INF/faces-config.xml")` and expect the result of both to be equal to each other.
 
-[<a name="6.144"></a>6.144] TODO: getRequestContentLength() (bridge-tck-main-portlet)
+[<a name="6.144"></a>6.144] NYI: getRequestContentLength() (bridge-tck-main-portlet)
 
 - During the ACTION_PHASE and also during an f:ajax submission (RESOURCE_PHASE), call
 `ClientDataRequest.getContentLength()` and `ExternalContext.getRequestContentLength()` and expect the result of both to
@@ -1727,26 +1727,26 @@ Showcase use-case:
 
 - [h:graphicImage (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/graphicimage/general)
 
-[<a name="6.147"></a>6.147] TODO: invalidateSession() (bridge-tck-main-portlet)
+[<a name="6.147"></a>6.147] NYI: invalidateSession() (bridge-tck-main-portlet)
 
 - During a render, set a portlet session attribute to a unique value such as `System.nanoTime()` and render the portlet
 session value to the HTML output. Submit an action and call `ExternalContext.invalidate()` and re-render the portlet
 session value. The value must be null after invalidation.
 
-[<a name="6.148"></a>6.148] TODO: setResponseHeader(String,String) (bridge-tck-main-portlet)
+[<a name="6.148"></a>6.148] NYI: setResponseHeader(String,String) (bridge-tck-main-portlet)
 
 - In the HEADER_PHASE call `ExternalContext.setResponseHeader("headerPhase", "true")` and then verify that the header is
 present in the page via Javascript. It is not possible to test during the RESOURCE_PHASE since the jsf.js client-side
 library is in control of the XHR dispatched via f:ajax.
 
-[<a name="6.149"></a>6.149] TODO: addResponseHeader(String,String) (bridge-tck-main-portlet)
+[<a name="6.149"></a>6.149] NYI: addResponseHeader(String,String) (bridge-tck-main-portlet)
 
 - In the HEADER_PHASE call `ExternalContext.addResponseHeader("headerPhase", "abc")` and
 `ExternalContext.addResponseHeader("headerPhase", "xyz")`. Then verify that both values for the header are present in
 the page via Javascript. It is not possible to test during the RESOURCE_PHASE since the jsf.js client-side library is in
 control of the XHR dispatched via f:ajax.
 
-[<a name="6.150"></a>6.150] TODO: responseReset() (bridge-tck-main-portlet)
+[<a name="6.150"></a>6.150] NYI: responseReset() (bridge-tck-main-portlet)
 
 - In the HEADER_PHASE call `ExternalContext.setResponseHeader("headerPhase", "true")`. In order to write something to
 the response, make sure that the header phase dispatches to a JSF view that produces markup. In the RENDER_PHASE, call
@@ -1763,7 +1763,7 @@ Showcase use-case:
 
 (Each image is served up from a ResourceHandler which sets a response status of 200)
 
-[<a name="6.152"></a>6.152] TODO: responseFlushBuffer() (bridge-tck-main-portlet)
+[<a name="6.152"></a>6.152] NYI: responseFlushBuffer() (bridge-tck-main-portlet)
 
 - In the HEADER_PHASE, dispatch to a JSF view that produces markup. In the RENDER_PHASE, call
 `ExternalContext.responseFlushBuffer()` followed by manually writing something to the response with
@@ -1797,24 +1797,24 @@ Showcase use-case:
 
 (The `<h:form>` is submitted by an `<h:commandButton>` with `<f:ajax>` which requires a partial action URL).
 
-[<a name="6.157"></a>6.157] TODO: getSessionMaxInactiveInterval() (bridge-tck-main-portlet)
+[<a name="6.157"></a>6.157] NYI: getSessionMaxInactiveInterval() (bridge-tck-main-portlet)
 
 - During a render, compare the return value of `PortletSession.getMaxInactiveInterval()` with the return value of
 `ExternalContext.getSessionMaxInactiveInterval()` and verify that they are equal.
 
-[<a name="6.158"></a>6.158] TODO: setSessionMaxInactiveInterval(int) (bridge-tck-main-portlet)
+[<a name="6.158"></a>6.158] NYI: setSessionMaxInactiveInterval(int) (bridge-tck-main-portlet)
 
 - During a render, call `ExternalContext.getSessionMaxInactiveInterval()` and increment the return value by one. Then
 pass the incremented value as an argument with a call to `ExternalContext.setSessionMaxInactiveInterval(int)`. Then call
 `ExternalContext.getSessionMaxInactiveInterval()` compare the return value with the incremented value for equality.
 
-[<a name="6.159"></a>6.159] TODO: isSecure() (bridge-tck-main-portlet)
+[<a name="6.159"></a>6.159] NYI: isSecure() (bridge-tck-main-portlet)
 
 - During a render, call `PortletRequest.isSecure()` and `ExternalContext.isSecure()` and assert that the return value of
 both is false. Since the TCK runs with HTTP URLs, it is not possible to test ExternalContext.isSecure() for HTTPS at
 this time.
 
-[<a name="6.160"></a>6.160] TODO: getApplicationContextPath() (bridge-tck-main-portlet)
+[<a name="6.160"></a>6.160] NYI: getApplicationContextPath() (bridge-tck-main-portlet)
 
 - Register a `javax.faces.event.SystemEventListener` that listens for events associated with
 `javax.faces.application.Application`. When the event is received, call `FacesContext.getCurrentInstance()` in order to
@@ -1823,7 +1823,7 @@ acquire the "startup" `FacesContext` instance provided by the Faces runtime. The
 Remember the return value of `ExternalContext.getApplicationContextPath()`. During a render, assert that the remembered
 application context path is equal to the value of `ExternalContext.getApplicationContextPath()`.
 
-[<a name="6.161"></a>6.161] TODO: getSessionId(boolean) (bridge-tck-main-portlet)
+[<a name="6.161"></a>6.161] NYI: getSessionId(boolean) (bridge-tck-main-portlet)
 
 - During a render, call `PortletSession.getId(false)` and assert that it is equal to
 `ExternalContext.getSessionId(false)`. Also call `PortletSession.getId(true)` and assert that it is equal to
@@ -1841,7 +1841,7 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 ## <a name="9"></a>Chapter 9 Tests
 
-[<a name="9.1"></a>9.1] TODO: TCK compatibility for the `h:body` component
+[<a name="9.1"></a>9.1] NYI: TCK compatibility for the `h:body` component
 
 - Two portlets exist on the portal page: PortletA, PortletB
 - PortletB has has two forms: FormA, FormB
