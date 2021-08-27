@@ -1837,7 +1837,33 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 ## <a name="7"></a>Chapter 7 Tests
 
+[<a name="7.1"></a>7.1] bridgeRequestScopedBeanTest (bridge-tck-cdi1-portlet)
+
+- During the `ACTION_PHASE` of the portlet lifecycle, set a value on a `@BridgeRequestScoped` bean acquired by
+  `@Inject`. During the `RENDER_PHASE` of the portlet lifecycle, get the value from the `@BridgeRequestScoped` bean
+  acquired by `@Inject`. The value that was set must match the value that is retrieved. This proves that a
+  `@BridgeRequestScoped` bean behaves like a faces-config `<managed-bean><scope>request</scope>` (bridge request scope)
+  managed bean.
+
+[<a name="7.2"></a>7.2] cdiRequestScopedBeanTest (bridge-tck-cdi1-portlet)
+
+- During the `ACTION_PHASE` of the portlet lifecycle, set a value on a CDI `@RequestScoped` bean acquired by `@Inject`.
+  During the `RENDER_PHASE` of the portlet lifecycle, get the value from the CDI `@RequestScoped` bean acquired by
+  `@Inject`. The value that is retrieved must be `null`. This proves that a CDI `@RequestScoped` bean behaves like
+  `@PortletRequestScoped` and not like `@BridgeRequestScoped`.
+
+[<a name="7.3"></a>7.3] portletRequestScopedBeanTest (bridge-tck-cdi1-portlet)
+
+- During the `ACTION_PHASE` of the portlet lifecycle, set a value on a `@PortletRequestScoped` bean acquired by
+  `@Inject`. During the `RENDER_PHASE` of the portlet lifecycle, get the value from the `@PortletRequestScoped` bean
+  acquired by `@Inject`. The value that is retrieved must be `null`. This proves that a `@PortletRequestScoped` bean
+  behaves like CDI `@RequestScoped` and not like `@BridgeRequestScoped`.
+
+NYI: Remaining CDI Tests
+
 ## <a name="8"></a>Chapter 8 Tests
+
+NYI: Faces Extensions Tests
 
 ## <a name="9"></a>Chapter 9 Tests
 
