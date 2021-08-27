@@ -58,17 +58,19 @@ By default, the FacesBridge is not required to provide any special handling for 
 `@javax.enterprise.context.RequestScoped` or `@javax.portlet.annotations.PortletRequestScoped` annotations since their
 usage is already defined by the Portlet 3.0 Specification and corresponding requirements are implemented by the
 underlying portlet container. This means that by default, beans that are annotated with
-`@javax.enterprise.context.RequestScoped` or `@javax.portlet.annotations.PortletRequestScoped` will _not_ participate in
-the "Bridge Request Scope" as defined by section [5.1.2](chapter-5-request-lifecycle.md#5.1.2) titled
-"Managing Lifecycle State".
+`@javax.enterprise.context.RequestScoped` <sup>[7.2](tck-tests.md#7.2)</sup> or
+`@javax.portlet.annotations.PortletRequestScoped` <sup>[7.3](tck-tests.md#7.3)</sup> will _not_ participate in the
+"Bridge Request Scope" as defined by section [5.1.2](chapter-5-request-lifecycle.md#5.1.2) titled "Managing Lifecycle
+State".
 
 The FacesBridge implementation must provide a required *(non-optional)* CDI extension that registers
 `@javax.portlet.faces.annotation.BridgeRequestScoped` as a CDI scope, along with its associated CDI context. The
-lifecycle/context of a bean annotated with `@javax.portlet.faces.annotation.BridgeRequestScoped` is defined by
-section [5.1.2](chapter-5-request-lifecycle.md#5.1.2) titled "Managing Lifecycle State". Under certain deployment
-scenarios, registration of the CDI extension might not be automatic. As a result, developers may need to have a
-META-INF/services/javax.enterprise.inject.spi.Extension file within the classpath of the WAR archive. The contents of
-the file is the FQCN of the CDI extension provided by the FacesBridge implementation.
+lifecycle/context of a bean annotated with `@javax.portlet.faces.annotation.BridgeRequestScoped`
+<sup>[7.1](tck-tests.md#7.1)</sup> is defined by section [5.1.2](chapter-5-request-lifecycle.md#5.1.2) titled "Managing
+Lifecycle State". Under certain deployment scenarios, registration of the CDI extension might not be automatic. As a
+result, developers may need to have a META-INF/services/javax.enterprise.inject.spi.Extension file within the classpath
+of the WAR archive. The contents of the file is the FQCN of the CDI extension provided by the FacesBridge
+implementation.
 
 The FacesBridge implementation must provide an *optional* CDI extension that treats beans annotated with
 `@javax.enterprise.context.RequestScoped` or `@javax.portlet.annotations.PortletRequestScoped` as though they
