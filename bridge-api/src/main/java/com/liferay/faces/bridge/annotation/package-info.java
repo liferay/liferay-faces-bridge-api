@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 @org.osgi.annotation.versioning.Version("4.3.0")
-package javax.portlet.faces;
+package com.liferay.faces.bridge.annotation;
