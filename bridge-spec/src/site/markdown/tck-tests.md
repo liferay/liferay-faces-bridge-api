@@ -1878,7 +1878,129 @@ application context path is equal to the value of `ExternalContext.getApplicatio
   `@PortletRequestScoped` bean behaves like a faces-config `<managed-bean><scope>request</scope>` (bridge request scope)
   managed bean.
 
-NYI: Remaining CDI Tests
+[<a name="7.6"></a>7.6] actionParamsAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.7"></a>7.7] actionRequestAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.8"></a>7.8] actionResponseAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.9"></a>7.9] clientDataRequestAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.10"></a>7.10] contextPathAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.11"></a>7.11] cookiesAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.12"></a>7.12] eventRequestAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.13"></a>7.13] eventResponseAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.14"></a>7.14] headerRequestAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.15"></a>7.15] headerResponseAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.16"></a>7.16] localesAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.17"></a>7.17] mimeResponseAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.18"></a>7.18] mutableRenderParamsAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.19"></a>7.19] namespaceAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.20"></a>7.20] portletConfigAlternativeTest (bridge-tck-cdi1-portlet)
+
+- Specify a `<factory-extension>` for `<bridge:bridge-portlet-config-factory>` that wraps the
+  `BridgePortletConfigFactory` of the FacesBridge implementation with a decorated `PortletConfig`. During the
+  `HEADER_PHASE` of the portlet lifecycle, get the value of the init parameter named `"tck"` from the `PortletConfig`
+  acquired by `@Inject`. If the expected value is returned, then this proves that an alternative producer returned the
+  TCK's decorated `PortletConfig` object.
+
+[<a name="7.21"></a>7.21] portletContextAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.22"></a>7.22] portletModeAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.23"></a>7.23] portletNameAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.24"></a>7.24] portletPreferencesAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.25"></a>7.25] portletRequestAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.26"></a>7.26] portletResponseAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.27"></a>7.27] portletSessionAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.28"></a>7.28] renderParamsAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.29"></a>7.29] renderRequestAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.30"></a>7.30] renderResponseAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.31"></a>7.31] resourceRequestAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.32"></a>7.32] resourceResponseAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.33"></a>7.33] stateAwareResponseAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.34"></a>7.34] windowIdAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
+
+[<a name="7.35"></a>7.35] windowStateAlternativeTest (bridge-tck-cdi1-portlet)
+
+- NYI
 
 ## <a name="8"></a>Chapter 8 Tests
 
