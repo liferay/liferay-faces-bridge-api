@@ -19,7 +19,6 @@ Using [Maven](https://maven.apache.org/) 3.x:
 
     mvn clean install
 
-## Community Participation
+## Community Updates
 
-Visit the [faces-bridge-spec](https://java.net/projects/faces-bridge-spec) project at java.net to learn how to
-participate.
+Visit the [Community Tab](https://jcp.org/en/egc/view?id=378) of the JSR 378 Spec at jcp.org
