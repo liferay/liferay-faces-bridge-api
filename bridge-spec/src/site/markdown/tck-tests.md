@@ -1947,12 +1947,15 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 - Specify a `<factory-extension>` for `<bridge:bridge-portlet-config-factory>` that wraps the
   `BridgePortletConfigFactory` of the FacesBridge implementation with a decorated `PortletConfig`. During the
   `HEADER_PHASE` of the portlet lifecycle, get the value of the attribute named `"tck"` from the `PortletContext` acquired
-  by `@Inject`. If the expected value is returned, then this proves that an alternative producer returned the
-  TCK's decorated `PortletContext` object.
+  by `@Inject`. If the expected value is returned, then this proves that an alternative producer returned the TCK's
+  decorated `PortletContext` object.
 
 [<a name="7.22"></a>7.22] portletModeAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- Specify a `<factory-extension>` for `<bridge:bridge-portlet-request-factory>` that wraps the
+  `BridgePortletRequestFactory` of the FacesBridge implementation with a decorated `HeaderRequest`. During the
+  `HEADER_PHASE` of the portlet lifecycle, get the class FQCN of the `PortletMode` acquired by `@Inject`. If the expected
+  FQCN is returned, then this proves that an alternative producer returned the TCK's decorated `PortletMode` object.
 
 [<a name="7.23"></a>7.23] portletNameAlternativeTest (bridge-tck-cdi1-portlet)
 
