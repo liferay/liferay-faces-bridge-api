@@ -2011,7 +2011,19 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 ## <a name="8"></a>Chapter 8 Tests
 
-NYI: Faces Extensions Tests
+[<a name="8.8.1"></a>8.8.1] WIP: bridgeFactoryFinderTest (bridge-tck-main-portlet)
+
+- Specify a `<factory-extension>` for the following in faces-config.xml and ensure that an instance of the corresponding
+  Java class is present within the chain of delegation that is discovered using the `BridgeFactoryFinder`:
+
+    - bridge:bridge-config-factory
+    - bridge:bridge-event-handler-factory
+    - bridge:bridge-public-render-parameter-handler-factory
+    - bridge:bridge-url-factory
+    - bridge:request-attribute-inspector-factory
+    - bridge:bridge-portlet-config-factory
+    - bridge:bridge-portlet-request-factory
+    - bridge:bridge-portlet-response-factory
 
 ## <a name="9"></a>Chapter 9 Tests
 
