@@ -1975,7 +1975,11 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.25"></a>7.25] portletRequestAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- Specify a `<factory-extension>` for `<bridge:bridge-portlet-request-factory>` that wraps the
+  `BridgePortletRequestFactory` of the FacesBridge implementation with a decorated `HeaderRequest`. During the
+  `HEADER_PHASE` of the portlet lifecycle, get the class FQCN of the `PortletRequest` acquired by `@Inject`. If the
+  expected FQCN is returned, then this proves that an alternative producer returned the TCK's decorated `PortletRequest`
+  object.
 
 [<a name="7.26"></a>7.26] portletResponseAlternativeTest (bridge-tck-cdi1-portlet)
 
