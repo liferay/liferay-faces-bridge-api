@@ -2016,7 +2016,8 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.30"></a>7.30] renderResponseAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- This is not testable in a Portlet 3.0 environment since the JSF lifecycle runs in the `HEADER_PHASE` rather than the
+  `RENDER_PHASE` of the portlet lifecycle.
 
 [<a name="7.31"></a>7.31] resourceRequestAlternativeTest (bridge-tck-cdi1-portlet)
 
