@@ -1896,7 +1896,11 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.8"></a>7.8] actionResponseAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- During the `ACTION_PHASE` of the portlet lifecycle, set a value on a `@BridgeRequestScoped` bean acquired by
+  `@Inject`. The value must be the result of calling the `getClass().getSimpleName()` method on the `ActionResponse`
+  bean acquired by `@Inject`. During the `HEADER_PHASE` of the portlet lifecycle, get the value from the
+  `@BridgeRequestScoped` bean acquired by `@Inject`. The value that was set must match the value that is retrieved. This
+  proves that an alternative producer returned the TCK's decorated `ActionResponse` object.
 
 [<a name="7.9"></a>7.9] clientDataRequestAlternativeTest (bridge-tck-cdi1-portlet)
 
