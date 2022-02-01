@@ -2032,7 +2032,14 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.32"></a>7.32] resourceResponseAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- Specify a `<factory-extension>` for `<bridge:bridge-portlet-response-factory>` that wraps the
+  `BridgePortletResponseFactory` of the FacesBridge implementation with a decorated `ResourceResponse`. During the
+  `RESOURCE_PHASE` of the portlet lifecycle, get the class FQCN of the `ResourceResponse` acquired by `@Inject`. If the
+  expected FQCN is returned, then this proves that an alternative producer returned the TCK's decorated `ResourceResponse`
+  object.
+
+- Uses h:commandButton and f:ajax to issue a partial request. Have an h:outputLink and test field be re-rendered in the
+  partial-response.
 
 [<a name="7.33"></a>7.33] stateAwareResponseAlternativeTest (bridge-tck-cdi1-portlet)
 
