@@ -1944,7 +1944,11 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.15"></a>7.15] headerResponseAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- Specify a `<factory-extension>` for `<bridge:bridge-portlet-response-factory>` that wraps the
+  `BridgePortletResponseFactory` of the FacesBridge implementation with a decorated `HeaderResponse`. During the
+  `HEADER_PHASE` of the portlet lifecycle, get the class FQCN of the `HeaderResponse` acquired by `@Inject`. If the
+  expected FQCN is returned, then this proves that an alternative producer returned the TCK's decorated
+  `HeaderResponse` object.
 
 [<a name="7.16"></a>7.16] localesAlternativeTest (bridge-tck-cdi1-portlet)
 
