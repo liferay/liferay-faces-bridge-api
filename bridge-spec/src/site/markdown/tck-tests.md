@@ -1920,7 +1920,11 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.11"></a>7.11] cookiesAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- Specify a `<factory-extension>` for `<bridge:bridge-portlet-request-factory>` that wraps the
+  `BridgePortletRequestFactory` of the FacesBridge implementation with a decorated `HeaderRequest`. During the
+  `HEADER_PHASE` of the portlet lifecycle, iterate through the `List<Cookie>` acquired by `@Inject`. If the expected
+  FQCN is returned as one of the list items, then this proves that an alternative producer returned the TCK's decorated
+  `List<Cookie>` object.
 
 [<a name="7.12"></a>7.12] eventRequestAlternativeTest (bridge-tck-cdi1-portlet)
 
