@@ -1938,7 +1938,13 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.13"></a>7.13] eventResponseAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- During the `ACTION_PHASE` of the portlet lifecycle, publish a portlet event. During the `EVENT_PHASE` of the portlet
+  lifecycle, receive the event with a `BridgeEventHandler` and dynamically acquire a `@PortletRequestScoped` "event
+  bean" using the `ELResolver` associated with the `FacesContext`. Set a value on a `@BridgeRequestScoped` bean acquired
+  by `@Inject`. The value must be the result of calling a method on the "event bean" that returns the FQCN of the
+  `EventResponse` that it required via `@Inject`. During the `HEADER_PHASE` of the portlet lifecycle, get the value from
+  the `@BridgeRequestScoped` bean acquired by `@Inject`. The value that was set must match the value that is retrieved.
+  This proves that an alternative producer returned the TCK's decorated `EventResponse` object.
 
 [<a name="7.14"></a>7.14] headerRequestAlternativeTest (bridge-tck-cdi1-portlet)
 
