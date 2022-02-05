@@ -1980,7 +1980,11 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.18"></a>7.18] mutableRenderParamsAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- During the `ACTION_PHASE` of the portlet lifecycle, set a value on a `@BridgeRequestScoped` bean acquired by
+  `@Inject`. The value must be the result of calling the `getClass().getSimpleName()` method on the
+  `MutableRenderParameters` bean acquired by `@Inject`. During the `HEADER_PHASE` of the portlet lifecycle, get the
+  value from the `@BridgeRequestScoped` bean acquired by `@Inject`. The value that was set must match the value that is
+  retrieved. This proves that an alternative producer returned the TCK's decorated `MutableRenderParameters` object.
 
 [<a name="7.19"></a>7.19] namespaceAlternativeTest (bridge-tck-cdi1-portlet)
 
