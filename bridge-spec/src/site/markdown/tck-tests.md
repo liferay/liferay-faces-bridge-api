@@ -1972,7 +1972,11 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.17"></a>7.17] mimeResponseAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- Specify a `<factory-extension>` for `<bridge:bridge-portlet-response-factory>` that wraps the
+  `BridgePortletResponseFactory` of the FacesBridge implementation with a decorated `HeaderResponse`. During the
+  `HEADER_PHASE` of the portlet lifecycle, get the class FQCN of the `MimeResponse` acquired by `@Inject`. If the
+  expected FQCN is returned, then this proves that an alternative producer returned the TCK's decorated
+  `MimeResponse` object.
 
 [<a name="7.18"></a>7.18] mutableRenderParamsAlternativeTest (bridge-tck-cdi1-portlet)
 
