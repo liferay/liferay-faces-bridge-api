@@ -1988,7 +1988,11 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 [<a name="7.19"></a>7.19] namespaceAlternativeTest (bridge-tck-cdi1-portlet)
 
-- NYI
+- Specify a `<factory-extension>` for `<bridge:bridge-portlet-response-factory>` that wraps the
+  `BridgePortletResponseFactory` of the FacesBridge implementation with a decorated `HeaderResponse`. During the
+  `HEADER_PHASE` of the portlet lifecycle, get the value of the `String` acquired by `@Inject` with qualifier
+  `@Namespace`. If the expected value is returned, then this proves that an alternative producer returned the TCK's
+  decorated namespace.
 
 [<a name="7.20"></a>7.20] portletConfigAlternativeTest (bridge-tck-cdi1-portlet)
 
