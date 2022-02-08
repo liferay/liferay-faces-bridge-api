@@ -2121,7 +2121,7 @@ application context path is equal to the value of `ExternalContext.getApplicatio
 
 ## <a name="8"></a>Chapter 8 Tests
 
-[<a name="8.8.1"></a>8.8.1] WIP: bridgeFactoryFinderTest (bridge-tck-main-portlet)
+[<a name="8.8.1"></a>8.8.1] bridgeFactoryFinderTest (bridge-tck-main-portlet)
 
 - Specify a `<factory-extension>` for the following in faces-config.xml and ensure that an instance of the corresponding
   Java class is present within the chain of delegation that is discovered using the `BridgeFactoryFinder`:
