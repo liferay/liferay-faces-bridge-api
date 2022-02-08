@@ -1660,23 +1660,6 @@ things do right its the render of the portlet after the test URL has been cliuck
 renderURL not a portlet actionURL) . Resource tests are the same as the render tests except the testURL is rendered in
 the jsp that supplies the iFrame target (resource).
 
-[<a name="6.137"></a>6.137] NYI: setResponseStatusTest (bridge-tck-main-portlet)
-
-- Dispatch an XHR that targets the ResourceURL for a known cacheable image resource such as
-"#{resource[myValidLibrary:myValidImage]}" and verify that the status code is HttpServletResponse.SC_OK (200).
-- Dispatch an XHR that targets the ResourceURL for the same cacheable image resource such as
-"#{resource[myValidLibrary:myValidImage]}" and verify that the status code is HttpServletResponse.NOT_MODIFIED (304).
-- Dispatch an XHR that targets the ResourceURL for a missing image resource such as
-"#{resource[myInvalidLibrary:myValidImage]}" and verify that the status code is HttpServletResponse.SC_NOT_FOUND (404).
-- Dispatch an XHR that targets the ResourceURL for a missing image resource such as
-"#{resource[myValidLibrary:myInvalidImage]}" and verify that the status code is HttpServletResponse.SC_NOT_FOUND (404).
-- Dispatch an XHR that targets the ResourceURL for a banned path such as "/WEB-INF" and verify that the status code is
-HttpServletResponse.SC_NOT_FOUND (404).
-- Dispatch an XHR that targets the ResourceURL for a banned character sequence such as "../../" and verify that the
-status code is HttpServletResponse.SC_NOT_FOUND (404).
-- Dispatch an XHR that targets the ResourceURL for a facelet document such as "myView.xhtml" and verify that the status
-code is HttpServletResponse.SC_NOT_FOUND (404).
-
 [<a name="6.138"></a>6.138] NYI: addResponseCookie (bridge-tck-main-portlet)
 
 - During an action, call `ActionResponse.addCookie(cookie)`. Upon subsequent render, call `RenderRequest.getCookies()`
@@ -1756,12 +1739,12 @@ present in the page via Javascript and that the only markup for the portlet is t
 during the RENDER_PHASE since the JSF lifecycle runs It is not possible to test during the RESOURCE_PHASE since the
 jsf.js client-side library is in control of the XHR dispatched via f:ajax
 
-[<a name="6.151"></a>6.151] TCK compatibility for setResponseStatus(int) is satisfied by the following JSF
-Showcase use-case:
+[<a name="6.151"></a>6.151] setResponseStatusTest (bridge-tck-main-portlet)
 
-- [h:graphicImage (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/graphicimage/general)
-
-(Each image is served up from a ResourceHandler which sets a response status of 200)
+- In the RESOURCE_PHASE, iterate through all of the status code constants found in `HttpServletResponse` (e.g.
+  NOT_FOUND, SC_OK, etc.) and call `ExternalContext.setResponseStatus(int)`. Then call `ResourceResponse.getStatus()`
+  and verify that the return value is equal to the status code. On the client-side, the test is not required to verify
+  status codes since the client-side testing framework is not able to download files or examine response codes.
 
 [<a name="6.152"></a>6.152] NYI: responseFlushBuffer() (bridge-tck-main-portlet)
 
