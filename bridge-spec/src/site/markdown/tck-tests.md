@@ -1671,7 +1671,7 @@ the jsp that supplies the iFrame target (resource).
 implementation detail. In addition, there is no guarantee that the portlet container will carry any of the properties
 like comment, path, etc. through from action to the render so that can't be tested.
 
-[<a name="6.139"></a>6.139] NYI: getMimeType(String) (bridge-tck-main-portlet)
+[<a name="6.139"></a>6.139] getMimeType(String) (bridge-tck-main-portlet)
 
 - During a render, call `PortletContext.getMimeType("index.html")` and `ExternalContext.getMimeType("index.html")` and
 expect the result of both to be `"text/html"`.
