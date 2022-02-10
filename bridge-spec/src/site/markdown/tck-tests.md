@@ -1660,14 +1660,16 @@ things do right its the render of the portlet after the test URL has been cliuck
 renderURL not a portlet actionURL) . Resource tests are the same as the render tests except the testURL is rendered in
 the jsp that supplies the iFrame target (resource).
 
-[<a name="6.138"></a>6.138] NYI: addResponseCookie (bridge-tck-main-portlet)
+[<a name="6.138"></a>6.138] addResponseCookie (bridge-tck-main-portlet)
 
-- During an action, call `ActionResponse.addCookie(cookie)`. Upon subsequent render, call `RenderRequest.getCookies()`
-to verify that the cookie is present.
+- During an action, set a cookie with a specific name and value by calling
+  `ExternalContext.addResponseCookie(String,String,Map)`. Upon subsequent render, call
+  `ExternalContext.getRequestCookieMap()` to verify that the cookie is present.
 
-Note that it is not valid to test for the presence of the cookie on the client, because the Portlet 3.0 JavaDoc for
+**Note**: It is not valid to test for the presence of the cookie on the client, because the Portlet 3.0 JavaDoc for
 `PortletResponse.addProperty(Cookie)` states that the cookie may be stored on the server (rather than the client) as an
-implementation detail.
+implementation detail. In addition, there is no guarantee that the portlet container will carry any of the properties
+like comment, path, etc. through from action to the render so that can't be tested.
 
 [<a name="6.139"></a>6.139] NYI: getMimeType(String) (bridge-tck-main-portlet)
 
