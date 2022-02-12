@@ -1676,7 +1676,7 @@ like comment, path, etc. through from action to the render so that can't be test
 - During a render, call `PortletContext.getMimeType("index.html")` and `ExternalContext.getMimeType("index.html")` and
 expect the result of both to be `"text/html"`.
 
-[<a name="6.140"></a>6.140] NYI: getRequestScheme() (bridge-tck-main-portlet)
+[<a name="6.140"></a>6.140] getRequestScheme() (bridge-tck-main-portlet)
 
 - During a render, call `PortletRequest.getScheme()` and `ExternalContext.getRequestScheme()` and expect the result of
 both to be `"http"`.
