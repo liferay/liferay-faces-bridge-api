@@ -1691,7 +1691,7 @@ result of both to be `"localhost"`.
 - During a render, call `PortletRequest.getServerPort()` and `ExternalContext.getRequestServerPort()` and expect the
 result of both to be 8080.
 
-[<a name="6.143"></a>6.143] NYI: getRealPath(String) (bridge-tck-main-portlet)
+[<a name="6.143"></a>6.143] getRealPath(String) (bridge-tck-main-portlet)
 
 - During a render, call `PortletContext.getRealPath("/WEB-INF/faces-config.xml")` and
 `ExternalContext.getRealPath("/WEB-INF/faces-config.xml")` and expect the result of both to be equal to each other.
