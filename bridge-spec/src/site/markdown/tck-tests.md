@@ -1711,11 +1711,14 @@ Showcase use-case:
 
 - [h:graphicImage (General)](https://github.com/liferay/liferay-faces-showcase/tree/3.x/jsf-showcase-webapp/src/main/webapp/WEB-INF/component/h/graphicimage/general)
 
-[<a name="6.147"></a>6.147] NYI: invalidateSession() (bridge-tck-main-portlet)
+[<a name="6.147"></a>6.147] invalidateSession() (bridge-tck-main-portlet)
 
-- During a render, set a portlet session attribute to a unique value such as `System.nanoTime()` and render the portlet
-session value to the HTML output. Submit an action and call `ExternalContext.invalidate()` and re-render the portlet
-session value. The value must be null after invalidation.
+- During a render, set a portlet session attribute value using `ExternalContext.getSessionMap().put(String,Object)`.
+  Call `ExternalContext.invalidate()`. Then attempt to access the portlet session attribute value, expecting an
+  `IllegalStateException` to be thrown. Note that it may be necessary to introduce a custom ResponseStateManager since
+  Faces runtime (Mojarra) attempts to access a session attribute in order to write the view state hidden field to the
+  response. In that case, it would be necessary to suppress writing the view state hidden field via the custom
+  ResponseStateManager.
 
 [<a name="6.148"></a>6.148] NYI: setResponseHeader(String,String) (bridge-tck-main-portlet)
 
