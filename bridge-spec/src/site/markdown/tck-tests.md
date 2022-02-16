@@ -1748,6 +1748,8 @@ Showcase use-case:
 
 - Dispatch the `XmlHttpRequest`
 
+- In the RESOURCE_PHASE, call `externalContext.setResponseHeader("foo", "1234")`
+
 - In the `onreadystatechange` callback, call `getResponseHeader("foo")` and verify that the return value is equal to `"1234"`.
 
 - Update the markup of the form to indicate the outcome of the test.
