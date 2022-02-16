@@ -1756,10 +1756,39 @@ Showcase use-case:
 
 [<a name="6.149"></a>6.149] NYI: addResponseHeader(String,String) (bridge-tck-main-portlet)
 
-- In the HEADER_PHASE call `ExternalContext.addResponseHeader("headerPhase", "abc")` and
-`ExternalContext.addResponseHeader("headerPhase", "xyz")`. Then verify that both values for the header are present in
-the page via Javascript. It is not possible to test during the RESOURCE_PHASE since the jsf.js client-side library is in
-control of the XHR dispatched via f:ajax.
+- Since it is not possible for Javascript to access the HTTP headers of an original full page request, and since the
+  test WebDriver lacks the ability to inspect response headers, the TCK will only be required to test this during the
+  RESOURCE_PHASE via XmlHttpRequest. In addition, since the JSF JavaScript API does not provide a way to inspect the
+  response of an XmlHttpRequest, it will be necessary for this test to setup an XmlHttpRequest in a manner similar to the
+  implementation requirements of the JSF JavaScript API.
+
+- In the Facelet view, set an `onclick` handler of for an `h:commandButton` component (which is a child of an `h:form`
+  component) that calls a JavaScript function instead of invoking the JSF JavaScript API.
+
+- The JavaScript function must implement the following steps in order to dispatch an XmlHttpRequest that can invoke the
+  RESOURCE_PHASE of the portlet lifecycle:
+
+- Obtain the value of the "javax.faces.encodedURL" hidden form field, which is the encoded URL that is meant to be used
+  for dispatching an XmlHttpRequest.
+
+- Create a new `XmlHttpRequest` object and call the `open` method so that it initializes an asynchronous HTTP POST
+  request to the encoded URL from the previous step.
+
+- Set the `"Faces-Request"` header on the `XmlHttpRequest` to `"partial-ajax"`
+
+- Set the `"javax.faces.source"`, `"javax.faces.partial.event"`, `"javax.faces.partial.execute"`,
+  `"javax.faces.partial.render"`, `"javax.faces.behavior.event"`, and `"javax.faces.partial.ajax"` parameters
+  accordingly on the `XmlHttpRequest`.
+
+- Dispatch the `XmlHttpRequest`
+
+- In the RESOURCE_PHASE, call `externalContext.setResponseHeader("foo", "1234")`
+
+- In the RESOURCE_PHASE, call `externalContext.setResponseHeader("foo", "6789")`
+
+- In the `onreadystatechange` callback, call `getResponseHeader("foo")` and verify that the return value is equal to `"1234, 6789"`.
+
+- Update the markup of the form to indicate the outcome of the test.
 
 [<a name="6.150"></a>6.150] NYI: responseReset() (bridge-tck-main-portlet)
 
