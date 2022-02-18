@@ -1798,6 +1798,8 @@ Showcase use-case:
   response of an XmlHttpRequest, it will be necessary for this test to setup an XmlHttpRequest in a manner similar to the
   implementation requirements of the JSF JavaScript API.
 
+- In the Facelet view, specify an `f:event` element of type `"preRenderComponent"` as a child of the `h:form`
+
 - In the Facelet view, set an `onclick` handler of an `h:commandButton` component (which is a child of an `h:form`
   component) that calls a JavaScript function instead of invoking the JSF JavaScript API.
 
@@ -1818,15 +1820,28 @@ Showcase use-case:
 
 - Dispatch the `XmlHttpRequest`
 
-- In the RESOURCE_PHASE, call `externalContext.setResponseHeader("foo", "1234")` in order to set a header that should not be present in the response, providing that the subsequent call to `externalContext.responseReset()` works correctly.
+- In the RESOURCE_PHASE, from within the preRenderComponent listener, capture the output that has been written to the
+  response.
 
-- In the RESOURCE_PHASE, call `externalContext.getResponseOutputWriter().write(String)` in order to write some markup that should not be present in the response, providing that the subsequent call to `externalContext.responseReset()` works correctly. 
+- In the RESOURCE_PHASE, from within the preRenderComponent listener, call `externalContext.setResponseHeader("foo",
+  "1234")` in order to set a header that should not be present in the response, providing that the subsequent call to
+  `externalContext.responseReset()` works correctly.
+ 
+- In the RESOURCE_PHASE, from within the preRenderComponent listener, call
+  `externalContext.getResponseOutputWriter().write(String)` in order to write some markup that should not be present in
+  the response, providing that the subsequent call to `externalContext.responseReset()` works correctly.
 
-- In the RESOURCE_PHASE, call `externalContext.responseReset()`.
+- In the RESOURCE_PHASE, from within the preRenderComponent listener, call `externalContext.responseReset()` in order to
+  clear the response output and header.
+
+- In the RESOURCE_PHASE, from within the preRenderComponent listener, call
+  `externalContext.getResponseOutputWriter().write(String)` and pass the output that was captured prior to calling the
+  `responseReset()` method.
 
 - In the `onreadystatechange` callback, call `getResponseHeader("foo")` and verify that the value is `null`.
 
-- In the `onreadystatechange` callback, inspect the partial-response and verify that the markup that should not be present, is indeed not present.
+- In the `onreadystatechange` callback, inspect the partial-response and verify that the markup that should not be
+  present, is indeed not present.
 
 - Update the markup of the form to indicate the outcome of the test.
 
