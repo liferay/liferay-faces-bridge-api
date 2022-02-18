@@ -1754,7 +1754,7 @@ Showcase use-case:
 
 - Update the markup of the form to indicate the outcome of the test.
 
-[<a name="6.149"></a>6.149] NYI: addResponseHeader(String,String) (bridge-tck-main-portlet)
+[<a name="6.149"></a>6.149] addResponseHeader(String,String) (bridge-tck-main-portlet)
 
 - Since it is not possible for Javascript to access the HTTP headers of an original full page request, and since the
   test WebDriver lacks the ability to inspect response headers, the TCK will only be required to test this during the
