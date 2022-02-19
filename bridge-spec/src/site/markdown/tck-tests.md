@@ -1916,7 +1916,7 @@ Showcase use-case:
 
 (The `<h:form>` is submitted by an `<h:commandButton>` with `<f:ajax>` which requires a partial action URL).
 
-[<a name="6.157"></a>6.157] NYI: getSessionMaxInactiveInterval() (bridge-tck-main-portlet)
+[<a name="6.157"></a>6.157] getSessionMaxInactiveInterval() (bridge-tck-main-portlet)
 
 - During a render, compare the return value of `PortletSession.getMaxInactiveInterval()` with the return value of
 `ExternalContext.getSessionMaxInactiveInterval()` and verify that they are equal.
