@@ -1948,7 +1948,7 @@ pass the incremented value as an argument with a call to `ExternalContext.setSes
   `ExternalContext.getApplicationContextPath()`. During a render, assert that the remembered application context path is
   equal to the value of `ExternalContext.getApplicationContextPath()`.
 
-[<a name="6.161"></a>6.161] NYI: getSessionId(boolean) (bridge-tck-main-portlet)
+[<a name="6.161"></a>6.161] getSessionId(boolean) (bridge-tck-main-portlet)
 
 - During a render, call `ExternalContext.getSession(false)`. If the `PortletSession` object is `null`, then call
   `ExternalContext.getSession(false)` and assert that it is equal to the empty string `""` according to the requirements
