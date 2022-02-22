@@ -1938,14 +1938,15 @@ pass the incremented value as an argument with a call to `ExternalContext.setSes
 - During the `HEADER_PHASE` of the portlet lifecycle, call `ExternalContext.isSecure()` and assert that it returns
   `true`.
 
-[<a name="6.160"></a>6.160] NYI: getApplicationContextPath() (bridge-tck-main-portlet)
+[<a name="6.160"></a>6.160] getApplicationContextPath() (bridge-tck-main-portlet)
 
-- Register a `javax.faces.event.SystemEventListener` that listens for events associated with
-`javax.faces.application.Application`. When the event is received, call `FacesContext.getCurrentInstance()` in order to
-acquire the "startup" `FacesContext` instance provided by the Faces runtime. Then call
-`FacesContext.getExternalContext()` in order to get the "startup" `ExternalContext` provided by the Faces runtime.
-Remember the return value of `ExternalContext.getApplicationContextPath()`. During a render, assert that the remembered
-application context path is equal to the value of `ExternalContext.getApplicationContextPath()`.
+- Register a `javax.faces.event.SystemEventListener` that listens for events associated with the
+  `javax.faces.event.PostConstructApplicationEvent` associated with the `javax.faces.application.Application` source
+  object type. When the event is received, call `FacesContext.getCurrentInstance()` in order to acquire the "startup"
+  `FacesContext` instance provided by the Faces runtime. Then call `FacesContext.getExternalContext()` in order to get
+  the "startup" `ExternalContext` provided by the Faces runtime. Remember the return value of
+  `ExternalContext.getApplicationContextPath()`. During a render, assert that the remembered application context path is
+  equal to the value of `ExternalContext.getApplicationContextPath()`.
 
 [<a name="6.161"></a>6.161] NYI: getSessionId(boolean) (bridge-tck-main-portlet)
 
