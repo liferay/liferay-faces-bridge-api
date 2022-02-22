@@ -1921,7 +1921,7 @@ Showcase use-case:
 - During a render, compare the return value of `PortletSession.getMaxInactiveInterval()` with the return value of
 `ExternalContext.getSessionMaxInactiveInterval()` and verify that they are equal.
 
-[<a name="6.158"></a>6.158] NYI: setSessionMaxInactiveInterval(int) (bridge-tck-main-portlet)
+[<a name="6.158"></a>6.158] setSessionMaxInactiveInterval(int) (bridge-tck-main-portlet)
 
 - During a render, call `ExternalContext.getSessionMaxInactiveInterval()` and increment the return value by one. Then
 pass the incremented value as an argument with a call to `ExternalContext.setSessionMaxInactiveInterval(int)`. Then call
