@@ -1927,11 +1927,16 @@ Showcase use-case:
 pass the incremented value as an argument with a call to `ExternalContext.setSessionMaxInactiveInterval(int)`. Then call
 `ExternalContext.getSessionMaxInactiveInterval()` compare the return value with the incremented value for equality.
 
-[<a name="6.159"></a>6.159] NYI: isSecure() (bridge-tck-main-portlet)
+[<a name="6.159"></a>6.159] isSecure() (bridge-tck-main-portlet)
 
-- During a render, call `PortletRequest.isSecure()` and `ExternalContext.isSecure()` and assert that the return value of
-both is false. Since the TCK runs with HTTP URLs, it is not possible to test ExternalContext.isSecure() for HTTPS at
-this time.
+- Specify a `<factory-extension>` for `<bridge:bridge-portlet-request-factory>` that wraps the
+  `BridgePortletRequestFactory` of the FacesBridge implementation with a decorated `HeaderRequest`. Since the TCK runs
+  with HTTP URLs, `ExternalContext.isSecure()` will always return `false`. In order to test that the
+  FacesBridge implementation is returning the value of `PortletRequest.isSecure()`, the decorated
+  `HeaderRequest.isSecure()` method must return `true`.
+
+- During the `HEADER_PHASE` of the portlet lifecycle, call `ExternalContext.isSecure()` and assert that it returns
+  `true`.
 
 [<a name="6.160"></a>6.160] NYI: getApplicationContextPath() (bridge-tck-main-portlet)
 
