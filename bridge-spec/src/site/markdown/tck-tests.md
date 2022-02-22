@@ -1950,9 +1950,11 @@ pass the incremented value as an argument with a call to `ExternalContext.setSes
 
 [<a name="6.161"></a>6.161] NYI: getSessionId(boolean) (bridge-tck-main-portlet)
 
-- During a render, call `PortletSession.getId(false)` and assert that it is equal to
-`ExternalContext.getSessionId(false)`. Also call `PortletSession.getId(true)` and assert that it is equal to
-`ExternalContext.getSessionId(true)`.
+- During a render, call `ExternalContext.getSession(false)`. If the `PortletSession` object is `null`, then call
+  `ExternalContext.getSession(false)` and assert that it is equal to the empty string `""` according to the requirements
+  of Faces. If the `PortletSession` is not `null`, then call `PortletSession.getId()` and assert that it is equal to
+  `ExternalContext.getSessionId(false)`. Call `ExternalContext.getSession(true)`. Assert that the value of
+  `PortletSession.getId()` is equal to `ExternalContext.getSessionId(true)`.
 
 [<a name="6.162"></a>6.162] getClientWindow() / setClientWindow(ClientWindow) (bridge-tck-flows-portlet)
 
