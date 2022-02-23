@@ -2269,12 +2269,17 @@ pass the incremented value as an argument with a call to `ExternalContext.setSes
 
 ## <a name="9"></a>Chapter 9 Tests
 
-[<a name="9.1"></a>9.1] NYI: TCK compatibility for the `h:body` component
+[<a name="9.1"></a>9.1] TCK compatibility for the `h:body` component
 
-- Two portlets exist on the portal page: PortletA, PortletB
-- PortletB has has two forms: FormA, FormB
-- Submit the second form with `<f:ajax execute="@form" render="@all" />`
-- Verify that the DOM was only updated for PortletB and that both forms in PortletB have a hidden field with "javax.faces.ViewState" as part of the name attribute.
+- Two portlets exist on the portal page: Portlet1, Portlet2
+
+- Portlet1 has one form (always rendered)
+
+- Portlet2 has has three forms: FormA (always rendered), FormB (always rendered), FormC (rendered only for the RESOURCE_PHASE)
+
+- Submit FormA form with `<f:ajax execute="@form" render="@all" />`
+
+- After the DOM update, verify that there are three "javax.faces.ViewState" fields in the DOM for Portlet2, and that there are four "javax.faces.ViewState" fields on the entire page.
 
 [<a name="9.2"></a>9.2] TCK compatibility for the `h:head` component
 
