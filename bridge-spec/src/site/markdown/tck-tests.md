@@ -1668,8 +1668,7 @@ the jsp that supplies the iFrame target (resource).
 
 **Note**: It is not valid to test for the presence of the cookie on the client, because the Portlet 3.0 JavaDoc for
 `PortletResponse.addProperty(Cookie)` states that the cookie may be stored on the server (rather than the client) as an
-implementation detail. In addition, there is no guarantee that the portlet container will carry any of the properties
-like comment, path, etc. through from action to the render so that can't be tested.
+implementation detail.
 
 [<a name="6.139"></a>6.139] getMimeType(String) (bridge-tck-main-portlet)
 
