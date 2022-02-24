@@ -1663,7 +1663,7 @@ the jsp that supplies the iFrame target (resource).
 [<a name="6.138"></a>6.138] addResponseCookie (bridge-tck-main-portlet)
 
 - During an action, set a cookie with a specific name and value by calling
-  `ExternalContext.addResponseCookie(String,String,Map)`. Upon subsequent render, call
+  `ExternalContext.addResponseCookie(String,String,Map)`. Upon subsequent re-render, call
   `ExternalContext.getRequestCookieMap()` to verify that the cookie is present.
 
 **Note**: It is not valid to test for the presence of the cookie on the client, because the Portlet 3.0 JavaDoc for
