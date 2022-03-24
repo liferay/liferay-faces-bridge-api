@@ -693,7 +693,7 @@ Test:  Covered by [5.58](tck-tests.md#5.58)
 
 [<a name="5.74"></a>5.74] set new public render parameters from mapped models whose values have changed (action).
 
-Test: TBD In action set a new value in the underlying request scoped managed bean that is mapped to a PRP. Test in
+Test: In action set a new value in the underlying request scoped managed bean that is mapped to a PRP. Test in
 render that the new value is received and is updated into managed bean.
 
 [<a name="5.75"></a>5.75] for each head resource, the bridge calls `HeaderRequest.addDependency()` to ensure that it is
