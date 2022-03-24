@@ -14,7 +14,7 @@ container and by coexisting with any of the many Faces extensions that might als
 ## <a name="5.1"></a>5.1 Request Lifecycle
 
 Bridge request processing maps between the portlet and Faces models within a well defined Faces execution flow. This
-entails managing differences between lifecyle processing.
+entails managing differences between lifecycle processing.
 
 ### <a name="5.1.1"></a>5.1.1 Bridge Request Lifecycle
 
@@ -22,7 +22,7 @@ Faces has a single request lifecycle primarily split between action (data proces
 of the lifecycle is broken into four distinct (sub) phases that move the submitted data from the request into the data
 models and performs the intended action (based on this new state). The render portion of the lifecycle is a single (sub)
 phase in which the view markup is generated based on the application's recomputed state. The initial (sub) phase of the
-lifecyle is an initialization phase that restores the target view based on incoming request data.
+lifecycle is an initialization phase that restores the target view based on incoming request data.
 
 Figure 2 depicts the non-portlet Faces lifecycle where both the action is processed and the view is rendered within a
 single client request.
@@ -59,7 +59,7 @@ single request while portlets execute each phase of its lifecycle in distinct re
 request execution using request scoped managed state created during the action phase to render from. This doesn't work
 in the portlet environment as the phases are run in distinct requests and hence request scoped state is not carried
 across. A key function of the bridge is managing this Faces request scoped state across the varying portlet requests
-that constitute a lifecyle.
+that constitute a lifecycle.
 
 Figure 3 depicts the Faces lifecycle as executed in a portlet environment for a portlet that just responds to action and
 render requests. In response to a portlet action request, the Faces action lifecycle is executed but the resulting view
@@ -84,7 +84,7 @@ clear all or some of the existing scope, the portlet must to this manually by re
 attributes within its event handler. The details on managing this execution are described below in section
 [5.2.5](chapter-5-request-lifecycle.md#5.2.5).
 
-Resource requests are an additional phase in the overall portlet render lifecyle. Following a render, one or more
+Resource requests are an additional phase in the overall portlet render lifecycle. Following a render, one or more
 resource requests are made to either acquire dependent resources to complete the rendition or update parts of the
 existing rendition. As such, resource requests run within the same restored bridge managed request scope as its render
 request. What is unique to resources, however, is they can be a POSTBACK. I.e. they can be a Faces view (form) submit
