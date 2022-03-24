@@ -49,7 +49,7 @@ of the **JSF lifecycle**.
 
 ## <a name="2.4"></a>2.4 Architectural Overview
 
-One of the main functions of the Faces Bridge is to connect the portlet lifecycle to the JSF lifecyle so that JSF views
+One of the main functions of the Faces Bridge is to connect the portlet lifecycle to the JSF lifecycle so that JSF views
 can execute and produce fragments of markup that contribute to the overall markup of the portal page.
 
 The following diagram illustrates the architecture of a Java Portlet Application using the portlet bridge to execute JSF
@@ -236,7 +236,7 @@ parameters. However, because the parameter is visible to the consumer, the value
 in any given request on any given view of the portlet. This means on a given request be it an action, event, header,
 render, or resource request a value might change. Because these parameters are view independent and can change at any
 time, the bridge treats them much like it does events. They are values that get pushed directly into the data model
-prior to running the Faces lifecyle to ensure the updated values are updated in the view. But whereas an event has an
+prior to running the Faces lifecycle to ensure the updated values are updated in the view. But whereas an event has an
 arbitrary payload, a public render parameter can only be a string. This simplicity afford the bridge an opportunity to
 directly participate in the pushing of the value into the data model. The bridge reads configuration data in the
 `face-config.xml` to determine the mapping between any public render parameter name and the corresponding Faces EL that
