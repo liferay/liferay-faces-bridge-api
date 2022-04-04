@@ -1,4 +1,4 @@
-_Version: 6.0.0-pr-SNAPSHOT_
+_Version: 6.0.0-SNAPSHOT_
 
 # Appendix. TCK Tests
 
