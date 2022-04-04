@@ -7,9 +7,9 @@ BOUND BY THEM, SELECT THE "DECLINE" BUTTON AT THE BOTTOM OF THIS PAGE AND THE DO
 
 Specification: JSR 378 Portlet 3.0 Bridge for JavaServerTM Faces 2.2 ("Specification")
 
-Status: Early Draft Review 2 (5.0.0-SNAPSHOT)
+Status: Final (5.0.0-SNAPSHOT)
 
-Release: TBD
+Release: April, 2022 A.D.
 
 Copyright 2016 LIFERAY, INC.
 1400 Montefino Ave.
