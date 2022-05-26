@@ -1,4 +1,4 @@
-_Version: 5.0.0-SNAPSHOT_
+_Version: 5.0.0_
 
 # 4. GenericFacesPortlet
 
