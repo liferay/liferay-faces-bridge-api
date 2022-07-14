@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.liferay.faces</groupId>
 	<artifactId>com.liferay.faces.bridge.api</artifactId>
-	<version>4.3.0</version>
+	<version>4.3.1-SNAPSHOT</version>
 	<name>Liferay Faces Bridge API</name>
 	<description>Liferay Faces Bridge API</description>
 
@@ -60,7 +60,7 @@
 		<connection>scm:git:https://github.com/liferay/liferay-faces-bridge-api</connection>
 		<developerConnection>scm:git:https://github.com/liferay/liferay-faces-bridge-api</developerConnection>
 		<url>scm:git:https://github.com/liferay/liferay-faces-bridge-api</url>
-		<tag>4.3.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
