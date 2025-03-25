@@ -17,8 +17,8 @@ package com.liferay.faces.bridge.event;
 
 import java.io.Serializable;
 
-import javax.faces.FacesWrapper;
-import javax.portlet.StateAwareResponse;
+import jakarta.faces.FacesWrapper;
+import jakarta.portlet.StateAwareResponse;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -30,7 +30,7 @@ import org.osgi.annotation.versioning.ProviderType;
  *
  * <p>This class provides the ability to wrap a {@link Serializable} event payload that is intended to be sent via
  * {@link StateAwareResponse#setEvent(String, Serializable)} or {@link
- * StateAwareResponse#setEvent(javax.xml.namespace.QName, Serializable)}. It also provides the ability for the recipient
+ * StateAwareResponse#setEvent(jakarta.xml.namespace.QName, Serializable)}. It also provides the ability for the recipient
  * of the event to determine whether or not a redirect is taking place.</p>
  *
  * @author  Neil Griffin

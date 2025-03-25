@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.liferay.faces</groupId>
 	<artifactId>com.liferay.faces.bridge.api</artifactId>
-	<version>6.0.1-SNAPSHOT</version>
+	<version>7.0.0-SNAPSHOT</version>
 	<name>Liferay Faces Bridge API</name>
 	<description>Liferay Faces Bridge API</description>
 
@@ -101,7 +101,7 @@
 	<properties>
 		<bnd.version>4.1.0</bnd.version>
 		<faces.api.version>${faces.spec.version}</faces.api.version>
-		<faces.spec.version>2.3</faces.spec.version>
+		<faces.spec.version>4.0.1</faces.spec.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire.version>2.12</surefire.version>
@@ -246,23 +246,23 @@
 						<![CDATA[
 							# Consult individual package-info.java files to determine Export-Packages and versions.
 							-exportcontents: ${packages;VERSIONED}
-							# javax.el is automatically imported with the following versions:
-							# javax.el;version="[2.2.0,3.0.0)", but versions 3.0.0+ are also valid.
+							# jakarta.el is automatically imported with the following versions:
+							# jakarta.el;version="[2.2.0,3.0.0)", but versions 3.0.0+ are also valid.
 							Import-Package: \
-								!javax.portlet.faces,\
-								!javax.portlet.faces.*,\
+								!jakarta.portlet.faces,\
+								!jakarta.portlet.faces.*,\
 								!com.liferay.faces.bridge,\
 								!com.liferay.faces.bridge.*,\
 								!com.liferay.faces.portlet,\
 								!com.liferay.faces.portlet.*,\
-								javax.el;version="[2.2.0,4.0.0)",\
+								jakarta.el;version="[2.2.0,4.0.0)",\
 								*
 							# The following configuration enables the Bridge API bundle to obtain necessary SPI
 							# implementations.
 							Require-Capability: \
-								osgi.serviceloader;filter:="(osgi.serviceloader=javax.portlet.faces.Bridge)";\
+								osgi.serviceloader;filter:="(osgi.serviceloader=jakarta.portlet.faces.Bridge)";\
 								cardinality:=multiple,\
-								osgi.serviceloader;filter:="(osgi.serviceloader=javax.portlet.faces.BridgeFactoryFinder)";\
+								osgi.serviceloader;filter:="(osgi.serviceloader=jakarta.portlet.faces.BridgeFactoryFinder)";\
 								cardinality:=multiple,\
 								osgi.extender; filter:="(osgi.extender=osgi.serviceloader.processor)"
 						]]>
@@ -352,33 +352,33 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>javax.el-api</artifactId>
-			<version>2.2.1</version>
+			<groupId>jakarta.el</groupId>
+			<artifactId>jakarta.el-api</artifactId>
+			<version>5.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<version>1.1</version>
+			<groupId>jakarta.enterprise</groupId>
+			<artifactId>jakarta.enterprise.cdi-api</artifactId>
+			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>javax.faces-api</artifactId>
+			<groupId>jakarta.faces</groupId>
+			<artifactId>jakarta.faces-api</artifactId>
 			<version>${faces.api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.portlet</groupId>
-			<artifactId>portlet-api</artifactId>
-			<version>3.0.0</version>
+			<groupId>com.liferay.jakarta.portlet</groupId>
+			<artifactId>jakarta.portlet-api</artifactId>
+			<version>4.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

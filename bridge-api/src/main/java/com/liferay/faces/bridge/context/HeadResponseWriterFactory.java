@@ -15,11 +15,11 @@
  */
 package com.liferay.faces.bridge.context;
 
-import javax.faces.FacesWrapper;
-import javax.faces.context.ResponseWriter;
-import javax.portlet.PortletContext;
-import javax.portlet.PortletResponse;
-import javax.portlet.faces.BridgeFactoryFinder;
+import jakarta.faces.FacesWrapper;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.portlet.PortletContext;
+import jakarta.portlet.PortletResponse;
+import jakarta.portlet.faces.BridgeFactoryFinder;
 
 import org.osgi.annotation.versioning.ProviderType;
 
