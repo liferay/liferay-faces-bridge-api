@@ -224,7 +224,7 @@
 					<base>
 						<groupId>${project.groupId}</groupId>
 						<artifactId>${project.artifactId}</artifactId>
-						<version>(,4.1.0]</version>
+						<version>(,6.0.0]</version>
 					</base>
 					<includeDistributionManagement>false</includeDistributionManagement>
 				</configuration>
