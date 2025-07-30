@@ -68,7 +68,6 @@
 		<faces.api.version>${faces.spec.version}</faces.api.version>
 		<faces.spec.version>2.2</faces.spec.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
-		<jdk6.javac.executable>/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin/javac</jdk6.javac.executable>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire.version>2.12</surefire.version>
 		<use.jdk6.for.compile>false</use.jdk6.for.compile>
@@ -83,12 +82,8 @@
 					<version>3.1</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
-						<executable>${jdk6.javac.executable}</executable>
-						<forceJavacCompilerUse>${use.jdk6.for.compile}</forceJavacCompilerUse>
-						<fork>${use.jdk6.for.compile}</fork>
-						<compilerVersion>1.6</compilerVersion>
-						<source>1.6</source>
-						<target>1.6</target>
+						<source>1.8</source>
+						<target>1.8</target>
 						<verbose>true</verbose>
 					</configuration>
 				</plugin>
@@ -253,36 +248,6 @@
 	</build>
 
 	<profiles>
-		<profile>
-			<id>compileWithJDK6Linux</id>
-			<activation>
-				<file>
-					<exists>${env.HOME}/Tools/jdk1.6.0_45/bin/javac</exists>
-				</file>
-				<os>
-					<family>unix</family>
-					<name>Linux</name>
-				</os>
-			</activation>
-			<properties>
-				<jdk6.javac.executable>${env.HOME}/Tools/jdk1.6.0_45/bin/javac</jdk6.javac.executable>
-				<use.jdk6.for.compile>true</use.jdk6.for.compile>
-			</properties>
-		</profile>
-		<profile>
-			<id>compileWithJDK6Mac</id>
-			<activation>
-				<file>
-					<exists>${jdk6.javac.executable}</exists>
-				</file>
-				<os>
-					<family>mac</family>
-				</os>
-			</activation>
-			<properties>
-				<use.jdk6.for.compile>true</use.jdk6.for.compile>
-			</properties>
-		</profile>
 		<profile>
 			<id>release</id>
 			<build>
