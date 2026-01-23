@@ -16,8 +16,8 @@
 package com.liferay.faces.bridge.component.inputfile;
 //J-
 
-import javax.annotation.Generated;
-import javax.faces.component.html.HtmlInputFile;
+import jakarta.annotation.Generated;
+import jakarta.faces.component.html.HtmlInputFile;
 import org.osgi.annotation.versioning.ProviderType;
 
 
@@ -67,8 +67,8 @@ public abstract class InputFileBase extends HtmlInputFile {
 	 *
 	 * <p>A method that is executed when a file is uploaded. The method must be <code>public</code>, return <code>void</code>, and take a <code>FileUploadEvent</code> argument.</p>
 	 */
-	public javax.el.MethodExpression getFileUploadListener() {
-		return (javax.el.MethodExpression) getStateHelper().eval(InputFilePropertyKeys.fileUploadListener, null);
+	public jakarta.el.MethodExpression getFileUploadListener() {
+		return (jakarta.el.MethodExpression) getStateHelper().eval(InputFilePropertyKeys.fileUploadListener, null);
 	}
 
 	/**
@@ -76,7 +76,7 @@ public abstract class InputFileBase extends HtmlInputFile {
 	 *
 	 * <p>A method that is executed when a file is uploaded. The method must be <code>public</code>, return <code>void</code>, and take a <code>FileUploadEvent</code> argument.</p>
 	 */
-	public void setFileUploadListener(javax.el.MethodExpression fileUploadListener) {
+	public void setFileUploadListener(jakarta.el.MethodExpression fileUploadListener) {
 		getStateHelper().put(InputFilePropertyKeys.fileUploadListener, fileUploadListener);
 	}
 

@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces.preference;
+package jakarta.portlet.faces.preference;
 
 import java.util.List;
 
-import javax.portlet.ReadOnlyException;
+import jakarta.portlet.ReadOnlyException;
 
 import org.osgi.annotation.versioning.ProviderType;
 
 
 /**
- * The <code>Preference</code> interface allows one to access each value from {@link javax.portlet.PortletPreferences}
+ * The <code>Preference</code> interface allows one to access each value from {@link jakarta.portlet.PortletPreferences}
  * as a discrete object. This allows one to more easily access a preference via EL. Operations made on a <code>
- * Preference</code> object are immediately reflected in the underlying {@link javax.portlet.PortletPreferences}.
- * Changes are not committed until {@link javax.portlet.PortletPreferences#store()} is called.
+ * Preference</code> object are immediately reflected in the underlying {@link jakarta.portlet.PortletPreferences}.
+ * Changes are not committed until {@link jakarta.portlet.PortletPreferences#store()} is called.
  *
  * @author  Michael Freedman
  * @author  Neil Griffin

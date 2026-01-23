@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces.component;
+package jakarta.portlet.faces.component;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponentBase;
 
 import org.osgi.annotation.versioning.ConsumerType;
 
@@ -29,8 +29,8 @@ import org.osgi.annotation.versioning.ConsumerType;
 public class PortletResourceURL extends UIComponentBase {
 
 	// Public Constants
-	public static final String COMPONENT_FAMILY = "javax.portlet.faces.URL";
-	public static final String COMPONENT_TYPE = "javax.portlet.faces.ResourceURL";
+	public static final String COMPONENT_FAMILY = "jakarta.portlet.faces.URL";
+	public static final String COMPONENT_TYPE = "jakarta.portlet.faces.ResourceURL";
 
 	// Protected Enumerations
 	protected enum PropertyKeys {
@@ -39,7 +39,7 @@ public class PortletResourceURL extends UIComponentBase {
 
 	public PortletResourceURL() {
 		super();
-		setRendererType("javax.portlet.faces.ResourceURL");
+		setRendererType("jakarta.portlet.faces.ResourceURL");
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class PortletResourceURL extends UIComponentBase {
 	 * ResourceURL.PAGE</code>.</p>
 	 */
 	public String getCacheability() {
-		return (String) getStateHelper().eval(PropertyKeys.cacheability, javax.portlet.ResourceURL.PAGE);
+		return (String) getStateHelper().eval(PropertyKeys.cacheability, jakarta.portlet.ResourceURL.PAGE);
 	}
 
 	@Override

@@ -67,15 +67,15 @@ public final class BridgePortalContext {
 
 	/**
 	 * Property indicating if the portal application supports/implements the POST-REDIRECT-GET design pattern, meaning
-	 * that the {@link javax.portlet.PortletRequest#ACTION_PHASE} originates from an HTTP POST request, and the {@link
-	 * javax.portlet.PortletRequest#RENDER_PHASE} is caused by a subsequent HTTP GET request. A non-null value indicates
+	 * that the {@link jakarta.portlet.PortletRequest#ACTION_PHASE} originates from an HTTP POST request, and the {@link
+	 * jakarta.portlet.PortletRequest#RENDER_PHASE} is caused by a subsequent HTTP GET request. A non-null value indicates
 	 * that the portal application provides support.
 	 */
 	public static final String POST_REDIRECT_GET_SUPPORT = "com.liferay.faces.bridge.post.redirect.get.support";
 
 	/**
 	 * Property indicating if the portal application supports the standard mechanism of setting the {@link
-	 * javax.portlet.ResourceResponse#HTTP_STATUS_CODE} property on the {@link javax.portlet.ResourceResponse}. A
+	 * jakarta.portlet.ResourceResponse#HTTP_STATUS_CODE} property on the {@link jakarta.portlet.ResourceResponse}. A
 	 * non-null value indicates that the portal application provides support. A non-null value indicates that the portal
 	 * application provides support.
 	 */
@@ -83,7 +83,7 @@ public final class BridgePortalContext {
 
 	/**
 	 * Property indicating if the portal application supports setting the buffer size on its {@link
-	 * javax.portlet.ResourceResponse} implementation. A non-null value indicates that the portal application provides
+	 * jakarta.portlet.ResourceResponse} implementation. A non-null value indicates that the portal application provides
 	 * support.
 	 */
 	public static final String SET_RESOURCE_RESPONSE_BUFFER_SIZE_SUPPORT =
@@ -91,7 +91,7 @@ public final class BridgePortalContext {
 
 	/**
 	 * Property indicating if the portal application supports creation of a render URL during the {@link
-	 * javax.portlet.PortletRequest#ACTION_PHASE} of the portlet lifecycle.
+	 * jakarta.portlet.PortletRequest#ACTION_PHASE} of the portlet lifecycle.
 	 */
 	public static final String CREATE_RENDER_URL_DURING_ACTION_PHASE_SUPPORT =
 		"com.liferay.faces.bridge.create.render.url.during.action.phase.support";

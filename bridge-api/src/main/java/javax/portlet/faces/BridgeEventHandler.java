@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces;
+package jakarta.portlet.faces;
 
-import javax.faces.context.FacesContext;
-import javax.portlet.Event;
-import javax.portlet.faces.event.EventNavigationResult;
+import jakarta.faces.context.FacesContext;
+import jakarta.portlet.Event;
+import jakarta.portlet.faces.event.EventNavigationResult;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -29,12 +29,12 @@ import org.osgi.annotation.versioning.ProviderType;
  * passed to it (via a portlet context attribute at initialization time. This method is expected to update any models
  * based on the event's payload and then to perform any needed application recomputation to ensure a consistent state.
  * The method is called after the {@link FacesContext} has been established and the {@link
- * javax.faces.lifecycle.Lifecycle} has restored the view.</p>
+ * jakarta.faces.lifecycle.Lifecycle} has restored the view.</p>
  *
  * <p>A view navigation can be affected by returning a non-null {@link EventNavigationResult}. Such an object will
  * contain two <code>String</code> values: a fromAction and an outcome. These correspond to the from action and outcomes
  * in Faces navigation rules. Using this information the bridge affects the navigation by calling the Faces {@link
- * javax.faces.application.NavigationHandler}.</p>
+ * jakarta.faces.application.NavigationHandler}.</p>
  *
  * @author  Michael Freedman
  * @author  Neil Griffin
@@ -49,17 +49,17 @@ public interface BridgeEventHandler {
 	 * Instead, the bridge calls this method on the <code>BridgeEventHandler</code> instance passed to it (via a portlet
 	 * context attribute at initialization time. This method is expected to update any models based on the event's
 	 * payload and then to perform any needed application re-computation to ensure a consistent state. The method is
-	 * called after the {@link FacesContext} has been established and the {@link javax.faces.lifecycle.Lifecycle} has
+	 * called after the {@link FacesContext} has been established and the {@link jakarta.faces.lifecycle.Lifecycle} has
 	 * restored the view.</p>
 	 *
 	 * <p>A view navigation can be affected by returning a non-null {@link EventNavigationResult}. Such an object will
 	 * contain two <code>String</code> values: a fromAction and an outcome. These correspond to the from action and
 	 * outcomes in Faces navigation rules. Using this information the bridge affects the navigation by calling the Faces
-	 * {@link javax.faces.application.NavigationHandler}.</p>
+	 * {@link jakarta.faces.application.NavigationHandler}.</p>
 	 *
 	 * @param   facesContext  The current Faces context. A Lifecycle has been acquired and the current view restored.
 	 * @param   event         The portlet event. Other portlet information (request/response) is accessed via the {@link
-	 *                        javax.faces.context.ExternalContext}.
+	 *                        jakarta.faces.context.ExternalContext}.
 	 *
 	 * @return  an object containing the fromAction and outcome of any navigation that resulted from this event. If the
 	 *          event doesn't cause a navigation, return <code>null</code>.

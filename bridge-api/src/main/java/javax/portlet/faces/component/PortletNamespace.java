@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces.component;
+package jakarta.portlet.faces.component;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponentBase;
 
 import org.osgi.annotation.versioning.ConsumerType;
 
@@ -29,8 +29,8 @@ import org.osgi.annotation.versioning.ConsumerType;
 public class PortletNamespace extends UIComponentBase {
 
 	// Public Constants
-	public static final String COMPONENT_FAMILY = "javax.portlet.faces.Namespace";
-	public static final String COMPONENT_TYPE = "javax.portlet.faces.Namespace";
+	public static final String COMPONENT_FAMILY = "jakarta.portlet.faces.Namespace";
+	public static final String COMPONENT_TYPE = "jakarta.portlet.faces.Namespace";
 
 	// Protected Enumerations
 	protected enum NamespacePropertyKeys {
@@ -39,7 +39,7 @@ public class PortletNamespace extends UIComponentBase {
 
 	public PortletNamespace() {
 		super();
-		setRendererType("javax.portlet.faces.Namespace");
+		setRendererType("jakarta.portlet.faces.Namespace");
 	}
 
 	@Override

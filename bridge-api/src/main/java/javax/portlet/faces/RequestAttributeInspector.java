@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces;
+package jakarta.portlet.faces;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -38,7 +38,7 @@ public interface RequestAttributeInspector {
 	/**
 	 * Determines whether or not a request attribute is to be excluded from the bridge request scope because the
 	 * specified value is an instance of a class annotated with {@link
-	 * javax.portlet.faces.annotation.ExcludeFromManagedRequestScope}.
+	 * jakarta.portlet.faces.annotation.ExcludeFromManagedRequestScope}.
 	 *
 	 * @param   name   The request attribute name.
 	 * @param   value  The request attribute value.
@@ -64,7 +64,7 @@ public interface RequestAttributeInspector {
 	/**
 	 * Determines whether or not a request attribute is to be excluded from the bridge request scope because the
 	 * specified name matches the name of a request attribute that existed before the bridge acquired the {@link
-	 * javax.faces.context.FacesContext}.
+	 * jakarta.faces.context.FacesContext}.
 	 *
 	 * @param   name   The request attribute name.
 	 * @param   value  The request attribute value.

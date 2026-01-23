@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 @org.osgi.annotation.versioning.Version("7.0.0")
-package javax.portlet.faces.component;
+package jakarta.portlet.faces.component;

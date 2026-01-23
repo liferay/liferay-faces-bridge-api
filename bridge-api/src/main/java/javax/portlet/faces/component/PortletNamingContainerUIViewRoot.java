@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces.component;
+package jakarta.portlet.faces.component;
 
 import java.io.Serializable;
 
-import javax.faces.component.NamingContainer;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.portlet.faces.BridgeUtil;
-import javax.portlet.faces.annotation.PortletNamingContainer;
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.portlet.faces.BridgeUtil;
+import jakarta.portlet.faces.annotation.PortletNamingContainer;
 
 import org.osgi.annotation.versioning.ProviderType;
 

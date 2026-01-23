@@ -17,8 +17,8 @@ package com.liferay.faces.bridge.event;
 
 import java.io.Serializable;
 
-import javax.faces.FacesWrapper;
-import javax.portlet.StateAwareResponse;
+import jakarta.faces.FacesWrapper;
+import jakarta.portlet.StateAwareResponse;
 
 import org.osgi.annotation.versioning.ProviderType;
 

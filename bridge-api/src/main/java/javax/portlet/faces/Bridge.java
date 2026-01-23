@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces;
+package jakarta.portlet.faces;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.EventRequest;
-import javax.portlet.EventResponse;
-import javax.portlet.HeaderRequest;
-import javax.portlet.HeaderResponse;
-import javax.portlet.PortletConfig;
-import javax.portlet.PortletRequest;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.portlet.ResourceRequest;
-import javax.portlet.ResourceResponse;
+import jakarta.portlet.ActionRequest;
+import jakarta.portlet.ActionResponse;
+import jakarta.portlet.EventRequest;
+import jakarta.portlet.EventResponse;
+import jakarta.portlet.HeaderRequest;
+import jakarta.portlet.HeaderResponse;
+import jakarta.portlet.PortletConfig;
+import jakarta.portlet.PortletRequest;
+import jakarta.portlet.RenderRequest;
+import jakarta.portlet.RenderResponse;
+import jakarta.portlet.ResourceRequest;
+import jakarta.portlet.ResourceResponse;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -61,15 +61,15 @@ public interface Bridge {
 
 	/**
 	 * Special token parameter in the URL passed to the bridge's implementation of {@link
-	 * javax.faces.context.ExternalContext#encodeResourceURL(String)} that it recognizes as an indication that an URL
+	 * jakarta.faces.context.ExternalContext#encodeResourceURL(String)} that it recognizes as an indication that an URL
 	 * referring back to the page which contains this portlet should be encoded in the resource URL. This reference is
 	 * encoded as the value of a query string parameter whose name is the value of this back link token parameter.
 	 */
-	public static final String BACK_LINK = "javax.portlet.faces.BackLink";
+	public static final String BACK_LINK = "jakarta.portlet.faces.BackLink";
 
 	/**
-	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
-	 *              "javax.portlet.faces.bridgeEventHandler" instead.
+	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "jakarta.portlet.faces.bridgeEventHandler" instead.
 	 *
 	 *              <p>Portlet context attribute that a portlet can set prior to calling {@link
 	 *              Bridge#init(PortletConfig)} to configure the bridge to use/call the associated {@link
@@ -77,17 +77,17 @@ public interface Bridge {
 	 *              BridgeEventHandler</code>. As this attribute is scoped to a specific portlet in an application-wide
 	 *              context the attribute name must be include the portlet name as follows:</p>
 	 *
-	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
+	 *              <pre>"jakarta.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
 	 */
 	@Deprecated
 	public static final String BRIDGE_EVENT_HANDLER = "bridgeEventHandler";
 
 	/** Base attribute/context parameter prefix. */
-	public static final String BRIDGE_PACKAGE_PREFIX = "javax.portlet.faces.";
+	public static final String BRIDGE_PACKAGE_PREFIX = "jakarta.portlet.faces.";
 
 	/**
-	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
-	 *              "javax.portlet.faces.bridgePublicRenderParameterHandler" instead.
+	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "jakarta.portlet.faces.bridgePublicRenderParameterHandler" instead.
 	 *
 	 *              <p>Portlet context attribute that a portlet can set prior to calling the {@link
 	 *              #init(PortletConfig)} method to configure the bridge to use/call the associated {@link
@@ -98,7 +98,7 @@ public interface Bridge {
 	 *              BridgePublicRenderParameterHandler</code>. As this attribute is scoped to a specific portlet in an
 	 *              application-wide context the attribute name must be include the portlet name as follows:</p>
 	 *
-	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
+	 *              <pre>"jakarta.portlet.faces." + portletContext.getPortletName() + ".bridgeEventHandler"</pre>
 	 */
 	@Deprecated
 	public static final String BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER = "bridgePublicRenderParameterHandler";
@@ -110,7 +110,7 @@ public interface Bridge {
 	 * to the {@link PortletRequest#RENDER_PHASE}.
 	 */
 	public static final String BRIDGE_REQUEST_SCOPE_ACTION_ENABLED =
-		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_ACTION_ENABLED";
+		"jakarta.portlet.faces.BRIDGE_REQUEST_SCOPE_ACTION_ENABLED";
 
 	/**
 	 * Context initialization parameter that specifies whether or not Ajax XHR requests that invoke the {@link
@@ -119,11 +119,11 @@ public interface Bridge {
 	 * in the {@link PortletRequest#RESOURCE_PHASE} and ends in the same {@link PortletRequest#RESOURCE_PHASE}.
 	 */
 	public static final String BRIDGE_REQUEST_SCOPE_AJAX_ENABLED =
-		"javax.portlet.faces.BRIDGE_REQUEST_SCOPE_AJAX_ENABLED";
+		"jakarta.portlet.faces.BRIDGE_REQUEST_SCOPE_AJAX_ENABLED";
 
 	/**
-	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
-	 *              "javax.portlet.faces.defaultRenderKitId" instead.
+	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "jakarta.portlet.faces.defaultRenderKitId" instead.
 	 *
 	 *              <p>Portlet context attribute that a portlet can set prior to calling the {@link
 	 *              #init(PortletConfig)} method to configure the bridge to default the renderKitId used for rendering
@@ -138,9 +138,9 @@ public interface Bridge {
 	public static final String DEFAULT_RENDERKIT_ID = "defaultRenderKitId";
 
 	/**
-	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter
-	 *              "javax.portlet.faces.defaultViewId.view", "javax.portlet.faces.defaultViewId.edit", or
-	 *              "javax.portlet.faces.defaultViewId.help", etc.
+	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter
+	 *              "jakarta.portlet.faces.defaultViewId.view", "jakarta.portlet.faces.defaultViewId.edit", or
+	 *              "jakarta.portlet.faces.defaultViewId.help", etc.
 	 *
 	 *              <p>Portlet context attribute that a portlet must set prior to calling {@link
 	 *              Bridge#init(PortletConfig)} to convey to the bridge the set of default viewIds that correspond to
@@ -149,22 +149,22 @@ public interface Bridge {
 	 *              should use for this mode. As this attribute is scoped to a specific portlet in an application-wide
 	 *              context the attribute name must be include the portlet name as follows:</p>
 	 *
-	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".defaultViewIdMap"</pre>
+	 *              <pre>"jakarta.portlet.faces." + portletContext.getPortletName() + ".defaultViewIdMap"</pre>
 	 */
 	@Deprecated
 	public static final String DEFAULT_VIEWID_MAP = "defaultViewIdMap";
 
 	/**
 	 * Special token parameter in the URL passed to the bridge's implementation of {@link
-	 * javax.faces.context.ExternalContext#encodeActionURL(String)} that it recognizes as an indication that this action
+	 * jakarta.faces.context.ExternalContext#encodeActionURL(String)} that it recognizes as an indication that this action
 	 * should be treated as a direct link and hence shouldn't be encoded as a Portlet action. Rather, the call to <code>
 	 * encodeActionURL</code> merely returns this URL unchanged.
 	 */
-	public static final String DIRECT_LINK = "javax.portlet.faces.DirectLink";
+	public static final String DIRECT_LINK = "jakarta.portlet.faces.DirectLink";
 
 	/**
-	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
-	 *              "javax.portlet.faces.excludedRequestAttributes" instead.
+	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "jakarta.portlet.faces.excludedRequestAttributes" instead.
 	 *
 	 *              <p>Portlet context attribute that a portlet can set prior to calling {@link
 	 *              Bridge#init(PortletConfig)} to configure the bridge to exclude specific attributes from its bridge
@@ -174,24 +174,24 @@ public interface Bridge {
 	 *              specific portlet in an application-wide context the attribute name must be include the portlet name
 	 *              as follows:</p>
 	 *
-	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".excludedRequestAttributes"</pre>
+	 *              <pre>"jakarta.portlet.faces." + portletContext.getPortletName() + ".excludedRequestAttributes"</pre>
 	 */
 	@Deprecated
 	public static final String EXCLUDED_REQUEST_ATTRIBUTES = "excludedRequestAttributes";
 
 	/**
-	 * Request parameter that can be set on a {@link javax.portlet.ResourceURL}. When set to a value of "true", the
-	 * bridge will invoke the JSF lifecycle in the {@link javax.portlet.PortletRequest#RESOURCE_PHASE} of the portlet
-	 * lifecycle. In addition, it will cause {@link javax.faces.context.ExternalContext#getRequestHeaderMap()} to
-	 * contain a "partial/ajax" header so that {@link javax.faces.context.PartialViewContext#isAjaxRequest()} will
+	 * Request parameter that can be set on a {@link jakarta.portlet.ResourceURL}. When set to a value of "true", the
+	 * bridge will invoke the JSF lifecycle in the {@link jakarta.portlet.PortletRequest#RESOURCE_PHASE} of the portlet
+	 * lifecycle. In addition, it will cause {@link jakarta.faces.context.ExternalContext#getRequestHeaderMap()} to
+	 * contain a "partial/ajax" header so that {@link jakarta.faces.context.PartialViewContext#isAjaxRequest()} will
 	 * return <code>true</code>.
 	 */
 	public static final String FACES_AJAX_PARAMETER = "_jsfBridgeAjax";
 
 	/**
-	 * Request parameter that can be set on a {@link javax.portlet.ResourceURL}. When set to a value of "true", the
-	 * bridge will cause {@link javax.faces.context.ExternalContext#getRequestHeaderMap()} to contain a
-	 * "partial/process" header so that {@link javax.faces.context.PartialViewContext#isPartialRequest()} will return
+	 * Request parameter that can be set on a {@link jakarta.portlet.ResourceURL}. When set to a value of "true", the
+	 * bridge will cause {@link jakarta.faces.context.ExternalContext#getRequestHeaderMap()} to contain a
+	 * "partial/process" header so that {@link jakarta.faces.context.PartialViewContext#isPartialRequest()} will return
 	 * <code>true</code>.
 	 */
 	public static final String FACES_PARTIAL_PARAMETER = "_jsfBridgePartial";
@@ -199,7 +199,7 @@ public interface Bridge {
 	/**
 	 * Special value recognized when encoding an action URL: It is a URL that contains either the {@link
 	 * #FACES_VIEW_ID_PARAMETER} or {@link #FACES_VIEW_PATH_PARAMETER}. The bridge's implementation of {@link
-	 * javax.faces.context.ExternalContext#encodeActionURL(String)} recognizes this value as indicating it needs to
+	 * jakarta.faces.context.ExternalContext#encodeActionURL(String)} recognizes this value as indicating it needs to
 	 * generate and encode an URL to the current JSF including its current state. For example: It not only encodes the
 	 * link reference but also the existing render parameters so they can be carried forward to reestablish the state.
 	 */
@@ -220,17 +220,17 @@ public interface Bridge {
 	 * the portlet that the non-Faces view intends to navigate to the Faces view expressed in the value of this
 	 * parameter. It differs from the {@link #FACES_VIEW_ID_PARAMETER} in that its value is a <code>ContextPath</code>
 	 * relative path containing the viewId while the former is the viewId itself. Portlets receiving such a parameter
-	 * should set the the corresponding request attribute <code>javax.portlet.faces.viewPath</code> before calling the
+	 * should set the the corresponding request attribute <code>jakarta.portlet.faces.viewPath</code> before calling the
 	 * bridge to handle the request.
 	 */
 	public static final String FACES_VIEW_PATH_PARAMETER = "_jsfBridgeViewPath";
 
 	/**
 	 * Special token parameter in the URL passed to the bridge's implementation of {@link
-	 * javax.faces.context.ExternalContext#encodeResourceURL(String)} that it recognizes as an indication that this
+	 * jakarta.faces.context.ExternalContext#encodeResourceURL(String)} that it recognizes as an indication that this
 	 * resource should be handled in-protocol.
 	 */
-	public static final String IN_PROTOCOL_RESOURCE_LINK = "javax.portlet.faces.InProtocolResourceLink";
+	public static final String IN_PROTOCOL_RESOURCE_LINK = "jakarta.portlet.faces.InProtocolResourceLink";
 
 	/**
 	 * Portlet request attribute set by the bridge when processing a Faces request that signals this request is a Faces
@@ -238,19 +238,19 @@ public interface Bridge {
 	 * indicator that this is a postback request. Implementations needing this information and not using the view state
 	 * parameter indicator can check this attribute when running in a portlet environment.
 	 */
-	public static final String IS_POSTBACK_ATTRIBUTE = "javax.portlet.faces.isPostback";
+	public static final String IS_POSTBACK_ATTRIBUTE = "jakarta.portlet.faces.isPostback";
 
 	/**
 	 * Context initialization parameter that defines the lifecycle ID used to identify the Faces Lifecycle used for this
-	 * application. See also {@link javax.faces.webapp.FacesServlet#LIFECYCLE_ID_ATTR}.
+	 * application. See also {@link jakarta.faces.webapp.FacesServlet#LIFECYCLE_ID_ATTR}.
 	 */
-	public static final String LIFECYCLE_ID = "javax.faces.LIFECYCLE_ID";
+	public static final String LIFECYCLE_ID = "jakarta.faces.LIFECYCLE_ID";
 
 	/**
 	 * Context initialization parameter that specifies the maximum number of bridge request scopes to be preserved
 	 * across all uses within this application.
 	 */
-	public static final String MAX_MANAGED_REQUEST_SCOPES = "javax.portlet.faces.MAX_MANAGED_REQUEST_SCOPES";
+	public static final String MAX_MANAGED_REQUEST_SCOPES = "jakarta.portlet.faces.MAX_MANAGED_REQUEST_SCOPES";
 
 	/**
 	 * Name of the render parameter set by the bridge when it encodes a navigation link to a non-Faces target. Though
@@ -259,7 +259,7 @@ public interface Bridge {
 	 * these requests. When the non-Faces target is a path based resource (such as a JSP or servlet), the <code>
 	 * ContextPath</code> relative path of the resource is written as the value of this render parameter. For
 	 * convenience, the <code>GenericFacesPortlet</code> recognizes this render parameter in received requests and uses
-	 * the {@link javax.portlet.PortletRequestDispatcher} to dispatch to the encoded path instead of calling the bridge
+	 * the {@link jakarta.portlet.PortletRequestDispatcher} to dispatch to the encoded path instead of calling the bridge
 	 * to execute the request.
 	 */
 	public static final String NONFACES_TARGET_PATH_PARAMETER = "_jsfBridgeNonFacesView";
@@ -270,47 +270,47 @@ public interface Bridge {
 	 * the attribute (which is implementation dependent) is written to the response at the end of the {@link
 	 * PortletRequest#RENDER_PHASE} of the portlet lifecycle.
 	 */
-	public static final String RENDER_RESPONSE_OUTPUT = "javax.portlet.faces.renderResponseOutput";
+	public static final String RENDER_RESPONSE_OUTPUT = "jakarta.portlet.faces.renderResponseOutput";
 
 	/**
 	 * Portlet request attribute set by the bridge prior to creating/acquiring a {@link
-	 * javax.faces.context.FacesContext}. Its value indicates which portlet phase this Faces is executing in. It can be
+	 * jakarta.faces.context.FacesContext}. Its value indicates which portlet phase this Faces is executing in. It can be
 	 * used by Faces subsystems not only to determine the portlet execution phase but if present (not null) as an
 	 * indication the request is being processed in a portlet container.
 	 */
-	public static final String PORTLET_LIFECYCLE_PHASE = "javax.portlet.faces.phase";
+	public static final String PORTLET_LIFECYCLE_PHASE = "jakarta.portlet.faces.phase";
 
 	/**
 	 * Special token parameter in the URL passed to the bridge's implementation of {@link
-	 * javax.faces.context.ExternalContext#encodeActionURL(String)} that it recognizes as an indication that this action
+	 * jakarta.faces.context.ExternalContext#encodeActionURL(String)} that it recognizes as an indication that this action
 	 * should encode a portlet mode change to the one indicated by the parameter's value.
 	 */
-	public static final String PORTLET_MODE_PARAMETER = "javax.portlet.faces.PortletMode";
+	public static final String PORTLET_MODE_PARAMETER = "jakarta.portlet.faces.PortletMode";
 
 	/**
 	 * Name of the portlet response property set by the bridge when it recognizes that the view has been rendered using
-	 * a {@link javax.faces.component.NamingContainer} that ensures all generated ids are namespaced using the consumer
+	 * a {@link jakarta.faces.component.NamingContainer} that ensures all generated ids are namespaced using the consumer
 	 * provided unique portlet id.
 	 */
 	public static final String PORTLET_NAMESPACED_RESPONSE_PROPERTY = "X-JAVAX-PORTLET-FACES-NAMESPACED-RESPONSE";
 
 	/**
 	 * Special token parameter in the URL passed to bridge's implementation of {@link
-	 * javax.faces.context.ExternalContext#encodeActionURL(String)} that it recognizes as an indication that this action
+	 * jakarta.faces.context.ExternalContext#encodeActionURL(String)} that it recognizes as an indication that this action
 	 * should encode a security level change to the one indicated by the parameter's value.
 	 */
-	public static final String PORTLET_SECURE_PARAMETER = "javax.portlet.faces.Secure";
+	public static final String PORTLET_SECURE_PARAMETER = "jakarta.portlet.faces.Secure";
 
 	/**
 	 * Special token parameter in the URL passed to the bridge's implementation of {@link
-	 * javax.faces.context.ExternalContext#encodeActionURL(String)} that it recognizes as an indication that this action
+	 * jakarta.faces.context.ExternalContext#encodeActionURL(String)} that it recognizes as an indication that this action
 	 * should encode a window state change to the one indicated by the parameter's value.
 	 */
-	public static final String PORTLET_WINDOWSTATE_PARAMETER = "javax.portlet.faces.WindowState";
+	public static final String PORTLET_WINDOWSTATE_PARAMETER = "jakarta.portlet.faces.WindowState";
 
 	/**
-	 * @deprecated  Call {@link javax.faces.context.ExternalContext#getInitParameter(String)} with parameter value
-	 *              "javax.portlet.faces.preserveActionParams" instead.
+	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter value
+	 *              "jakarta.portlet.faces.preserveActionParams" instead.
 	 *
 	 *              <p>Portlet context attribute that a portlet can set prior to calling {@link
 	 *              Bridge#init(PortletConfig)} to configure the bridge to preserve action parameters received by this
@@ -320,7 +320,7 @@ public interface Bridge {
 	 *              As this attribute is scoped to a specific portlet in an application-wide context the attribute name
 	 *              must be include the portlet name as follows:</p>
 	 *
-	 *              <pre>"javax.portlet.faces." + portletContext.getPortletName() + ".preserveActionParams"</pre>
+	 *              <pre>"jakarta.portlet.faces." + portletContext.getPortletName() + ".preserveActionParams"</pre>
 	 */
 	@Deprecated
 	public static final String PRESERVE_ACTION_PARAMS = "preserveActionParams";
@@ -331,7 +331,7 @@ public interface Bridge {
 	 * it automatically detects and supports. For example the bridge RI will detect and run properly in either the Faces
 	 * RI or MyFaces environments without this being set.
 	 */
-	public static final String SAVESTATE_FIELD_MARKER = "javax.portlet.faces.SAVESTATE_FIELD_MARKER";
+	public static final String SAVESTATE_FIELD_MARKER = "jakarta.portlet.faces.SAVESTATE_FIELD_MARKER";
 
 	/**
 	 * Portlet request attribute that a portlet may set prior to calling the bridge's {@link
@@ -341,16 +341,16 @@ public interface Bridge {
 	 * than the default). Generally, the use of this attribute is mutually exclusive with the use of {@link #VIEW_PATH}.
 	 * If both have been set in a given request, the bridge gives precedence to <code>VIEW_ID</code>.
 	 */
-	public static final String VIEW_ID = "javax.portlet.faces.viewId";
+	public static final String VIEW_ID = "jakarta.portlet.faces.viewId";
 
 	/**
 	 * Special token parameter in the URL passed to the bridge's implementation of {@link
-	 * javax.faces.context.ExternalContext#encodeResourceURL(String)} that it recognizes as an indication that this URL
+	 * jakarta.faces.context.ExternalContext#encodeResourceURL(String)} that it recognizes as an indication that this URL
 	 * refers to Faces view (navigation) and hence should be encoded as a portlet ActionURL rather then a portlet
 	 * ResourceURL. This token is intended for use in URLs signifying a view navigation using components such as <code>
 	 * h:outputLink</code>.
 	 */
-	public static final String VIEW_LINK = "javax.portlet.faces.ViewLink";
+	public static final String VIEW_LINK = "jakarta.portlet.faces.ViewLink";
 
 	/**
 	 * Portlet request attribute that a portlet may set prior to calling the bridge's {@link
@@ -361,16 +361,16 @@ public interface Bridge {
 	 * Generally, the use of this attribute is mutually exclusive with the use of <code>VIEW_PATH</code>. If both have
 	 * been set in a given request, the bridge gives precedence to {@link #VIEW_ID}.
 	 */
-	public static final String VIEW_PATH = "javax.portlet.faces.viewPath";
+	public static final String VIEW_PATH = "jakarta.portlet.faces.viewPath";
 
 	/**
 	 * Portlet session attribute set by the bridge to hold the last viewId accessed in a given mode. The attribute (key)
-	 * is composed of this name + the mode name. For example: javax.portlet.faces.viewIdHistory.view. There is one
+	 * is composed of this name + the mode name. For example: jakarta.portlet.faces.viewIdHistory.view. There is one
 	 * attribute per supported portlet mode. The attributes are always set even if the user session has never entered
 	 * the mode. Its initial setting/value is determined by the default viewId configured for the mode. Attribute is
 	 * used by developers to reference/return to the last view in a given mode from another mode.
 	 */
-	public static final String VIEWID_HISTORY = "javax.portlet.faces.viewIdHistory";
+	public static final String VIEWID_HISTORY = "jakarta.portlet.faces.viewIdHistory";
 
 	/**
 	 * Enumeration whose values describe the current portlet phase the bridge is executing Faces within.
@@ -465,21 +465,21 @@ public interface Bridge {
 	 * attributes are defined:</p>
 	 *
 	 * <ul>
-	 *   <li><code>javax.portlet.faces.encodeRedirectURL</code>: instructs the bridge to call <code>
+	 *   <li><code>jakarta.portlet.faces.encodeRedirectURL</code>: instructs the bridge to call <code>
 	 *     ExternalContext.encodeActionURL()</code> before processing the redirect request. This exists because some
 	 *     (newer) versions of JSF 1.2 call <code>encodeActionURL</code> before calling <code>redirect</code> while
 	 *     others do not. This flag adjusts the behavior of the bridge in accordance with the JSF 1.2 implementation it
 	 *     runs with.</li>
-	 *   <li><code>javax.portlet.faces.MAX_MANAGED_REQUEST_SCOPES</code>: defines the maximum number of bridge request
+	 *   <li><code>jakarta.portlet.faces.MAX_MANAGED_REQUEST_SCOPES</code>: defines the maximum number of bridge request
 	 *     scopes this bridge preserves at any given time. Value is an integer. Bridge request scopes are managed on a
 	 *     per Bridge class portlet context wide basis. As a typical portlet application uses the same bridge
 	 *     implementation for all its Faces based portlets, this means that all bridge request scopes are managed in a
 	 *     single bucket.<br>
 	 *     For convenience this interface defines the {@link #MAX_MANAGED_REQUEST_SCOPES} constant.</li>
-	 *   <li><code>javax.faces.lifecycleID</code>: defines the Faces <code>Lifecycle</code> id that bridge uses when
+	 *   <li><code>jakarta.faces.lifecycleID</code>: defines the Faces <code>Lifecycle</code> id that bridge uses when
 	 *     acquiring the <code>Faces.Lifecycle</code> via which it executes the request. As a context wide attribute,
 	 *     all bridge instances in this portlet application will use this lifecycle.</li>
-	 *   <li><code>javax.portlet.faces.[portlet name].preserveActionParams</code>: instructs the bridge to preserve
+	 *   <li><code>jakarta.portlet.faces.[portlet name].preserveActionParams</code>: instructs the bridge to preserve
 	 *     action parameters in the action scope and represent them in subsequent renders. Should be used only when
 	 *     binding to a Faces implementation that relies on accessing such parameters during its render phase. As this
 	 *     is a portlet/bridge instance specific attribute, the <code>PortletContext</code>attribute name is qualified

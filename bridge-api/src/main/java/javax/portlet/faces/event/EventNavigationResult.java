@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces.event;
+package jakarta.portlet.faces.event;
 
-import javax.faces.context.FacesContext;
-import javax.portlet.Event;
+import jakarta.faces.context.FacesContext;
+import jakarta.portlet.Event;
 
 import org.osgi.annotation.versioning.ProviderType;
 
 
 /**
  * An <code>EventNavigationResult</code> is the type of object that can be returned from a {@link
- * javax.portlet.faces.BridgeEventHandler#handleEvent(FacesContext, Event)} call. When it is returned as a (non-null)
+ * jakarta.portlet.faces.BridgeEventHandler#handleEvent(FacesContext, Event)} call. When it is returned as a (non-null)
  * value, it conveys the Faces navigation information to the bridge that it needs to utilize the Faces {@link
- * javax.faces.application.NavigationHandler} to evaluate the navigation according to the configured rules. The <code>
+ * jakarta.faces.application.NavigationHandler} to evaluate the navigation according to the configured rules. The <code>
  * fromAction</code> corresponds to the <code>fromAction</code> string in the faces-config.xml navigation rule. The
  * <code>outcome</code> corresponds to the <code>outcome</code> string in the navigation rule.
  *

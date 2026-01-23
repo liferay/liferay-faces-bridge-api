@@ -15,11 +15,11 @@
  */
 package com.liferay.faces.bridge.component.inputfile;
 
-import javax.el.MethodExpression;
-import javax.faces.component.FacesComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.FacesEvent;
+import jakarta.el.MethodExpression;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.FacesEvent;
 
 import org.osgi.annotation.versioning.ConsumerType;
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces;
+package jakarta.portlet.faces;
 
 import java.util.Map;
 import java.util.Set;
@@ -46,13 +46,13 @@ public interface BridgeConfig {
 
 	/**
 	 * Returns the parameter name used for storing the value of the target viewId in a {@link
-	 * javax.portlet.RenderRequest}.
+	 * jakarta.portlet.RenderRequest}.
 	 */
 	public String getViewIdRenderParameterName();
 
 	/**
 	 * Returns the parameter name used for storing the value of the target viewId in a {@link
-	 * javax.portlet.ResourceRequest}.
+	 * jakarta.portlet.ResourceRequest}.
 	 */
 	public String getViewIdResourceParameterName();
 

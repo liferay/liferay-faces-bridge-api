@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces.component;
+package jakarta.portlet.faces.component;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponentBase;
 
 import org.osgi.annotation.versioning.ConsumerType;
 
@@ -29,8 +29,8 @@ import org.osgi.annotation.versioning.ConsumerType;
 public class PortletRenderURL extends UIComponentBase {
 
 	// Public Constants
-	public static final String COMPONENT_FAMILY = "javax.portlet.faces.URL";
-	public static final String COMPONENT_TYPE = "javax.portlet.faces.RenderURL";
+	public static final String COMPONENT_FAMILY = "jakarta.portlet.faces.URL";
+	public static final String COMPONENT_TYPE = "jakarta.portlet.faces.RenderURL";
 
 	// Protected Enumerations
 	protected enum PropertyKeys {
@@ -39,7 +39,7 @@ public class PortletRenderURL extends UIComponentBase {
 
 	public PortletRenderURL() {
 		super();
-		setRendererType("javax.portlet.faces.RenderURL");
+		setRendererType("jakarta.portlet.faces.RenderURL");
 	}
 
 	@Override

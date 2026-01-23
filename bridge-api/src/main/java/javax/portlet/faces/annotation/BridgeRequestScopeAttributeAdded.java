@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces.annotation;
+package jakarta.portlet.faces.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -28,7 +28,7 @@ import org.osgi.annotation.versioning.ConsumerType;
  * The <code>BridgeRequestScopeAttributeAdded</code> annotation is used on methods as a callback notification to signal
  * that the instance is in the process of being added to the container's request scope and that this attribute will be
  * managed in the bridge request scope. This signal can be used by the instance to flag that its {@link
- * javax.annotation.PreDestroy} method should not perform any cleanup and instead rely on the method annotated with
+ * jakarta.annotation.PreDestroy} method should not perform any cleanup and instead rely on the method annotated with
  * {@link BridgePreDestroy} to do so. The method on which this annotation is applied MUST fulfill all of the following
  * criteria:
  *

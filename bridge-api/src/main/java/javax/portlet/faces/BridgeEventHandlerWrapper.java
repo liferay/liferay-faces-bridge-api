@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces;
+package jakarta.portlet.faces;
 
-import javax.faces.FacesWrapper;
-import javax.faces.context.FacesContext;
-import javax.portlet.Event;
-import javax.portlet.faces.event.EventNavigationResult;
+import jakarta.faces.FacesWrapper;
+import jakarta.faces.context.FacesContext;
+import jakarta.portlet.Event;
+import jakarta.portlet.faces.event.EventNavigationResult;
 
 import org.osgi.annotation.versioning.ConsumerType;
 

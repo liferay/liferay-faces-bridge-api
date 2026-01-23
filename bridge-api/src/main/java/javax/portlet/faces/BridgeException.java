@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces;
+package jakarta.portlet.faces;
 
-import javax.faces.FacesException;
+import jakarta.faces.FacesException;
 
 import org.osgi.annotation.versioning.ConsumerType;
 

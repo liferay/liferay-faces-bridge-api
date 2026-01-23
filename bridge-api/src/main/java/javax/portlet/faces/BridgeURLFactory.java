@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces;
+package jakarta.portlet.faces;
 
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.FacesWrapper;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.portlet.PortletContext;
+import jakarta.faces.FacesWrapper;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.portlet.PortletContext;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -109,7 +109,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	/**
 	 * Returns a new action URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be {@link
 	 * java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the deviation requirements of
-	 * {@link javax.faces.context.ExternalContext#encodeActionURL(String)} listed in Section 6.1.3.1 of the Bridge Spec.
+	 * {@link jakarta.faces.context.ExternalContext#encodeActionURL(String)} listed in Section 6.1.3.1 of the Bridge Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
 	 * @param   uri           The URI that is to be encoded.
@@ -123,7 +123,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	/**
 	 * Returns a new bookmarkable URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be
 	 * {@link java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the deviation
-	 * requirements of {@link javax.faces.context.ExternalContext#encodeBookmarkableURL(String, Map)} listed in Section
+	 * requirements of {@link jakarta.faces.context.ExternalContext#encodeBookmarkableURL(String, Map)} listed in Section
 	 * 6.1.3.3 of the Bridge Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
@@ -139,7 +139,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	/**
 	 * Returns a new partial action URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be
 	 * {@link java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the deviation
-	 * requirements of {@link javax.faces.context.ExternalContext#encodePartialActionURL(String)} listed in Section
+	 * requirements of {@link jakarta.faces.context.ExternalContext#encodePartialActionURL(String)} listed in Section
 	 * 6.1.3.3 of the Bridge Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
@@ -154,7 +154,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	/**
 	 * Returns a new redirect URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be {@link
 	 * java.io.Serializable}. The return value of {@link BridgeURL#toString()}, conforms to the deviation requirements
-	 * of {@link javax.faces.context.ExternalContext#encodeRedirectURL(String, Map)} listed in Section 6.1.3.3 of the
+	 * of {@link jakarta.faces.context.ExternalContext#encodeRedirectURL(String, Map)} listed in Section 6.1.3.3 of the
 	 * Bridge Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.
@@ -170,7 +170,7 @@ public abstract class BridgeURLFactory implements FacesWrapper<BridgeURLFactory>
 	/**
 	 * Returns a new resource URL instance of {@link BridgeURL}. The returned instance is not guaranteed to be {@link
 	 * java.io.Serializable}. The return value of {@link BridgeURL#toString()} conforms to the deviation requirements of
-	 * {@link javax.faces.context.ExternalContext#encodeResourceURL(String)} listed in Section 6.1.3.1 of the Bridge
+	 * {@link jakarta.faces.context.ExternalContext#encodeResourceURL(String)} listed in Section 6.1.3.1 of the Bridge
 	 * Spec.
 	 *
 	 * @param   facesContext  The FacesContext instance associated with the current request.

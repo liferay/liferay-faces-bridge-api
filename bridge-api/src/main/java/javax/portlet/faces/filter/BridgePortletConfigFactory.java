@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package javax.portlet.faces.filter;
+package jakarta.portlet.faces.filter;
 
-import javax.faces.FacesWrapper;
-import javax.portlet.PortletConfig;
-import javax.portlet.faces.BridgeFactoryFinder;
+import jakarta.faces.FacesWrapper;
+import jakarta.portlet.PortletConfig;
+import jakarta.portlet.faces.BridgeFactoryFinder;
 
 import org.osgi.annotation.versioning.ProviderType;
 
