@@ -19,7 +19,7 @@ import jakarta.faces.FacesWrapper;
 import jakarta.faces.context.ResponseWriter;
 import jakarta.portlet.PortletContext;
 import jakarta.portlet.PortletResponse;
-import jakarta.portlet.faces.BridgeFactoryFinder;
+import com.liferay.faces.BridgeFactoryFinder;
 
 import org.osgi.annotation.versioning.ProviderType;
 
