@@ -248,8 +248,8 @@
 							# jakarta.el is automatically imported with the following versions:
 							# jakarta.el;version="[2.2.0,3.0.0)", but versions 3.0.0+ are also valid.
 							Import-Package: \
-								!jakarta.portlet.faces,\
-								!jakarta.portlet.faces.*,\
+								!com.liferay.faces,\
+								!com.liferay.faces.*,\
 								!com.liferay.faces.bridge,\
 								!com.liferay.faces.bridge.*,\
 								!com.liferay.faces.portlet,\
@@ -259,9 +259,9 @@
 							# The following configuration enables the Bridge API bundle to obtain necessary SPI
 							# implementations.
 							Require-Capability: \
-								osgi.serviceloader;filter:="(osgi.serviceloader=jakarta.portlet.faces.Bridge)";\
+								osgi.serviceloader;filter:="(osgi.serviceloader=com.liferay.faces.Bridge)";\
 								cardinality:=multiple,\
-								osgi.serviceloader;filter:="(osgi.serviceloader=jakarta.portlet.faces.BridgeFactoryFinder)";\
+								osgi.serviceloader;filter:="(osgi.serviceloader=com.liferay.faces.BridgeFactoryFinder)";\
 								cardinality:=multiple,\
 								osgi.extender; filter:="(osgi.extender=osgi.serviceloader.processor)"
 						]]>

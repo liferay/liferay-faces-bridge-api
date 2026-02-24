@@ -29,8 +29,8 @@ import org.osgi.annotation.versioning.ConsumerType;
 public class PortletRenderURL extends UIComponentBase {
 
 	// Public Constants
-	public static final String COMPONENT_FAMILY = "jakarta.portlet.faces.URL";
-	public static final String COMPONENT_TYPE = "jakarta.portlet.faces.RenderURL";
+	public static final String COMPONENT_FAMILY = "com.liferay.faces.URL";
+	public static final String COMPONENT_TYPE = "com.liferay.faces.RenderURL";
 
 	// Protected Enumerations
 	protected enum PropertyKeys {
@@ -39,7 +39,7 @@ public class PortletRenderURL extends UIComponentBase {
 
 	public PortletRenderURL() {
 		super();
-		setRendererType("jakarta.portlet.faces.RenderURL");
+		setRendererType("com.liferay.faces.RenderURL");
 	}
 
 	@Override

@@ -64,14 +64,14 @@ import org.osgi.annotation.versioning.ConsumerType;
  * <p>The <code>GenericFacesPortlet</code> recognizes the following portlet initialization parameters:
  *
  * <ul>
- *   <li><code>jakarta.portlet.faces.defaultViewId.[<i>mode</i>]</code>: specifies on a per mode basis the default viewId
+ *   <li><code>com.liferay.faces.defaultViewId.[<i>mode</i>]</code>: specifies on a per mode basis the default viewId
  *     the Bridge executes when not already encoded in the incoming request. A value must be defined for each <code>
  *     PortletMode</code> the <code>Bridge</code> is expected to process.</li>
- *   <li><code>jakarta.portlet.faces.excludedRequestAttributes</code>: specifies on a per portlet basis the set of request
+ *   <li><code>com.liferay.faces.excludedRequestAttributes</code>: specifies on a per portlet basis the set of request
  *     attributes the bridge is to exclude from its request scope. The value of this parameter is a comma delimited list
  *     of either fully qualified attribute names or a partial attribute name of the form <i>packageName.*</i>. In this
  *     later case all attributes exactly prefixed by <i>packageName</i> are excluded, non recursive.</li>
- *   <li><code>jakarta.portlet.faces.preserveActionParams</code>: specifies on a per portlet basis whether the bridge
+ *   <li><code>com.liferay.faces.preserveActionParams</code>: specifies on a per portlet basis whether the bridge
  *     should preserve parameters received in an action request and restore them for use during subsequent renders.</li>
  * </ul>
  *
@@ -79,7 +79,7 @@ import org.osgi.annotation.versioning.ConsumerType;
  * initialization parameters:
  *
  * <ul>
- *   <li><code>jakarta.portlet.faces.BridgeImplClass</code>: specifies the <code>Bridge</code>implementation class used by
+ *   <li><code>com.liferay.faces.BridgeImplClass</code>: specifies the <code>Bridge</code>implementation class used by
  *     this portlet. Typically this initialization parameter isn't set as the <code>GenericFacesPortlet</code> defaults
  *     to finding the class name from the bridge configuration. However if more then one bridge is configured in the
  *     environment such per application configuration is necessary to force a specific bridge to be used.</li>
@@ -97,13 +97,13 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * processing by dispatching all events to the bridge or delegates all event processing to the <code>
 	 * GenericPortlet</code>. Default is <code>true</code>.
 	 */
-	public static final String BRIDGE_AUTO_DISPATCH_EVENTS = "jakarta.portlet.faces.autoDispatchEvents";
+	public static final String BRIDGE_AUTO_DISPATCH_EVENTS = "com.liferay.faces.autoDispatchEvents";
 
 	/**
 	 * Application (PortletContext) init parameter that names the bridge class used by this application. Typically not
 	 * used unless more then 1 bridge is configured in an environment as it is more usual to rely on the self detection.
 	 */
-	public static final String BRIDGE_CLASS = "jakarta.portlet.faces.BridgeClassName";
+	public static final String BRIDGE_CLASS = "com.liferay.faces.BridgeClassName";
 
 	/**
 	 * Portlet init-param that determines whether or not the {@link #init(PortletConfig)} method sets {@link
@@ -121,7 +121,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 * </ul>
 	 */
 	public static final String INITIALIZE_NAMESPACED_CONTEXT_ATTRIBUTES =
-		"jakarta.portlet.faces.initializeNamespacedContextAttributes";
+		"com.liferay.faces.initializeNamespacedContextAttributes";
 
 	/**
 	 * Location of the services descriptor file in a brige installation that defines the class name of the bridge
@@ -135,7 +135,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 *              bridge implementations (since JSR 329) no longer utilize it.
 	 */
 	@Deprecated
-	public static final String DEFAULT_CONTENT_TYPE = "jakarta.portlet.faces.defaultContentType";
+	public static final String DEFAULT_CONTENT_TYPE = "com.liferay.faces.defaultContentType";
 
 	/**
 	 * @deprecated  Portlet init parameter that defines the render response CharacterSetEncoding the bridge sets prior
@@ -144,14 +144,14 @@ public class GenericFacesPortlet extends GenericPortlet {
 	 *              implementations (since JSR 329) no longer utilize it.
 	 */
 	@Deprecated
-	public static final String DEFAULT_CHARACTERSET_ENCODING = "jakarta.portlet.faces.defaultCharacterSetEncoding";
+	public static final String DEFAULT_CHARACTERSET_ENCODING = "com.liferay.faces.defaultCharacterSetEncoding";
 
 	/**
 	 * Portlet init parameter that defines the default ViewId that should be used when the request doesn't otherwise
 	 * convery the target. There must be one initialization parameter for each supported mode. Each parameter is named
 	 * DEFAULT_VIEWID.<i>mode</i>, where <i>mode</i> is the name of the corresponding <code>PortletMode</code>
 	 */
-	public static final String DEFAULT_VIEWID = "jakarta.portlet.faces.defaultViewId";
+	public static final String DEFAULT_VIEWID = "com.liferay.faces.defaultViewId";
 
 	// Private Data Members
 	private boolean autoDispatchEvents;
@@ -211,7 +211,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	/**
 	 * Returns the className of the bridge implementation this portlet uses. Subclasses override to alter the default
 	 * behavior. Default implementation first checks for a portlet context init parameter:
-	 * jakarta.portlet.faces.BridgeImplClass. If it doesn't exist then it looks for the resource file
+	 * com.liferay.faces.BridgeImplClass. If it doesn't exist then it looks for the resource file
 	 * "META-INF/services/com.liferay.faces.Bridge" using the current threads classloader and extracts the classname
 	 * from the first line in that file.
 	 *
@@ -306,12 +306,12 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	/**
 	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter value
-	 *              "jakarta.portlet.faces.defaultRenderKitId" instead.
+	 *              "com.liferay.faces.defaultRenderKitId" instead.
 	 *
 	 *              <p>Returns a String defining the default render kit id the bridge should ensure for this portlet. If
 	 *              non-null, this value is used to override any default render kit id set on an app wide basis in the
 	 *              faces-config.xml. This default implementation reads the values from the portlet init-param
-	 *              jakarta.portlet.faces.defaultRenderKitId. If not present, <code>null</code> is returned.</p>
+	 *              com.liferay.faces.defaultRenderKitId. If not present, <code>null</code> is returned.</p>
 	 *
 	 *              <p>Note that this method will only be called by {@link #init(PortletConfig)} if the {@link
 	 *              #INITIALIZE_NAMESPACED_CONTEXT_ATTRIBUTES} init-param is <code>true</code> in
@@ -329,8 +329,8 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	/**
 	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter
-	 *              "jakarta.portlet.faces.defaultViewId.view", "jakarta.portlet.faces.defaultViewId.edit", or
-	 *              "jakarta.portlet.faces.defaultViewId.help", etc.
+	 *              "com.liferay.faces.defaultViewId.view", "com.liferay.faces.defaultViewId.edit", or
+	 *              "com.liferay.faces.defaultViewId.help", etc.
 	 *
 	 *              <p>Returns a map of default viewIds that the bridge should use when it is unable to resolve to a
 	 *              specific target in the incoming request. There is one entry per support <code>PortletMode</code>.
@@ -374,11 +374,11 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	/**
 	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter
-	 *              "jakarta.portlet.faces.excludedRequestAttributes" instead.
+	 *              "com.liferay.faces.excludedRequestAttributes" instead.
 	 *
 	 *              <p>Returns the set of RequestAttribute names that the portlet wants the bridge to exclude from its
 	 *              managed request scope. This default implementation picks up this list from the comma delimited
-	 *              init-param jakarta.portlet.faces.excludedRequestAttributes.</p>
+	 *              init-param com.liferay.faces.excludedRequestAttributes.</p>
 	 *
 	 *              <p>Note that this method will only be called by {@link #init(PortletConfig)} if the {@link
 	 *              #INITIALIZE_NAMESPACED_CONTEXT_ATTRIBUTES} init-param is <code>true</code> in
@@ -469,7 +469,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 			bridgeEventHandler = new DeferredBridgeEventHandler(portletConfig);
 			bridgePublicRenderParameterHandler = new DeferredBridgePublicRenderParameterHandler(portletConfig);
 
-			// If the "jakarta.portlet.faces.initializeNamespacedContextAttributes" init-param is specified in
+			// If the "com.liferay.faces.initializeNamespacedContextAttributes" init-param is specified in
 			// WEB-INF/portlet.xml as "true", then perform the legacy JSR 301/329 behavior of creating namespaced
 			// portlet context attributes now at portlet initialization time in the GenericFacesPortlet API. Starting
 			// with JSR 378, this behavior is disabled by default.
@@ -479,35 +479,35 @@ public class GenericFacesPortlet extends GenericPortlet {
 			if (initializeNamespacedContextAttributes) {
 
 				// Save the default JSF views specified as WEB-INF/portlet.xml init-param value(s) as a portlet context
-				// attribute with name "jakarta.portlet.faces.<portlet-name>.defaultViewIdMap"
+				// attribute with name "com.liferay.faces.<portlet-name>.defaultViewIdMap"
 				PortletContext portletContext = portletConfig.getPortletContext();
 				String attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + "." + Bridge.DEFAULT_VIEWID_MAP;
 				portletContext.setAttribute(attributeName, getDefaultViewIdMap());
 
-				// Save the "jakarta.portlet.faces.excludedRequestAttributes" init-param value(s) as a portlet context
-				// attribute with name "jakarta.portlet.faces.<portlet-name>.excludedRequestAttributes"
+				// Save the "com.liferay.faces.excludedRequestAttributes" init-param value(s) as a portlet context
+				// attribute with name "com.liferay.faces.<portlet-name>.excludedRequestAttributes"
 				attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + "." + Bridge.EXCLUDED_REQUEST_ATTRIBUTES;
 				portletContext.setAttribute(attributeName, getExcludedRequestAttributes());
 
-				// Save the "jakarta.portlet.faces.preserveActionParams" init-param value as a portlet context attribute
-				// with name "jakarta.portlet.faces.<portlet-name>.preserveActionParams"
+				// Save the "com.liferay.faces.preserveActionParams" init-param value as a portlet context attribute
+				// with name "com.liferay.faces.<portlet-name>.preserveActionParams"
 				attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletName + "." + Bridge.PRESERVE_ACTION_PARAMS;
 				portletContext.setAttribute(attributeName, isPreserveActionParameters());
 
-				// If a jakarta.portlet.faces.bridgeEventHandler is registered as an init-param in portlet.xml, then
+				// If a com.liferay.faces.bridgeEventHandler is registered as an init-param in portlet.xml, then
 				// obtain an instance of the handler and save it as a portlet context attribute as required by Section
 				// 3.2 of the JSR 329 Spec.
 				BridgeEventHandler bridgeEventHandlerInstance = getBridgeEventHandler();
 
 				if (bridgeEventHandlerInstance != null) {
 
-					// Attribute name format: jakarta.portlet.faces.{portlet-name}.bridgeEventHandler
+					// Attribute name format: com.liferay.faces.{portlet-name}.bridgeEventHandler
 					attributeName = Bridge.BRIDGE_PACKAGE_PREFIX + portletConfig.getPortletName() + "." +
 						Bridge.BRIDGE_EVENT_HANDLER;
 					portletContext.setAttribute(attributeName, bridgeEventHandlerInstance);
 				}
 
-				// If a jakarta.portlet.faces.bridgePublicRenderParameterHandler is registered as an init-param in
+				// If a com.liferay.faces.bridgePublicRenderParameterHandler is registered as an init-param in
 				// portlet.xml, then obtain an instance of the handler and save it as a portlet context attribute as
 				// required by Section 3.2 of the JSR 329 Spec.
 				BridgePublicRenderParameterHandler bridgePublicRenderParameterHandlerInstance =
@@ -515,14 +515,14 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 				if (bridgePublicRenderParameterHandlerInstance != null) {
 
-					// Attribute name format: jakarta.portlet.faces.{portlet-name}.bridgePublicRenderParameterHandler
+					// Attribute name format: com.liferay.faces.{portlet-name}.bridgePublicRenderParameterHandler
 					String bridgeEventHandlerAttributeName = Bridge.BRIDGE_PACKAGE_PREFIX +
 						portletConfig.getPortletName() + "." + Bridge.BRIDGE_PUBLIC_RENDER_PARAMETER_HANDLER;
 					portletContext.setAttribute(bridgeEventHandlerAttributeName,
 						bridgePublicRenderParameterHandlerInstance);
 				}
 
-				// If a jakarta.portlet.faces.defaultRenderKitId is specified as an init-param in WEB-INF/portlet.xml then
+				// If a com.liferay.faces.defaultRenderKitId is specified as an init-param in WEB-INF/portlet.xml then
 				// save it as a portlet context attribute as required by Section 4.2.16 of the JSR 329 Spec.
 				String defaultRenderKitId = getDefaultRenderKitId();
 
@@ -541,7 +541,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * Returns the value of the portlet initialization parameter <code>jakarta.portlet.faces.autoDispatchEvents</code> if
+	 * Returns the value of the portlet initialization parameter <code>com.liferay.faces.autoDispatchEvents</code> if
 	 * non-null or <code>true</code>, otherwise.
 	 *
 	 * @return  boolean indicating whether to auto-dispatch all events to the bridge or not.
@@ -552,11 +552,11 @@ public class GenericFacesPortlet extends GenericPortlet {
 
 	/**
 	 * @deprecated  Call {@link jakarta.faces.context.ExternalContext#getInitParameter(String)} with parameter
-	 *              "jakarta.portlet.faces.preserveActionParams" instead.
+	 *              "com.liferay.faces.preserveActionParams" instead.
 	 *
 	 *              <p>Returns a boolean indicating whether or not the bridge should preserve all the action parameters
 	 *              in the subsequent renders that occur in the same scope. This default implementation reads the values
-	 *              from the portlet init-param jakarta.portlet.faces.preserveActionParams. If not present, false is
+	 *              from the portlet init-param com.liferay.faces.preserveActionParams. If not present, false is
 	 *              returned.</p>
 	 *
 	 *              <p>Note that this method will only be called by {@link #init(PortletConfig)} if the {@link
@@ -670,7 +670,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	}
 
 	/**
-	 * If the <code>jakarta.portlet.faces.automaticNonFacesViewDispatching</code> init-param is <code>true</code> and the
+	 * If the <code>com.liferay.faces.automaticNonFacesViewDispatching</code> init-param is <code>true</code> and the
 	 * {@link Bridge#NONFACES_TARGET_PATH_PARAMETER} render request parameter specifies a value as a non-Faces target
 	 * path, then forward to the non-Faces target path. Otherwise, delegates to the {@link
 	 * GenericPortlet#doDispatch(RenderRequest, RenderResponse)} method so that the {@link #doView(RenderRequest,
@@ -687,7 +687,7 @@ public class GenericFacesPortlet extends GenericPortlet {
 	protected void doDispatch(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException,
 		IOException {
 
-		String autoNonFacesViewDispatch = getInitParameter("jakarta.portlet.faces.automaticNonFacesViewDispatching");
+		String autoNonFacesViewDispatch = getInitParameter("com.liferay.faces.automaticNonFacesViewDispatching");
 		String nonFacesTargetPath = renderRequest.getRenderParameters().getValue(Bridge.NONFACES_TARGET_PATH_PARAMETER);
 
 		if ((autoNonFacesViewDispatch != null) && autoNonFacesViewDispatch.equalsIgnoreCase("true") &&

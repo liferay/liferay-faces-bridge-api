@@ -29,8 +29,8 @@ import org.osgi.annotation.versioning.ConsumerType;
 public class PortletProperty extends UIComponentBase {
 
 	// Public Constants
-	public static final String COMPONENT_FAMILY = "jakarta.portlet.faces.URL";
-	public static final String COMPONENT_TYPE = "jakarta.portlet.faces.Property";
+	public static final String COMPONENT_FAMILY = "com.liferay.faces.URL";
+	public static final String COMPONENT_TYPE = "com.liferay.faces.Property";
 
 	// Protected Enumerations
 	protected enum PropertyPropertyKeys {

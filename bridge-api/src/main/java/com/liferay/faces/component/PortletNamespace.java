@@ -29,8 +29,8 @@ import org.osgi.annotation.versioning.ConsumerType;
 public class PortletNamespace extends UIComponentBase {
 
 	// Public Constants
-	public static final String COMPONENT_FAMILY = "jakarta.portlet.faces.Namespace";
-	public static final String COMPONENT_TYPE = "jakarta.portlet.faces.Namespace";
+	public static final String COMPONENT_FAMILY = "com.liferay.faces.Namespace";
+	public static final String COMPONENT_TYPE = "com.liferay.faces.Namespace";
 
 	// Protected Enumerations
 	protected enum NamespacePropertyKeys {
@@ -39,7 +39,7 @@ public class PortletNamespace extends UIComponentBase {
 
 	public PortletNamespace() {
 		super();
-		setRendererType("jakarta.portlet.faces.Namespace");
+		setRendererType("com.liferay.faces.Namespace");
 	}
 
 	@Override
