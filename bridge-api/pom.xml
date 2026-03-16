@@ -100,7 +100,7 @@
 
 	<properties>
 		<bnd.version>5.3.0</bnd.version>
-		<faces.api.version>2.3.21-JAKARTA</faces.api.version>
+		<faces.api.version>2.3.2.JAKARTA-LIFERAY-PATCHED-1</faces.api.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire.version>2.12</surefire.version>
@@ -363,8 +363,8 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>jakarta.faces</groupId>
-			<artifactId>jakarta.faces-api</artifactId>
+			<groupId>com.liferay</groupId>
+			<artifactId>jakarta.faces.api</artifactId>
 			<version>${faces.api.version}</version>
 			<scope>provided</scope>
 		</dependency>
