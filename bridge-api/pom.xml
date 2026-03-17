@@ -8,7 +8,7 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.liferay.faces</groupId>
+	<groupId>com.liferay</groupId>
 	<artifactId>com.liferay.faces.bridge.api</artifactId>
 	<version>7.0.0</version>
 	<name>Liferay Faces Bridge API</name>
